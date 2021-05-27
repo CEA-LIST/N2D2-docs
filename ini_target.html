@@ -346,6 +346,29 @@ the output gradient of the function to the difference above. This effectively
 results to a cross entropy loss with regards to the input gradient of these
 functions, as per the mathematical simplification of the cross entropy loss
 derivative multiplied by the functions gradient.</p>
+<div class="admonition-demonstration admonition">
+<p class="admonition-title">Demonstration</p>
+<p>The cross entropy loss for a single image is:</p>
+<div class="math notranslate nohighlight">
+\[L = -\sum_{j=1}^{M}{y_{j}\log(p_{j})}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>M - number of classes (dog, cat, fish)</p></li>
+<li><p>log - the natural log</p></li>
+<li><p>y - binary indicator (0 or 1) if class label <span class="math notranslate nohighlight">\(j\)</span> is the correct classification for this image</p></li>
+<li><p>p - predicted probability that the image is of class <span class="math notranslate nohighlight">\(j\)</span></p></li>
+</ul>
+</div>
+<p>The softmax performs the following operation:</p>
+<div class="math notranslate nohighlight">
+\[p_{i} = \frac{\exp{x_{i}}}{\sum_{k}\exp{x_{k}}}\]</div>
+<p>To perform the back-propagation, we need to compute the derivative of the loss
+<span class="math notranslate nohighlight">\(L\)</span> with respect to the inputs <span class="math notranslate nohighlight">\(x_{i}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\frac{\partial L}{\partial x_i}=-\sum_ky_k\frac{\partial \log p_k}{\partial x_i}=-\sum_ky_k\frac{1}{p_k}\frac{\partial p_k}{\partial x_i}\\=-y_i(1-p_i)-\sum_{k\neq i}y_k\frac{1}{p_k}({-p_kp_i})\\=-y_i(1-p_i)+\sum_{k\neq i}y_k({p_i})\\=-y_i+y_ip_i+\sum_{k\neq i}y_k({p_i})\\=p_i\left(\sum_k{y_k}\right)-y_i\\=p_i-y_i\end{aligned}\end{align} \]</div>
+<p>given that <span class="math notranslate nohighlight">\(\sum_k{y_k}=1\)</span>, as <span class="math notranslate nohighlight">\(y\)</span> is a vector with only one non-zero element, which is 1.</p>
+</div>
 </div>
 <div class="section" id="target-types">
 <h2>Target types<a class="headerlink" href="#target-types" title="Permalink to this headline">¶</a></h2>
