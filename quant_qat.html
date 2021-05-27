@@ -104,7 +104,14 @@
 <p class="caption"><span class="caption-text">Quantization and Export:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quant_post.html">Post-training quantization</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Quantization aware training</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quantization aware training</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#scale-adjusted-training">Scale-adjusted training</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#results">Results</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="export_CPP.html">Export: C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="export_CPP_STM32.html">Export: C++/STM32</a></li>
 <li class="toctree-l1"><a class="reference internal" href="export_TensorRT.html">Export: TensorRT</a></li>
@@ -211,6 +218,224 @@ in the figure below. Each dot represents one DNN (from the MobileNet or ResNet
 family), quantized with the number of bits indicated beside.</p>
 <div class="figure align-default">
 <img alt="QAT state-of-the-art." src="_images/qat_sota.png" />
+</div>
+<div class="section" id="scale-adjusted-training">
+<h2>Scale-adjusted training<a class="headerlink" href="#scale-adjusted-training" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>One can apply the SAT quantization methodology on the chosen deep neural network by adding the right parameters to the
+<em>.ini</em> file. Here we show how to configure the <em>.ini</em> file to correctly apply the SAT quantization.</p>
+<p>In a naive case, all convolutions and/or fully-connected layers are quantized. The quantization parameters are defined at the top of the configuration file :</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;SAT Quantization Parameters</span>
+<span class="na">$QuantMode</span><span class="o">=</span><span class="s">1 ; 1 is for quantization, 0 for weights clamping</span>
+<span class="na">$ScaleModeConv</span><span class="o">=</span><span class="s">0</span>
+<span class="na">$ScaleModeFc</span><span class="o">=</span><span class="s">1</span>
+<span class="na">$WeightsRange</span><span class="o">=</span><span class="s">255;-&gt;15 for 4-bits range (2^4 - 1)</span>
+<span class="na">$ActivationsRange</span><span class="o">=</span><span class="s">255;-&gt;15 for 4-bits range (2^4 - 1)</span>
+</pre></div>
+</div>
+<p>A base block common to all convolution layers can be defined in the <em>.ini</em> file. This base block is used to set quantization parameters, like weights bits range, the scaling mode and the quantization mode, and also solver configuration.</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Conv_def]</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Conv</span>
+<span class="na">DataType</span><span class="o">=</span><span class="s">Float32</span>
+<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear</span>
+<span class="na">QWeight</span><span class="o">=</span><span class="s">SAT</span>
+<span class="na">QWeight.ApplyScaling</span><span class="o">=</span><span class="s">${ScaleModeConv}</span>
+<span class="na">QWeight.ApplyQuantization</span><span class="o">=</span><span class="s">${QuantMode}</span>
+<span class="na">QWeight.Range</span><span class="o">=</span><span class="s">${WeightsRange}</span>
+<span class="na">ConfigSection</span><span class="o">=</span><span class="s">common.config</span>
+</pre></div>
+</div>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[common.config]</span>
+<span class="na">NoBias</span><span class="o">=</span><span class="s">1</span>
+<span class="na">Solvers.LearningRate</span><span class="o">=</span><span class="s">${LR}</span>
+<span class="na">Solvers.LearningRatePolicy</span><span class="o">=</span><span class="s">${Policy}</span>
+<span class="na">Solvers.Momentum</span><span class="o">=</span><span class="s">${MOMENTUM}</span>
+<span class="na">Solvers.Decay</span><span class="o">=</span><span class="s">${WD}</span>
+</pre></div>
+</div>
+<p>The quantization of the fully-connected layer can be configured as :</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Fc_def]</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Fc</span>
+<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear</span>
+<span class="na">QWeight</span><span class="o">=</span><span class="s">SAT</span>
+<span class="na">QWeight.ApplyScaling</span><span class="o">=</span><span class="s">${ScaleModeFc}</span>
+<span class="na">QWeight.ApplyQuantization</span><span class="o">=</span><span class="s">${QuantMode}</span>
+<span class="na">QWeight.Range</span><span class="o">=</span><span class="s">${WeightsRange}</span>
+<span class="na">ConfigSection</span><span class="o">=</span><span class="s">common.config</span>
+</pre></div>
+</div>
+<p>The activations can be configured using another common block, where one can set activations bits range, Alpha
+initialization value and its solver configuration, the scaling mode and the quantization mode. For example, the common definition for batch normalization layers:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Bn_def]</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">BatchNorm</span>
+<span class="na">DataType</span><span class="o">=</span><span class="s">Float32</span>
+<span class="na">QAct</span><span class="o">=</span><span class="s">SAT</span>
+<span class="na">QAct.Alpha</span><span class="o">=</span><span class="s">6.0</span>
+<span class="na">QAct.Range</span><span class="o">=</span><span class="s">${ActivationsRange}</span>
+<span class="na">QActSolver</span><span class="o">=</span><span class="s">${SolverType}</span>
+<span class="na">QActSolver.LearningRate</span><span class="o">=</span><span class="s">${LR}</span>
+<span class="na">QActSolver.LearningRatePolicy</span><span class="o">=</span><span class="s">${Policy}</span>
+<span class="na">QActSolver.Momentum</span><span class="o">=</span><span class="s">${MOMENTUM}</span>
+<span class="na">QActSolver.Decay</span><span class="o">=</span><span class="s">${WD}</span>
+<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear</span>
+<span class="na">ConfigSection</span><span class="o">=</span><span class="s">bn.config</span>
+</pre></div>
+</div>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[bn.config]</span>
+<span class="na">Solvers.LearningRate</span><span class="o">=</span><span class="s">${LR}</span>
+<span class="na">Solvers.LearningRatePolicy</span><span class="o">=</span><span class="s">${Policy}</span>
+<span class="na">Solvers.Momentum</span><span class="o">=</span><span class="s">${MOMENTUM}</span>
+<span class="na">Solvers.Decay</span><span class="o">=</span><span class="s">${WD}</span>
+</pre></div>
+</div>
+<p>An illustration of a hand-made neural network in an <em>.ini</em> file is provided with the LeNet topology.
+This model is located at <em>models/Quantization/SAT/LeNet_bn_SAT_v2.ini</em> and is pre-configured to apply SAT
+fine-tunning on the weights.</p>
+<p>As a first step, you have to run the learning phase to clamp the weights with the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">n2d2</span> <span class="n">models</span><span class="o">/</span><span class="n">Quantization</span><span class="o">/</span><span class="n">SAT</span><span class="o">/</span><span class="n">LeNet_bn_SAT_clamp</span><span class="o">.</span><span class="n">ini</span> <span class="o">-</span><span class="n">learn</span><span class="o">-</span><span class="n">epoch</span> <span class="mi">100</span>
+</pre></div>
+</div>
+<p>where <em>LeNet_bn_SAT_clamp.ini</em> contains only the necessary information for weights clamping, and no activations are quantized.</p>
+<p>This command will run the learning phase over 100 epochs with the MNIST dataset.
+The final test accuracy must reach at least 98.9%:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Final</span> <span class="n">recognition</span> <span class="n">rate</span><span class="p">:</span> <span class="mf">98.95</span><span class="o">%</span>    <span class="p">(</span><span class="n">error</span> <span class="n">rate</span><span class="p">:</span> <span class="mf">1.05</span><span class="o">%</span><span class="p">)</span>
+<span class="n">Sensitivity</span><span class="p">:</span> <span class="mf">98.94</span><span class="o">%</span> <span class="o">/</span> <span class="n">Specificity</span><span class="p">:</span> <span class="mf">99.88</span><span class="o">%</span> <span class="o">/</span> <span class="n">Precision</span><span class="p">:</span> <span class="mf">98.94</span><span class="o">%</span>
+<span class="n">Accuracy</span><span class="p">:</span> <span class="mf">99.79</span><span class="o">%</span> <span class="o">/</span> <span class="n">F1</span><span class="o">-</span><span class="n">score</span><span class="p">:</span> <span class="mf">98.94</span><span class="o">%</span> <span class="o">/</span> <span class="n">Informedness</span><span class="p">:</span> <span class="mf">98.82</span><span class="o">%</span>
+</pre></div>
+</div>
+<p>Next, it is recommended to save parameters of the weights folder to the other location,
+for example <em>weights_clamped</em> folder.</p>
+<p>You can now use the <em>LeNet_bn_SAT_v2.ini</em> file to activate the quantization phase.
+It consists to run a learning phase with the same hyperparameters by
+using transfer learning method from the previously clamped weights
+with this command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">n2d2</span> <span class="n">models</span><span class="o">/</span><span class="n">Quantization</span><span class="o">/</span><span class="n">SAT</span><span class="o">/</span><span class="n">LeNet_bn_SAT_v2</span><span class="o">.</span><span class="n">ini</span> <span class="o">-</span><span class="n">learn</span><span class="o">-</span><span class="n">epoch</span> <span class="mi">100</span> <span class="o">-</span><span class="n">w</span> <span class="n">weights_clamped</span>
+</pre></div>
+</div>
+<p>The final test accuracy should be around 99.2%:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Final</span> <span class="n">recognition</span> <span class="n">rate</span><span class="p">:</span> <span class="mf">99.25</span><span class="o">%</span>    <span class="p">(</span><span class="n">error</span> <span class="n">rate</span><span class="p">:</span> <span class="mf">0.75</span><span class="o">%</span><span class="p">)</span>
+<span class="n">Sensitivity</span><span class="p">:</span> <span class="mf">99.24</span><span class="o">%</span> <span class="o">/</span> <span class="n">Specificity</span><span class="p">:</span> <span class="mf">99.92</span><span class="o">%</span> <span class="o">/</span> <span class="n">Precision</span><span class="p">:</span> <span class="mf">99.25</span><span class="o">%</span>
+<span class="n">Accuracy</span><span class="p">:</span> <span class="mf">99.85</span><span class="o">%</span> <span class="o">/</span> <span class="n">F1</span><span class="o">-</span><span class="n">score</span><span class="p">:</span> <span class="mf">99.24</span><span class="o">%</span> <span class="o">/</span> <span class="n">Informedness</span><span class="p">:</span> <span class="mf">99.15</span><span class="o">%</span>
+</pre></div>
+</div>
+<p>For example to quantize weights and activations in a 4 bits range, these parameters
+must be modified in that way:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;SAT Quantization Parameters</span>
+<span class="na">$QuantMode</span><span class="o">=</span><span class="s">1</span>
+<span class="na">$ScaleModeConv</span><span class="o">=</span><span class="s">0</span>
+<span class="na">$ScaleModeFc</span><span class="o">=</span><span class="s">1</span>
+<span class="na">$WeightsRange</span><span class="o">=</span><span class="s">15;-&gt;15 for 4-bits range (2^4 - 1)</span>
+<span class="na">$ActivationsRange</span><span class="o">=</span><span class="s">15;-&gt;15 for 4-bits range (2^4 - 1)</span>
+</pre></div>
+</div>
+<p>If one wants to  keep the first convolutional layer weights in 8 bits precision, while the following layers - in 4 bits, this can be configured as :</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">[conv1] Conv_def</span>
+<span class="na">Input</span><span class="o">=</span><span class="s">env</span>
+<span class="na">KernelWidth</span><span class="o">=</span><span class="s">5</span>
+<span class="na">KernelHeight</span><span class="o">=</span><span class="s">5</span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">6</span>
+<span class="na">QWeight.Range</span><span class="o">=</span><span class="s">255 ;first conv layer is in 8 bits</span>
+</pre></div>
+</div>
+<p>The final test accuracy should be around 99.1%:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Final</span> <span class="n">recognition</span> <span class="n">rate</span><span class="p">:</span> <span class="mf">99.14</span><span class="o">%</span>    <span class="p">(</span><span class="n">error</span> <span class="n">rate</span><span class="p">:</span> <span class="mf">0.86</span><span class="o">%</span><span class="p">)</span>
+<span class="n">Sensitivity</span><span class="p">:</span> <span class="mf">99.13</span><span class="o">%</span> <span class="o">/</span> <span class="n">Specificity</span><span class="p">:</span> <span class="mf">99.9</span><span class="o">%</span> <span class="o">/</span> <span class="n">Precision</span><span class="p">:</span> <span class="mf">99.14</span><span class="o">%</span>
+<span class="n">Accuracy</span><span class="p">:</span> <span class="mf">99.83</span><span class="o">%</span> <span class="o">/</span> <span class="n">F1</span><span class="o">-</span><span class="n">score</span><span class="p">:</span> <span class="mf">99.13</span><span class="o">%</span> <span class="o">/</span> <span class="n">Informedness</span><span class="p">:</span> <span class="mf">99.03</span><span class="o">%</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="results">
+<h3>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h3>
+<p>The validation precision with SAT quantization, for MobileNet-v1 and MobileNet-v2 architectures are shown below.</p>
+<table class="colwidths-given docutils align-default" id="id3">
+<caption><span class="caption-text">SAT quantization results for MobileNet-v1 architecture</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Conv1x1 #bits</p></th>
+<th class="head"><p>Conv3x3 #bits</p></th>
+<th class="head"><p>Activation #bits</p></th>
+<th class="head"><p>Precision</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>8</p></td>
+<td><p>8</p></td>
+<td><p>72.5 %</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>4</p></td>
+<td><p>4</p></td>
+<td><p>70.92 %</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>4</p></td>
+<td><p>3</p></td>
+<td><p>68.61 %</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>2</p></td>
+<td><p>8</p></td>
+<td><p>64.95 %</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>4</p></td>
+<td><p>2</p></td>
+<td><p>64.81 %</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>3</p></td>
+<td><p>3</p></td>
+<td><p>64.56 %</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>4</p></td>
+<td><p>3</p></td>
+<td><p>62.69 %</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>4</p></td>
+<td><p>2</p></td>
+<td><p>57.76 %</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>8</p></td>
+<td><p>60.10%</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-given docutils align-default" id="id4">
+<caption><span class="caption-text">SAT quantization results for MobileNet-v2 architecture</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Conv #bits</p></th>
+<th class="head"><p>Activation #bits</p></th>
+<th class="head"><p>Precision</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>4</p></td>
+<td><p>70.93%</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>8</p></td>
+<td><p>58.59%</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 

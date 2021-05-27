@@ -1553,6 +1553,9 @@ labels before reduction. For pixel-wise segmentation tasks, set <code class="doc
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IgnoreNoValid</span></code> [1]</p></td>
 <td><p>If true (1), if no valid slice is found, a random slice is extracted and marked as ignored (-1)</p></td>
 </tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ExcludeLabels</span></code> []</p></td>
+<td><p>Space-separated list of label ID to exclude from the random extraction (when <code class="docutils literal notranslate"><span class="pre">Label</span></code> is -1)</p></td>
+</tr>
 </tbody>
 </table>
 <p>This transformation is useful to learn sparse object occurrences in a

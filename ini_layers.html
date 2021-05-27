@@ -939,8 +939,9 @@ following output feature maps ordering:</p>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NbOutputs</span></code></p></td>
 <td><p>Number of output neurons</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ActivationFunction</span></code> [<code class="docutils literal notranslate"><span class="pre">Tanh</span></code>]</p></td>
-<td><p>Activation function. Can be any of <code class="docutils literal notranslate"><span class="pre">Logistic</span></code>, <code class="docutils literal notranslate"><span class="pre">LogisticWithLoss</span></code>, <code class="docutils literal notranslate"><span class="pre">Rectifier</span></code>, <code class="docutils literal notranslate"><span class="pre">Softplus</span></code>, <code class="docutils literal notranslate"><span class="pre">TanhLeCun</span></code>, <code class="docutils literal notranslate"><span class="pre">Linear</span></code>, <code class="docutils literal notranslate"><span class="pre">Saturation</span></code> or <code class="docutils literal notranslate"><span class="pre">Tanh</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ActivationFunction</span></code> []</p></td>
+<td><p>Activation function. Can be any of <code class="docutils literal notranslate"><span class="pre">Logistic</span></code>, <code class="docutils literal notranslate"><span class="pre">LogisticWithLoss</span></code>, <code class="docutils literal notranslate"><span class="pre">Rectifier</span></code>, <code class="docutils literal notranslate"><span class="pre">Softplus</span></code>, <code class="docutils literal notranslate"><span class="pre">TanhLeCun</span></code>, <code class="docutils literal notranslate"><span class="pre">Linear</span></code>, <code class="docutils literal notranslate"><span class="pre">Saturation</span></code> or <code class="docutils literal notranslate"><span class="pre">Tanh</span></code>
+(none by default)</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ScalesSharing</span></code> []</p></td>
 <td><p>Share the scales with an other layer</p></td>
@@ -1095,11 +1096,11 @@ N-D kernels</p></td>
 N-D kernels</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ActivationFunction</span></code>
-[<code class="docutils literal notranslate"><span class="pre">Tanh</span></code>]</p></td>
+[]</p></td>
 <td><p>Activation function. Can be any of <code class="docutils literal notranslate"><span class="pre">Logistic</span></code>,
 <code class="docutils literal notranslate"><span class="pre">LogisticWithLoss</span></code>, <code class="docutils literal notranslate"><span class="pre">Rectifier</span></code>, <code class="docutils literal notranslate"><span class="pre">Softplus</span></code>,
 <code class="docutils literal notranslate"><span class="pre">TanhLeCun</span></code>, <code class="docutils literal notranslate"><span class="pre">Linear</span></code>, <code class="docutils literal notranslate"><span class="pre">Saturation</span></code> or
-<code class="docutils literal notranslate"><span class="pre">Tanh</span></code></p></td>
+<code class="docutils literal notranslate"><span class="pre">Tanh</span></code> (none by default)</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">WeightsFiller</span></code>
 [<code class="docutils literal notranslate"><span class="pre">NormalFiller(0.0,</span> <span class="pre">0.05)</span></code>]</p></td>
@@ -1466,11 +1467,11 @@ N-D kernels</p></td>
 N-D kernels</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ActivationFunction</span></code>
-[<code class="docutils literal notranslate"><span class="pre">Tanh</span></code>]</p></td>
+[]</p></td>
 <td><p>Activation function. Can be any of <code class="docutils literal notranslate"><span class="pre">Logistic</span></code>,
 <code class="docutils literal notranslate"><span class="pre">LogisticWithLoss</span></code>, <code class="docutils literal notranslate"><span class="pre">Rectifier</span></code>, <code class="docutils literal notranslate"><span class="pre">Softplus</span></code>,
 <code class="docutils literal notranslate"><span class="pre">TanhLeCun</span></code>, <code class="docutils literal notranslate"><span class="pre">Linear</span></code>, <code class="docutils literal notranslate"><span class="pre">Saturation</span></code> or
-<code class="docutils literal notranslate"><span class="pre">Tanh</span></code></p></td>
+<code class="docutils literal notranslate"><span class="pre">Tanh</span></code> (none by default)</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">WeightsFiller</span></code>
 [<code class="docutils literal notranslate"><span class="pre">NormalFiller(0.0,</span> <span class="pre">0.05)</span></code>]</p></td>
@@ -1693,8 +1694,9 @@ limit)</p></td>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Shifts</span></code> [0.0]</p></td>
 <td><p>Shifts for the <code class="docutils literal notranslate"><span class="pre">Sum</span></code> and <code class="docutils literal notranslate"><span class="pre">EuclideanSum</span></code> operation, in the same order as the inputs</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ActivationFunction</span></code> [<code class="docutils literal notranslate"><span class="pre">Linear</span></code>]</p></td>
-<td><p>Activation function. Can be any of <code class="docutils literal notranslate"><span class="pre">Logistic</span></code>, <code class="docutils literal notranslate"><span class="pre">LogisticWithLoss</span></code>, <code class="docutils literal notranslate"><span class="pre">Rectifier</span></code>, <code class="docutils literal notranslate"><span class="pre">Softplus</span></code>, <code class="docutils literal notranslate"><span class="pre">TanhLeCun</span></code>, <code class="docutils literal notranslate"><span class="pre">Linear</span></code>, <code class="docutils literal notranslate"><span class="pre">Saturation</span></code> or <code class="docutils literal notranslate"><span class="pre">Tanh</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ActivationFunction</span></code> []</p></td>
+<td><p>Activation function. Can be any of <code class="docutils literal notranslate"><span class="pre">Logistic</span></code>, <code class="docutils literal notranslate"><span class="pre">LogisticWithLoss</span></code>, <code class="docutils literal notranslate"><span class="pre">Rectifier</span></code>, <code class="docutils literal notranslate"><span class="pre">Softplus</span></code>, <code class="docutils literal notranslate"><span class="pre">TanhLeCun</span></code>, <code class="docutils literal notranslate"><span class="pre">Linear</span></code>, <code class="docutils literal notranslate"><span class="pre">Saturation</span></code> or <code class="docutils literal notranslate"><span class="pre">Tanh</span></code>
+(none by default)</p></td>
 </tr>
 </tbody>
 </table>
@@ -1781,8 +1783,9 @@ operation:</p>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ScalingRatio</span></code></p></td>
 <td><p>Scaling ratio. The output size is <span class="math notranslate nohighlight">\(round\left(\frac{\text{input size}}{\text{scaling ratio}}\right)\)</span>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ActivationFunction</span></code> [<code class="docutils literal notranslate"><span class="pre">Linear</span></code>]</p></td>
-<td><p>Activation function. Can be any of <code class="docutils literal notranslate"><span class="pre">Logistic</span></code>, <code class="docutils literal notranslate"><span class="pre">LogisticWithLoss</span></code>, <code class="docutils literal notranslate"><span class="pre">Rectifier</span></code>, <code class="docutils literal notranslate"><span class="pre">Softplus</span></code>, <code class="docutils literal notranslate"><span class="pre">TanhLeCun</span></code>, <code class="docutils literal notranslate"><span class="pre">Linear</span></code>, <code class="docutils literal notranslate"><span class="pre">Saturation</span></code> or <code class="docutils literal notranslate"><span class="pre">Tanh</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ActivationFunction</span></code> []</p></td>
+<td><p>Activation function. Can be any of <code class="docutils literal notranslate"><span class="pre">Logistic</span></code>, <code class="docutils literal notranslate"><span class="pre">LogisticWithLoss</span></code>, <code class="docutils literal notranslate"><span class="pre">Rectifier</span></code>, <code class="docutils literal notranslate"><span class="pre">Softplus</span></code>, <code class="docutils literal notranslate"><span class="pre">TanhLeCun</span></code>, <code class="docutils literal notranslate"><span class="pre">Linear</span></code>, <code class="docutils literal notranslate"><span class="pre">Saturation</span></code> or <code class="docutils literal notranslate"><span class="pre">Tanh</span></code>
+(none by default)</p></td>
 </tr>
 </tbody>
 </table>
@@ -1842,8 +1845,9 @@ operation:</p>
 <tr class="row-even"><td><p>[<code class="docutils literal notranslate"><span class="pre">NormalFiller(0.0,</span> <span class="pre">0.05)</span></code>]</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ActivationFunction</span></code> [<code class="docutils literal notranslate"><span class="pre">Tanh</span></code>]</p></td>
-<td><p>Activation function. Can be any of <code class="docutils literal notranslate"><span class="pre">Logistic</span></code>, <code class="docutils literal notranslate"><span class="pre">LogisticWithLoss</span></code>, <code class="docutils literal notranslate"><span class="pre">Rectifier</span></code>, <code class="docutils literal notranslate"><span class="pre">Softplus</span></code>, <code class="docutils literal notranslate"><span class="pre">TanhLeCun</span></code>, <code class="docutils literal notranslate"><span class="pre">Linear</span></code>, <code class="docutils literal notranslate"><span class="pre">Saturation</span></code> or <code class="docutils literal notranslate"><span class="pre">Tanh</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ActivationFunction</span></code> []</p></td>
+<td><p>Activation function. Can be any of <code class="docutils literal notranslate"><span class="pre">Logistic</span></code>, <code class="docutils literal notranslate"><span class="pre">LogisticWithLoss</span></code>, <code class="docutils literal notranslate"><span class="pre">Rectifier</span></code>, <code class="docutils literal notranslate"><span class="pre">Softplus</span></code>, <code class="docutils literal notranslate"><span class="pre">TanhLeCun</span></code>, <code class="docutils literal notranslate"><span class="pre">Linear</span></code>, <code class="docutils literal notranslate"><span class="pre">Saturation</span></code> or <code class="docutils literal notranslate"><span class="pre">Tanh</span></code>
+(none by default)</p></td>
 </tr>
 </tbody>
 </table>
@@ -2492,11 +2496,11 @@ pooling area</p></td>
 N-D pooling area</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ActivationFunction</span></code>
-[<code class="docutils literal notranslate"><span class="pre">Linear</span></code>]</p></td>
+[]</p></td>
 <td><p>Activation function. Can be any of <code class="docutils literal notranslate"><span class="pre">Logistic</span></code>,
 <code class="docutils literal notranslate"><span class="pre">LogisticWithLoss</span></code>, <code class="docutils literal notranslate"><span class="pre">Rectifier</span></code>, <code class="docutils literal notranslate"><span class="pre">Softplus</span></code>,
 <code class="docutils literal notranslate"><span class="pre">TanhLeCun</span></code>, <code class="docutils literal notranslate"><span class="pre">Linear</span></code>, <code class="docutils literal notranslate"><span class="pre">Saturation</span></code> or
-<code class="docutils literal notranslate"><span class="pre">Tanh</span></code></p></td>
+<code class="docutils literal notranslate"><span class="pre">Tanh</span></code> (none by default)</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Mapping.NbGroups</span></code> []</p></td>
 <td><p>Mapping: number of groups (mutually exclusive
@@ -3053,11 +3057,11 @@ pooling area</p></td>
 N-D pooling area</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ActivationFunction</span></code>
-[<code class="docutils literal notranslate"><span class="pre">Linear</span></code>]</p></td>
+[]</p></td>
 <td><p>Activation function. Can be any of <code class="docutils literal notranslate"><span class="pre">Logistic</span></code>,
 <code class="docutils literal notranslate"><span class="pre">LogisticWithLoss</span></code>, <code class="docutils literal notranslate"><span class="pre">Rectifier</span></code>, <code class="docutils literal notranslate"><span class="pre">Softplus</span></code>,
 <code class="docutils literal notranslate"><span class="pre">TanhLeCun</span></code>, <code class="docutils literal notranslate"><span class="pre">Linear</span></code>, <code class="docutils literal notranslate"><span class="pre">Saturation</span></code> or
-<code class="docutils literal notranslate"><span class="pre">Tanh</span></code></p></td>
+<code class="docutils literal notranslate"><span class="pre">Tanh</span></code> (none by default)</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Mapping.NbGroups</span></code> []</p></td>
 <td><p>Mapping: number of groups (mutually exclusive
