@@ -115,7 +115,11 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#usage-in-n2d2">Usage in N2D2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage-in-n2d2">Usage in N2D2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#act-rescaling-mode"><code class="docutils literal notranslate"><span class="pre">-act-rescaling-mode</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#command-line-example">Command line example</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#examples-and-results">Examples and results</a></li>
 </ul>
 </li>
@@ -315,17 +319,36 @@ export type. To apply post-training quantization during export, simply use the
 <td><p>Activations clipping mode on export, can be <code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">MSE</span></code> or <code class="docutils literal notranslate"><span class="pre">KL-Divergence</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-act-rescaling-mode</span></code> [<code class="docutils literal notranslate"><span class="pre">Single-shift</span></code>]</p></td>
-<td><p>Activations scaling mode on export, can be <code class="docutils literal notranslate"><span class="pre">Floating-point</span></code>, <code class="docutils literal notranslate"><span class="pre">Fixed-point</span></code>, <code class="docutils literal notranslate"><span class="pre">Single-shift</span></code> or <code class="docutils literal notranslate"><span class="pre">Double-shift</span></code></p></td>
+<td><p>Activations scaling mode on export, can be <code class="docutils literal notranslate"><span class="pre">Floating-point</span></code>, <code class="docutils literal notranslate"><span class="pre">Fixed-point16</span></code>, <code class="docutils literal notranslate"><span class="pre">Fixed-point32</span></code>, <code class="docutils literal notranslate"><span class="pre">Single-shift</span></code>
+or <code class="docutils literal notranslate"><span class="pre">Double-shift</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-act-rescale-per-output</span></code> [0]</p></td>
 <td><p>If true (1), rescale activation per output instead of per layer</p></td>
 </tr>
 </tbody>
 </table>
+<div class="section" id="act-rescaling-mode">
+<h3><code class="docutils literal notranslate"><span class="pre">-act-rescaling-mode</span></code><a class="headerlink" href="#act-rescaling-mode" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">-act-rescaling-mode</span></code> specifies how the activation scaling must be approximated,
+for values other than <code class="docutils literal notranslate"><span class="pre">Floating-point</span></code>. This allows to avoid floating-point
+operation altogether in the generated code, even for complex, multi-branches networks.
+This is particularly useful on architectures without FPU or on FPGA.</p>
+<p>For fixed-point scaling approximation (<span class="math notranslate nohighlight">\(x 2^{-p}\)</span>), two modes are available:
+<code class="docutils literal notranslate"><span class="pre">Fixed-point16</span></code> and <code class="docutils literal notranslate"><span class="pre">Fixed-point32</span></code>. <code class="docutils literal notranslate"><span class="pre">Fixed-point16</span></code> specifies that <span class="math notranslate nohighlight">\(x\)</span>
+must hold in at most 16-bits, whereas <code class="docutils literal notranslate"><span class="pre">Fixed-point32</span></code> allows 32-bits <span class="math notranslate nohighlight">\(x\)</span>.
+In the later case, beware that overflow can occur on 32-bits only architectures
+when computing the scaling multiplication before the right shift (<span class="math notranslate nohighlight">\(p\)</span>).</p>
+<p>For the <code class="docutils literal notranslate"><span class="pre">Single-shift`</span> <span class="pre">and</span> <span class="pre">``Double-shift</span></code> modes, only right shifts are allowed
+(scaling factor &lt; 1.0). In case of layers with scaling factor above 1.0, <code class="docutils literal notranslate"><span class="pre">Fixed-point16</span></code>
+is used as fallback for these layers.</p>
+</div>
+<div class="section" id="command-line-example">
+<h3>Command line example<a class="headerlink" href="#command-line-example" title="Permalink to this headline">¶</a></h3>
 <p>Command line example to run the C++ Export on a INI file containing an ONNX
 model:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2</span> <span class="n">MobileNet_ONNX</span><span class="o">.</span><span class="n">ini</span> <span class="o">-</span><span class="n">seed</span> <span class="mi">1</span> <span class="o">-</span><span class="n">w</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span> <span class="o">-</span><span class="n">export</span> <span class="n">CPP</span> <span class="o">-</span><span class="n">fuse</span> <span class="o">-</span><span class="n">calib</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="n">act</span><span class="o">-</span><span class="n">clipping</span><span class="o">-</span><span class="n">mode</span> <span class="n">KL</span><span class="o">-</span><span class="n">Divergence</span>
 </pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="examples-and-results">
