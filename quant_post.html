@@ -338,7 +338,7 @@ This is particularly useful on architectures without FPU or on FPGA.</p>
 must hold in at most 16-bits, whereas <code class="docutils literal notranslate"><span class="pre">Fixed-point32</span></code> allows 32-bits <span class="math notranslate nohighlight">\(x\)</span>.
 In the later case, beware that overflow can occur on 32-bits only architectures
 when computing the scaling multiplication before the right shift (<span class="math notranslate nohighlight">\(p\)</span>).</p>
-<p>For the <code class="docutils literal notranslate"><span class="pre">Single-shift`</span> <span class="pre">and</span> <span class="pre">``Double-shift</span></code> modes, only right shifts are allowed
+<p>For the <code class="docutils literal notranslate"><span class="pre">Single-shift</span></code> and <code class="docutils literal notranslate"><span class="pre">Double-shift</span></code> modes, only right shifts are allowed
 (scaling factor &lt; 1.0). In case of layers with scaling factor above 1.0, <code class="docutils literal notranslate"><span class="pre">Fixed-point16</span></code>
 is used as fallback for these layers.</p>
 </div>
