@@ -250,14 +250,14 @@ native TensorRT layers are supported. The export support from TensorRT
 </pre></div>
 </div>
 <p>The results of the layer wise profiling should look like:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">(19%)  **************************************** CONV1 + CONV1_ACTIVATION: 0.0219467 ms</span>
-<span class="go">(05%)  ************ POOL1: 0.00675573 ms</span>
-<span class="go">(13%)  **************************** CONV2 + CONV2_ACTIVATION: 0.0159089 ms</span>
-<span class="go">(05%)  ************ POOL2: 0.00616047 ms</span>
-<span class="go">(14%)  ****************************** CONV3 + CONV3_ACTIVATION: 0.0159713 ms</span>
-<span class="go">(19%)  **************************************** FC1 + FC1_ACTIVATION: 0.0222242 ms</span>
-<span class="go">(13%)  **************************** FC2: 0.0149013 ms</span>
-<span class="go">(08%)  ****************** SOFTMAX: 0.0100633 ms</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(19%)</span>  <span class="go">**************************************** CONV1 + CONV1_ACTIVATION: 0.0219467 ms</span>
+<span class="gp gp-VirtualEnv">(05%)</span>  <span class="go">************ POOL1: 0.00675573 ms</span>
+<span class="gp gp-VirtualEnv">(13%)</span>  <span class="go">**************************** CONV2 + CONV2_ACTIVATION: 0.0159089 ms</span>
+<span class="gp gp-VirtualEnv">(05%)</span>  <span class="go">************ POOL2: 0.00616047 ms</span>
+<span class="gp gp-VirtualEnv">(14%)</span>  <span class="go">****************************** CONV3 + CONV3_ACTIVATION: 0.0159713 ms</span>
+<span class="gp gp-VirtualEnv">(19%)</span>  <span class="go">**************************************** FC1 + FC1_ACTIVATION: 0.0222242 ms</span>
+<span class="gp gp-VirtualEnv">(13%)</span>  <span class="go">**************************** FC2: 0.0149013 ms</span>
+<span class="gp gp-VirtualEnv">(08%)</span>  <span class="go">****************** SOFTMAX: 0.0100633 ms</span>
 <span class="go">Average profiled tensorRT process time per stimulus = 0.113932 ms</span>
 </pre></div>
 </div>
