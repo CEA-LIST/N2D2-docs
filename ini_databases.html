@@ -348,6 +348,18 @@ with the <code class="docutils literal notranslate"><span class="pre">DIR_Databa
 <span class="na">MultiChannelReplace</span><span class="o">=</span><span class="s">$1_0$2 $1_1$2</span>
 </pre></div>
 </div>
+<p>Note that when <code class="docutils literal notranslate"><span class="pre">MultiChannelMatch</span></code> is not empty, only files matching this parameter
+regexp pattern (and the associated channels obtained with <code class="docutils literal notranslate"><span class="pre">MultiChannelReplace</span></code>,
+when they exist) will be loaded. Other files in the dataset not matching the
+<code class="docutils literal notranslate"><span class="pre">MultiChannelMatch</span></code> filter will be ignored.</p>
+<p>Stimuli are loaded even if some channels are missing (in which case, “Notice”
+messages are issued for the missing channel(s) during database loading). Missing
+channel values are set to 0.</p>
+<p>Annotations are common to all channels. If annotations exist for a specific channel,
+they are fused with the annotations of the other channels (for geometric annotations).
+Pixel-wise annotations, obtained when <code class="docutils literal notranslate"><span class="pre">DataFileLabel</span></code> is 1 (true), through
+the <code class="docutils literal notranslate"><span class="pre">Database::readLabel()</span></code> virtual method, are only read for the match
+(<code class="docutils literal notranslate"><span class="pre">MultiChannelMatch</span></code>) channel.</p>
 </div>
 </div>
 <div class="section" id="mnist">
