@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Post-training quantization &mdash; N2D2  documentation</title>
   
@@ -16,10 +16,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -56,7 +53,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> N2D2
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> N2D2
           
 
           
@@ -190,8 +187,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -203,7 +198,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="_sources/quant_post.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -245,7 +240,7 @@ validation dataset is available).</p>
 normalizing factors.</p>
 <p>Finding the optimal quantization threshold value of the activation output of
 each layer is done the following:</p>
-<ol class="arabic simple">
+<ol class="arabic">
 <li><p>Compute histogram of activation values;</p></li>
 <li><p>Find threshold that minimizes distance between original distribution and
 clipped quantized distribution. Two distance algorithms can be used:</p>
@@ -253,6 +248,7 @@ clipped quantized distribution. Two distance algorithms can be used:</p>
 <li><p>Mean Squared Error (MSE);</p></li>
 <li><p>Kullback–Leibler divergence metric (KL-divergence).</p></li>
 </ul>
+<p>Another, simpler method, is to just clip the values above a fixed quantile.</p>
 </li>
 </ol>
 <div class="figure align-default">
@@ -316,7 +312,7 @@ export type. To apply post-training quantization during export, simply use the
 <td><p>Weights clipping mode on export, can be <code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">MSE</span></code> or <code class="docutils literal notranslate"><span class="pre">KL-Divergence</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-act-clipping-mode</span></code> [<code class="docutils literal notranslate"><span class="pre">MSE</span></code>]</p></td>
-<td><p>Activations clipping mode on export, can be <code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">MSE</span></code> or <code class="docutils literal notranslate"><span class="pre">KL-Divergence</span></code></p></td>
+<td><p>Activations clipping mode on export, can be <code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">MSE</span></code>, <code class="docutils literal notranslate"><span class="pre">KL-Divergence</span></code> or <code class="docutils literal notranslate"><span class="pre">Quantile</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-act-rescaling-mode</span></code> [<code class="docutils literal notranslate"><span class="pre">Single-shift</span></code>]</p></td>
 <td><p>Activations scaling mode on export, can be <code class="docutils literal notranslate"><span class="pre">Floating-point</span></code>, <code class="docutils literal notranslate"><span class="pre">Fixed-point16</span></code>, <code class="docutils literal notranslate"><span class="pre">Fixed-point32</span></code>, <code class="docutils literal notranslate"><span class="pre">Single-shift</span></code>
@@ -324,6 +320,9 @@ or <code class="docutils literal notranslate"><span class="pre">Double-shift</sp
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-act-rescale-per-output</span></code> [0]</p></td>
 <td><p>If true (1), rescale activation per output instead of per layer</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-act-quantile-value</span></code> [0.9999]</p></td>
+<td><p>If activation clipping mode is <code class="docutils literal notranslate"><span class="pre">Quantile</span></code>, fraction of the values to keep without clipping</p></td>
 </tr>
 </tbody>
 </table>
@@ -414,29 +413,37 @@ N2D2 reference C++ export, in actual 8 bits representation.</p></li>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="quant_qat.html" class="btn btn-neutral float-right" title="[NEW] Quantization-Aware Training" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="onnx_transfer.html" class="btn btn-neutral float-left" title="Train from ONNX models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="quant_qat.html" class="btn btn-neutral float-right" title="[NEW] Quantization-Aware Training" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="onnx_transfer.html" class="btn btn-neutral float-left" title="Train from ONNX models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2019, CEA LIST.
+        
+        &copy; Copyright 2019, CEA LIST
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

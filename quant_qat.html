@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>[NEW] Quantization-Aware Training &mdash; N2D2  documentation</title>
   
@@ -16,10 +16,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -56,7 +53,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> N2D2
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> N2D2
           
 
           
@@ -200,8 +197,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -213,7 +208,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="_sources/quant_qat.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -338,7 +333,7 @@ of available computation resources.</p>
 <div class="section" id="lsq">
 <h3>LSQ<a class="headerlink" href="#lsq" title="Permalink to this headline">¶</a></h3>
 <p>The Learned Step size Quantization method is tailored to learn the optimal quantization step size parameters in parallel with the network weights.
-As described in  <span id="id1">[<a class="reference internal" href="tuto.html#id31">BLN+20</a>]</span>, LSQ tries to estimate and scale the task loss gradient at each weight and activations layer’s quantizer step size,
+As described in  <a class="bibtex reference internal" href="tuto.html#bhalgat2020lsq" id="id1">[BLN+20]</a>, LSQ tries to estimate and scale the task loss gradient at each weight and activations layer’s quantizer step size,
 such that it can be learned in conjunction with other network parameters. This method can be initialized using weights from a pre-trained
 full precision model.</p>
 <table class="docutils align-default">
@@ -363,7 +358,7 @@ full precision model.</p>
 </div>
 <div class="section" id="sat">
 <h3>SAT<a class="headerlink" href="#sat" title="Permalink to this headline">¶</a></h3>
-<p>Scale-Adjusted Training : <span id="id2">[<a class="reference internal" href="tuto.html#id30">JYL19</a>]</span> method is one of the most promising solutions. The authors proposed SAT as a simple yet effective technique with which the rules of
+<p>Scale-Adjusted Training : <a class="bibtex reference internal" href="tuto.html#jin2019efficient" id="id2">[JYL19]</a> method is one of the most promising solutions. The authors proposed SAT as a simple yet effective technique with which the rules of
 efficient training are maintained so that performance can be boosted and low-precision models can even surpass their
 full-precision counterparts in some cases. This method exploits DoReFa scheme for the weights quantization.</p>
 <table class="docutils align-default">
@@ -428,7 +423,7 @@ of available computing resources.</p>
 <div class="section" id="id3">
 <h3>LSQ<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>The Learned Step size Quantization method is tailored to learn the optimum quantization stepsize parameters in parallel to the network’s weights.
-As described in  <span id="id4">[<a class="reference internal" href="tuto.html#id31">BLN+20</a>]</span>, LSQ tries to estimate and scale the task loss gradient at each weight and activations layer’s quantizer step size,
+As described in  <a class="bibtex reference internal" href="tuto.html#bhalgat2020lsq" id="id4">[BLN+20]</a>, LSQ tries to estimate and scale the task loss gradient at each weight and activations layer’s quantizer step size,
 such that it can be learned in conjunction with other network parameters. This method can be initialized using weights from a pre-trained full precision model.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -452,7 +447,7 @@ such that it can be learned in conjunction with other network parameters. This m
 </div>
 <div class="section" id="id5">
 <h3>SAT<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-<p>Scale-Adjusted Training : <span id="id6">[<a class="reference internal" href="tuto.html#id30">JYL19</a>]</span> is one of the most promising solutions. The authors proposed SAT as a simple yet effective technique for which the rules of
+<p>Scale-Adjusted Training : <a class="bibtex reference internal" href="tuto.html#jin2019efficient" id="id6">[JYL19]</a> is one of the most promising solutions. The authors proposed SAT as a simple yet effective technique for which the rules of
 efficient training are maintained so that performance can be boosted and low-precision models can even surpass their
 full-precision counterparts in some cases.
 This method exploits a CG-PACT scheme for the activations quantization which is a boosted version of PACT for low precision quantization.</p>
@@ -1767,29 +1762,37 @@ Precision</p></th>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="export_CPP.html" class="btn btn-neutral float-right" title="Export: C++" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="quant_post.html" class="btn btn-neutral float-left" title="Post-training quantization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="export_CPP.html" class="btn btn-neutral float-right" title="Export: C++" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="quant_post.html" class="btn btn-neutral float-left" title="Post-training quantization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2019, CEA LIST.
+        
+        &copy; Copyright 2019, CEA LIST
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 
