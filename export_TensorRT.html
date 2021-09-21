@@ -105,7 +105,8 @@
 <li class="toctree-l1"><a class="reference internal" href="export_CPP.html">Export: C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="export_CPP_STM32.html">Export: C++/STM32</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Export: TensorRT</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#program-options-related-to-the-tensorrt-api-export">Program options related to the TensorRT API export:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#program-options-related-to-the-tensorrt-api-export">Program options related to the TensorRT API export</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deploy-a-tensorrt-model-in-application">Deploy a TensorRT model in application:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#example">Example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#test-the-exported-network-with-layer-wise-profiling">Test the exported network with layer wise profiling:</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#calibrate-the-exported-network">Calibrate the exported network :</a></li>
@@ -220,7 +221,7 @@ architecture. It use CUDA, cuDNN and TensorRT API library. All the
 native TensorRT layers are supported. The export support from TensorRT
 2.1 to TensorRT 5.0 versions.</p>
 <div class="section" id="program-options-related-to-the-tensorrt-api-export">
-<h2>Program options related to the TensorRT API export:<a class="headerlink" href="#program-options-related-to-the-tensorrt-api-export" title="Permalink to this headline">¶</a></h2>
+<h2>Program options related to the TensorRT API export<a class="headerlink" href="#program-options-related-to-the-tensorrt-api-export" title="Permalink to this headline">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 5%" />
@@ -249,6 +250,239 @@ native TensorRT layers are supported. The export support from TensorRT
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-nbbits</span></code> [-32]</p></td>
 <td><p>Number of bits used for computation. Value -32 for Full FP32 bits configuration, -16 for Half FP16 bits configuration and 8 for INT8 bits configuration. When running INT8 mode for the first time, the TensorRT calibration process can be very long. Once generated the generated calibration table will be automatically reused. Supported compute mode in function of the compute capability are provided here: <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#compute-capabilities">https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#compute-capabilities</a> .</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="deploy-a-tensorrt-model-in-application">
+<h2>Deploy a TensorRT model in application:<a class="headerlink" href="#deploy-a-tensorrt-model-in-application" title="Permalink to this headline">¶</a></h2>
+<p>The TensorRT export is provided with a C++ and a python interface. The python interface is accessible through a wrapper
+to the C++ API method and linked with the libboost-python librabry.</p>
+<p>You can integrates your model in your application environment as a library thanks to this API.</p>
+<p>The command to compile the TensorRT export as a C++ library is :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">WRAPPER_CPP</span><span class="o">=</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>The library of your TensorRT model is provided under the name <code class="docutils literal notranslate"><span class="pre">libn2d2_tensorRT_inference.so</span></code> locate at <code class="docutils literal notranslate"><span class="pre">bin/</span></code> folder.</p>
+<p>The command to compile your TensorRT export as a Python3.6m library is :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">WRAPPER_PYTHON</span><span class="o">=</span><span class="mf">3.6</span><span class="n">m</span>
+</pre></div>
+</div>
+<p>The python library of your TensorRT model is then provided under the name <code class="docutils literal notranslate"><span class="pre">N2D2.so</span></code> locate at <code class="docutils literal notranslate"><span class="pre">bin/</span></code> folder.</p>
+<p>Method accessible through C++ or Python API are listed and detailled here:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 3%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 13%" />
+<col style="width: 54%" />
+<col style="width: 13%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Return Type</p></th>
+<th class="head"><p>C++ API</p></th>
+<th class="head"><p>Python API</p></th>
+<th class="head"><p>Args Type</p></th>
+<th class="head"><p>ArgsName(Default Value)</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Comments</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>N2D2::Network()</p></td>
+<td><p>N2D2_Network()</p></td>
+<td></td>
+<td></td>
+<td><p>TensorRT DNN object creation</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
+<td><p>setMaxBatchSize</p></td>
+<td><p>setMaxBatchSize</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">size_t</span></code></p></td>
+<td><p>batchsize(<code class="docutils literal notranslate"><span class="pre">1</span></code>)</p></td>
+<td><p>Maximum batchsize for setting the internal tensorrt graph memory usage limit</p></td>
+<td><p>Use before run initialize()</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
+<td><p>setDeviceID</p></td>
+<td><p>setDeviceID</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">size_t</span></code></p></td>
+<td><p>device(<code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></td>
+<td><p>Device ID on which run the TensorRT model</p></td>
+<td><p>Use before run initialize()</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
+<td><p>setPrecision</p></td>
+<td><p>setPrecision</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p>precision(<code class="docutils literal notranslate"><span class="pre">-32</span></code>)</p></td>
+<td><p>Numerical Precision to use: <code class="docutils literal notranslate"><span class="pre">-32</span></code> for float, <code class="docutils literal notranslate"><span class="pre">-16</span></code> for half float, <code class="docutils literal notranslate"><span class="pre">8</span></code> for int8</p></td>
+<td><p>Use before run initialize()</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
+<td><p>setDetectorThresholds</p></td>
+<td><p>setDetectorThresholds</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float*</span></code>, <code class="docutils literal notranslate"><span class="pre">uint</span></code></p></td>
+<td><p>thresholds, lengthThreshold</p></td>
+<td><p>Set the confidences thresholds of a detector output. Bypass the internal thresholds from the exported model</p></td>
+<td><p>Use before run initialize()</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
+<td><p>setDetectorNMS</p></td>
+<td><p>setDetectorNMS</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">double</span></code></p></td>
+<td><p>thresholdNms</p></td>
+<td><p>Set the threshold for non-maxima suppression range (from 0.0 to 1.0) of a detector output. Bypass the internal thresholds from the exported model</p></td>
+<td><p>Use before run initialize()</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
+<td><p>setInputEngine</p></td>
+<td><p>setInputEngine</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p>enginePath</p></td>
+<td><p>Path of a serialized and optimized TensorRT plan file. The serialized plan file are not portable across platforms or TensorRT versions and are specific to the exact GPU model they were built on</p></td>
+<td><p>Use before run initialize()</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
+<td><p>setOutputEngine</p></td>
+<td><p>setOutputEngine</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p>enginePath</p></td>
+<td><p>Path and name of where to save your serialized plan file. The serialized plan file are not portable across platforms or TensorRT versions and are specific to the exact GPU model they were built on</p></td>
+<td><p>Use before run initialize()</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
+<td><p>setCalibCache</p></td>
+<td><p>setCalibCache</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p>calibPath</p></td>
+<td><p>Path and name to the calibration file generated by TensorRT calibrator when precision is INT8. Must be compatible with the TensorRT version used to calibrate.</p></td>
+<td><p>Use before run initialize()</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
+<td><p>setCalibFolder</p></td>
+<td><p>setCalibFolder</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p>folderPath(<code class="docutils literal notranslate"><span class="pre">batches_calib/</span></code>)</p></td>
+<td><p>Path to the calibration data samples. This is mandatory when precision is set to INT8 and if no calibration file cache is load.</p></td>
+<td><p>Use before run initialize()</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
+<td><p>setParamPath</p></td>
+<td><p>setParamPath</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p>parmPath(<code class="docutils literal notranslate"><span class="pre">dnn/</span></code>)</p></td>
+<td><p>Path to the DNN parameters generated by N2D2</p></td>
+<td><p>Use before run initialize()</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
+<td><p>initialize</p></td>
+<td><p>initialize</p></td>
+<td></td>
+<td></td>
+<td><p>Initialize the TensorRT engine following the specified options. This function allocates the memory workspace I/O, set the precision, create the builder, create the network topology from the Network generated with N2D2 and initialize the TensorRT context</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
+<td><p>setProfiling</p></td>
+<td><p>setProfiling</p></td>
+<td></td>
+<td></td>
+<td><p>Initialize the profiler in the TensorRT engine</p></td>
+<td><p>Use after run initialize()</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uint</span></code></p></td>
+<td><p>getInputDimX</p></td>
+<td><p>getInputDimX</p></td>
+<td></td>
+<td></td>
+<td><p>Return the dimension X of the input</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uint</span></code></p></td>
+<td><p>getInputDimY</p></td>
+<td><p>getInputDimY</p></td>
+<td></td>
+<td></td>
+<td><p>Return the dimension Y of the input</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uint</span></code></p></td>
+<td><p>getInputDimZ</p></td>
+<td><p>getInputDimZ</p></td>
+<td></td>
+<td></td>
+<td><p>Return the dimension Z of the input</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uint</span></code></p></td>
+<td><p>getOutputNbTargets</p></td>
+<td><p>getOutputNbTargets</p></td>
+<td></td>
+<td></td>
+<td><p>Return the number of outputs</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uint</span></code></p></td>
+<td><p>getOutputDimX</p></td>
+<td><p>getOutputDimX</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uint</span></code></p></td>
+<td><p>outputNumber</p></td>
+<td><p>Return the dimension X of a specified output</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uint</span></code></p></td>
+<td><p>getOutputDimY</p></td>
+<td><p>getOutputDimY</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uint</span></code></p></td>
+<td><p>outputNumber</p></td>
+<td><p>Return the dimension Y of a specified output</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uint</span></code></p></td>
+<td><p>getOutputDimZ</p></td>
+<td><p>getOutputDimZ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uint</span></code></p></td>
+<td><p>outputNumber</p></td>
+<td><p>Return the dimension Z of a specified output</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uint</span></code></p></td>
+<td><p>getOutputTarget</p></td>
+<td><p>getOutputTarget</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uint</span></code></p></td>
+<td><p>outputNumber</p></td>
+<td><p>Return the number of labels if a specified output</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
+<td><p>syncExe</p></td>
+<td><p>syncExe</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float*</span></code>, <code class="docutils literal notranslate"><span class="pre">uint</span></code></p></td>
+<td><p>inputData,batchsize</p></td>
+<td><p>Synchronously execute inference on a batch of the specified size</p></td>
+<td><p>Use after run initialize()</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
+<td><p>log_output</p></td>
+<td><p>cpyOutput</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float*</span></code>, <code class="docutils literal notranslate"><span class="pre">uint</span></code></p></td>
+<td><p>inputData,outputID</p></td>
+<td><p>Copy the full batch of the output of a DNN</p></td>
+<td><p>Use after run initialize()</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
+<td><p>estimated</p></td>
+<td><p>estimated</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float*</span></code>, <code class="docutils literal notranslate"><span class="pre">uint</span></code>,
+<code class="docutils literal notranslate"><span class="pre">bool</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p>inputData,outputID, useGPU, threshold</p></td>
+<td><p>Copy per output pixel estimated labels of a specified output. UseGpu is recommended and threshold value allow to clip the outputs values before classification</p></td>
+<td><p>Use after run initialize()</p></td>
 </tr>
 </tbody>
 </table>
