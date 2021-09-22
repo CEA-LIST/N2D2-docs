@@ -105,13 +105,12 @@
 <li class="toctree-l1"><a class="reference internal" href="export_CPP.html">Export: C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="export_CPP_STM32.html">Export: C++/STM32</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Export: TensorRT</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#program-options-related-to-the-tensorrt-api-export">Program options related to the TensorRT API export</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#deploy-a-tensorrt-model-in-application">Deploy a TensorRT model in application:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#example">Example</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#test-the-exported-network-with-layer-wise-profiling">Test the exported network with layer wise profiling:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#calibrate-the-exported-network">Calibrate the exported network :</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#informations">Informations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#benchmark-your-tensorrt-model-c-benchmark">Benchmark your TensorRT Model - C++ Benchmark</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#analyse-the-execution-performances-of-your-tensorrt-model-fp32">Analyse the execution performances of your TensorRT Model (FP32)</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#deploy-your-tensorrt-model-in-application">Deploy your TensorRT Model in Application</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="export_DNeuro.html">Export: DNeuro</a></li>
@@ -207,8 +206,6 @@
 <p>Export type: <code class="docutils literal notranslate"><span class="pre">CPP_TensorRT</span></code></p>
 <p>C++ export using TensorRT.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2</span> <span class="n">MobileNet_ONNX</span><span class="o">.</span><span class="n">ini</span> <span class="o">-</span><span class="n">seed</span> <span class="mi">1</span> <span class="o">-</span><span class="n">w</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span> <span class="o">-</span><span class="n">export</span> <span class="n">CPP_TensorRT</span> <span class="o">-</span><span class="n">nbbits</span> <span class="mi">32</span>
-<span class="n">cd</span> <span class="n">export_CPP_TensorRT_float32</span>
-<span class="n">make</span>
 </pre></div>
 </div>
 <div class="admonition warning">
@@ -216,16 +213,56 @@
 <p>The calibration for this export is done using the tools provided by NVIDIA. For this reason, you cannot calibrate when exporting your network.
 You need to use the export to calibrate your network.</p>
 </div>
-<p>The TensorRT API export can run the generated program in NVIDIA GPU
-architecture. It use CUDA, cuDNN and TensorRT API library. All the
-native TensorRT layers are supported. The export support from TensorRT
-2.1 to TensorRT 5.0 versions.</p>
-<div class="section" id="program-options-related-to-the-tensorrt-api-export">
-<h2>Program options related to the TensorRT API export<a class="headerlink" href="#program-options-related-to-the-tensorrt-api-export" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="informations">
+<h2>Informations<a class="headerlink" href="#informations" title="Permalink to this headline">¶</a></h2>
+<p>In order to exploit TensorRT optimizations, the N2D2 Framework provide a code generator linked with a C++/Python API
+that gives access to TensorRT methods, I/O handling and specifics control.
+The generated code is provided as a standalone code with its own compilation environment under a Makefile format. Moreover
+a benchmark environment with stimuli from the test dataset is given to evaluates execution time performances of your model.</p>
+<p>This allow a low level of dependency, only TensorRT, CUDA, cuDNN, cuBLAS and GCC are needed.
+We recommended you to ensure the correct compatibility of your installation by referring to the TensorRT archive page:
+<a class="reference external" href="https://docs.nvidia.com/deeplearning/tensorrt/archives/index.html">https://docs.nvidia.com/deeplearning/tensorrt/archives/index.html</a>
+Follow the support matrix section of your TensorRT version, notice that TensorRT export
+have been tested from TensorRT 2.1 to TensorRT 7.2 versions.</p>
+<p>The TensorRT library includes implementation for the most common deep learning layers, but strong limitations
+are known depending of the TensorRT version. For example, TensorRT provide a support to the well-known resize layer since version 6.0.1.
+This layer is widely use for decoder, segmentation and detector tasks. For inferior version a support have been integrated under a plugin
+layer. The TensorRT plugin layers allow the application to implement not supported layers.
+You can find additional informations about how to implements new plugin layers here :
+<a class="reference external" href="https://docs.nvidia.com/deeplearning/tensorrt/developer-guide/index.html#add_custom_layer">https://docs.nvidia.com/deeplearning/tensorrt/developer-guide/index.html#add_custom_layer</a></p>
+<p>The plugin layers that N2D2 TensorRT generator implements are available in the folder <code class="docutils literal notranslate"><span class="pre">export/CPP_TensorRT/include/plugins/</span></code>. These layers are
+used by the N2D2 TensorRT generator when TensorRT doesn’t provide support to a requested layers.</p>
+</div>
+<div class="section" id="benchmark-your-tensorrt-model-c-benchmark">
+<h2>Benchmark your TensorRT Model - C++ Benchmark<a class="headerlink" href="#benchmark-your-tensorrt-model-c-benchmark" title="Permalink to this headline">¶</a></h2>
+<p>The TensorRT export is given with a C++ benchmark ready to be used. The benchmark program is able to evaluates the applicative performances
+of your model on the test dataset exported under the <code class="docutils literal notranslate"><span class="pre">stimuli</span></code> folder at export time. A per-layer execution time analysis is also performed
+to evaluates your mode latency and identify potential bottleneck.
+Moreover different numerical precision supporter by NVIDIA GPU can be evaluates in order to assess potential acceleration factor and eventual
+applicative performances losses.</p>
+<p>When numerical precision is set to <code class="docutils literal notranslate"><span class="pre">8</span></code> bits for benchmark, the program will use the calibration files exported under the <code class="docutils literal notranslate"><span class="pre">batches_calib</span></code> folder
+at export time. The calibration files also corresponds to the test stimuli pre-processes for the <code class="docutils literal notranslate"><span class="pre">IInt8EntropyCalibrator2</span></code> that implement TensorRT.
+You can find more informations about the INT8 calibration procedure with TensorRT here :
+<a class="reference external" href="https://docs.nvidia.com/deeplearning/tensorrt/developer-guide/index.html#optimizing_int8_c">https://docs.nvidia.com/deeplearning/tensorrt/developer-guide/index.html#optimizing_int8_c</a></p>
+<p>The command to compile and execute the C++ TensorRT Benchmark under a <code class="docutils literal notranslate"><span class="pre">FP32</span></code> precision is :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span>
+<span class="n">cd</span> <span class="n">export_CPP_TensorRT_float32</span><span class="o">/</span>
+<span class="o">./</span><span class="nb">bin</span><span class="o">/</span><span class="n">n2d2_tensorRT_test</span> <span class="o">-</span><span class="n">nbbits</span> <span class="o">-</span><span class="mi">32</span>
+</pre></div>
+</div>
+<p>To launch the Benchmark in <code class="docutils literal notranslate"><span class="pre">FP16</span></code> (half precision) use this command :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="nb">bin</span><span class="o">/</span><span class="n">n2d2_tensorRT_test</span> <span class="o">-</span><span class="n">nbbits</span> <span class="o">-</span><span class="mi">16</span>
+</pre></div>
+</div>
+<p>To launch the Benchmark in <code class="docutils literal notranslate"><span class="pre">INT8</span></code> use this command :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="nb">bin</span><span class="o">/</span><span class="n">n2d2_tensorRT_test</span> <span class="o">-</span><span class="n">nbbits</span> <span class="mi">8</span>
+</pre></div>
+</div>
+<p>List of the program option related to the TensorRT C++ benchmark:</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 5%" />
-<col style="width: 95%" />
+<col style="width: 7%" />
+<col style="width: 93%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Option [default value]</p></th>
@@ -251,11 +288,38 @@ native TensorRT layers are supported. The export support from TensorRT
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-nbbits</span></code> [-32]</p></td>
 <td><p>Number of bits used for computation. Value -32 for Full FP32 bits configuration, -16 for Half FP16 bits configuration and 8 for INT8 bits configuration. When running INT8 mode for the first time, the TensorRT calibration process can be very long. Once generated the generated calibration table will be automatically reused. Supported compute mode in function of the compute capability are provided here: <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#compute-capabilities">https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#compute-capabilities</a> .</p></td>
 </tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-calib-cache</span></code></p></td>
+<td><p>Path and name to the calibration file generated by TensorRT calibrator when precision is INT8. Must be compatible with the TensorRT Entropy Calibrator version used to calibrate.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-calib-folder</span></code> [batches_calib]</p></td>
+<td><p>Path to the calibration data samples. This is mandatory when precision is set to INT8 and if no calibration file cache is load.</p></td>
+</tr>
 </tbody>
 </table>
+<div class="section" id="analyse-the-execution-performances-of-your-tensorrt-model-fp32">
+<h3>Analyse the execution performances of your TensorRT Model (FP32)<a class="headerlink" href="#analyse-the-execution-performances-of-your-tensorrt-model-fp32" title="Permalink to this headline">¶</a></h3>
+<p>Here is a small example that described how to report the per-layer analysis on execution time.</p>
+<p>Launch the Benchmark with the <code class="docutils literal notranslate"><span class="pre">-prof</span></code> argument :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="nb">bin</span><span class="o">/</span><span class="n">n2d2_tensorRT_test</span> <span class="o">-</span><span class="n">prof</span>
+</pre></div>
 </div>
-<div class="section" id="deploy-a-tensorrt-model-in-application">
-<h2>Deploy a TensorRT model in application:<a class="headerlink" href="#deploy-a-tensorrt-model-in-application" title="Permalink to this headline">¶</a></h2>
+<p>At the end of the execution the performances analysis is displayed in your screen :</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(19%)</span>  <span class="go">**************************************** CONV1 + CONV1_ACTIVATION: 0.0219467 ms</span>
+<span class="gp gp-VirtualEnv">(05%)</span>  <span class="go">************ POOL1: 0.00675573 ms</span>
+<span class="gp gp-VirtualEnv">(13%)</span>  <span class="go">**************************** CONV2 + CONV2_ACTIVATION: 0.0159089 ms</span>
+<span class="gp gp-VirtualEnv">(05%)</span>  <span class="go">************ POOL2: 0.00616047 ms</span>
+<span class="gp gp-VirtualEnv">(14%)</span>  <span class="go">****************************** CONV3 + CONV3_ACTIVATION: 0.0159713 ms</span>
+<span class="gp gp-VirtualEnv">(19%)</span>  <span class="go">**************************************** FC1 + FC1_ACTIVATION: 0.0222242 ms</span>
+<span class="gp gp-VirtualEnv">(13%)</span>  <span class="go">**************************** FC2: 0.0149013 ms</span>
+<span class="gp gp-VirtualEnv">(08%)</span>  <span class="go">****************** SOFTMAX: 0.0100633 ms</span>
+<span class="go">Average profiled tensorRT process time per stimulus = 0.113932 ms</span>
+</pre></div>
+</div>
+<p>You can evaluates impact of the performances for various batch size and the different numerical precision supported.</p>
+</div>
+</div>
+<div class="section" id="deploy-your-tensorrt-model-in-application">
+<h2>Deploy your TensorRT Model in Application<a class="headerlink" href="#deploy-your-tensorrt-model-in-application" title="Permalink to this headline">¶</a></h2>
 <p>The TensorRT export is provided with a C++ and a python interface. The python interface is accessible through a wrapper
 to the C++ API method and linked with the libboost-python librabry.</p>
 <p>You can integrates your model in your application environment as a library thanks to this API.</p>
@@ -486,33 +550,6 @@ to the C++ API method and linked with the libboost-python librabry.</p>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="test-the-exported-network-with-layer-wise-profiling">
-<h3>Test the exported network with layer wise profiling:<a class="headerlink" href="#test-the-exported-network-with-layer-wise-profiling" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="nb">bin</span><span class="o">/</span><span class="n">n2d2_tensorRT_test</span> <span class="o">-</span><span class="n">prof</span>
-</pre></div>
-</div>
-<p>The results of the layer wise profiling should look like:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(19%)</span>  <span class="go">**************************************** CONV1 + CONV1_ACTIVATION: 0.0219467 ms</span>
-<span class="gp gp-VirtualEnv">(05%)</span>  <span class="go">************ POOL1: 0.00675573 ms</span>
-<span class="gp gp-VirtualEnv">(13%)</span>  <span class="go">**************************** CONV2 + CONV2_ACTIVATION: 0.0159089 ms</span>
-<span class="gp gp-VirtualEnv">(05%)</span>  <span class="go">************ POOL2: 0.00616047 ms</span>
-<span class="gp gp-VirtualEnv">(14%)</span>  <span class="go">****************************** CONV3 + CONV3_ACTIVATION: 0.0159713 ms</span>
-<span class="gp gp-VirtualEnv">(19%)</span>  <span class="go">**************************************** FC1 + FC1_ACTIVATION: 0.0222242 ms</span>
-<span class="gp gp-VirtualEnv">(13%)</span>  <span class="go">**************************** FC2: 0.0149013 ms</span>
-<span class="gp gp-VirtualEnv">(08%)</span>  <span class="go">****************** SOFTMAX: 0.0100633 ms</span>
-<span class="go">Average profiled tensorRT process time per stimulus = 0.113932 ms</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="calibrate-the-exported-network">
-<h3>Calibrate the exported network :<a class="headerlink" href="#calibrate-the-exported-network" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="nb">bin</span><span class="o">/</span><span class="n">n2d2_tensorRT_test</span> <span class="o">-</span><span class="n">nbbits</span> <span class="mi">8</span>
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 
