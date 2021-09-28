@@ -256,13 +256,13 @@ possible, notably using the ONNX <em>ConvInteger</em> and <em>MatMulInteger</em>
 <code class="docutils literal notranslate"><span class="pre">-nbbits</span></code> is ≤ 8 bits. An example of generated graph is shown below, with a
 <code class="docutils literal notranslate"><span class="pre">Single-shift</span></code> activation rescaling mode (<code class="docutils literal notranslate"><span class="pre">-act-rescaling-mode</span></code>, see
 <a class="reference internal" href="quant_post.html#post-quant-label"><span class="std std-ref">Post-training quantization</span></a>):</p>
-<div class="figure align-default">
+<div class="figure align-center">
 <img alt="Example of fully integer, quantized, exported ONNX graph." src="_images/export_ONNX_quant.svg" /></div>
 <p>By default, strict adherence to the ONNX standard is enforced, by adding
 explicit <code class="docutils literal notranslate"><span class="pre">Cast</span></code> operators when required. The automatic insertion of <code class="docutils literal notranslate"><span class="pre">Cast</span></code>
 operators can be disabled by setting the <code class="docutils literal notranslate"><span class="pre">ImplicitCasting</span></code> export parameter
 to true. This results in the simplified graph below:</p>
-<div class="figure align-default">
+<div class="figure align-center">
 <img alt="Example of fully integer, quantized, exported ONNX graph without ``Cast`` operators (with ``ImplicitCasting`` set to 1)." src="_images/export_ONNX_quant_implicit_cast.svg" /></div>
 <p>The <code class="docutils literal notranslate"><span class="pre">FakeQuantization</span></code> parameter allows to export a quantized network using
 fake quantization, meaning the parameters of the network are quantized (integer)
@@ -271,7 +271,7 @@ with floating-point operators. However, the output values of the network
 should be almost identical to when the computation is done in integer. The
 differences are due to numerical errors as all integers cannot be represented
 exactly with floating-point.</p>
-<div class="figure align-default">
+<div class="figure align-center">
 <img alt="Example of fully integer, quantized, exported ONNX graph with fake quantization (``FakeQuantization`` set to 1)." src="_images/export_ONNX_quant_fake.svg" /></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
