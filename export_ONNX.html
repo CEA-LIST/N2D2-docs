@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Export: C++ &mdash; N2D2  documentation</title>
+  <title>Export: ONNX &mdash; N2D2  documentation</title>
   
 
   
@@ -38,8 +38,8 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Export: C++/STM32" href="export_CPP_STM32.html" />
-    <link rel="prev" title="[NEW] Quantization-Aware Training" href="quant_qat.html" /> 
+    <link rel="next" title="Export: other / legacy" href="export_legacy.html" />
+    <link rel="prev" title="Export: DNeuro" href="export_DNeuro.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -102,20 +102,19 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quant_post.html">Post-training quantization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quant_qat.html">[NEW] Quantization-Aware Training</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Export: C++</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="export_CPP.html">Export: C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export_CPP_STM32.html">Export: C++/STM32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export_TensorRT.html">Export: TensorRT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export_DNeuro.html">Export: DNeuro</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Export: ONNX</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#principle">Principle</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#graph-optimizations">Graph optimizations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#memory-optimizations">Memory optimizations</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#export-parameters">Export parameters</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="export_CPP_STM32.html">Export: C++/STM32</a></li>
-<li class="toctree-l1"><a class="reference internal" href="export_TensorRT.html">Export: TensorRT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="export_DNeuro.html">Export: DNeuro</a></li>
-<li class="toctree-l1"><a class="reference internal" href="export_ONNX.html">Export: ONNX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="export_legacy.html">Export: other / legacy</a></li>
 </ul>
 <p class="caption"><span class="caption-text">INI File Interface:</span></p>
@@ -184,13 +183,13 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Export: C++</li>
+      <li>Export: ONNX</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/export_CPP.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/export_ONNX.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -203,53 +202,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="export-c">
-<span id="export-cpp-label"></span><h1>Export: C++<a class="headerlink" href="#export-c" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="export-onnx">
+<span id="export-onnx-label"></span><h1>Export: ONNX<a class="headerlink" href="#export-onnx" title="Permalink to this headline">¶</a></h1>
 <dl class="simple">
-<dt>Export type: <code class="docutils literal notranslate"><span class="pre">CPP</span></code></dt><dd><p>C++ export using OpenMP.</p>
+<dt>Export type: <code class="docutils literal notranslate"><span class="pre">ONNX</span></code></dt><dd><p>ONNX export.</p>
 </dd>
 </dl>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2</span> <span class="n">MobileNet_ONNX</span><span class="o">.</span><span class="n">ini</span> <span class="o">-</span><span class="n">seed</span> <span class="mi">1</span> <span class="o">-</span><span class="n">w</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span> <span class="o">-</span><span class="n">export</span> <span class="n">CPP</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2</span> <span class="n">MobileNet_ONNX</span><span class="o">.</span><span class="n">ini</span> <span class="o">-</span><span class="n">seed</span> <span class="mi">1</span> <span class="o">-</span><span class="n">w</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span> <span class="o">-</span><span class="n">export</span> <span class="n">ONNX</span>
 </pre></div>
 </div>
 <div class="section" id="principle">
 <h2>Principle<a class="headerlink" href="#principle" title="Permalink to this headline">¶</a></h2>
-<p>The C++ export is the reference N2D2 export, which implements all the export
-features available in N2D2, like post-training quantization or quantization
-aware training.</p>
-<p>Summary of the main features of a C++ export:</p>
-<ul class="simple">
-<li><p>Standalone C++11 compliant project;</p>
-<ul>
-<li><p>No C++ exception (often disabled on embedded code);</p></li>
-<li><p>No &lt;stream&gt; library (which is memory bloated).</p></li>
-</ul>
-</li>
-<li><p>Fully templated compute kernels;</p></li>
-<li><p>Fully inlined compute kernels;</p></li>
-<li><p>No dynamic memory allocation;</p></li>
-<li><p>Memory alignment support;</p></li>
-<li><p>OpenMP parallelism.</p></li>
-</ul>
-<dl class="simple">
-<dt>Data order</dt><dd><p>The input of a layer is ordered by Height-Width-Channels (HWC) and the weights
-of the kernel for a convolution by Output-Height-Width-Channels (OHWC). This order allows
-us to do read <em>kernel_width</em> × <em>nb_channels</em> inputs and weights sequentially in memory to do the
-necessary MACs.</p>
-</dd>
-<dt>Templated layer parameters</dt><dd><p>The current export uses C++ templates heavily, most of the
-parameters of the layers are passed as template parameters. This allows the compiler to better
-optimize the code and make it easier to unroll the loops. It comes at the cost of a larger compiled
-binary.</p>
-</dd>
-<dt>Force inline</dt><dd><p>Most of the methods are forced to be inlined. As previously this increases the binary
-size to provide a faster inference.</p>
-</dd>
-<dt>Loop boundaries</dt><dd><p>The boundaries of the loops are fixed at compile time through the template
-parameters. If some steps in a loop must be skipped an if and continue are used inside the loop. It
-results in better results than having variable loop boundaries.</p>
-</dd>
-</dl>
+<p>The ONNX export allows you to generate an ONNX model from a N2D2 model. The
+generated ONNX model is optimized for inference and can be quantized beforehand
+with either post-training quantization or Quantization Aware Training (QAT).</p>
 <div class="section" id="graph-optimizations">
 <h3>Graph optimizations<a class="headerlink" href="#graph-optimizations" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -258,23 +224,6 @@ results in better results than having variable loop boundaries.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">Padding</span></code> layers are fused with <code class="docutils literal notranslate"><span class="pre">Conv</span></code> when possible;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Dropout</span></code> layers are removed.</p></li>
 </ul>
-</div>
-<div class="section" id="memory-optimizations">
-<h3>Memory optimizations<a class="headerlink" href="#memory-optimizations" title="Permalink to this headline">¶</a></h3>
-<p>In the C++ export, all the memory is allocated statically at compilation time.</p>
-<p>The following memory optimization features are integrated in this export:</p>
-<ul class="simple">
-<li><p><strong>Strided buffers:</strong> concatenation can be done directly in memory, no memory copy is needed;</p></li>
-<li><p><strong>Memory wrapping:</strong> memory buffers are re-used when possible (memory wrapping or in-place).</p></li>
-</ul>
-<p>For example, the memory mapping of each layer in a global memory space for
-MobileNet v2 is shown below (generated automatically during an export):</p>
-<div class="figure align-default">
-<img alt="Example of memory mapping for MobileNet v2." src="_images/memory_mapping.png" />
-</div>
-<p>In this example, the largest layer memory buffer overlaps with the memory
-buffer of the preceding layer thanks to the <code class="docutils literal notranslate"><span class="pre">OptimizeBufferMemory</span></code> option
-(see the next section).</p>
 </div>
 <div class="section" id="export-parameters">
 <h3>Export parameters<a class="headerlink" href="#export-parameters" title="Permalink to this headline">¶</a></h3>
@@ -293,37 +242,51 @@ saved in an INI-like file.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IncludeInputInBuffer</span></code> [1]</p></td>
-<td><p>If true (1), include the input buffer in the memory mapping</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ImplicitCasting</span></code> [0]</p></td>
+<td><p>If true (1), casting in the graph is implicit and <code class="docutils literal notranslate"><span class="pre">Cast</span></code> ONNX operators are not inserted</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">OptimizeBufferMemory</span></code> [1]</p></td>
-<td><p>If true (1), try to re-use memory spaces using wrapping and in-place</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">OptimizeNoBranchConcat</span></code> [1]</p></td>
-<td><p>If true (1), concatenation is done directly in memory when possible</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MemoryAlignment</span></code> [1]</p></td>
-<td><p>Default memory alignment (in bytes)</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MemoryManagerStrategy</span></code> [<code class="docutils literal notranslate"><span class="pre">OptimizeMaxLifetimeMaxSizeFirst</span></code>]</p></td>
-<td><p>Optimization strategy for static memory allocation</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">FakeQuantization</span></code> [0]</p></td>
+<td><p>If true (1), the graph is fake quantized, meaning floating-point ONNX operators are used for the computation</p></td>
 </tr>
 </tbody>
 </table>
+<p>The parameters <code class="docutils literal notranslate"><span class="pre">ImplicitCasting</span></code> and <code class="docutils literal notranslate"><span class="pre">FakeQuantization</span></code> are useful only for
+quantized networks. In this case, a full integer ONNX graph is generated when
+possible, notably using the ONNX <em>ConvInteger</em> and <em>MatMulInteger</em> when
+<code class="docutils literal notranslate"><span class="pre">-nbbits</span></code> is ≤ 8 bits. An example of generated graph is shown below, with a
+<code class="docutils literal notranslate"><span class="pre">Single-shift</span></code> activation rescaling mode (<code class="docutils literal notranslate"><span class="pre">-act-rescaling-mode</span></code>, see
+<a class="reference internal" href="quant_post.html#post-quant-label"><span class="std std-ref">Post-training quantization</span></a>):</p>
+<div class="figure align-default">
+<img alt="Example of fully integer, quantized, exported ONNX graph." src="_images/export_ONNX_quant.svg" /></div>
+<p>By default, strict adherence to the ONNX standard is enforced, by adding
+explicit <code class="docutils literal notranslate"><span class="pre">Cast</span></code> operators when required. The automatic insertion of <code class="docutils literal notranslate"><span class="pre">Cast</span></code>
+operators can be disabled by setting the <code class="docutils literal notranslate"><span class="pre">ImplicitCasting</span></code> export parameter
+to true. This results in the simplified graph below:</p>
+<div class="figure align-default">
+<img alt="Example of fully integer, quantized, exported ONNX graph without ``Cast`` operators (with ``ImplicitCasting`` set to 1)." src="_images/export_ONNX_quant_implicit_cast.svg" /></div>
+<p>The <code class="docutils literal notranslate"><span class="pre">FakeQuantization</span></code> parameter allows to export a quantized network using
+fake quantization, meaning the parameters of the network are quantized (integer)
+but their representation remains in floating-point and the computation is done
+with floating-point operators. However, the output values of the network
+should be almost identical to when the computation is done in integer. The
+differences are due to numerical errors as all integers cannot be represented
+exactly with floating-point.</p>
+<div class="figure align-default">
+<img alt="Example of fully integer, quantized, exported ONNX graph with fake quantization (``FakeQuantization`` set to 1)." src="_images/export_ONNX_quant_fake.svg" /></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">FakeQuantization</span></code>, when set, implies <code class="docutils literal notranslate"><span class="pre">ImplicitCasting</span></code>, as no
+casting operator is required in a fully floating-point graph.</p>
+</div>
 </div>
 </div>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2</span> <span class="n">MobileNet_ONNX</span><span class="o">.</span><span class="n">ini</span> <span class="o">-</span><span class="n">seed</span> <span class="mi">1</span> <span class="o">-</span><span class="n">w</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span> <span class="o">-</span><span class="n">export</span> <span class="n">CPP</span> <span class="o">-</span><span class="n">fuse</span> <span class="o">-</span><span class="n">nbbits</span> <span class="mi">8</span> <span class="o">-</span><span class="n">calib</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="n">db</span><span class="o">-</span><span class="n">export</span> <span class="mi">100</span> <span class="o">-</span><span class="n">test</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2</span> <span class="n">MobileNet_ONNX</span><span class="o">.</span><span class="n">ini</span> <span class="o">-</span><span class="n">seed</span> <span class="mi">1</span> <span class="o">-</span><span class="n">w</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span> <span class="o">-</span><span class="n">export</span> <span class="n">ONNX</span> <span class="o">-</span><span class="n">nbbits</span> <span class="mi">8</span> <span class="o">-</span><span class="n">calib</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="n">db</span><span class="o">-</span><span class="n">export</span> <span class="mi">100</span> <span class="o">-</span><span class="n">test</span>
 </pre></div>
 </div>
-<p>This command generates a C++ project in the sub-directory <code class="docutils literal notranslate"><span class="pre">export_CPP_int8</span></code>.
-This project is ready to be compiled with a <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">Softmax</span></code> layer is not supported by the C++ export and must be removed
-before export, as it is not compatible with low precision integer computing.</p>
-</div>
+<p>This command generates a 8-bits integer quantized ONNX model in the sub-directory
+<code class="docutils literal notranslate"><span class="pre">export_ONNX_int8</span></code>.</p>
 </div>
 </div>
 
@@ -335,10 +298,10 @@ before export, as it is not compatible with low precision integer computing.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="export_CPP_STM32.html" class="btn btn-neutral float-right" title="Export: C++/STM32" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="export_legacy.html" class="btn btn-neutral float-right" title="Export: other / legacy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="quant_qat.html" class="btn btn-neutral float-left" title="[NEW] Quantization-Aware Training" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="export_DNeuro.html" class="btn btn-neutral float-left" title="Export: DNeuro" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
