@@ -107,9 +107,14 @@
 <li class="toctree-l1"><a class="reference internal" href="export_TensorRT.html">Export: TensorRT</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Export: DNeuro</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#export-parameters">Export parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#interface">Interface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#supported-layers">Supported layers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simulation">Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#c-emulation">C++ emulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#export-parameters">Export parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#fpga-compatibility-tables">FPGA compatibility tables</a></li>
 </ul>
 </li>
@@ -238,100 +243,6 @@ topology in order to minimize its latency.</p>
 specific type and configuration of layers (convolution, max pooling…),
 that can be chained to form a full neural network. The bloc allocation
 and chaining is done automatically with N2D2.</p>
-<div class="section" id="export-parameters">
-<h3>Export parameters<a class="headerlink" href="#export-parameters" title="Permalink to this headline">¶</a></h3>
-<p>Extra parameters can be passed during export using the
-<code class="docutils literal notranslate"><span class="pre">-export-parameters</span> <span class="pre">params.ini</span></code> command line argument. The parameters must be
-saved in an INI-like file.</p>
-<p>List of general available parameters:</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 35%" />
-<col style="width: 65%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Argument [default value]</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NbDSPs</span></code></p></td>
-<td><p>Set the maximum number of DSPs that the network can use on the FPGA</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NbMemoryBytes</span></code></p></td>
-<td><p>Set the maximum memory, in bytes, that the network can use on the FPGA</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Network</span></code> [network]</p></td>
-<td><p>Name of the top-level HDL entity</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">EstimationFrequency</span></code> [200]</p></td>
-<td><p>Frequency used for the FPS estimation given by the export</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AccumulationNbBits</span></code> [2.DATA_LENGTH+4]</p></td>
-<td><p>Number of bits to use for the accumulation</p></td>
-</tr>
-</tbody>
-</table>
-<p>Output map class conversion to RGB settings:</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 35%" />
-<col style="width: 65%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Argument [default value]</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">OutputMapToRGB</span></code> [0]</p></td>
-<td><p>If true (1), add an extra layer at the end of the network that converts the output of the network to an RGB output</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">OutputMapToRGBBackgroundClass</span></code> []</p></td>
-<td><p>When <code class="docutils literal notranslate"><span class="pre">OutputMapToRGB</span></code> is 1, set the class that is used for background objects. The overlay color for this class will
-be transparent</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">OutputMapToRGBColorMasks</span></code> []</p></td>
-<td><p>When <code class="docutils literal notranslate"><span class="pre">OutputMapToRGB</span></code> is 1, list of colors to use for the classes</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">OutputMapToRGBBinaryThresholdUpper</span></code> [0]</p></td>
-<td><p>Upper threshold for binary outputs</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">OutputMapToRGBBinaryThresholdLower</span></code> [0]</p></td>
-<td><p>Lower threshold for binary outputs</p></td>
-</tr>
-</tbody>
-</table>
-<p>Internal per layer settings (for debug purpose only!):</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 35%" />
-<col style="width: 65%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Argument [default value]</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RTLType</span></code> []</p></td>
-<td><p>Specific name of the RTL library module to use for this layer</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NbChannelsInstantiation</span></code> []</p></td>
-<td><p>Specific number of channels to instantiate</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NbOutputsInstantiation</span></code> []</p></td>
-<td><p>Specific number of outputs to instantiate</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">KernelHeightInstantiation</span></code> []</p></td>
-<td><p>Specific number of kernel height to instantiate</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KernelWidthInstantiation</span></code> []</p></td>
-<td><p>Specific number of kernel width to instantiate</p></td>
-</tr>
-</tbody>
-</table>
-</div>
 <div class="section" id="interface">
 <h3>Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h3>
 <p>The DNeuro interface is extremely simple and behaves like a
@@ -491,6 +402,143 @@ up to two configurable thresholds</p></td>
 <tr class="row-odd"><td><p>Tanh</p></td>
 <td><p>✗</p></td>
 <td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="simulation">
+<h3>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">¶</a></h3>
+<p>When a network is exported, test vectors are exported automatically too, if
+the <code class="docutils literal notranslate"><span class="pre">-db-export</span></code> command line option value is &gt; 0 (by default, the full test
+set is exported). All the test vectors are exported for the C++ emulator, while
+only the first image is pre-loaded as a test vector for the RTL simulation in
+the <code class="docutils literal notranslate"><span class="pre">RTL/NETWORK/TB/network_tb.vhd</span></code> file. This testbench is configured with a
+clock frequency of 100MHz (regardless of the <code class="docutils literal notranslate"><span class="pre">EstimationFrequency</span></code> export
+parameter). The testbench reads 3 times the same (first) image and outputs the
+results in the <code class="docutils literal notranslate"><span class="pre">out_file/out.txt</span></code> file, located in <code class="docutils literal notranslate"><span class="pre">RTL/NETWORK/simu/VsimTOOL</span></code>
+for ModelSim.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">RTL</span><span class="o">/</span><span class="n">NETWORK</span><span class="o">/</span><span class="n">simu</span>
+<span class="n">make</span> <span class="n">vsim</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="c-emulation">
+<h3>C++ emulation<a class="headerlink" href="#c-emulation" title="Permalink to this headline">¶</a></h3>
+<p>The DNeuro export comes with a C++ bit-accurate emulator.</p>
+<p>By default, the provided emulator will use the same parameters as the ones
+defined in the export. For testing purposes it is possible to change the
+accumulation size by defining the <code class="docutils literal notranslate"><span class="pre">ACC_NB_BITS</span></code> variable.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">EMULATOR</span>
+<span class="n">CXXFLAGS</span><span class="o">=</span><span class="s2">&quot;-DACC_NB_BITS=18&quot;</span> <span class="n">make</span>
+<span class="o">./</span><span class="n">dneuro_v2_emulator</span>
+</pre></div>
+</div>
+<p>When running the emulator, all the exported images are evaluated by default, and
+a global score is computed from individual images good or bad classifications.
+It is possible to evaluate a single image with the following command line
+argument:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">dneuro_v2_emulator</span> <span class="o">-</span><span class="n">stimulus</span> <span class="n">stimuli</span><span class="o">/</span><span class="n">env00</span><span class="o">.</span><span class="n">ppm</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">stimuli/env00.ppm</span></code> is an already pre-processed image automatically
+exported by N2D2 and ready to be feed at the input of the neural network. The
+emulator generates for each network’s layer an output file
+<em>layer_name_output.txt</em> containing the output tensor values of the layer, as
+expected for the DNeuro IP.</p>
+</div>
+<div class="section" id="export-parameters">
+<h3>Export parameters<a class="headerlink" href="#export-parameters" title="Permalink to this headline">¶</a></h3>
+<p>Extra parameters can be passed during export using the
+<code class="docutils literal notranslate"><span class="pre">-export-parameters</span> <span class="pre">params.ini</span></code> command line argument. The parameters must be
+saved in an INI-like file.</p>
+<p>List of general available parameters:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Argument [default value]</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NbDSPs</span></code></p></td>
+<td><p>Set the maximum number of DSPs that the network can use on the FPGA</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NbMemoryBytes</span></code></p></td>
+<td><p>Set the maximum memory, in bytes, that the network can use on the FPGA</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Network</span></code> [network]</p></td>
+<td><p>Name of the top-level HDL entity</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">EstimationFrequency</span></code> [200]</p></td>
+<td><p>Frequency used for the FPS estimation given by the export</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AccumulationNbBits</span></code> [2.DATA_LENGTH+4]</p></td>
+<td><p>Number of bits to use for the accumulation</p></td>
+</tr>
+</tbody>
+</table>
+<p>Output map class conversion to RGB settings:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Argument [default value]</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">OutputMapToRGB</span></code> [0]</p></td>
+<td><p>If true (1), add an extra layer at the end of the network that converts the output of the network to an RGB output</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">OutputMapToRGBBackgroundClass</span></code> []</p></td>
+<td><p>When <code class="docutils literal notranslate"><span class="pre">OutputMapToRGB</span></code> is 1, set the class that is used for background objects. The overlay color for this class will
+be transparent</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">OutputMapToRGBColorMasks</span></code> []</p></td>
+<td><p>When <code class="docutils literal notranslate"><span class="pre">OutputMapToRGB</span></code> is 1, list of colors to use for the classes</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">OutputMapToRGBBinaryThresholdUpper</span></code> [0]</p></td>
+<td><p>Upper threshold for binary outputs</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">OutputMapToRGBBinaryThresholdLower</span></code> [0]</p></td>
+<td><p>Lower threshold for binary outputs</p></td>
+</tr>
+</tbody>
+</table>
+<p>Internal per layer settings (for debug purpose only!):</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Argument [default value]</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RTLType</span></code> []</p></td>
+<td><p>Specific name of the RTL library module to use for this layer</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NbChannelsInstantiation</span></code> []</p></td>
+<td><p>Specific number of channels to instantiate</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NbOutputsInstantiation</span></code> []</p></td>
+<td><p>Specific number of outputs to instantiate</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">KernelHeightInstantiation</span></code> []</p></td>
+<td><p>Specific number of kernel height to instantiate</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KernelWidthInstantiation</span></code> []</p></td>
+<td><p>Specific number of kernel width to instantiate</p></td>
 </tr>
 </tbody>
 </table>
