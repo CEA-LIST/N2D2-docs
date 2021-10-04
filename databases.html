@@ -196,69 +196,6 @@
             
   <div class="section" id="databases">
 <h1>Databases<a class="headerlink" href="#databases" title="Permalink to this headline">¶</a></h1>
-<dl class="py class">
-<dt id="N2D2.Database">
-<em class="property">class </em><code class="sig-prename descclassname">N2D2.</code><code class="sig-name descname">Database</code><a class="headerlink" href="#N2D2.Database" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="py class">
-<dt id="N2D2.Database.StimuliSet">
-<em class="property">class </em><code class="sig-name descname">StimuliSet</code><a class="headerlink" href="#N2D2.Database.StimuliSet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Members:</p>
-<p>Learn</p>
-<p>Validation</p>
-<p>Test</p>
-<p>Unpartitioned</p>
-<dl class="py method">
-<dt id="N2D2.Database.StimuliSet.name">
-<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#N2D2.Database.StimuliSet.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="N2D2.Database.StimuliSetMask">
-<em class="property">class </em><code class="sig-name descname">StimuliSetMask</code><a class="headerlink" href="#N2D2.Database.StimuliSetMask" title="Permalink to this definition">¶</a></dt>
-<dd><p>Members:</p>
-<p>LearnOnly</p>
-<p>ValidationOnly</p>
-<p>TestOnly</p>
-<p>NoLearn</p>
-<p>NoValidation</p>
-<p>NoTest</p>
-<p>All</p>
-<dl class="py method">
-<dt id="N2D2.Database.StimuliSetMask.name">
-<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#N2D2.Database.StimuliSetMask.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py method">
-<dt id="N2D2.Database.loadROIs">
-<code class="sig-name descname">loadROIs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#N2D2.Database" title="N2D2.Database">N2D2.Database</a></span></em>, <em class="sig-param"><span class="n">fileName</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">relPath</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">''</span></em>, <em class="sig-param"><span class="n">noImageSize</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#N2D2.Database.loadROIs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="N2D2.Database.loadROIsDir">
-<code class="sig-name descname">loadROIsDir</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#N2D2.Database" title="N2D2.Database">N2D2.Database</a></span></em>, <em class="sig-param"><span class="n">dirName</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">fileExt</span><span class="p">:</span> <span class="n">List<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">''</span></em>, <em class="sig-param"><span class="n">depth</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#N2D2.Database.loadROIsDir" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="N2D2.Database.logROIsStats">
-<code class="sig-name descname">logROIsStats</code><span class="sig-paren">(</span><em class="sig-param">self: N2D2.Database</em>, <em class="sig-param">sizeFileName: str</em>, <em class="sig-param">labelFileName: str</em>, <em class="sig-param">setMask: N2D2.Database.StimuliSetMask = &lt;StimuliSetMask.All: 6&gt;</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#N2D2.Database.logROIsStats" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="N2D2.Database.logStats">
-<code class="sig-name descname">logStats</code><span class="sig-paren">(</span><em class="sig-param">self: N2D2.Database</em>, <em class="sig-param">sizeFileName: str</em>, <em class="sig-param">labelFileName: str</em>, <em class="sig-param">setMask: N2D2.Database.StimuliSetMask = &lt;StimuliSetMask.All: 6&gt;</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#N2D2.Database.logStats" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="N2D2.Database.saveROIs">
-<code class="sig-name descname">saveROIs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#N2D2.Database" title="N2D2.Database">N2D2.Database</a></span></em>, <em class="sig-param"><span class="n">fileName</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">header</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">''</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#N2D2.Database.saveROIs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 
 
