@@ -1,0 +1,484 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Adversarial module &mdash; N2D2  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Containers" href="containers.html" />
+    <link rel="prev" title="Targets (outputs &amp; losses)" href="ini_target.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> N2D2
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About N2D2-IP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simus.html">Performing simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="perfs_tools.html">Performance evaluation tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuto.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="onnx_convert.html">Obtain ONNX models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="onnx_import.html">Import ONNX models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="onnx_transfer.html">Train from ONNX models</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quant_post.html">Post-training quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quant_qat.html">[NEW] Quantization-Aware Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export_CPP.html">Export: C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export_CPP_STM32.html">Export: C++/STM32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export_TensorRT.html">Export: TensorRT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export_DNeuro.html">Export: DNeuro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export_ONNX.html">Export: ONNX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export_legacy.html">Export: other / legacy</a></li>
+</ul>
+<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ini_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ini_databases.html">Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ini_data_analysis.html">Stimuli data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ini_environment.html">Stimuli provider (Environment)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ini_layers.html">Network Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ini_target.html">Targets (outputs &amp; losses)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Adversarial module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#for-the-users">For the users</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#run-an-adversarial-attack">Run an adversarial attack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#st-function-to-study-adversarial-attacks">1st function to study adversarial attacks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nd-function-to-study-adversarial-attacks">2nd function to study adversarial attacks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#for-the-developers">For the developers</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Python API:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="containers.html">Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cells.html">Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="databases.html">Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stimuliprovider.html">StimuliProvider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deepnet.html">DeepNet</a></li>
+</ul>
+<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dev_intro.html">Introduction</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">N2D2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Adversarial module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/adversarial.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="adversarial-module">
+<h1>Adversarial module<a class="headerlink" href="#adversarial-module" title="Permalink to this headline">¶</a></h1>
+<div class="figure align-default">
+<img alt="Adversarial attack on a stop sign." src="_images/Adversarial_Signs.png" />
+</div>
+<p>This module aims to provide users several tools to simulate
+an adversarial attack on a neural network.</p>
+<p>Adversarial attacks can threaten the security of users.
+They consist in deceiving the network without the user’s knowledge by making imperceptible
+changes to the input data.</p>
+<p>This module give you the possibility to run an adversarial attack,
+study the consequences of differents attacks and implement your own attacks.</p>
+<div class="contents local topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#for-the-users" id="id1">For the users</a></p>
+<ul>
+<li><p><a class="reference internal" href="#run-an-adversarial-attack" id="id2">Run an adversarial attack</a></p></li>
+<li><p><a class="reference internal" href="#st-function-to-study-adversarial-attacks" id="id3">1st function to study adversarial attacks</a></p></li>
+<li><p><a class="reference internal" href="#nd-function-to-study-adversarial-attacks" id="id4">2nd function to study adversarial attacks</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#for-the-developers" id="id5">For the developers</a></p></li>
+</ul>
+</div>
+<div class="section" id="for-the-users">
+<h2><a class="toc-backref" href="#id1">For the users</a><a class="headerlink" href="#for-the-users" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="run-an-adversarial-attack">
+<h3><a class="toc-backref" href="#id2">Run an adversarial attack</a><a class="headerlink" href="#run-an-adversarial-attack" title="Permalink to this headline">¶</a></h3>
+<p>In order to perform an adversarial attack simulation, you will need to add in
+the Ini file of your network a new section called <code class="docutils literal notranslate"><span class="pre">[sp.Adversarial]</span></code>.
+In this section, you can specify the type of attack you wish to run as well as
+some parameters to design your attack.</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; Environment</span>
+<span class="k">[sp]</span>
+<span class="na">SizeX</span><span class="o">=</span><span class="s">32</span>
+<span class="na">SizeY</span><span class="o">=</span><span class="s">32</span>
+<span class="na">BatchSize</span><span class="o">=</span><span class="s">128</span>
+
+<span class="k">[sp.Adversarial]</span>
+<span class="na">Attack</span><span class="o">=</span><span class="s">PGD</span>
+<span class="na">Eps</span><span class="o">=</span><span class="s">0.2</span>
+</pre></div>
+</div>
+<p>The parameters you can modify are indicated in the following table:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 68%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option [default value]</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Attack</span></code> [<code class="docutils literal notranslate"><span class="pre">None</span></code>]</p></td>
+<td><p>Name of the attack (None, Vanilla, GN, FGSM, PGD)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Eps</span></code> [<code class="docutils literal notranslate"><span class="pre">0.1</span></code>]</p></td>
+<td><p>Degradation rate</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NbIterations</span></code> [<code class="docutils literal notranslate"><span class="pre">10</span></code>]</p></td>
+<td><p>Number of iterations (if the attack requires several iterations)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RandomStart</span></code> [<code class="docutils literal notranslate"><span class="pre">false</span></code>]</p></td>
+<td><p>If <code class="docutils literal notranslate"><span class="pre">true</span></code>, randomize every pixel between pixel-Eps and pixel+Eps</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Targeted</span></code> [<code class="docutils literal notranslate"><span class="pre">false</span></code>]</p></td>
+<td><p>If <code class="docutils literal notranslate"><span class="pre">true</span></code>, activate targeted mode (label+1 found by the deepNet)</p></td>
+</tr>
+</tbody>
+</table>
+<p>After specifying the design of the attack, you can run the regular N2D2 options like <code class="docutils literal notranslate"><span class="pre">-test</span></code> or <code class="docutils literal notranslate"><span class="pre">-learn`</span></code>.
+Therefore, you can test your network against adversarial attacks by running the test option.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./n2d2 ResNet-18-BN.ini -test
+</pre></div>
+</div>
+<p>Moreover, running a learning with the adversarial module will execute a robust learning.</p>
+</div>
+<div class="section" id="st-function-to-study-adversarial-attacks">
+<h3><a class="toc-backref" href="#id3">1st function to study adversarial attacks</a><a class="headerlink" href="#st-function-to-study-adversarial-attacks" title="Permalink to this headline">¶</a></h3>
+<p>This function can allow you to perform an adversarial attack on a single batch.
+The function indicates the successful attacks and stores the original and the modified inputs in
+the <code class="docutils literal notranslate"><span class="pre">testAdversarial</span></code> folder.</p>
+<p>To perform the function, please run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./n2d2 ResNet-18-BN.ini -dev 0 -testAdv Solo
+</pre></div>
+</div>
+<p>You should see on your terminal screen</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PGD</span> <span class="n">attack</span>
+<span class="n">Untargeted</span> <span class="n">mode</span>
+<span class="n">BatchPos</span> <span class="mi">0</span><span class="p">:</span> <span class="n">Successful</span> <span class="n">attack</span> <span class="p">(</span><span class="n">label</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="n">estimated</span><span class="p">:</span> <span class="mi">9</span> <span class="k">with</span> <span class="mf">55.54</span><span class="o">%</span><span class="p">)</span>
+<span class="n">BatchPos</span> <span class="mi">1</span><span class="p">:</span> <span class="n">Successful</span> <span class="n">attack</span> <span class="p">(</span><span class="n">label</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="n">estimated</span><span class="p">:</span> <span class="mi">5</span> <span class="k">with</span> <span class="mf">43.59</span><span class="o">%</span><span class="p">)</span>
+<span class="n">BatchPos</span> <span class="mi">2</span><span class="p">:</span> <span class="n">Successful</span> <span class="n">attack</span> <span class="p">(</span><span class="n">label</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">estimated</span><span class="p">:</span> <span class="mi">7</span> <span class="k">with</span> <span class="mf">53.33</span><span class="o">%</span><span class="p">)</span>
+<span class="n">BatchPos</span> <span class="mi">3</span><span class="p">:</span> <span class="n">Successful</span> <span class="n">attack</span> <span class="p">(</span><span class="n">label</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="n">estimated</span><span class="p">:</span> <span class="mi">2</span> <span class="k">with</span> <span class="mf">50.92</span><span class="o">%</span><span class="p">)</span>
+<span class="n">BatchPos</span> <span class="mi">4</span><span class="p">:</span> <span class="n">Successful</span> <span class="n">attack</span> <span class="p">(</span><span class="n">label</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="n">estimated</span><span class="p">:</span> <span class="mi">8</span> <span class="k">with</span> <span class="mf">51.02</span><span class="o">%</span><span class="p">)</span>
+<span class="n">BatchPos</span> <span class="mi">5</span><span class="p">:</span> <span class="n">Successful</span> <span class="n">attack</span> <span class="p">(</span><span class="n">label</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">estimated</span><span class="p">:</span> <span class="mi">6</span> <span class="k">with</span> <span class="mf">50.26</span><span class="o">%</span><span class="p">)</span>
+<span class="n">BatchPos</span> <span class="mi">6</span><span class="p">:</span> <span class="n">Successful</span> <span class="n">attack</span> <span class="p">(</span><span class="n">label</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="n">estimated</span><span class="p">:</span> <span class="mi">3</span> <span class="k">with</span> <span class="mf">59.07</span><span class="o">%</span><span class="p">)</span>
+<span class="n">BatchPos</span> <span class="mi">7</span><span class="p">:</span> <span class="n">Successful</span> <span class="n">attack</span> <span class="p">(</span><span class="n">label</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="n">estimated</span><span class="p">:</span> <span class="mi">9</span> <span class="k">with</span> <span class="mf">52.42</span><span class="o">%</span><span class="p">)</span>
+<span class="n">BatchPos</span> <span class="mi">8</span><span class="p">:</span> <span class="n">Successful</span> <span class="n">attack</span> <span class="p">(</span><span class="n">label</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="n">estimated</span><span class="p">:</span> <span class="mi">7</span> <span class="k">with</span> <span class="mf">62.47</span><span class="o">%</span><span class="p">)</span>
+<span class="n">BatchPos</span> <span class="mi">9</span><span class="p">:</span> <span class="n">Successful</span> <span class="n">attack</span> <span class="p">(</span><span class="n">label</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="n">estimated</span><span class="p">:</span> <span class="mi">0</span> <span class="k">with</span> <span class="mf">61.88</span><span class="o">%</span><span class="p">)</span>
+<span class="n">Time</span> <span class="n">elapsed</span><span class="p">:</span> <span class="mf">6.85</span> <span class="n">s</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="nd-function-to-study-adversarial-attacks">
+<h3><a class="toc-backref" href="#id4">2nd function to study adversarial attacks</a><a class="headerlink" href="#nd-function-to-study-adversarial-attacks" title="Permalink to this headline">¶</a></h3>
+<p>This function can allow you to perform an adversarial attack on multiple batches (2000 images).
+The function indicates the ratio of successful attacks. It also provides the ratio of successful
+attacks for each class.</p>
+<p>To perform the function, please run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./n2d2 ResNet-18-BN.ini -dev 0 -testAdv Multi
+</pre></div>
+</div>
+<p>You should see on your terminal screen</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Treating 2000/2000
+Analysis of the results...
+Successful attacks: 2.20%
+including network errors: 1.35%
+- successful attacks on class 0: 0.00% (0/218)
+- successful attacks on class 1: 0.00% (0/219)
+- successful attacks on class 2: 2.78% (6/216)
+- successful attacks on class 3: 2.16% (4/185)
+- successful attacks on class 4: 1.60% (3/188)
+- successful attacks on class 5: 4.89% (9/184)
+- successful attacks on class 6: 2.55% (5/196)
+- successful attacks on class 7: 3.37% (7/208)
+- successful attacks on class 8: 3.66% (7/191)
+- successful attacks on class 9: 1.54% (3/195)
+Time elapsed: 4.62 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="for-the-developers">
+<h2><a class="toc-backref" href="#id5">For the developers</a><a class="headerlink" href="#for-the-developers" title="Permalink to this headline">¶</a></h2>
+<p><strong>It’s now your turn to implement your own attacks !</strong></p>
+<p>To integrate your attack inside N2D2, you will have to change the following files:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">include/Adversarial.hpp</span></code></p>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span> <span class="nc">Attack_T</span> <span class="p">{</span>
+    <span class="n">None</span><span class="p">,</span>
+    <span class="n">Vanilla</span><span class="p">,</span>
+    <span class="n">GN</span><span class="p">,</span>
+    <span class="n">FGSM</span><span class="p">,</span>
+    <span class="n">PGD</span><span class="p">,</span>
+    <span class="n">My_attack</span>     <span class="o">&lt;---------------</span>
+<span class="p">};</span>
+
+<span class="p">...</span>
+
+<span class="k">namespace</span> <span class="p">{</span>
+<span class="k">template</span> <span class="o">&lt;&gt;</span>
+<span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="k">const</span> <span class="n">EnumStrings</span><span class="o">&lt;</span><span class="n">N2D2</span><span class="o">::</span><span class="n">Adversarial</span><span class="o">::</span><span class="n">Attack_T</span><span class="o">&gt;::</span><span class="n">data</span><span class="p">[]</span>
+    <span class="o">=</span> <span class="p">{</span><span class="s">&quot;None&quot;</span><span class="p">,</span> <span class="s">&quot;Vanilla&quot;</span><span class="p">,</span> <span class="s">&quot;GN&quot;</span><span class="p">,</span> <span class="s">&quot;FGSM&quot;</span><span class="p">,</span> <span class="s">&quot;PGD&quot;</span><span class="p">,</span> <span class="s">&quot;My_attack&quot;</span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="p">...</span>
+
+<span class="kt">void</span> <span class="n">FFGSM_attack</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">DeepNet</span><span class="o">&gt;&amp;</span> <span class="n">deepNet</span><span class="p">,</span>
+          <span class="k">const</span> <span class="kt">float</span> <span class="n">eps</span><span class="p">,</span>
+          <span class="k">const</span> <span class="kt">float</span> <span class="n">alpha</span><span class="p">,</span>
+          <span class="k">const</span> <span class="kt">bool</span> <span class="n">targeted</span> <span class="o">=</span> <span class="nb">false</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">PGD_attack</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">DeepNet</span><span class="o">&gt;&amp;</span> <span class="n">deepNet</span><span class="p">,</span>
+                <span class="k">const</span> <span class="kt">float</span> <span class="n">eps</span><span class="p">,</span>
+                <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">nbIter</span><span class="p">,</span>
+                <span class="k">const</span> <span class="kt">float</span> <span class="n">alpha</span><span class="p">,</span>
+                <span class="k">const</span> <span class="kt">bool</span> <span class="n">targeted</span> <span class="o">=</span> <span class="nb">false</span><span class="p">,</span>
+                <span class="k">const</span> <span class="kt">bool</span> <span class="n">random_start</span> <span class="o">=</span> <span class="nb">false</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">My_attack</span><span class="p">();</span>                            <span class="o">&lt;---------------</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">src/Adversarial.cpp</span></code></p>
+<blockquote>
+<div><p>in the <code class="docutils literal notranslate"><span class="pre">attackLauncher</span></code> function, indicate your attack in the switch.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">case</span> <span class="nl">Vanilla</span><span class="p">:</span>
+    <span class="n">Vanilla_attack</span><span class="p">();</span>
+    <span class="k">break</span><span class="p">;</span>
+
+<span class="k">case</span> <span class="nl">FGSM</span><span class="p">:</span>
+    <span class="n">FGSM_attack</span><span class="p">(</span><span class="n">deepNet</span><span class="p">,</span> <span class="n">mEps</span><span class="p">,</span> <span class="n">mTargeted</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+
+<span class="k">case</span> <span class="nl">My_attack</span><span class="p">:</span>
+    <span class="n">My_attack</span><span class="p">();</span>                            <span class="o">&lt;---------------</span>
+    <span class="k">break</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">N2D2</span><span class="o">::</span><span class="n">My_attack</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="cm">/* My implementation */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">src/Generator/AdversarialGenerator.cpp</span></code></p>
+<blockquote>
+<div><p>If you need to add new parameters, add them in the class Adversarial and don’t
+forget to save them during the generation of the Adversarial layer. You can
+implement some setter methods in the <code class="docutils literal notranslate"><span class="pre">AdversarialGenerator</span></code> file.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">adv</span><span class="o">-&gt;</span><span class="n">setEps</span><span class="p">(</span><span class="n">iniConfig</span><span class="p">.</span><span class="n">getProperty</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Eps&quot;</span><span class="p">,</span> <span class="n">adv</span><span class="o">-&gt;</span><span class="n">getEps</span><span class="p">()));</span>
+<span class="n">adv</span><span class="o">-&gt;</span><span class="n">setNbIterations</span><span class="p">(</span><span class="n">iniConfig</span><span class="p">.</span><span class="n">getProperty</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;NbIterations&quot;</span><span class="p">,</span> <span class="n">adv</span><span class="o">-&gt;</span><span class="n">getNbIterations</span><span class="p">()));</span>
+<span class="n">adv</span><span class="o">-&gt;</span><span class="n">setRandomStart</span><span class="p">(</span><span class="n">iniConfig</span><span class="p">.</span><span class="n">getProperty</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;RandomStart&quot;</span><span class="p">,</span> <span class="n">adv</span><span class="o">-&gt;</span><span class="n">getRandomStart</span><span class="p">()));</span>
+<span class="n">adv</span><span class="o">-&gt;</span><span class="n">setTargeted</span><span class="p">(</span><span class="n">iniConfig</span><span class="p">.</span><span class="n">getProperty</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Targeted&quot;</span><span class="p">,</span> <span class="n">adv</span><span class="o">-&gt;</span><span class="n">getTargeted</span><span class="p">()));</span>
+
+<span class="k">return</span> <span class="n">adv</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="containers.html" class="btn btn-neutral float-right" title="Containers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ini_target.html" class="btn btn-neutral float-left" title="Targets (outputs &amp; losses)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, CEA LIST
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
