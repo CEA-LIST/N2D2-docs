@@ -114,6 +114,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#simulation">Simulation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#c-emulation">C++ emulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#synthesis">Synthesis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#export-parameters">Export parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#fpga-compatibility-tables">FPGA compatibility tables</a></li>
 </ul>
@@ -449,6 +450,24 @@ exported by N2D2 and ready to be feed at the input of the neural network. The
 emulator generates for each network’s layer an output file
 <em>layer_name_output.txt</em> containing the output tensor values of the layer, as
 expected for the DNeuro IP.</p>
+</div>
+<div class="section" id="synthesis">
+<h3>Synthesis<a class="headerlink" href="#synthesis" title="Permalink to this headline">¶</a></h3>
+<p>To generate a project ready for synthesis in Vivado or Quartus, use the scripts
+provided in <code class="docutils literal notranslate"><span class="pre">RTL/NETWORK/simu/PythonTOOL</span></code>. To generate a Vivado project, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">RTL</span><span class="o">/</span><span class="n">NETWORK</span><span class="o">/</span><span class="n">simu</span>
+<span class="n">python</span> <span class="n">PythonTOOL</span><span class="o">/</span><span class="n">vivadoGenerate</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>This script creates a new project in <code class="docutils literal notranslate"><span class="pre">RTL/NETWORK/simu/VivadoTOOL/project_export_DNeuro</span></code>.
+Do not forget to change the default project’s part.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do not create a project and add the sources manually, as the sources
+organization into libraries will not be setup properly: the sources in the
+directories <code class="docutils literal notranslate"><span class="pre">CONV_COMMON</span></code>, <code class="docutils literal notranslate"><span class="pre">CONV_Tn_Oy_CHy_K1_Sy_P1</span></code> and
+<code class="docutils literal notranslate"><span class="pre">CONV_Tn_Oy_CHy_K1_Sy_Pn</span></code> must be placed in libraries of the same name!</p>
+</div>
 </div>
 <div class="section" id="export-parameters">
 <h3>Export parameters<a class="headerlink" href="#export-parameters" title="Permalink to this headline">¶</a></h3>
