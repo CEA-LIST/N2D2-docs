@@ -96,6 +96,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="onnx_convert.html">Obtain ONNX models</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Import ONNX models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#preliminary-steps">Preliminary steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#with-an-ini-file">With an INI file</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#onnx-ini-section-type">ONNX INI section type</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#transpose-option-usage"><code class="docutils literal notranslate"><span class="pre">Transpose</span></code> option usage</a></li>
@@ -206,6 +207,21 @@
             
   <div class="section" id="import-onnx-models">
 <h1>Import ONNX models<a class="headerlink" href="#import-onnx-models" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="preliminary-steps">
+<h2>Preliminary steps<a class="headerlink" href="#preliminary-steps" title="Permalink to this headline">¶</a></h2>
+<p>ONNX generators may generate complicated models, in order to take into account
+for example dynamic size or shape calculation, from previous operator outputs
+dimensions. This can be the case even when the graph is static and the dimensions
+are known in the ONNX model. While such model may be imported in DL frameworks
+using standard operators/layers, it would be vastly sub-optimal, as some part
+of the graph would require unnecessary dynamic allocation, and would be very
+hard to optimize for inference on embedded platforms.</p>
+<p>For this reason, we do not always try to allow proper import of such graph in
+N2D2 as is. While some simplifications may be handled directly in N2D2, we
+recommend using the
+<a class="reference external" href="https://github.com/daquexian/onnx-simplifier">ONNX Simplifier</a> tool on your
+ONNX model before importing it into N2D2.</p>
+</div>
 <div class="section" id="with-an-ini-file">
 <h2>With an INI file<a class="headerlink" href="#with-an-ini-file" title="Permalink to this headline">¶</a></h2>
 <p>It is possible to include an ONNX model inside a N2D2 INI file, as part of a
