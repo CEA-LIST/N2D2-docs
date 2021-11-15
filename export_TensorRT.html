@@ -106,6 +106,7 @@
 <li class="toctree-l1"><a class="reference internal" href="export_CPP_STM32.html">Export: C++/STM32</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Export: TensorRT</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#informations">Informations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#export-parameters">Export parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#benchmark-your-tensorrt-model-c-benchmark">Benchmark your TensorRT Model - C++ Benchmark</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#analyse-the-execution-performances-of-your-tensorrt-model-fp32">Analyse the execution performances of your TensorRT Model (FP32)</a></li>
 </ul>
@@ -207,7 +208,7 @@
 <h1>Export: TensorRT<a class="headerlink" href="#export-tensorrt" title="Permalink to this headline">¶</a></h1>
 <p>Export type: <code class="docutils literal notranslate"><span class="pre">CPP_TensorRT</span></code></p>
 <p>C++ export using TensorRT.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2</span> <span class="n">MobileNet_ONNX</span><span class="o">.</span><span class="n">ini</span> <span class="o">-</span><span class="n">seed</span> <span class="mi">1</span> <span class="o">-</span><span class="n">w</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span> <span class="o">-</span><span class="n">export</span> <span class="n">CPP_TensorRT</span> <span class="o">-</span><span class="n">nbbits</span> <span class="mi">32</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2</span> <span class="n">MobileNet_ONNX</span><span class="o">.</span><span class="n">ini</span> <span class="o">-</span><span class="n">seed</span> <span class="mi">1</span> <span class="o">-</span><span class="n">w</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span> <span class="o">-</span><span class="n">export</span> <span class="n">CPP_TensorRT</span> <span class="o">-</span><span class="n">nbbits</span> <span class="o">-</span><span class="mi">32</span>
 </pre></div>
 </div>
 <div class="admonition warning">
@@ -234,6 +235,30 @@ You can find additional informations about how to implements new plugin layers h
 <a class="reference external" href="https://docs.nvidia.com/deeplearning/tensorrt/developer-guide/index.html#add_custom_layer">https://docs.nvidia.com/deeplearning/tensorrt/developer-guide/index.html#add_custom_layer</a></p>
 <p>The plugin layers that N2D2 TensorRT generator implements are available in the folder <code class="docutils literal notranslate"><span class="pre">export/CPP_TensorRT/include/plugins/</span></code>. These layers are
 used by the N2D2 TensorRT generator when TensorRT doesn’t provide support to a requested layers.</p>
+</div>
+<div class="section" id="export-parameters">
+<h2>Export parameters<a class="headerlink" href="#export-parameters" title="Permalink to this headline">¶</a></h2>
+<p>Extra parameters can be passed during export using the
+<code class="docutils literal notranslate"><span class="pre">-export-parameters</span> <span class="pre">params.ini</span></code> command line argument. The parameters must be
+saved in an INI-like file.</p>
+<p>List of available parameters:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Argument [default value]</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">GenStimuliCalib</span></code> [1]</p></td>
+<td><p>If true (1), generate calibration files, necessary for 8-bits precision.
+Beware that calibration files may take a lot of disk space!</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="benchmark-your-tensorrt-model-c-benchmark">
 <h2>Benchmark your TensorRT Model - C++ Benchmark<a class="headerlink" href="#benchmark-your-tensorrt-model-c-benchmark" title="Permalink to this headline">¶</a></h2>
