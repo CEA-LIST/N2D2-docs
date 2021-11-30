@@ -1,0 +1,468 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Introduction &mdash; N2D2  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Databases" href="databases.html" />
+    <link rel="prev" title="Adversarial module" href="../adversarial.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> N2D2
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/about.html">About N2D2-IP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/simus.html">Performing simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/perfs_tools.html">Performance evaluation tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/tuto.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../onnx/convert.html">Obtain ONNX models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../onnx/import.html">Import ONNX models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../onnx/transfer.html">Train from ONNX models</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quant/post.html">Post-training quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">[NEW] Quantization-Aware Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../export/CPP.html">Export: C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../export/CPP_STM32.html">Export: C++/STM32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../export/TensorRT.html">Export: TensorRT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../export/DNeuro.html">Export: DNeuro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../export/ONNX.html">Export: ONNX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../export/legacy.html">Export: other / legacy</a></li>
+</ul>
+<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ini/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ini/databases.html">Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ini/data_analysis.html">Stimuli data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ini/environment.html">Stimuli provider (Environment)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ini/layers.html">Network Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ini/target.html">Targets (outputs &amp; losses)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../adversarial.html">Adversarial module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Python API:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#with-setup-py">With setup.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#manually">Manually</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#default-values">Default values</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#list-of-modifiable-parameters">List of modifiable parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="databases.html">Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cells.html">Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tensor.html">Tensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interoperability.html">Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html">Example</a></li>
+</ul>
+<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core/core.html">Core N2D2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core/example.html">Example</a></li>
+</ul>
+<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev_intro.html">Introduction</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">N2D2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Introduction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/python_api/intro.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>For notation purposes, we will refer to the python library of N2D2 as n2d2.
+This library uses the core function of N2D2 and add an extra layer of abstraction to make the experience more user friendly.
+With the library you can import data, pre-process them, create a deep neural network model, train it and realize inference with it.
+You can also import a network using the <a class="reference internal" href="../ini/intro.html"><span class="doc">ini file configuration</span></a> or the ONNX library.</p>
+<p>Here are the functionalities available with the Python API :</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 44%" />
+<col style="width: 22%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Available</p></th>
+<th class="head"><p>Python API Only</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Import a network from
+an INI file</p></td>
+<td><p>✔️</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Import a network from
+an ONNX file</p></td>
+<td><p>✔️</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Build a network with
+the API</p></td>
+<td><p>✔️</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Load and apply
+transformation to a
+dataset</p></td>
+<td><p>✔️</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Train a network</p></td>
+<td><p>✔️</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Flexible definition of
+the computation graph</p></td>
+<td><p>✔️</p></td>
+<td><p>✔️</p></td>
+</tr>
+<tr class="row-even"><td><p>Test a network with
+the N2D2 analysis tools</p></td>
+<td><p>✔️</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Torch interoperability</p></td>
+<td><p>✔️</p></td>
+<td><p>✔️</p></td>
+</tr>
+<tr class="row-even"><td><p>Keras interoperability</p></td>
+<td><p>❌</p></td>
+<td><p>✔️</p></td>
+</tr>
+<tr class="row-odd"><td><p>Multi GPU support</p></td>
+<td><p>✔️</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Exporting network</p></td>
+<td><p>❌</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>To run the python API, you need to use <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">3.7</span></code>.</p>
+<p>We highly recommend that you use a virtual environment, to set one up, you can follow these steps :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creating python virtual environment</span>
+virtualenv -p python3.7 env
+<span class="c1"># Activating the virtual environment</span>
+<span class="nb">source</span> env/bin/activate
+<span class="c1"># Checking versions</span>
+python --version
+pip --version
+<span class="c1"># Leaving the virtual environment</span>
+deactivate
+</pre></div>
+</div>
+<p>If everything went well, you should have the version <code class="docutils literal notranslate"><span class="pre">3.7</span></code> of python.</p>
+<div class="section" id="with-setup-py">
+<h3>With setup.py<a class="headerlink" href="#with-setup-py" title="Permalink to this headline">¶</a></h3>
+<p>To install n2d2, you can go to the root of the project and use the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> script (with you <strong>virtual environment activated</strong>).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python setup.py install
+</pre></div>
+</div>
+<p>This should compile the n2d2 libraries and add it to your virtual environnement.</p>
+<p>You can test it by trying to import n2d2 in your python interpreter :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python
+&gt;&gt;&gt; import n2d2
+&gt;&gt;&gt; exit<span class="o">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="manually">
+<h3>Manually<a class="headerlink" href="#manually" title="Permalink to this headline">¶</a></h3>
+<p>If the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> script doesn’t work, you can try to install manually the librarie.
+When you compile <code class="docutils literal notranslate"><span class="pre">N2D2</span></code>, the compiler creates a folder <code class="docutils literal notranslate"><span class="pre">lib</span></code> which contains the shared library of the binding between C++ and python (the file should be named <code class="docutils literal notranslate"><span class="pre">N2D2-*.so</span></code>).
+You need to move/copy this file at the root of the python folder <code class="docutils literal notranslate"><span class="pre">N2D2-IP/N2D2/python</span></code>.</p>
+<p>You can check that the binding is working by moving to the python folder and typing :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python
+&gt;&gt;&gt; import N2D2
+&gt;&gt;&gt; exit<span class="o">()</span>
+</pre></div>
+</div>
+<p>If you have no error while importing <code class="docutils literal notranslate"><span class="pre">N2D2</span></code>, the binding is working.</p>
+<p>If you don’t want to always move/copy the library, you can add the path where the library is located to your <code class="docutils literal notranslate"><span class="pre">pythonpath</span></code>.
+For this, you need to edit your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> file. You can use any editor, for example :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano ~/.bashrc
+</pre></div>
+</div>
+<p>then add the line :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$PYTHONPATH</span>:path_to_build_lib
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">path_to_build_lib</span></code> is the path to the lib folder. Once this is done, use this command to apply the changes :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> ~/.bashrc
+</pre></div>
+</div>
+<p>You can also add the library n2d2 to you python path, if you don’t plan to work on the python directory.</p>
+<p>Once this is done, you can use the python library or the binding by importing respectively n2d2 or N2D2 in your python script.</p>
+</div>
+</div>
+<div class="section" id="default-values">
+<h2>Default values<a class="headerlink" href="#default-values" title="Permalink to this headline">¶</a></h2>
+<p>The python API used default values that you can modify at any time in your scripts.</p>
+<div class="section" id="list-of-modifiable-parameters">
+<h3>List of modifiable parameters<a class="headerlink" href="#list-of-modifiable-parameters" title="Permalink to this headline">¶</a></h3>
+<p>Here we will list parameters which can be directly modified in your script.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 72%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Default parameters</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">default_model</span></code></p></td>
+<td><p>If you have compiled N2D2 with <strong>CUDA</strong>, you
+can use <code class="docutils literal notranslate"><span class="pre">Frame_CUDA</span></code>, default= <code class="docutils literal notranslate"><span class="pre">Frame</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">default_datatype</span></code></p></td>
+<td><p>Datatype of the layer of the neural network. Can be <code class="docutils literal notranslate"><span class="pre">double</span></code> or
+<code class="docutils literal notranslate"><span class="pre">float</span></code>, default= <code class="docutils literal notranslate"><span class="pre">float</span></code></p>
+<p><strong>Important :</strong> This variable doesn’t affect the data type of
+<a class="reference internal" href="tensor.html#n2d2.Tensor" title="n2d2.Tensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></a> objects.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">verbosity</span></code></p></td>
+<td><p>Level of verbosity, can be
+<code class="docutils literal notranslate"><span class="pre">n2d2.global_variables.Verbosity.graph_only</span></code>,
+<code class="docutils literal notranslate"><span class="pre">n2d2.global_variables.Verbosity.short</span></code> or
+<code class="docutils literal notranslate"><span class="pre">n2d2.global_variables.Verbosity.detailed</span></code>,
+default= <code class="docutils literal notranslate"><span class="pre">n2d2.global_variables.Verbosity.detailed</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">seed</span></code></p></td>
+<td><p>Seed used to generate random numbers(0 = time based),
+default = <code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cuda_device</span></code></p></td>
+<td><p>Device to use for GPU computation with CUDA, you can enable multi
+GPU by giving a tuple of device, default = <code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2</span><span class="o">.</span><span class="n">global_variables</span><span class="o">.</span><span class="n">default_model</span> <span class="o">=</span> <span class="s2">&quot;Frame_CUDA&quot;</span>
+
+<span class="n">n2d2</span><span class="o">.</span><span class="n">global_variables</span><span class="o">.</span><span class="n">default_datatype</span> <span class="o">=</span> <span class="s2">&quot;double&quot;</span>
+
+<span class="n">n2d2</span><span class="o">.</span><span class="n">global_variables</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">global_variables</span><span class="o">.</span><span class="n">Verbosity</span><span class="o">.</span><span class="n">graph_only</span>
+
+<span class="n">n2d2</span><span class="o">.</span><span class="n">global_variables</span><span class="o">.</span><span class="n">seed</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">n2d2</span><span class="o">.</span><span class="n">global_variables</span><span class="o">.</span><span class="n">cuda_device</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="c1"># Multi GPU example :</span>
+<span class="n">n2d2</span><span class="o">.</span><span class="n">global_variables</span><span class="o">.</span><span class="n">cuda_device</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="databases.html" class="btn btn-neutral float-right" title="Databases" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../adversarial.html" class="btn btn-neutral float-left" title="Adversarial module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, CEA LIST
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

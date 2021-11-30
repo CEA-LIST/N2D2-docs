@@ -1,0 +1,417 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Interoperability &mdash; N2D2  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Example" href="example.html" />
+    <link rel="prev" title="Tensor" href="tensor.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> N2D2
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/about.html">About N2D2-IP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/simus.html">Performing simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/perfs_tools.html">Performance evaluation tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/tuto.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../onnx/convert.html">Obtain ONNX models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../onnx/import.html">Import ONNX models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../onnx/transfer.html">Train from ONNX models</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quant/post.html">Post-training quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">[NEW] Quantization-Aware Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../export/CPP.html">Export: C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../export/CPP_STM32.html">Export: C++/STM32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../export/TensorRT.html">Export: TensorRT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../export/DNeuro.html">Export: DNeuro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../export/ONNX.html">Export: ONNX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../export/legacy.html">Export: other / legacy</a></li>
+</ul>
+<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ini/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ini/databases.html">Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ini/data_analysis.html">Stimuli data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ini/environment.html">Stimuli provider (Environment)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ini/layers.html">Network Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ini/target.html">Targets (outputs &amp; losses)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../adversarial.html">Adversarial module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Python API:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="databases.html">Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cells.html">Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tensor.html">Tensor</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Interoperability</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pytorch">PyTorch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#presentation">Presentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tensor-conversion">Tensor conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example :</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#known-issues">Known issues :</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gradient-is-badly-computed-when-using-import-from-onnx">Gradient is badly computed when using import from ONNX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output-shape-must-be-rigorously-the-same-as-the-label-shape">Output shape must be rigorously the same as the label shape</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="example.html">Example</a></li>
+</ul>
+<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core/core.html">Core N2D2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core/example.html">Example</a></li>
+</ul>
+<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev_intro.html">Introduction</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">N2D2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Interoperability</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/python_api/interoperability.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="interoperability">
+<h1>Interoperability<a class="headerlink" href="#interoperability" title="Permalink to this headline">¶</a></h1>
+<p>In this section, we will present how you can use n2d2 with other python framework.</p>
+<div class="section" id="pytorch">
+<h2>PyTorch<a class="headerlink" href="#pytorch" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="presentation">
+<h3>Presentation<a class="headerlink" href="#presentation" title="Permalink to this headline">¶</a></h3>
+<p>The PyTorch interoperability allow you to run an n2d2 model by using the Torch functions.</p>
+<p>The interoperability consist of a wrapper around the N2D2 Network.
+We created an autograd function which on <code class="docutils literal notranslate"><span class="pre">Forward</span></code> call the n2d2 <code class="docutils literal notranslate"><span class="pre">Propagate</span></code> and on <code class="docutils literal notranslate"><span class="pre">Backward</span></code> call the n2d2 <code class="docutils literal notranslate"><span class="pre">Back</span> <span class="pre">Propagate</span></code> and <code class="docutils literal notranslate"><span class="pre">Update</span></code>.</p>
+<div class="figure align-default">
+<img alt="schematic of the interoperability" src="../_images/torch_interop.png" />
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Due to the implementation n2d2 parameters are not visible to <code class="docutils literal notranslate"><span class="pre">Torch</span></code> and thus cannot be trained with a torch <code class="docutils literal notranslate"><span class="pre">Optimizer</span></code>.</p>
+</div>
+</div>
+<div class="section" id="tensor-conversion">
+<h3>Tensor conversion<a class="headerlink" href="#tensor-conversion" title="Permalink to this headline">¶</a></h3>
+<p>In order to achieve this interoperability, we need to convert Tensor from <code class="docutils literal notranslate"><span class="pre">Torch</span></code> to <code class="docutils literal notranslate"><span class="pre">n2d2</span></code> and vice versa.</p>
+<p><a class="reference internal" href="tensor.html#n2d2.Tensor" title="n2d2.Tensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></a> require a contiguous memory space which is not the case for <code class="docutils literal notranslate"><span class="pre">Torch</span></code>. Thus the conversion <code class="docutils literal notranslate"><span class="pre">Torch</span></code> to <code class="docutils literal notranslate"><span class="pre">n2d2</span></code> require a memory copy.
+The opposite conversion is done with no memory copy.</p>
+<p>If you work with <code class="docutils literal notranslate"><span class="pre">CUDA</span></code> tensor, the conversion <code class="docutils literal notranslate"><span class="pre">Torch</span></code> to <code class="docutils literal notranslate"><span class="pre">n2d2</span></code> is also done with no copy on the GPU (a copy on the host is however required).</p>
+</div>
+<div class="section" id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="pytorch_interoperability.Block">
+<em class="property">class </em><code class="sig-prename descclassname">pytorch_interoperability.</code><code class="sig-name descname">Block</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">block</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytorch_interoperability.Block" title="Permalink to this definition">¶</a></dt>
+<dd><p>PyTorch layer used to interface an <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Block</span></code> object in a PyTorch Network.</p>
+<dl class="py method">
+<dt id="pytorch_interoperability.Block.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">block</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytorch_interoperability.Block.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>block</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Block</span></code>) – n2d2 block object to interface with PyTorch</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pytorch_interoperability.Block.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytorch_interoperability.Block.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use a custom <code class="docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code> that use, on forward the <code class="docutils literal notranslate"><span class="pre">Propagation</span></code> of n2d2.
+And on backward the <code class="docutils literal notranslate"><span class="pre">BackPropagation</span></code> and <code class="docutils literal notranslate"><span class="pre">Update</span></code> of n2d2.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="example">
+<h3>Example :<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>In this example, we will create with Torch a <code class="docutils literal notranslate"><span class="pre">LeNet</span></code> and export it with <code class="docutils literal notranslate"><span class="pre">ONNX</span></code>.
+We will then use the n2d2 API to import the model using a <a class="reference internal" href="cells.html#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a>.
+Finally we will run the newly created model with torch by using <a class="reference internal" href="#pytorch_interoperability.Block" title="pytorch_interoperability.Block"><code class="xref py py-class docutils literal notranslate"><span class="pre">pytorch_interoperability.Block</span></code></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">n2d2</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">pytorch_interoperability</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">remove</span>
+<span class="k">class</span> <span class="nc">MNIST_CNN</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="nb">super</span><span class="p">(</span><span class="n">MNIST_CNN</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+                <span class="c1"># Defining the cnn layer that we will extract and export to ONNX</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cnn_layers</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+                        <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                        <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+                        <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+                        <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">linear_layers</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+                        <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+                        <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>
+                        <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">576</span><span class="p">,</span> <span class="mi">128</span><span class="p">),</span>
+                        <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+                        <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+                        <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Softmax</span><span class="p">(),</span>
+                <span class="p">)</span>
+
+        <span class="c1"># Defining the forward pass</span>
+        <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cnn_layers</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear_layers</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">x</span>
+
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">MNIST_CNN</span><span class="p">()</span>
+<span class="n">model_path</span> <span class="o">=</span> <span class="s1">&#39;./tmp.onnx&#39;</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># Exporting to ONNX</span>
+<span class="n">dummy_in</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">onnx</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">dummy_in</span><span class="p">,</span> <span class="n">model_path</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Importing ONNX</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">Database</span><span class="p">()</span>
+<span class="n">provider</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">DataProvider</span><span class="p">(</span><span class="n">db</span><span class="p">,[</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">)</span>
+<span class="n">deepNetCell</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">DeepNetCell</span><span class="o">.</span><span class="n">load_from_ONNX</span><span class="p">(</span><span class="n">provider</span><span class="p">,</span> <span class="s2">&quot;./tmp.onnx&quot;</span><span class="p">)</span>
+<span class="n">remove</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span> <span class="c1"># Cleaning temporary onnx file</span>
+
+<span class="c1"># Setting SoftMax layer with_loss=False</span>
+<span class="n">deepNetCell</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">with_loss</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">n2d2_deepNet</span> <span class="o">=</span> <span class="n">pytorch_interoperability</span><span class="o">.</span><span class="n">Block</span><span class="p">(</span><span class="n">deepNetCell</span><span class="p">)</span>
+
+<span class="c1"># Dummy imput and label for the example</span>
+<span class="n">input_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+<span class="n">label</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="n">output</span> <span class="o">=</span> <span class="n">n2d2_deepNet</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">)</span>
+<span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span> <span class="c1"># Squeezing the output to remove useless dims</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">n2d2_deepNet</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
+
+<span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+<span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="n">opt</span><span class="o">.</span><span class="n">step</span><span class="p">()</span> <span class="c1"># Not necessary here because we don&#39;t have torch parameters to update.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="known-issues">
+<h3>Known issues :<a class="headerlink" href="#known-issues" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="gradient-is-badly-computed-when-using-import-from-onnx">
+<h4>Gradient is badly computed when using import from ONNX<a class="headerlink" href="#gradient-is-badly-computed-when-using-import-from-onnx" title="Permalink to this headline">¶</a></h4>
+<p>When you import a network from ONNX, if the last layer imported is a <a class="reference internal" href="cells.html#n2d2.cells.Softmax" title="n2d2.cells.Softmax"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Softmax</span></code></a>
+then there is a risk the loss is badly computed if you don’t use a <code class="docutils literal notranslate"><span class="pre">CrossEntropy</span></code> loss.</p>
+<p>By default when imported the <a class="reference internal" href="cells.html#n2d2.cells.Softmax" title="n2d2.cells.Softmax"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Softmax</span></code></a> set the argument <code class="docutils literal notranslate"><span class="pre">with_loss=True</span></code>.
+This argument skip the computation of the gradient for this cell.</p>
+</div>
+<div class="section" id="output-shape-must-be-rigorously-the-same-as-the-label-shape">
+<h4>Output shape must be rigorously the same as the label shape<a class="headerlink" href="#output-shape-must-be-rigorously-the-same-as-the-label-shape" title="Permalink to this headline">¶</a></h4>
+<p>If you use a classification network, the output shape for N2D2 will be <code class="docutils literal notranslate"><span class="pre">[nb_batch,</span> <span class="pre">nb_features,</span> <span class="pre">1,</span> <span class="pre">1]</span></code>.
+Whereas Torch would wait for a shape like <code class="docutils literal notranslate"><span class="pre">[nb_batch,</span> <span class="pre">nb_features]</span></code>.</p>
+<p>This represent the same data but the difference in shape can cause computation issues.
+This is why if you are in this case we recommend you to flatten the unit dimensions by using the Torch method <code class="docutils literal notranslate"><span class="pre">squeeze</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you don’t have the same shape for your output and your label you will get a warning from Torch.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="example.html" class="btn btn-neutral float-right" title="Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tensor.html" class="btn btn-neutral float-left" title="Tensor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, CEA LIST
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
