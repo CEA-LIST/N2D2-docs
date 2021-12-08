@@ -420,6 +420,22 @@ to the C++ API method and linked with the libboost-python librabry.</p>
 <td><p>Use before run initialize()</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
+<td><p>useDLA</p></td>
+<td><p>useDLA</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+<td><p>useDla(<code class="docutils literal notranslate"><span class="pre">False</span></code>)</p></td>
+<td><p>If True, use the first DLA core for every possible layers</p></td>
+<td><p>Use before run initialize()</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
+<td><p>setMaxWorkSpaceSize</p></td>
+<td><p>setMaxWorkSpaceSize</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int64_t</span></code></p></td>
+<td><p>maxWorkSpaceSize(<code class="docutils literal notranslate"><span class="pre">1073741824</span></code>)</p></td>
+<td><p>Size of the workspace, influence the optimisations done by NVIDIA</p></td>
+<td><p>Use before run initialize()</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">void</span></code></p></td>
 <td><p>setDetectorThresholds</p></td>
 <td><p>setDetectorThresholds</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">float*</span></code>, <code class="docutils literal notranslate"><span class="pre">uint</span></code></p></td>
