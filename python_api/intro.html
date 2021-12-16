@@ -121,11 +121,14 @@
 <p class="caption"><span class="caption-text">Python API:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#with-setup-py">With setup.py</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#manually">Manually</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-of-the-virtual-environment">Installation of the virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-of-the-python-api">Installation of the Python API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#with-the-python-package-index-py-pi">With the Python Package Index (Py Pi)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#from-the-n2d2-github-repository">From the N2D2 Github repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#if-you-have-already-cloned-the-github-repository">If you have already cloned the Github repository</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#test-of-the-python-api">Test of the Python API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#default-values">Default values</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#list-of-modifiable-parameters">List of modifiable parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
@@ -285,63 +288,82 @@ the N2D2 analysis tools</p></td>
 </tr>
 </tbody>
 </table>
-<div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>To run the python API, you need to use <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">3.7</span></code>.</p>
-<p>We highly recommend that you use a virtual environment, to set one up, you can follow these steps :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creating python virtual environment</span>
+<div class="section" id="installation-of-the-virtual-environment">
+<h2>Installation of the virtual environment<a class="headerlink" href="#installation-of-the-virtual-environment" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">To run the python API, it’s good practice to use <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">3.7</span></code> or a newer version in a virtual environment.</div>
+<div class="line">To set up your environment, please follow these steps:</div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create your python virtual environment</span>
 virtualenv -p python3.7 env
-<span class="c1"># Activating the virtual environment</span>
+
+<span class="c1"># Activate the virtual environment</span>
 <span class="nb">source</span> env/bin/activate
-<span class="c1"># Checking versions</span>
+
+<span class="c1"># Check versions</span>
 python --version
 pip --version
-<span class="c1"># Leaving the virtual environment</span>
+
+<span class="c1"># To leave the virtual environment</span>
 deactivate
 </pre></div>
 </div>
 <p>If everything went well, you should have the version <code class="docutils literal notranslate"><span class="pre">3.7</span></code> of python.</p>
-<div class="section" id="with-setup-py">
-<h3>With setup.py<a class="headerlink" href="#with-setup-py" title="Permalink to this headline">¶</a></h3>
-<p>To install n2d2, you can go to the root of the project and use the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> script (with you <strong>virtual environment activated</strong>).</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python setup.py install
+</div>
+<div class="section" id="installation-of-the-python-api">
+<h2>Installation of the Python API<a class="headerlink" href="#installation-of-the-python-api" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">There are multiple methods to install the python API on your device.</div>
+<div class="line">Feel free to use the method of your choice.</div>
+</div>
+<div class="section" id="with-the-python-package-index-py-pi">
+<h3>With the Python Package Index (Py Pi)<a class="headerlink" href="#with-the-python-package-index-py-pi" title="Permalink to this headline">¶</a></h3>
+<p>You can have access to the last stable version of the python API by using
+<code class="docutils literal notranslate"><span class="pre">pip</span></code> and importing the package <code class="docutils literal notranslate"><span class="pre">n2d2</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install n2d2
 </pre></div>
 </div>
-<p>This should compile the n2d2 libraries and add it to your virtual environnement.</p>
+</div>
+<div class="section" id="from-the-n2d2-github-repository">
+<h3>From the N2D2 Github repository<a class="headerlink" href="#from-the-n2d2-github-repository" title="Permalink to this headline">¶</a></h3>
+<p>You can have access to the developer version by importing the API from
+the N2D2 Github repository via <code class="docutils literal notranslate"><span class="pre">pip</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install git+https://github.com/CEA-LIST/N2D2
+</pre></div>
+</div>
+</div>
+<div class="section" id="if-you-have-already-cloned-the-github-repository">
+<h3>If you have already cloned the Github repository<a class="headerlink" href="#if-you-have-already-cloned-the-github-repository" title="Permalink to this headline">¶</a></h3>
+<p>You can still build the python API with a cloned N2D2 repository.
+Go at the root of the N2D2 projet and follow the following steps
+(don’t forget to activate your virtual environment before).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build the N2D2 library</span>
+python setup.py bdist_wheel
+
+<span class="c1"># Install the n2d2 python packages in your virtual environment</span>
+pip install dist/*
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="test-of-the-python-api">
+<h2>Test of the Python API<a class="headerlink" href="#test-of-the-python-api" title="Permalink to this headline">¶</a></h2>
+<p>Whatever the method you chose, it should compile the n2d2 libraries and add them to your virtual environnement.</p>
 <p>You can test it by trying to import n2d2 in your python interpreter :</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python
 &gt;&gt;&gt; import n2d2
+&gt;&gt;&gt; print<span class="o">(</span>n2d2.Tensor<span class="o">([</span><span class="m">2</span>,3<span class="o">]))</span>
+n2d2.Tensor<span class="o">([</span>
+<span class="m">0</span> <span class="m">0</span> <span class="m">0</span>
+<span class="m">0</span> <span class="m">0</span> <span class="m">0</span>
+<span class="o">]</span>, <span class="nv">device</span><span class="o">=</span>cpu, <span class="nv">datatype</span><span class="o">=</span>float<span class="o">)</span>
 &gt;&gt;&gt; exit<span class="o">()</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="manually">
-<h3>Manually<a class="headerlink" href="#manually" title="Permalink to this headline">¶</a></h3>
-<p>If the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> script doesn’t work, you can try to install manually the librarie.
-When you compile <code class="docutils literal notranslate"><span class="pre">N2D2</span></code>, the compiler creates a folder <code class="docutils literal notranslate"><span class="pre">lib</span></code> which contains the shared library of the binding between C++ and python (the file should be named <code class="docutils literal notranslate"><span class="pre">N2D2-*.so</span></code>).
-You need to move/copy this file at the root of the python folder <code class="docutils literal notranslate"><span class="pre">N2D2-IP/N2D2/python</span></code>.</p>
-<p>You can check that the binding is working by moving to the python folder and typing :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python
-&gt;&gt;&gt; import N2D2
-&gt;&gt;&gt; exit<span class="o">()</span>
-</pre></div>
-</div>
-<p>If you have no error while importing <code class="docutils literal notranslate"><span class="pre">N2D2</span></code>, the binding is working.</p>
-<p>If you don’t want to always move/copy the library, you can add the path where the library is located to your <code class="docutils literal notranslate"><span class="pre">pythonpath</span></code>.
-For this, you need to edit your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> file. You can use any editor, for example :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano ~/.bashrc
-</pre></div>
-</div>
-<p>then add the line :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$PYTHONPATH</span>:path_to_build_lib
-</pre></div>
-</div>
-<p>where <code class="docutils literal notranslate"><span class="pre">path_to_build_lib</span></code> is the path to the lib folder. Once this is done, use this command to apply the changes :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> ~/.bashrc
-</pre></div>
-</div>
-<p>You can also add the library n2d2 to you python path, if you don’t plan to work on the python directory.</p>
-<p>Once this is done, you can use the python library or the binding by importing respectively n2d2 or N2D2 in your python script.</p>
+<p>You can find more examples in the Python API section if you want to test every feature.</p>
+<div class="line-block">
+<div class="line">It might be possible you could find some issues by using the API.</div>
+<div class="line">So please notify us at <a class="reference external" href="https://github.com/CEA-LIST/N2D2/issues">https://github.com/CEA-LIST/N2D2/issues</a> if you find any problem or any possible improvement.</div>
 </div>
 </div>
 <div class="section" id="default-values">
