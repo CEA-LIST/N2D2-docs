@@ -1219,6 +1219,19 @@ This transformation is generally used on-the-fly
 </dd></dl>
 
 <dl class="py method">
+<dt id="n2d2.provider.DataProvider.all_batchs_provided">
+<code class="sig-name descname">all_batchs_provided</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.all_batchs_provided" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Return True if all batchs have been provided for the current partition.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="n2d2.provider.DataProvider.get_batch_size">
 <code class="sig-name descname">get_batch_size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.get_batch_size" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
@@ -1321,7 +1334,7 @@ This transformation is generally used on-the-fly
 
 <dl class="py method">
 <dt id="n2d2.provider.DataProvider.read_batch">
-<code class="sig-name descname">read_batch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">idx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.read_batch" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">read_batch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">idx</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.read_batch" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>idx</strong> (<em>int</em>) – Start index to begin reading the stimuli</p>
@@ -1344,6 +1357,16 @@ This transformation is generally used on-the-fly
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><a class="reference internal" href="tensor.html#n2d2.Tensor" title="n2d2.Tensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.provider.DataProvider.set_batch">
+<code class="sig-name descname">set_batch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">shuffle</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.set_batch" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>shuffle</strong> (<em>bool</em><em>, </em><em>optional</em>) – If true the data will be shuffled, default=True</p>
 </dd>
 </dl>
 </dd></dl>
