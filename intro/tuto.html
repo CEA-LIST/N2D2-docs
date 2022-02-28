@@ -230,7 +230,7 @@
 <p>Generally, you should use the SGD solver with a momemtum (typical value
 for the momentum: 0.9). It generalizes better, often significantly
 better, than adaptive methods like Adam
-<span class="bibtex" id="id1">[2017arXiv170508292W]</span>.</p>
+<a class="bibtex reference internal" href="../references.html#arxiv170508292w" id="id1">[WilsonRoelofsStern+17]</a>.</p>
 <p>Adaptive solvers, like Adam, may be used for fast exploration and
 prototyping, thanks to their fast convergence.</p>
 </div>
@@ -260,7 +260,7 @@ size (here: 24).</span><a class="headerlink" href="#id4" title="Permalink to thi
 <p>Note that in N2D2, the learning rate is automatically normalized by the
 global batch size (<span class="math notranslate nohighlight">\(N \times \text{\lstinline!IterationSize!}\)</span>)
 for the <code class="docutils literal notranslate"><span class="pre">SGDSolver</span></code>. A simple linear scaling rule is used, as
-recommanded in <span class="bibtex" id="id2">[DBLP:journals/corr/GoyalDGNWKTJH17]</span>.
+recommanded in <a class="bibtex reference internal" href="../references.html#dblp-journals-corr-goyaldgnwktjh17" id="id2">[GDollarG+17]</a>.
 The effective learning rate <span class="math notranslate nohighlight">\(\alpha_{\text{eff}}\)</span> applied for
 parameters update is therefore:</p>
 <div class="math notranslate nohighlight">
@@ -277,7 +277,7 @@ parameters update is therefore:</p>
 <p>Deep networks (&gt; 30 layers) and especially residual networks usually
 don’t converge without normalization. Indeed, batch normalization is
 almost always used. <em>ZeroInit</em> is a method that can be used to overcome
-this issue without normalization <span class="bibtex" id="id3">[zhang2018residual]</span>.</p>
+this issue without normalization <a class="bibtex reference internal" href="../references.html#zhang2018residual" id="id3">[ZDM19]</a>.</p>
 </div>
 </div>
 <div class="section" id="building-a-classifier-neural-network">

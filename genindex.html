@@ -952,8 +952,6 @@
 </li>
         <li><a href="python_api/databases.html#n2d2.provider.DataProvider.__init__">(n2d2.provider.DataProvider method)</a>
 </li>
-        <li><a href="python_api/databases.html#n2d2.provider.TensorPlaceholder.__init__">(n2d2.provider.TensorPlaceholder method)</a>
-</li>
         <li><a href="core/core.html#N2D2.RandomAffineTransformation.__init__">(N2D2.RandomAffineTransformation method)</a>
 </li>
         <li><a href="core/core.html#N2D2.RangeAffineTransformation.__init__">(N2D2.RangeAffineTransformation method)</a>
@@ -3954,8 +3952,6 @@
       <ul>
         <li><a href="python_api/databases.html#n2d2.provider.DataProvider.get_deepnet">(n2d2.provider.DataProvider method)</a>
 </li>
-        <li><a href="python_api/databases.html#n2d2.provider.TensorPlaceholder.get_deepnet">(n2d2.provider.TensorPlaceholder method)</a>
-</li>
         <li><a href="python_api/tensor.html#n2d2.Tensor.get_deepnet">(n2d2.Tensor method)</a>
 </li>
       </ul></li>
@@ -3980,11 +3976,7 @@
       <li><a href="python_api/cells.html#n2d2.target.Score.get_loss">get_loss() (n2d2.target.Score method)</a>
 </li>
       <li><a href="python_api/databases.html#n2d2.provider.DataProvider.get_name">get_name() (n2d2.provider.DataProvider method)</a>
-
-      <ul>
-        <li><a href="python_api/databases.html#n2d2.provider.TensorPlaceholder.get_name">(n2d2.provider.TensorPlaceholder method)</a>
 </li>
-      </ul></li>
       <li><a href="python_api/databases.html#n2d2.database.CIFAR100.get_nb_stimuli">get_nb_stimuli() (n2d2.database.CIFAR100 method)</a>
 
       <ul>
@@ -4046,8 +4038,6 @@
 </li>
         <li><a href="python_api/databases.html#n2d2.provider.DataProvider.get_parameter">(n2d2.provider.DataProvider method)</a>
 </li>
-        <li><a href="python_api/databases.html#n2d2.provider.TensorPlaceholder.get_parameter">(n2d2.provider.TensorPlaceholder method)</a>
-</li>
         <li><a href="python_api/cells.html#n2d2.solver.Adam.get_parameter">(n2d2.solver.Adam method)</a>
 </li>
         <li><a href="python_api/cells.html#n2d2.solver.SGD.get_parameter">(n2d2.solver.SGD method)</a>
@@ -4078,11 +4068,7 @@
 </li>
       </ul></li>
       <li><a href="python_api/databases.html#n2d2.provider.DataProvider.get_partition">get_partition() (n2d2.provider.DataProvider method)</a>
-
-      <ul>
-        <li><a href="python_api/databases.html#n2d2.provider.TensorPlaceholder.get_partition">(n2d2.provider.TensorPlaceholder method)</a>
 </li>
-      </ul></li>
       <li><a href="python_api/databases.html#n2d2.database.CIFAR100.get_partition_summary">get_partition_summary() (n2d2.database.CIFAR100 method)</a>
 
       <ul>
@@ -9417,10 +9403,20 @@
 <h2 id="H">H</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="python_api/cells.html#n2d2.filler.He">He (class in n2d2.filler)</a>
+      <li><a href="python_api/cells.html#n2d2.cells.Fc.has_bias">has_bias() (n2d2.cells.Fc method)</a>
 </li>
+      <li><a href="python_api/cells.html#n2d2.cells.Conv.has_quantizer">has_quantizer() (n2d2.cells.Conv method)</a>
+
+      <ul>
+        <li><a href="python_api/cells.html#n2d2.cells.Deconv.has_quantizer">(n2d2.cells.Deconv method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Fc.has_quantizer">(n2d2.cells.Fc method)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="python_api/cells.html#n2d2.filler.He">He (class in n2d2.filler)</a>
+</li>
       <li><a href="core/core.html#N2D2.CudaBaseTensor.hostBased">hostBased() (N2D2.CudaBaseTensor method)</a>
 </li>
       <li><a href="python_api/tensor.html#n2d2.Tensor.htod">htod() (n2d2.Tensor method)</a>
@@ -11140,8 +11136,6 @@
 </li>
         <li><a href="python_api/databases.html#n2d2.provider.DataProvider.N2D2">(n2d2.provider.DataProvider method)</a>
 </li>
-        <li><a href="python_api/databases.html#n2d2.provider.TensorPlaceholder.N2D2">(n2d2.provider.TensorPlaceholder method)</a>
-</li>
         <li><a href="python_api/cells.html#n2d2.solver.Adam.N2D2">(n2d2.solver.Adam method)</a>
 </li>
         <li><a href="python_api/cells.html#n2d2.solver.SGD.N2D2">(n2d2.solver.SGD method)</a>
@@ -12797,6 +12791,14 @@
         <li><a href="python_api/cells.html#n2d2.cells.Softmax.set_activation">(n2d2.cells.Softmax method)</a>
 </li>
       </ul></li>
+      <li><a href="python_api/cells.html#n2d2.cells.DeepNetCell.set_back_propagate">set_back_propagate() (n2d2.cells.DeepNetCell method)</a>
+
+      <ul>
+        <li><a href="python_api/cells.html#n2d2.cells.Layer.set_back_propagate">(n2d2.cells.Layer method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Sequence.set_back_propagate">(n2d2.cells.Sequence method)</a>
+</li>
+      </ul></li>
       <li><a href="python_api/databases.html#n2d2.provider.DataProvider.set_batch">set_batch() (n2d2.provider.DataProvider method)</a>
 </li>
       <li><a href="python_api/cells.html#n2d2.cells.Conv.set_bias">set_bias() (n2d2.cells.Conv method)</a>
@@ -12822,11 +12824,7 @@
 </li>
       </ul></li>
       <li><a href="python_api/databases.html#n2d2.provider.DataProvider.set_partition">set_partition() (n2d2.provider.DataProvider method)</a>
-
-      <ul>
-        <li><a href="python_api/databases.html#n2d2.provider.TensorPlaceholder.set_partition">(n2d2.provider.TensorPlaceholder method)</a>
 </li>
-      </ul></li>
       <li><a href="python_api/databases.html#n2d2.provider.DataProvider.set_reading_randomly">set_reading_randomly() (n2d2.provider.DataProvider method)</a>
 </li>
       <li><a href="python_api/cells.html#n2d2.cells.BatchNorm2d.set_solver">set_solver() (n2d2.cells.BatchNorm2d method)</a>
@@ -12836,7 +12834,13 @@
 </li>
         <li><a href="python_api/cells.html#n2d2.cells.Deconv.set_solver">(n2d2.cells.Deconv method)</a>
 </li>
+        <li><a href="python_api/cells.html#n2d2.cells.DeepNetCell.set_solver">(n2d2.cells.DeepNetCell method)</a>
+</li>
         <li><a href="python_api/cells.html#n2d2.cells.Fc.set_solver">(n2d2.cells.Fc method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Layer.set_solver">(n2d2.cells.Layer method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Sequence.set_solver">(n2d2.cells.Sequence method)</a>
 </li>
       </ul></li>
       <li><a href="python_api/cells.html#n2d2.cells.BatchNorm2d.set_solver_parameter">set_solver_parameter() (n2d2.cells.BatchNorm2d method)</a>
@@ -14721,8 +14725,6 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="core/core.html#N2D2.Tensor_float">Tensor_float (class in N2D2)</a>
 </li>
-      <li><a href="python_api/databases.html#n2d2.provider.TensorPlaceholder">TensorPlaceholder (class in n2d2.provider)</a>
-</li>
       <li><a href="python_api/cells.html#n2d2.cells.DeepNetCell.test">test() (n2d2.cells.DeepNetCell method)</a>
 
       <ul>
@@ -14980,6 +14982,10 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="core/core.html#N2D2.WallisFilterTransformation">WallisFilterTransformation (class in N2D2)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="python_api/interoperability.html#pytorch_interoperability.wrap">wrap() (in module pytorch_interoperability)</a>
 </li>
   </ul></td>
 </tr></table>

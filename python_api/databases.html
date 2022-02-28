@@ -143,11 +143,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#channelextraction">ChannelExtraction</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#sending-data-to-the-neural-network">Sending data to the Neural Network</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#with-a-dataprovider">With a DataProvider</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#without-a-dataprovider">Without a DataProvider</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#sending-data-to-the-neural-network">Sending data to the Neural Network</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
@@ -360,7 +356,7 @@ The library allow you to add pre-process data with built in Transformation.</p>
 <dl class="py class">
 <dt id="n2d2.database.MNIST">
 <em class="property">class </em><code class="sig-prename descclassname">n2d2.database.</code><code class="sig-name descname">MNIST</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_path</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST" title="Permalink to this definition">¶</a></dt>
-<dd><p>MNIST database <span class="bibtex" id="id1">[LeCun1998]</span>.
+<dd><p>MNIST database <a class="bibtex reference internal" href="../references.html#lecun1998" id="id1">[LBBH98]</a>.
 Label are hard coded, you don’t need to specify a path to the label file.</p>
 <dl class="py method">
 <dt id="n2d2.database.MNIST.N2D2">
@@ -449,7 +445,7 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 <dl class="py class">
 <dt id="n2d2.database.ILSVRC2012">
 <em class="property">class </em><code class="sig-prename descclassname">n2d2.database.</code><code class="sig-name descname">ILSVRC2012</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012" title="Permalink to this definition">¶</a></dt>
-<dd><p>ILSVRC2012 database <span class="bibtex" id="id2">[ILSVRC15]</span>.</p>
+<dd><p>ILSVRC2012 database <a class="bibtex reference internal" href="../references.html#ilsvrc15" id="id2">[RDS+15]</a>.</p>
 <dl class="py method">
 <dt id="n2d2.database.ILSVRC2012.N2D2">
 <code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.N2D2" title="Permalink to this definition">¶</a></dt>
@@ -535,7 +531,7 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 <dl class="py class">
 <dt id="n2d2.database.CIFAR100">
 <em class="property">class </em><code class="sig-prename descclassname">n2d2.database.</code><code class="sig-name descname">CIFAR100</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100" title="Permalink to this definition">¶</a></dt>
-<dd><p>CIFAR100 database <span class="bibtex" id="id3">[Krizhevsky2009]</span>.</p>
+<dd><p>CIFAR100 database <a class="bibtex reference internal" href="../references.html#krizhevsky2009" id="id3">[Kri09]</a>.</p>
 <dl class="py method">
 <dt id="n2d2.database.CIFAR100.N2D2">
 <code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.N2D2" title="Permalink to this definition">¶</a></dt>
@@ -622,7 +618,7 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 <dl class="py class">
 <dt id="n2d2.database.Cityscapes">
 <em class="property">class </em><code class="sig-prename descclassname">n2d2.database.</code><code class="sig-name descname">Cityscapes</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Cityscapes database <span class="bibtex" id="id4">[Cordts2016Cityscapes]</span>.</p>
+<dd><p>Cityscapes database <a class="bibtex reference internal" href="../references.html#cordts2016cityscapes" id="id4">[COR+16]</a>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Don’t forget to install the <strong>libjsoncpp-dev</strong> package on your device if you wish to use this database.</p>
@@ -1167,9 +1163,9 @@ This transformation is generally used on-the-fly
 </div>
 <div class="section" id="sending-data-to-the-neural-network">
 <h2>Sending data to the Neural Network<a class="headerlink" href="#sending-data-to-the-neural-network" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="with-a-dataprovider">
-<h3>With a DataProvider<a class="headerlink" href="#with-a-dataprovider" title="Permalink to this headline">¶</a></h3>
-<p>Once a database loaded, n2d2 use <a class="reference internal" href="#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a> to provide data to the neural network.</p>
+<p>Once a database is loaded, n2d2 use <a class="reference internal" href="#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a> to provide data to the neural network.</p>
+<p>The <a class="reference internal" href="#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a> will automatically apply the <a class="reference internal" href="#n2d2.transform.Transformation" title="n2d2.transform.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.transform.Transformation</span></code></a> to the dataset.
+To add a transformation to the provider, you should use the method <code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.transform.Transformation.add_transformation()</span></code>.</p>
 <dl class="py class">
 <dt id="n2d2.provider.DataProvider">
 <em class="property">class </em><code class="sig-prename descclassname">n2d2.provider.</code><code class="sig-name descname">DataProvider</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">database</span></em>, <em class="sig-param"><span class="n">size</span></em>, <em class="sig-param"><span class="n">random_read</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider" title="Permalink to this definition">¶</a></dt>
@@ -1394,99 +1390,6 @@ This transformation is generally used on-the-fly
 
 </dd></dl>
 
-</div>
-<div class="section" id="without-a-dataprovider">
-<h3>Without a DataProvider<a class="headerlink" href="#without-a-dataprovider" title="Permalink to this headline">¶</a></h3>
-<p>You can send a <a class="reference internal" href="tensor.html#n2d2.Tensor" title="n2d2.Tensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></a> that doesn’t come from a <a class="reference internal" href="#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a> to the network.</p>
-<p>By doing so, you create a <a class="reference internal" href="#n2d2.provider.TensorPlaceholder" title="n2d2.provider.TensorPlaceholder"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.TensorPlaceholder</span></code></a> that will stream your tensor directly to the network.</p>
-<p>If you want to do a back propagation, you need to use a <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.application.LossFunction</span></code> that require a <a class="reference internal" href="#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a>.</p>
-<p>You can create a <a class="reference internal" href="#n2d2.provider.TensorPlaceholder" title="n2d2.provider.TensorPlaceholder"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.TensorPlaceholder</span></code></a> and specify the labels associated with the data, this will act as a <a class="reference internal" href="#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a>.</p>
-<dl class="py class">
-<dt id="n2d2.provider.TensorPlaceholder">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.provider.</code><code class="sig-name descname">TensorPlaceholder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span></em>, <em class="sig-param"><span class="n">labels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.TensorPlaceholder" title="Permalink to this definition">¶</a></dt>
-<dd><p>A provider used to stream a single tensor through a neural network.
-This is automatically used when you pass a Tensor that doesn’t come from <a class="reference internal" href="#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a>.</p>
-<dl class="py method">
-<dt id="n2d2.provider.TensorPlaceholder.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.TensorPlaceholder.N2D2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the N2D2 object.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.provider.TensorPlaceholder.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span></em>, <em class="sig-param"><span class="n">labels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.TensorPlaceholder.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>inputs</strong> (<a class="reference internal" href="tensor.html#n2d2.Tensor" title="n2d2.Tensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></a>) – The data tensor you want to stream, if N2D2 is compiled with CUDA it must be CUDA, the datatype used should be <cite>float</cite>.</p></li>
-<li><p><strong>labels</strong> (<a class="reference internal" href="tensor.html#n2d2.Tensor" title="n2d2.Tensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></a>, optional) – Labels associated with the tensor you want to stream, the datatype of labels must be integer, default= None</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.provider.TensorPlaceholder.get_deepnet">
-<code class="sig-name descname">get_deepnet</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.TensorPlaceholder.get_deepnet" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>DeepNet object</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.deepnet.DeepNet</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.provider.TensorPlaceholder.get_name">
-<code class="sig-name descname">get_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.TensorPlaceholder.get_name" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Name of the data provider</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.provider.TensorPlaceholder.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.TensorPlaceholder.get_parameter" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.provider.TensorPlaceholder.get_partition">
-<code class="sig-name descname">get_partition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.TensorPlaceholder.get_partition" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The partition can be  <code class="docutils literal notranslate"><span class="pre">Learn</span></code>, <code class="docutils literal notranslate"><span class="pre">Validation</span></code>, <code class="docutils literal notranslate"><span class="pre">Test</span></code>,  <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code></p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.provider.TensorPlaceholder.set_partition">
-<code class="sig-name descname">set_partition</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">partition</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.TensorPlaceholder.set_partition" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>partition</strong> (<em>str</em>) – The partition can be  <code class="docutils literal notranslate"><span class="pre">Learn</span></code>, <code class="docutils literal notranslate"><span class="pre">Validation</span></code>, <code class="docutils literal notranslate"><span class="pre">Test</span></code>,  <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-</div>
 </div>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
