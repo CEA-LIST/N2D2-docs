@@ -123,6 +123,7 @@
 <li class="toctree-l1"><a class="reference internal" href="python_api/cells.html">Cells</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python_api/tensor.html">Tensor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python_api/interoperability.html">Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_api/export.html">Export</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python_api/example.html">Example</a></li>
 </ul>
 <p class="caption"><span class="caption-text">C++/Python core:</span></p>
@@ -3185,6 +3186,10 @@
 </li>
       <li><a href="core/core.html#N2D2.ExpandLabelTransformation">ExpandLabelTransformation (class in N2D2)</a>
 </li>
+      <li><a href="python_api/export.html#n2d2.export.export_c">export_c() (in module n2d2.export)</a>
+</li>
+      <li><a href="python_api/export.html#n2d2.export.export_cpp">export_cpp() (in module n2d2.export)</a>
+</li>
       <li><a href="core/core.html#N2D2.AnchorCell.exportActivationParameters">exportActivationParameters() (N2D2.AnchorCell method)</a>
 
       <ul>
@@ -4501,9 +4506,19 @@
         <li><a href="core/core.html#N2D2.FcCell_Frame_float.getBias">(N2D2.FcCell_Frame_float method)</a>
 </li>
       </ul></li>
-      <li><a href="core/core.html#N2D2.ConvCell.getBiases">getBiases() (N2D2.ConvCell method)</a>
+      <li><a href="core/core.html#N2D2.BatchNormCell.getBiases">getBiases() (N2D2.BatchNormCell method)</a>
 
       <ul>
+        <li><a href="core/core.html#N2D2.BatchNormCell_Frame_CUDA_double.getBiases">(N2D2.BatchNormCell_Frame_CUDA_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.BatchNormCell_Frame_CUDA_float.getBiases">(N2D2.BatchNormCell_Frame_CUDA_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.BatchNormCell_Frame_double.getBiases">(N2D2.BatchNormCell_Frame_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.BatchNormCell_Frame_float.getBiases">(N2D2.BatchNormCell_Frame_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ConvCell.getBiases">(N2D2.ConvCell method)</a>
+</li>
         <li><a href="core/core.html#N2D2.ConvCell_Frame_CUDA_double.getBiases">(N2D2.ConvCell_Frame_CUDA_double method)</a>
 </li>
         <li><a href="core/core.html#N2D2.ConvCell_Frame_CUDA_float.getBiases">(N2D2.ConvCell_Frame_CUDA_float method)</a>
@@ -6185,6 +6200,8 @@
         <li><a href="core/core.html#N2D2.UnpoolCell_Frame_CUDA.getMapping">(N2D2.UnpoolCell_Frame_CUDA method)</a>
 </li>
       </ul></li>
+      <li><a href="core/core.html#N2D2.DeepNet.getMasterDevice">getMasterDevice() (N2D2.DeepNet method)</a>
+</li>
       <li><a href="core/core.html#N2D2.AnchorCell_Frame.getMaxOutput">getMaxOutput() (N2D2.AnchorCell_Frame method)</a>
 
       <ul>
@@ -6339,6 +6356,18 @@
         <li><a href="core/core.html#N2D2.UnpoolCell_Frame.getMaxOutput">(N2D2.UnpoolCell_Frame method)</a>
 </li>
         <li><a href="core/core.html#N2D2.UnpoolCell_Frame_CUDA.getMaxOutput">(N2D2.UnpoolCell_Frame_CUDA method)</a>
+</li>
+      </ul></li>
+      <li><a href="core/core.html#N2D2.BatchNormCell.getMeans">getMeans() (N2D2.BatchNormCell method)</a>
+
+      <ul>
+        <li><a href="core/core.html#N2D2.BatchNormCell_Frame_CUDA_double.getMeans">(N2D2.BatchNormCell_Frame_CUDA_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.BatchNormCell_Frame_CUDA_float.getMeans">(N2D2.BatchNormCell_Frame_CUDA_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.BatchNormCell_Frame_double.getMeans">(N2D2.BatchNormCell_Frame_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.BatchNormCell_Frame_float.getMeans">(N2D2.BatchNormCell_Frame_float method)</a>
 </li>
       </ul></li>
       <li><a href="core/core.html#N2D2.ResizeCell.getMode">getMode() (N2D2.ResizeCell method)</a>
@@ -8825,6 +8854,18 @@
       </ul></li>
       <li><a href="core/core.html#N2D2.DistortionTransformation.getRotation">getRotation() (N2D2.DistortionTransformation method)</a>
 </li>
+      <li><a href="core/core.html#N2D2.BatchNormCell.getScales">getScales() (N2D2.BatchNormCell method)</a>
+
+      <ul>
+        <li><a href="core/core.html#N2D2.BatchNormCell_Frame_CUDA_double.getScales">(N2D2.BatchNormCell_Frame_CUDA_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.BatchNormCell_Frame_CUDA_float.getScales">(N2D2.BatchNormCell_Frame_CUDA_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.BatchNormCell_Frame_double.getScales">(N2D2.BatchNormCell_Frame_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.BatchNormCell_Frame_float.getScales">(N2D2.BatchNormCell_Frame_float method)</a>
+</li>
+      </ul></li>
       <li><a href="core/core.html#N2D2.BatchNormCell.getScaleSolver">getScaleSolver() (N2D2.BatchNormCell method)</a>
 
       <ul>
@@ -8838,7 +8879,19 @@
 </li>
       </ul></li>
       <li><a href="core/core.html#N2D2.DistortionTransformation.getScaling">getScaling() (N2D2.DistortionTransformation method)</a>
+
+      <ul>
+        <li><a href="core/core.html#N2D2.ScalingCell.getScaling">(N2D2.ScalingCell method)</a>
 </li>
+        <li><a href="core/core.html#N2D2.ScalingCell_Frame_CUDA_double.getScaling">(N2D2.ScalingCell_Frame_CUDA_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ScalingCell_Frame_CUDA_float.getScaling">(N2D2.ScalingCell_Frame_CUDA_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ScalingCell_Frame_double.getScaling">(N2D2.ScalingCell_Frame_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ScalingCell_Frame_float.getScaling">(N2D2.ScalingCell_Frame_float method)</a>
+</li>
+      </ul></li>
       <li><a href="core/core.html#N2D2.RangeAffineTransformation.getSecondOperator">getSecondOperator() (N2D2.RangeAffineTransformation method)</a>
 </li>
       <li><a href="core/core.html#N2D2.RangeAffineTransformation.getSecondValue">getSecondValue() (N2D2.RangeAffineTransformation method)</a>
@@ -9257,6 +9310,18 @@
 </li>
       <li><a href="core/core.html#N2D2.GTSRB_DIR_Database.getValidation">getValidation() (N2D2.GTSRB_DIR_Database method)</a>
 </li>
+      <li><a href="core/core.html#N2D2.BatchNormCell.getVariances">getVariances() (N2D2.BatchNormCell method)</a>
+
+      <ul>
+        <li><a href="core/core.html#N2D2.BatchNormCell_Frame_CUDA_double.getVariances">(N2D2.BatchNormCell_Frame_CUDA_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.BatchNormCell_Frame_CUDA_float.getVariances">(N2D2.BatchNormCell_Frame_CUDA_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.BatchNormCell_Frame_double.getVariances">(N2D2.BatchNormCell_Frame_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.BatchNormCell_Frame_float.getVariances">(N2D2.BatchNormCell_Frame_float method)</a>
+</li>
+      </ul></li>
       <li><a href="core/core.html#N2D2.FlipTransformation.getVerticalFlip">getVerticalFlip() (N2D2.FlipTransformation method)</a>
 </li>
       <li><a href="core/core.html#N2D2.ConvCell.getWeight">getWeight() (N2D2.ConvCell method)</a>

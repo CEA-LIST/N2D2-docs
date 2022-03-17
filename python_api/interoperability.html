@@ -37,7 +37,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Example" href="example.html" />
+    <link rel="next" title="Export" href="export.html" />
     <link rel="prev" title="Tensor" href="tensor.html" /> 
 </head>
 
@@ -125,15 +125,22 @@
 <li class="toctree-l1"><a class="reference internal" href="cells.html">Cells</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tensor.html">Tensor</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Interoperability</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#pytorch-experimental-feature">PyTorch <em>[experimental feature]</em></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#keras-experimental-feature">Keras <em>[experimental feature]</em></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#presentation">Presentation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tensor-conversion">Tensor conversion</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#pytorch-experimental-feature">PyTorch <em>[experimental feature]</em></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Presentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tensor-conversion">Tensor conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Example</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="export.html">Export</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example.html">Example</a></li>
 </ul>
 <p class="caption"><span class="caption-text">C++/Python core:</span></p>
@@ -212,10 +219,88 @@
   <div class="section" id="interoperability">
 <h1>Interoperability<a class="headerlink" href="#interoperability" title="Permalink to this headline">¶</a></h1>
 <p>In this section, we will present how you can use n2d2 with other python framework.</p>
-<div class="section" id="pytorch-experimental-feature">
-<h2>PyTorch <em>[experimental feature]</em><a class="headerlink" href="#pytorch-experimental-feature" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="keras-experimental-feature">
+<h2>Keras <em>[experimental feature]</em><a class="headerlink" href="#keras-experimental-feature" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="presentation">
 <h3>Presentation<a class="headerlink" href="#presentation" title="Permalink to this headline">¶</a></h3>
+<p>The Keras interoperability allow you to train a model using the N2D2 backend with the TensorFlow/Keras frontend.</p>
+<p>The interoperability consist of a wrapper around the N2D2 Network.</p>
+<p>In order to integrate N2D2 into the Keras environment, we run TensorFlow in eager mode.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Due to the implementation, n2d2 parameters are not visible to <code class="docutils literal notranslate"><span class="pre">Keras</span></code> and thus cannot be optimized by a <code class="docutils literal notranslate"><span class="pre">Keras</span></code> optimizer.</p>
+</div>
+</div>
+<div class="section" id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>For this example, we will use an example provided in the Keras documentation : <a class="reference external" href="https://keras.io/examples/vision/mnist_convnet/">https://keras.io/examples/vision/mnist_convnet/</a></p>
+<p>We begin by importing the same library as in the example plus our interoperability library.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span>
+<span class="c1"># Importing the interoperability library</span>
+<span class="kn">import</span> <span class="nn">keras_interoperability</span>
+</pre></div>
+</div>
+<p>We then import the data by following the tutorial.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># training parameters</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="c1"># Model / data parameters</span>
+<span class="n">num_classes</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">input_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># the data, split between train and test sets</span>
+<span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+
+<span class="c1"># Scale images to the [0, 1] range</span>
+<span class="n">x_train</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
+<span class="n">x_test</span> <span class="o">=</span> <span class="n">x_test</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
+
+<span class="c1"># Make sure images have shape (28, 28, 1)</span>
+<span class="n">x_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">x_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># convert class vectors to binary class matrices</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When declaring the model, we will use the <code class="xref py py-func docutils literal notranslate"><span class="pre">keras_interoperability.wrap()</span></code> function to generate an <code class="xref py py-class docutils literal notranslate"><span class="pre">keras_interoperability.CustomSequential</span></code> which embedded N2D2.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tf_model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+        <span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">input_shape</span><span class="p">),</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">),</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">MaxPooling2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">),</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">MaxPooling2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;softmax&quot;</span><span class="p">),</span>
+<span class="p">])</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">keras_interoperability</span><span class="o">.</span><span class="n">wrap</span><span class="p">(</span><span class="n">tf_model</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">for_export</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Once this is done, we can follow again the tutorial and run the training and the evaluation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s2">&quot;categorical_crossentropy&quot;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;SGD&quot;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">])</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span> <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test loss:&quot;</span><span class="p">,</span> <span class="n">score</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test accuracy:&quot;</span><span class="p">,</span> <span class="n">score</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>And that is it ! You have successfully trained your model with N2D2 using the keras interface.</p>
+<p>You can then retrieve the N2D2 model by using the method <code class="xref py py-meth docutils literal notranslate"><span class="pre">keras_interoperability.CustomSequential.get_deepnet_cell()</span></code> if you want to perform operation on it.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_deepnet_cell</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="pytorch-experimental-feature">
+<h2>PyTorch <em>[experimental feature]</em><a class="headerlink" href="#pytorch-experimental-feature" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Presentation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>The PyTorch interoperability allow you to run an n2d2 model by using the Torch functions.</p>
 <p>The interoperability consist of a wrapper around the N2D2 Network.
 We created an autograd function which on <code class="docutils literal notranslate"><span class="pre">Forward</span></code> call the n2d2 <code class="docutils literal notranslate"><span class="pre">Propagate</span></code> method and on <code class="docutils literal notranslate"><span class="pre">Backward</span></code> call the n2d2 <code class="docutils literal notranslate"><span class="pre">Back</span> <span class="pre">Propagate</span></code> and <code class="docutils literal notranslate"><span class="pre">Update</span></code> methods.</p>
@@ -234,8 +319,8 @@ We created an autograd function which on <code class="docutils literal notransla
 The opposite conversion is done with no memory copy.</p>
 <p>If you work with <code class="docutils literal notranslate"><span class="pre">CUDA</span></code> tensor, the conversion <code class="docutils literal notranslate"><span class="pre">Torch</span></code> to <code class="docutils literal notranslate"><span class="pre">n2d2</span></code> is also done with no copy on the GPU (a copy on the host is however required).</p>
 </div>
-<div class="section" id="documentation">
-<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3>Documentation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <dl class="py function">
 <dt id="pytorch_interoperability.wrap">
 <code class="sig-prename descclassname">pytorch_interoperability.</code><code class="sig-name descname">wrap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">torch_model</span></em>, <em class="sig-param"><span class="n">input_size</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytorch_interoperability.wrap" title="Permalink to this definition">¶</a></dt>
@@ -281,8 +366,8 @@ And on backward the <code class="docutils literal notranslate"><span class="pre"
 </dd></dl>
 
 </div>
-<div class="section" id="example">
-<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>Example<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>In this example, we will follow the Torch tutorial : <a class="reference external" href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html">https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html</a>.
 And run the network with N2D2 instead of Torch.</p>
 <p>Firstly, we import the same libraries as in the tutorial plus our <code class="docutils literal notranslate"><span class="pre">pytorch_interoperability</span></code> and <code class="docutils literal notranslate"><span class="pre">n2d2</span></code> libraries.</p>
@@ -422,7 +507,7 @@ You can compare the N2D2 and the torch version by commenting the code we added a
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="example.html" class="btn btn-neutral float-right" title="Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="export.html" class="btn btn-neutral float-right" title="Export" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="tensor.html" class="btn btn-neutral float-left" title="Tensor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
