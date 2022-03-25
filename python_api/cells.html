@@ -283,6 +283,12 @@
 </dd></dl>
 
 <dl class="py method">
+<dt id="n2d2.cells.Sequence.get_cell">
+<code class="sig-name descname">get_cell</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Sequence.get_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the low level view of a cell.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="n2d2.cells.Sequence.get_cells">
 <code class="sig-name descname">get_cells</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Sequence.get_cells" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns dictionary with all cells that are not Blocks (i.e. NeuralNetworkCells). This allows
@@ -311,11 +317,14 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.Sequence.to_deepnet_cell">
-<code class="sig-name descname">to_deepnet_cell</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">provider</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Sequence.to_deepnet_cell" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">to_deepnet_cell</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">provider</span></em>, <em class="sig-param"><span class="n">target</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Sequence.to_deepnet_cell" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a <a class="reference internal" href="#n2d2.cells.Sequence" title="n2d2.cells.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Sequence</span></code></a> to a <a class="reference internal" href="#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>provider</strong> (<a class="reference internal" href="databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a>) – Data provider used by the neural network</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>provider</strong> (<a class="reference internal" href="databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a>) – Data provider used by the neural network</p></li>
+<li><p><strong>target</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.target.Target</span></code>) – Target object</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>The corresponding <a class="reference internal" href="#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a></p>
@@ -346,6 +355,12 @@ An optional mapping can be given to define connectivity with preceding input cel
 <dt id="n2d2.cells.Layer.append">
 <code class="sig-name descname">append</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cell</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Layer.append" title="Permalink to this definition">¶</a></dt>
 <dd><p>Append a cell at the end of the sequence.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.Layer.get_cell">
+<code class="sig-name descname">get_cell</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Layer.get_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the low level view of a cell.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -442,6 +457,12 @@ python APIs implicit way of constructing graphs.</p>
 </ul>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.DeepNetCell.get_cell">
+<code class="sig-name descname">get_cell</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.DeepNetCell.get_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the low level view of a cell.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -2171,7 +2192,7 @@ Example :</p>
 <code class="sig-name descname">get_average_score</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metric</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.target.Score.get_average_score" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>metric</strong> (<em>string</em>) – Can be any of : <code class="docutils literal notranslate"><span class="pre">Sensitivity</span></code>, <code class="docutils literal notranslate"><span class="pre">Specificity</span></code>, <code class="docutils literal notranslate"><span class="pre">Precision</span></code>, <code class="docutils literal notranslate"><span class="pre">NegativePredictive</span></code>, <code class="docutils literal notranslate"><span class="pre">Value</span></code>, <code class="docutils literal notranslate"><span class="pre">MissRate</span></code>, <code class="docutils literal notranslate"><span class="pre">FallOut</span></code>, <code class="docutils literal notranslate"><span class="pre">FalseDiscoveryRate</span></code>, <code class="docutils literal notranslate"><span class="pre">FalseOmissionRate</span></code>, <code class="docutils literal notranslate"><span class="pre">Accuracy</span></code>, <code class="docutils literal notranslate"><span class="pre">F1Score</span></code>, <code class="docutils literal notranslate"><span class="pre">Informedness</span></code>, <code class="docutils literal notranslate"><span class="pre">Markedness</span></code>.</p>
+<dd class="field-odd"><p><strong>metric</strong> (<em>string</em>) – Can be any of : <code class="docutils literal notranslate"><span class="pre">Sensitivity</span></code>, <code class="docutils literal notranslate"><span class="pre">Specificity</span></code>, <code class="docutils literal notranslate"><span class="pre">Precision</span></code>, <code class="docutils literal notranslate"><span class="pre">NegativePredictive</span></code>, <code class="docutils literal notranslate"><span class="pre">Value</span></code>, <code class="docutils literal notranslate"><span class="pre">MissRate</span></code>, <code class="docutils literal notranslate"><span class="pre">FallOut</span></code>, <code class="docutils literal notranslate"><span class="pre">FalseDiscoveryRate</span></code>, <code class="docutils literal notranslate"><span class="pre">FalseOmissionRate</span></code>, <code class="docutils literal notranslate"><span class="pre">Accuracy</span></code>, <code class="docutils literal notranslate"><span class="pre">F1Score</span></code>, <code class="docutils literal notranslate"><span class="pre">Informedness</span></code>, <code class="docutils literal notranslate"><span class="pre">Markedness</span></code>, <code class="docutils literal notranslate"><span class="pre">IU</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
