@@ -441,6 +441,12 @@ python APIs implicit way of constructing graphs.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="n2d2.cells.DeepNetCell.export_free_parameters">
+<code class="sig-name descname">export_free_parameters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dir_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.DeepNetCell.export_free_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Export deepnet parameters.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="n2d2.cells.DeepNetCell.fit">
 <code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn_epoch</span></em>, <em class="sig-param"><span class="n">log_epoch</span><span class="o">=</span><span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">avg_window</span><span class="o">=</span><span class="default_value">10000</span></em>, <em class="sig-param"><span class="n">bench</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">ban_multi_device</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">valid_metric</span><span class="o">=</span><span class="default_value">'Sensitivity'</span></em>, <em class="sig-param"><span class="n">stop_valid</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">log_kernels</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.DeepNetCell.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method is used to train the <a class="reference internal" href="#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a> object.</p>
@@ -508,7 +514,7 @@ structure of the model</p>
 <dl class="py method">
 <dt id="n2d2.cells.DeepNetCell.import_free_parameters">
 <code class="sig-name descname">import_free_parameters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dir_name</span></em>, <em class="sig-param"><span class="n">ignore_not_exists</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.DeepNetCell.import_free_parameters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Import parameters.</p>
+<dd><p>Import deepnet parameters.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -546,13 +552,12 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.DeepNetCell.remove">
-<code class="sig-name descname">remove</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">reconnect</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.DeepNetCell.remove" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remove a cell from the encapsulated deepnet</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of cell that shall be removed.</p>
-</dd>
-</dl>
+<code class="sig-name descname">remove</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">reconnect</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.cells.DeepNetCell.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a cell from the encapsulated deepnet.
+:param name: Name of cell that shall be removed.
+:type name: str
+:param reconnect: If <cite>True</cite>, reconnects the parents with the child of the removed cell, default=True
+:type reconnect: bool, optional</p>
 </dd></dl>
 
 <dl class="py method">

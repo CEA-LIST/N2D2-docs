@@ -127,7 +127,10 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Interoperability</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#keras-experimental-feature">Keras <em>[experimental feature]</em></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#presentation">Presentation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#changing-the-optimizer">Changing the optimizer</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
@@ -226,13 +229,117 @@
 <p>The Keras interoperability allow you to train a model using the N2D2 backend with the TensorFlow/Keras frontend.</p>
 <p>The interoperability consist of a wrapper around the N2D2 Network.</p>
 <p>In order to integrate N2D2 into the Keras environment, we run TensorFlow in eager mode.</p>
+</div>
+<div class="section" id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
+<dl class="py function">
+<dt id="keras_interoperability.wrap">
+<code class="sig-prename descclassname">keras_interoperability.</code><code class="sig-name descname">wrap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tf_model</span><span class="p">:</span> <span class="n">tensorflow.python.keras.engine.sequential.Sequential</span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">for_export</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; keras_interoperability.keras_interface.CustomSequential<a class="headerlink" href="#keras_interoperability.wrap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a custom model which run with N2D2 on backend.
+The conversion between TensorFlow/Keras and N2D2 is done with ONNX.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tf_model</strong> (<code class="docutils literal notranslate"><span class="pre">keras.Sequential</span></code>) – The TensorFlow/Keras model to transfert to N2D2.</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em>) – Batch size used.</p></li>
+<li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the model, default=tf_model.name</p></li>
+<li><p><strong>for_export</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, remove some layers to make the model exportable, default=False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Custom sequential</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">keras.Sequential</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="keras_interoperability.CustomSequential">
+<em class="property">class </em><code class="sig-prename descclassname">keras_interoperability.</code><code class="sig-name descname">CustomSequential</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#keras_interoperability.CustomSequential" title="Permalink to this definition">¶</a></dt>
+<dd><p>A customSequential model which embedded an N2D2 Network.</p>
+<dl class="py method">
+<dt id="keras_interoperability.CustomSequential.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">deepnet_cell</span><span class="p">:</span> <span class="n">n2d2.cells.cell.DeepNetCell</span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">outputs_shape</span><span class="p">:</span> <span class="n">tensorflow.python.framework.ops.Tensor</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#keras_interoperability.CustomSequential.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>deepnet_cell</strong> (<a class="reference internal" href="cells.html#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a>) – The network used for propagation and backpropagation.</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em>) – Batch size used</p></li>
+<li><p><strong>output_shape</strong> (<em>tf.Tensor</em>) – Shape of the output.</p></li>
+<li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the model, default=None</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="keras_interoperability.CustomSequential.call">
+<code class="sig-name descname">call</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n">tensorflow.python.framework.ops.Tensor</span></em>, <em class="sig-param"><span class="n">training</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; tensorflow.python.framework.ops.Tensor<a class="headerlink" href="#keras_interoperability.CustomSequential.call" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method called to run the forward pass.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inputs</strong> (<code class="docutils literal notranslate"><span class="pre">tf.Tensor</span></code>) – Tensor to propagate</p></li>
+<li><p><strong>training</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True set the model to training mode, default=False</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="keras_interoperability.CustomSequential.compile">
+<code class="sig-name descname">compile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">optimizer</span><span class="p">:</span> <span class="n"><a class="reference internal" href="cells.html#n2d2.solver.Solver" title="n2d2.solver.Solver">n2d2.solver.Solver</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#keras_interoperability.CustomSequential.compile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overwritten Tensorflow compile method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>optimizer</strong> (<a class="reference internal" href="cells.html#n2d2.solver.Solver" title="n2d2.solver.Solver"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.solver.Solver</span></code></a>, optional) – The N2D2 solver used to optimize weights and biases, default=:py:class:<cite>n2d2.solver.SGD</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="keras_interoperability.CustomSequential.custom_op">
+<code class="sig-name descname">custom_op</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">tensorflow.python.framework.ops.Tensor</span></em><span class="sig-paren">)</span><a class="headerlink" href="#keras_interoperability.CustomSequential.custom_op" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to handle propagation</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="keras_interoperability.CustomSequential.get_deepnet_cell">
+<code class="sig-name descname">get_deepnet_cell</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; n2d2.cells.cell.DeepNetCell<a class="headerlink" href="#keras_interoperability.CustomSequential.get_deepnet_cell" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The DeepNet Cell used by the custom sequential</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="cells.html#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="keras_interoperability.CustomSequential.summary">
+<code class="sig-name descname">summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#keras_interoperability.CustomSequential.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print model information.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="changing-the-optimizer">
+<h4>Changing the optimizer<a class="headerlink" href="#changing-the-optimizer" title="Permalink to this headline">¶</a></h4>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Due to the implementation, n2d2 parameters are not visible to <code class="docutils literal notranslate"><span class="pre">Keras</span></code> and thus cannot be optimized by a <code class="docutils literal notranslate"><span class="pre">Keras</span></code> optimizer.</p>
 </div>
+<p>When compiling the <a class="reference internal" href="#keras_interoperability.CustomSequential" title="keras_interoperability.CustomSequential"><code class="xref py py-class docutils literal notranslate"><span class="pre">keras_interoperability.CustomSequential</span></code></a>, you can pass an <a class="reference internal" href="cells.html#n2d2.solver.Solver" title="n2d2.solver.Solver"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.solver.Solver</span></code></a> object to the parameter <cite>optimizer</cite>.
+This will change the method used to optimize the parameters.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span> <span class="c1"># Use the default SGD solver.</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s2">&quot;categorical_crossentropy&quot;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">Adam</span><span class="p">(),</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span> <span class="c1"># Use the newly defined Adam solver.</span>
+</pre></div>
 </div>
-<div class="section" id="documentation">
-<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
+</div>
 </div>
 <div class="section" id="example">
 <h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
@@ -268,7 +375,7 @@
 <span class="n">y_test</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>When declaring the model, we will use the <code class="xref py py-func docutils literal notranslate"><span class="pre">keras_interoperability.wrap()</span></code> function to generate an <code class="xref py py-class docutils literal notranslate"><span class="pre">keras_interoperability.CustomSequential</span></code> which embedded N2D2.</p>
+<p>When declaring the model, we will use the <a class="reference internal" href="#keras_interoperability.wrap" title="keras_interoperability.wrap"><code class="xref py py-func docutils literal notranslate"><span class="pre">keras_interoperability.wrap()</span></code></a> function to generate an <a class="reference internal" href="#keras_interoperability.CustomSequential" title="keras_interoperability.CustomSequential"><code class="xref py py-class docutils literal notranslate"><span class="pre">keras_interoperability.CustomSequential</span></code></a> which embedded N2D2.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tf_model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
         <span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">input_shape</span><span class="p">),</span>
         <span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">),</span>
@@ -282,7 +389,7 @@
 </pre></div>
 </div>
 <p>Once this is done, we can follow again the tutorial and run the training and the evaluation.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s2">&quot;categorical_crossentropy&quot;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;SGD&quot;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s2">&quot;categorical_crossentropy&quot;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">])</span>
 
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span> <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 <span class="n">score</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -291,7 +398,7 @@
 </pre></div>
 </div>
 <p>And that is it ! You have successfully trained your model with N2D2 using the keras interface.</p>
-<p>You can then retrieve the N2D2 model by using the method <code class="xref py py-meth docutils literal notranslate"><span class="pre">keras_interoperability.CustomSequential.get_deepnet_cell()</span></code> if you want to perform operation on it.</p>
+<p>You can then retrieve the N2D2 model by using the method <a class="reference internal" href="#keras_interoperability.CustomSequential.get_deepnet_cell" title="keras_interoperability.CustomSequential.get_deepnet_cell"><code class="xref py py-meth docutils literal notranslate"><span class="pre">keras_interoperability.CustomSequential.get_deepnet_cell()</span></code></a> if you want to perform operation on it.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_deepnet_cell</span><span class="p">()</span>
 </pre></div>
 </div>
