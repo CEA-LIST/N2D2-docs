@@ -286,6 +286,7 @@ The library allow you to add pre-process data with built in Transformation.</p>
 <li><p><strong>equiv_label_partitioning</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the stimuli are equi-partitioned in the <code class="docutils literal notranslate"><span class="pre">learn</span></code> and <code class="docutils literal notranslate"><span class="pre">validation</span></code> sets, meaning that the same number of stimuli for each label is used (only when <code class="docutils literal notranslate"><span class="pre">per_label_partitioning</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>). The remaining stimuli are partitioned in the <code class="docutils literal notranslate"><span class="pre">test</span></code> set, default=True</p></li>
 <li><p><strong>ignore_mask</strong> (<em>list</em><em>, </em><em>optional</em>) – List of mask strings to ignore. If any is present in a file path, the file gets ignored. The usual * and + wildcards are allowed, default=[]</p></li>
 <li><p><strong>valid_extensions</strong> (<em>list</em><em>, </em><em>optional</em>) – List of valid stimulus file extensions (if left empty, any file extension is considered a valid stimulus), default=[]</p></li>
+<li><p><strong>load_data_in_memory</strong> (<em>boolean</em><em>, </em><em>optional</em>) – if <cite>True</cite> cache data in memory, default=False</p></li>
 </ul>
 </dd>
 </dl>
@@ -375,6 +376,7 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 <li><p><strong>label_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to the label, default=””</p></li>
 <li><p><strong>extract_roi</strong> (<em>boolean</em><em>, </em><em>optional</em>) – Set if we extract region of interest, default=False</p></li>
 <li><p><strong>validation</strong> (<em>float</em><em>, </em><em>optional</em>) – Fraction of the learning set used for validation, default=0.0</p></li>
+<li><p><strong>load_data_in_memory</strong> (<em>boolean</em><em>, </em><em>optional</em>) – if <cite>True</cite> cache data in memory, default=False</p></li>
 </ul>
 </dd>
 </dl>
@@ -461,6 +463,7 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>learn</strong> (<em>float</em>) – Fraction of images used for the learning</p></li>
 <li><p><strong>use_validation_for_test</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, use the validation partition for test, default=False</p></li>
+<li><p><strong>load_data_in_memory</strong> (<em>boolean</em><em>, </em><em>optional</em>) – if <cite>True</cite> cache data in memory, default=False</p></li>
 </ul>
 </dd>
 </dl>
@@ -548,6 +551,7 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 <li><p><strong>data_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to the database, default=”<code class="docutils literal notranslate"><span class="pre">$N2D2_DATA</span></code>/cifar-100-binary”</p></li>
 <li><p><strong>validation</strong> (<em>float</em><em>, </em><em>optional</em>) – Fraction of the learning set used for validation, default=0.0</p></li>
 <li><p><strong>use_coarse</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, use the coarse labeling (10 labels instead of 100), default=False</p></li>
+<li><p><strong>load_data_in_memory</strong> (<em>boolean</em><em>, </em><em>optional</em>) – if <cite>True</cite> cache data in memory, default=False</p></li>
 </ul>
 </dd>
 </dl>
@@ -639,6 +643,7 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 <li><p><strong>inc_train_extra</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, includes the left 8-bit images - <code class="docutils literal notranslate"><span class="pre">trainextra</span></code> set (19,998 images), default=False</p></li>
 <li><p><strong>use_coarse</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, only use coarse annotations (which are the only annotations available for the <code class="docutils literal notranslate"><span class="pre">trainextra</span></code> set), default=False</p></li>
 <li><p><strong>single_instance_labels</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, convert group labels to single instance labels (for example, <code class="docutils literal notranslate"><span class="pre">cargroup</span></code> becomes <code class="docutils literal notranslate"><span class="pre">car</span></code>), default=True</p></li>
+<li><p><strong>load_data_in_memory</strong> (<em>boolean</em><em>, </em><em>optional</em>) – if <cite>True</cite> cache data in memory, default=False</p></li>
 </ul>
 </dd>
 </dl>
@@ -744,7 +749,7 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 <dl class="py class">
 <dt id="n2d2.transform.Composite">
 <em class="property">class </em><code class="sig-prename descclassname">n2d2.transform.</code><code class="sig-name descname">Composite</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">transformations</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Composite" title="Permalink to this definition">¶</a></dt>
-<dd><p>A composition of transformations</p>
+<dd><p>A composition of transformations.</p>
 <dl class="py method">
 <dt id="n2d2.transform.Composite.N2D2">
 <code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Composite.N2D2" title="Permalink to this definition">¶</a></dt>
@@ -1188,6 +1193,7 @@ To add a transformation to the provider, you should use the method <code class="
 <li><p><strong>batch_size</strong> (<em>int</em><em>, </em><em>optional</em>) – Batch size, default=1</p></li>
 <li><p><strong>composite_stimuli</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, use pixel-wise stimuli labels, default=False</p></li>
 <li><p><strong>random_read</strong> (<em>boolean</em><em>, </em><em>optional</em>) – if <code class="docutils literal notranslate"><span class="pre">False</span></code> we use get_batch when iterating other the provider, else we use get <code class="docutils literal notranslate"><span class="pre">get_random_batch</span></code>, default = False</p></li>
+<li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – Provider name, default = <code class="docutils literal notranslate"><span class="pre">Provider_id</span></code></p></li>
 </ul>
 </dd>
 </dl>

@@ -126,6 +126,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#with-the-python-package-index-py-pi">With the Python Package Index (Py Pi)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#from-the-n2d2-github-repository">From the N2D2 Github repository</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#if-you-have-already-cloned-the-github-repository">If you have already cloned the Github repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-for-developer">Installation for developer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#frequent-issues">Frequent issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-not-found-n2d2">Module not found N2D2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2-doesn-t-compile-with-the-right-version-of-python">N2D2 doesn’t compile with the right version of Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lib-not-found-when-compiling">Lib not found when compiling</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#test-of-the-python-api">Test of the Python API</a></li>
@@ -276,7 +283,7 @@ the N2D2 analysis tools</p></td>
 <td><p>✔️</p></td>
 </tr>
 <tr class="row-even"><td><p>Keras interoperability</p></td>
-<td><p>❌</p></td>
+<td><p>✔️</p></td>
 <td><p>✔️</p></td>
 </tr>
 <tr class="row-odd"><td><p>Multi GPU support</p></td>
@@ -284,7 +291,7 @@ the N2D2 analysis tools</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>Exporting network</p></td>
-<td><p>❌</p></td>
+<td><p>✔️</p></td>
 <td></td>
 </tr>
 </tbody>
@@ -319,6 +326,10 @@ deactivate
 </div>
 <div class="section" id="with-the-python-package-index-py-pi">
 <h3>With the Python Package Index (Py Pi)<a class="headerlink" href="#with-the-python-package-index-py-pi" title="Permalink to this headline">¶</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This method is not supported anymore, we are working on it !</p>
+</div>
 <p>You can have access to the last stable version of the python API by using
 <code class="docutils literal notranslate"><span class="pre">pip</span></code> and importing the package <code class="docutils literal notranslate"><span class="pre">n2d2</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install n2d2
@@ -342,8 +353,61 @@ Go at the root of the N2D2 projet and follow the following steps
 python setup.py bdist_wheel
 
 <span class="c1"># Install the n2d2 python packages in your virtual environment</span>
-pip install dist/*
+pip install .
 </pre></div>
+</div>
+</div>
+<div class="section" id="installation-for-developer">
+<h3>Installation for developer<a class="headerlink" href="#installation-for-developer" title="Permalink to this headline">¶</a></h3>
+<p>If you want to install n2d2 as seomeone who wants to contribute to n2d2, we recommand the following setup :</p>
+<p>Inside your n2d2 project, create a build folder and compile N2D2 inside it :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
+cmake .. <span class="o">&amp;&amp;</span> make -j <span class="m">8</span>
+</pre></div>
+</div>
+<p>Once this is done, you have generated the shared object : <code class="docutils literal notranslate"><span class="pre">lib/n2d2.*.so</span></code>.</p>
+<p>You can add the generated <cite>lib</cite> folder and the python source in your <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> with the command :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$PYTHONPATH</span>:&lt;N2D2_BUILD_PATH&gt;/lib:&lt;N2D2_PATH&gt;/python
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Add this line in your bashrc to always have a good <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> setup !</p>
+</div>
+<p>To check if your PYTHONPATH works properly you can try to import <code class="docutils literal notranslate"><span class="pre">N2D2</span></code> (verify that the compilation went well)
+and then <code class="docutils literal notranslate"><span class="pre">n2d2</span></code> (verify that your <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> point the n2d2 python API).</p>
+</div>
+<div class="section" id="frequent-issues">
+<h3>Frequent issues<a class="headerlink" href="#frequent-issues" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="module-not-found-n2d2">
+<h4>Module not found N2D2<a class="headerlink" href="#module-not-found-n2d2" title="Permalink to this headline">¶</a></h4>
+<p>If when you import <code class="docutils literal notranslate"><span class="pre">n2d2</span></code> you get this error :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">ModuleNotFoundError</span><span class="p">:</span> <span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="s1">&#39;N2D2&#39;</span>
+</pre></div>
+</div>
+<p>This is likely due to your python version not matching with the one used to compile N2D2.</p>
+<p>You can find in your <code class="docutils literal notranslate"><span class="pre">site-packages</span></code> (or in your <code class="docutils literal notranslate"><span class="pre">build/lib</span></code> if you have compiled N2D2 with CMake) a <code class="docutils literal notranslate"><span class="pre">.so</span></code> file named like this : <code class="docutils literal notranslate"><span class="pre">N2D2.cpython-37m-x86_64-linux-gnu.so</span></code>.</p>
+<p>This file name indicates the python version used to compile N2D2, in this example 3.7.</p>
+<p>You should either make sure to use a virtualenv with the right python version or check the bellow section.</p>
+</div>
+<div class="section" id="n2d2-doesn-t-compile-with-the-right-version-of-python">
+<h4>N2D2 doesn’t compile with the right version of Python<a class="headerlink" href="#n2d2-doesn-t-compile-with-the-right-version-of-python" title="Permalink to this headline">¶</a></h4>
+<p>When compiling N2D2 you can use an argument to specify the python version you want to compile N2D2 for.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="o">-</span><span class="n">DPYTHON_EXECUTABLE</span><span class="o">=&lt;</span><span class="n">path_to_python_binary</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">path_to_n2d2_cmakefile</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On linux you can use <code class="docutils literal notranslate"><span class="pre">$(which</span> <span class="pre">python)</span></code> to  use your default python binary.</p>
+</div>
+<p>You can then check the version of python on the shared object in <code class="docutils literal notranslate"><span class="pre">build/lib</span></code>.</p>
+<p>For example, this shared object <code class="docutils literal notranslate"><span class="pre">N2D2.cpython-37m-x86_64-linux-gnu.so</span></code> have been compiled for python3.7.</p>
+</div>
+<div class="section" id="lib-not-found-when-compiling">
+<h4>Lib not found when compiling<a class="headerlink" href="#lib-not-found-when-compiling" title="Permalink to this headline">¶</a></h4>
+<p>If CMake fails to find lib files when compiling, this may be due to the absence of the dependency <code class="docutils literal notranslate"><span class="pre">python3-dev</span></code>.</p>
+<p>When generating a new virtualenv after installing the dependency, you should see <code class="docutils literal notranslate"><span class="pre">include/python3.7m</span></code> inside the generated folder.</p>
+<p>If not, you may need to reboot in order to update system variables.</p>
 </div>
 </div>
 </div>

@@ -221,7 +221,6 @@
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
- | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
  
 </div>
@@ -377,6 +376,8 @@
 </li>
         <li><a href="python_api/cells.html#n2d2.cells.Layer.__init__">(n2d2.cells.Layer method)</a>
 </li>
+        <li><a href="python_api/cells.html#n2d2.cells.NeuralNetworkCell.__init__">(n2d2.cells.NeuralNetworkCell method)</a>
+</li>
         <li><a href="python_api/cells.html#n2d2.cells.Padding.__init__">(n2d2.cells.Padding method)</a>
 </li>
         <li><a href="python_api/cells.html#n2d2.cells.Pool.__init__">(n2d2.cells.Pool method)</a>
@@ -408,8 +409,6 @@
         <li><a href="core/core.html#N2D2.CompositeTransformation.__init__">(N2D2.CompositeTransformation method)</a>
 </li>
         <li><a href="core/core.html#N2D2.CompressionNoiseTransformation.__init__">(N2D2.CompressionNoiseTransformation method)</a>
-</li>
-        <li><a href="python_api/cells.html#n2d2.ConfigSection.__init__">(n2d2.ConfigSection method)</a>
 </li>
         <li><a href="core/core.html#N2D2.ConvCell.__init__">(N2D2.ConvCell method)</a>
 </li>
@@ -2421,8 +2420,6 @@
       <li><a href="core/core.html#N2D2.BaseTensor.clear">clear() (N2D2.BaseTensor method)</a>
 
       <ul>
-        <li><a href="python_api/cells.html#n2d2.ConfigSection.clear">(n2d2.ConfigSection method)</a>
-</li>
         <li><a href="core/core.html#N2D2.Target.clear">(N2D2.Target method)</a>
 </li>
       </ul></li>
@@ -3088,10 +3085,10 @@
 </li>
       <li><a href="core/core.html#N2D2.BaseTensor.dimB">dimB() (N2D2.BaseTensor method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="core/core.html#N2D2.BaseTensor.dimD">dimD() (N2D2.BaseTensor method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="core/core.html#N2D2.BaseTensor.dims">dims() (N2D2.BaseTensor method)</a>
 
       <ul>
@@ -3121,6 +3118,8 @@
       <li><a href="core/core.html#N2D2.DOTA_Database.StimuliSet">DOTA_Database.StimuliSet (class in N2D2)</a>
 </li>
       <li><a href="core/core.html#N2D2.DOTA_Database.StimuliSetMask">DOTA_Database.StimuliSetMask (class in N2D2)</a>
+</li>
+      <li><a href="python_api/tensor.html#n2d2.Tensor.draw_associated_graph">draw_associated_graph() (n2d2.Tensor method)</a>
 </li>
       <li><a href="python_api/cells.html#n2d2.cells.Dropout">Dropout (class in n2d2.cells)</a>
 </li>
@@ -3930,9 +3929,9 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="python_api/cells.html#n2d2.ConfigSection.get">get() (n2d2.ConfigSection method)</a>
-</li>
       <li><a href="python_api/cells.html#n2d2.target.Score.get_average_score">get_average_score() (n2d2.target.Score method)</a>
+</li>
+      <li><a href="python_api/cells.html#n2d2.target.Score.get_average_top_n_success">get_average_top_n_success() (n2d2.target.Score method)</a>
 </li>
       <li><a href="python_api/databases.html#n2d2.provider.DataProvider.get_batch_size">get_batch_size() (n2d2.provider.DataProvider method)</a>
 </li>
@@ -3982,6 +3981,50 @@
       </ul></li>
       <li><a href="python_api/interoperability.html#keras_interoperability.CustomSequential.get_deepnet_cell">get_deepnet_cell() (keras_interoperability.CustomSequential method)</a>
 </li>
+      <li><a href="python_api/cells.html#n2d2.cells.BatchNorm2d.get_diffinputs">get_diffinputs() (n2d2.cells.BatchNorm2d method)</a>
+
+      <ul>
+        <li><a href="python_api/cells.html#n2d2.cells.Conv.get_diffinputs">(n2d2.cells.Conv method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Deconv.get_diffinputs">(n2d2.cells.Deconv method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Dropout.get_diffinputs">(n2d2.cells.Dropout method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.ElemWise.get_diffinputs">(n2d2.cells.ElemWise method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Fc.get_diffinputs">(n2d2.cells.Fc method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.NeuralNetworkCell.get_diffinputs">(n2d2.cells.NeuralNetworkCell method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Padding.get_diffinputs">(n2d2.cells.Padding method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Pool.get_diffinputs">(n2d2.cells.Pool method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Softmax.get_diffinputs">(n2d2.cells.Softmax method)</a>
+</li>
+      </ul></li>
+      <li><a href="python_api/cells.html#n2d2.cells.BatchNorm2d.get_diffoutputs">get_diffoutputs() (n2d2.cells.BatchNorm2d method)</a>
+
+      <ul>
+        <li><a href="python_api/cells.html#n2d2.cells.Conv.get_diffoutputs">(n2d2.cells.Conv method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Deconv.get_diffoutputs">(n2d2.cells.Deconv method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Dropout.get_diffoutputs">(n2d2.cells.Dropout method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.ElemWise.get_diffoutputs">(n2d2.cells.ElemWise method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Fc.get_diffoutputs">(n2d2.cells.Fc method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.NeuralNetworkCell.get_diffoutputs">(n2d2.cells.NeuralNetworkCell method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Padding.get_diffoutputs">(n2d2.cells.Padding method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Pool.get_diffoutputs">(n2d2.cells.Pool method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Softmax.get_diffoutputs">(n2d2.cells.Softmax method)</a>
+</li>
+      </ul></li>
       <li><a href="python_api/cells.html#n2d2.cells.DeepNetCell.get_embedded_deepnet">get_embedded_deepnet() (n2d2.cells.DeepNetCell method)</a>
 </li>
       <li><a href="python_api/cells.html#n2d2.cells.DeepNetCell.get_input_cells">get_input_cells() (n2d2.cells.DeepNetCell method)</a>
@@ -4018,6 +4061,28 @@
       </ul></li>
       <li><a href="python_api/cells.html#n2d2.cells.DeepNetCell.get_output_cells">get_output_cells() (n2d2.cells.DeepNetCell method)</a>
 </li>
+      <li><a href="python_api/cells.html#n2d2.cells.BatchNorm2d.get_outputs">get_outputs() (n2d2.cells.BatchNorm2d method)</a>
+
+      <ul>
+        <li><a href="python_api/cells.html#n2d2.cells.Conv.get_outputs">(n2d2.cells.Conv method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Deconv.get_outputs">(n2d2.cells.Deconv method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Dropout.get_outputs">(n2d2.cells.Dropout method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.ElemWise.get_outputs">(n2d2.cells.ElemWise method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Fc.get_outputs">(n2d2.cells.Fc method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.NeuralNetworkCell.get_outputs">(n2d2.cells.NeuralNetworkCell method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Padding.get_outputs">(n2d2.cells.Padding method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Pool.get_outputs">(n2d2.cells.Pool method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Softmax.get_outputs">(n2d2.cells.Softmax method)</a>
+</li>
+      </ul></li>
       <li><a href="python_api/cells.html#n2d2.activation.ActivationFunction.get_parameter">get_parameter() (n2d2.activation.ActivationFunction method)</a>
 
       <ul>
@@ -4038,6 +4103,8 @@
         <li><a href="python_api/cells.html#n2d2.cells.ElemWise.get_parameter">(n2d2.cells.ElemWise method)</a>
 </li>
         <li><a href="python_api/cells.html#n2d2.cells.Fc.get_parameter">(n2d2.cells.Fc method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.NeuralNetworkCell.get_parameter">(n2d2.cells.NeuralNetworkCell method)</a>
 </li>
         <li><a href="python_api/cells.html#n2d2.cells.Padding.get_parameter">(n2d2.cells.Padding method)</a>
 </li>
@@ -10536,16 +10603,12 @@
 </li>
       <li><a href="core/core.html#N2D2.BaseTensor.isValid">isValid() (N2D2.BaseTensor method)</a>
 </li>
-      <li><a href="python_api/cells.html#n2d2.ConfigSection.items">items() (n2d2.ConfigSection method)</a>
-</li>
   </ul></td>
 </tr></table>
 
 <h2 id="K">K</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="python_api/cells.html#n2d2.ConfigSection.keys">keys() (n2d2.ConfigSection method)</a>
-</li>
       <li><a href="core/core.html#N2D2.KITTI_Database">KITTI_Database (class in N2D2)</a>
 </li>
       <li><a href="core/core.html#N2D2.KITTI_Database.StimuliSet">KITTI_Database.StimuliSet (class in N2D2)</a>
@@ -11052,6 +11115,8 @@
         <li><a href="core/core.html#N2D2.Target.log">(N2D2.Target method)</a>
 </li>
       </ul></li>
+      <li><a href="python_api/cells.html#n2d2.target.Score.log_stats">log_stats() (n2d2.target.Score method)</a>
+</li>
       <li><a href="python_api/cells.html#n2d2.target.Score.log_success">log_success() (n2d2.target.Score method)</a>
 </li>
       <li><a href="core/core.html#N2D2.DeepNet.logEstimatedLabels">logEstimatedLabels() (N2D2.DeepNet method)</a>
@@ -11196,6 +11261,8 @@
         <li><a href="python_api/cells.html#n2d2.cells.ElemWise.N2D2">(n2d2.cells.ElemWise method)</a>
 </li>
         <li><a href="python_api/cells.html#n2d2.cells.Fc.N2D2">(n2d2.cells.Fc method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.NeuralNetworkCell.N2D2">(n2d2.cells.NeuralNetworkCell method)</a>
 </li>
         <li><a href="python_api/cells.html#n2d2.cells.Padding.N2D2">(n2d2.cells.Padding method)</a>
 </li>
@@ -11852,6 +11919,8 @@
 </li>
       <li><a href="core/core.html#N2D2.BaseTensor.nbDims">nbDims() (N2D2.BaseTensor method)</a>
 </li>
+      <li><a href="python_api/cells.html#n2d2.cells.NeuralNetworkCell">NeuralNetworkCell (class in n2d2.cells)</a>
+</li>
       <li><a href="python_api/cells.html#n2d2.filler.Normal">Normal (class in n2d2.filler)</a>
 </li>
       <li><a href="core/core.html#N2D2.NormalizeCell">NormalizeCell (class in N2D2)</a>
@@ -12017,10 +12086,6 @@
       <li><a href="core/core.html#N2D2.PoolCell_Frame_float.Pooling">PoolCell_Frame_float.Pooling (class in N2D2)</a>
 </li>
       <li><a href="core/core.html#N2D2.PoolCell_Frame_float.Signals">PoolCell_Frame_float.Signals (class in N2D2)</a>
-</li>
-      <li><a href="python_api/cells.html#n2d2.ConfigSection.pop">pop() (n2d2.ConfigSection method)</a>
-</li>
-      <li><a href="python_api/cells.html#n2d2.ConfigSection.popitem">popitem() (n2d2.ConfigSection method)</a>
 </li>
       <li><a href="core/core.html#N2D2.Target.process">process() (N2D2.Target method)</a>
 </li>
@@ -12871,6 +12936,8 @@
 </li>
         <li><a href="python_api/cells.html#n2d2.cells.Fc.set_activation">(n2d2.cells.Fc method)</a>
 </li>
+        <li><a href="python_api/cells.html#n2d2.cells.NeuralNetworkCell.set_activation">(n2d2.cells.NeuralNetworkCell method)</a>
+</li>
         <li><a href="python_api/cells.html#n2d2.cells.Padding.set_activation">(n2d2.cells.Padding method)</a>
 </li>
         <li><a href="python_api/cells.html#n2d2.cells.Pool.set_activation">(n2d2.cells.Pool method)</a>
@@ -13219,8 +13286,6 @@
 </li>
       </ul></li>
       <li><a href="core/core.html#N2D2.DeepNet.setDatabase">setDatabase() (N2D2.DeepNet method)</a>
-</li>
-      <li><a href="python_api/cells.html#n2d2.ConfigSection.setdefault">setdefault() (n2d2.ConfigSection method)</a>
 </li>
       <li><a href="core/core.html#N2D2.Target.setDefaultTarget">setDefaultTarget() (N2D2.Target method)</a>
 </li>
@@ -14917,8 +14982,6 @@
 </li>
         <li><a href="python_api/cells.html#n2d2.cells.DeepNetCell.update">(n2d2.cells.DeepNetCell method)</a>
 </li>
-        <li><a href="python_api/cells.html#n2d2.ConfigSection.update">(n2d2.ConfigSection method)</a>
-</li>
         <li><a href="core/core.html#N2D2.ConvCell_Frame_CUDA_double.update">(N2D2.ConvCell_Frame_CUDA_double method)</a>
 </li>
         <li><a href="core/core.html#N2D2.ConvCell_Frame_CUDA_float.update">(N2D2.ConvCell_Frame_CUDA_float method)</a>
@@ -15056,14 +15119,6 @@
         <li><a href="core/core.html#N2D2.UnpoolCell_Frame_CUDA.update">(N2D2.UnpoolCell_Frame_CUDA method)</a>
 </li>
       </ul></li>
-  </ul></td>
-</tr></table>
-
-<h2 id="V">V</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="python_api/cells.html#n2d2.ConfigSection.values">values() (n2d2.ConfigSection method)</a>
-</li>
   </ul></td>
 </tr></table>
 

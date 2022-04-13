@@ -1,0 +1,469 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Graph manipulation &mdash; N2D2  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Torch interoperability" href="torch.html" />
+    <link rel="prev" title="Load from ONNX" href="load_onnx.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> N2D2
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/intro.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/about.html">About N2D2-IP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/simus.html">Performing simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/perfs_tools.html">Performance evaluation tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/tuto.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../onnx/convert.html">Obtain ONNX models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../onnx/import.html">Import ONNX models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../onnx/transfer.html">Train from ONNX models</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../quant/post.html">Post-training quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quant/qat.html">Quantization-Aware Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../export/CPP.html">Export: C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../export/CPP_STM32.html">Export: C++/STM32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../export/TensorRT.html">Export: TensorRT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../export/DNeuro.html">Export: DNeuro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../export/ONNX.html">Export: ONNX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../export/legacy.html">Export: other / legacy</a></li>
+</ul>
+<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../ini/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ini/databases.html">Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ini/data_analysis.html">Stimuli data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ini/environment.html">Stimuli provider (Environment)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ini/layers.html">Network Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ini/target.html">Targets (outputs &amp; losses)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../adversarial.html">Adversarial module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Python API:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../databases.html">Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cells.html">Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tensor.html">Tensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability.html">Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../export.html">Export</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../example.html">Example</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="performance_analysis.html">Performance analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="load_onnx.html">Load from ONNX</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Graph manipulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#printing-n2d2-graph">Printing n2d2 graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#manipulating-sequences">Manipulating Sequences</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="torch.html">Torch interoperability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keras.html">Keras interoperability</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../core/core.html">Core N2D2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core/example.html">Example</a></li>
+</ul>
+<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_intro.html">Introduction</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">N2D2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../example.html">Example</a> &raquo;</li>
+        
+      <li>Graph manipulation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/python_api/example/graph_manipulation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="graph-manipulation">
+<h1>Graph manipulation<a class="headerlink" href="#graph-manipulation" title="Permalink to this headline">¶</a></h1>
+<p>In this example we will see :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>How the N2D2 graph is generated;</p></li>
+<li><p>How to draw the graph;</p></li>
+<li><p>How to concatenate two Sequences;</p></li>
+<li><p>How to get the output of a specific cell;</p></li>
+<li><p>How to save only a certain part of the graph.</p></li>
+</ul>
+</div></blockquote>
+<p>You can see the full script of this example here : <a class="reference download internal" download="" href="../../_downloads/3524ec25b2470bcd0a821808a14f2c81/graph_example.py"><code class="xref download docutils literal notranslate"><span class="pre">graph_example.py</span></code></a>.</p>
+<p>For the following examples we will use the following objects :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fc1</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">Fc</span><span class="p">(</span><span class="mi">28</span><span class="o">*</span><span class="mi">28</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">activation</span><span class="o">.</span><span class="n">Rectifier</span><span class="p">())</span>
+<span class="n">fc2</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">Fc</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="printing-n2d2-graph">
+<h2>Printing n2d2 graph<a class="headerlink" href="#printing-n2d2-graph" title="Permalink to this headline">¶</a></h2>
+<p>The python API possess different vebosity level (default=`detailed`).</p>
+<p>Short representation: only with compulsory constructor arguments</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2</span><span class="o">.</span><span class="n">global_variables</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">global_variables</span><span class="o">.</span><span class="n">Verbosity</span><span class="o">.</span><span class="n">short</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fc1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fc2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output :</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;Fc_0&#39; Fc(Frame&lt;float&gt;)(nb_inputs=784, nb_outputs=50)
+&#39;Fc_1&#39; Fc(Frame&lt;float&gt;)(nb_inputs=50, nb_outputs=10)
+</pre></div>
+</div>
+<p>Verbose representation: show graph and every arguments</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2</span><span class="o">.</span><span class="n">global_variables</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">global_variables</span><span class="o">.</span><span class="n">Verbosity</span><span class="o">.</span><span class="n">detailed</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fc1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fc2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output :</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;Fc_0&#39; Fc(Frame&lt;float&gt;)(nb_inputs=784, nb_outputs=50 | back_propagate=True, drop_connect=1.0, no_bias=False, normalize=False, outputs_remap=, weights_export_format=OC, activation=Rectifier(clipping=0.0, leak_slope=0.0, quantizer=None), weights_solver=SGD(clamping=, decay=0.0, iteration_size=1, learning_rate=0.01, learning_rate_decay=0.1, learning_rate_policy=None, learning_rate_step_size=1, max_iterations=0, min_decay=0.0, momentum=0.0, polyak_momentum=True, power=0.0, warm_up_duration=0, warm_up_lr_frac=0.25), bias_solver=SGD(clamping=, decay=0.0, iteration_size=1, learning_rate=0.01, learning_rate_decay=0.1, learning_rate_policy=None, learning_rate_step_size=1, max_iterations=0, min_decay=0.0, momentum=0.0, polyak_momentum=True, power=0.0, warm_up_duration=0, warm_up_lr_frac=0.25), weights_filler=Normal(mean=0.0, std_dev=0.05), bias_filler=Normal(mean=0.0, std_dev=0.05), quantizer=None)
+&#39;Fc_1&#39; Fc(Frame&lt;float&gt;)(nb_inputs=50, nb_outputs=10 | back_propagate=True, drop_connect=1.0, no_bias=False, normalize=False, outputs_remap=, weights_export_format=OC, activation=None, weights_solver=SGD(clamping=, decay=0.0, iteration_size=1, learning_rate=0.01, learning_rate_decay=0.1, learning_rate_policy=None, learning_rate_step_size=1, max_iterations=0, min_decay=0.0, momentum=0.0, polyak_momentum=True, power=0.0, warm_up_duration=0, warm_up_lr_frac=0.25), bias_solver=SGD(clamping=, decay=0.0, iteration_size=1, learning_rate=0.01, learning_rate_decay=0.1, learning_rate_policy=None, learning_rate_step_size=1, max_iterations=0, min_decay=0.0, momentum=0.0, polyak_momentum=True, power=0.0, warm_up_duration=0, warm_up_lr_frac=0.25), weights_filler=Normal(mean=0.0, std_dev=0.05), bias_filler=Normal(mean=0.0, std_dev=0.05), quantizer=None)
+</pre></div>
+</div>
+<p>Graph representation: show the object and the cell associated.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Before propagation, no inputs are visible.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2</span><span class="o">.</span><span class="n">global_variables</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">global_variables</span><span class="o">.</span><span class="n">Verbosity</span><span class="o">.</span><span class="n">graph_only</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fc1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fc2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output :</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;Fc_0&#39; Fc(Frame&lt;float&gt;)
+&#39;Fc_1&#39; Fc(Frame&lt;float&gt;)
+</pre></div>
+</div>
+<p>Now if we propagate a tensor to our cells, we will generate the computation graph and we will be able to see the linked cells :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">tensor</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fc1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fc2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output :</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;Fc_0&#39; Fc(Frame&lt;float&gt;)([&#39;TensorPlaceholder_0&#39;])
+&#39;Fc_1&#39; Fc(Frame&lt;float&gt;)([&#39;Fc_0&#39;])
+</pre></div>
+</div>
+<p>Now we can see the inputs object of each cells !</p>
+<p>You can also plot the graph associated to a tensor with the method <a class="reference internal" href="../tensor.html#n2d2.Tensor.draw_associated_graph" title="n2d2.Tensor.draw_associated_graph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.Tensor.draw_associated_graph()</span></code></a> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">draw_associated_graph</span><span class="p">(</span><span class="s2">&quot;example_graph&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will generate the following figure :</p>
+<div class="figure align-default">
+<img alt="Example graph." src="../../_images/example_graph.png" />
+</div>
+</div>
+<div class="section" id="manipulating-sequences">
+<h2>Manipulating Sequences<a class="headerlink" href="#manipulating-sequences" title="Permalink to this headline">¶</a></h2>
+<p>For this example we will show how you can use n2d2 to encapsulate Sequence.</p>
+<p>We will create a LeNet and separate it two parts the extractor and the classifier.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">n2d2.cells</span> <span class="kn">import</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Conv</span><span class="p">,</span> <span class="n">Pool2d</span><span class="p">,</span> <span class="n">Dropout</span><span class="p">,</span> <span class="n">Fc</span>
+<span class="kn">from</span> <span class="nn">n2d2.activation</span> <span class="kn">import</span> <span class="n">Rectifier</span><span class="p">,</span> <span class="n">Linear</span>
+
+<span class="n">extractor</span> <span class="o">=</span> <span class="n">Sequence</span><span class="p">([</span>
+    <span class="n">Conv</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">kernel_dims</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]),</span>
+    <span class="n">Pool2d</span><span class="p">(</span><span class="n">pool_dims</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">stride_dims</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">pooling</span><span class="o">=</span><span class="s1">&#39;Max&#39;</span><span class="p">),</span>
+    <span class="n">Conv</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="n">kernel_dims</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]),</span>
+    <span class="n">Pool2d</span><span class="p">(</span><span class="n">pool_dims</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">stride_dims</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">pooling</span><span class="o">=</span><span class="s1">&#39;Max&#39;</span><span class="p">),</span>
+    <span class="n">Conv</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="n">kernel_dims</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]),</span>
+<span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;extractor&quot;</span><span class="p">)</span>
+
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">Sequence</span><span class="p">([</span>
+    <span class="n">Fc</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">Rectifier</span><span class="p">()),</span>
+    <span class="n">Dropout</span><span class="p">(</span><span class="n">dropout</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+    <span class="n">Fc</span><span class="p">(</span><span class="mi">84</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">Linear</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;last_fully&quot;</span><span class="p">),</span>
+<span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;classifier&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can concatenate these two sequences into one :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">network</span> <span class="o">=</span> <span class="n">Sequence</span><span class="p">([</span><span class="n">extractor</span><span class="p">,</span> <span class="n">classifier</span><span class="p">])</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">32</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">network</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">network</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;Sequence_0&#39; Sequence(
+        (0): &#39;extractor&#39; Sequence(
+                (0): &#39;Conv_0&#39; Conv(Frame&lt;float&gt;)([&#39;TensorPlaceholder_1&#39;])
+                (1): &#39;Pool2d_0&#39; Pool2d(Frame&lt;float&gt;)([&#39;Conv_0&#39;])
+                (2): &#39;Conv_1&#39; Conv(Frame&lt;float&gt;)([&#39;Pool2d_0&#39;])
+                (3): &#39;Pool2d_1&#39; Pool2d(Frame&lt;float&gt;)([&#39;Conv_1&#39;])
+                (4): &#39;Conv_2&#39; Conv(Frame&lt;float&gt;)([&#39;Pool2d_1&#39;])
+        )
+        (1): &#39;classifier&#39; Sequence(
+                (0): &#39;Fc_2&#39; Fc(Frame&lt;float&gt;)([&#39;Conv_2&#39;])
+                (1): &#39;Dropout_0&#39; Dropout(Frame&lt;float&gt;)([&#39;Fc_2&#39;])
+                (2): &#39;last_fully&#39; Fc(Frame&lt;float&gt;)([&#39;Dropout_0&#39;])
+        )
+)
+</pre></div>
+</div>
+<p>We can also plot the graph :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">output</span><span class="o">.</span><span class="n">draw_associated_graph</span><span class="p">(</span><span class="s2">&quot;full_lenet_graph&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="figure align-default">
+<img alt="Example LeNet graph." src="../../_images/full_lenet_graph.png" />
+</div>
+<p>We can also easily access the cells inside the encapsulated Sequence</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">first_fully</span> <span class="o">=</span> <span class="n">network</span><span class="p">[</span><span class="s2">&quot;last_fully&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accessing the first fully connected layer which is encapsulated in a Sequence&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">first_fully</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;last_fully&#39; Fc(Frame&lt;float&gt;)([&#39;Dropout_0&#39;])
+</pre></div>
+</div>
+<p>This allow us for example to get the output of any cells after the propagation :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Output of the second fully connected : </span><span class="si">{</span><span class="n">first_fully</span><span class="o">.</span><span class="n">get_outputs</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Output of the second fully connected : n2d2.Tensor([
+[0][0]:
+0.0135485
+[1]:
+0.0359611
+[2]:
+-0.0285292
+[3]:
+-0.0732218
+[4]:
+0.0318365
+[5]:
+-0.0930403
+[6]:
+0.0467896
+[7]:
+-0.108823
+[8]:
+0.0305202
+[9]:
+0.0055611
+], device=cpu, datatype=f, cell=&#39;last_fully&#39;)
+</pre></div>
+</div>
+<p>Concatenating <a class="reference internal" href="../cells.html#n2d2.cells.Sequence" title="n2d2.cells.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Sequence</span></code></a> can be useful if we want for example to only save the parameters of a part of the network.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">network</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">export_free_parameters</span><span class="p">(</span><span class="s2">&quot;ConvNet_parameters&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Export to ConvNet_parameters/Conv_0.syntxt
+Export to ConvNet_parameters/Conv_0_quant.syntxt
+Export to ConvNet_parameters/Pool2d_0.syntxt
+Export to ConvNet_parameters/Pool2d_0_quant.syntxt
+Export to ConvNet_parameters/Conv_1.syntxt
+Export to ConvNet_parameters/Conv_1_quant.syntxt
+Export to ConvNet_parameters/Pool2d_1.syntxt
+Export to ConvNet_parameters/Pool2d_1_quant.syntxt
+Export to ConvNet_parameters/Conv_2.syntxt
+Export to ConvNet_parameters/Conv_2_quant.syntxt
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="torch.html" class="btn btn-neutral float-right" title="Torch interoperability" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="load_onnx.html" class="btn btn-neutral float-left" title="Load from ONNX" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, CEA LIST
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

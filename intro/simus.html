@@ -397,8 +397,12 @@ environment variable.</p></li>
 <div class="section" id="getting-the-sources">
 <h3>Getting the sources<a class="headerlink" href="#getting-the-sources" title="Permalink to this headline">¶</a></h3>
 <p>Use the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">CEA</span><span class="o">-</span><span class="n">LIST</span><span class="o">/</span><span class="n">N2D2</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">recursive</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">CEA</span><span class="o">-</span><span class="n">LIST</span><span class="o">/</span><span class="n">N2D2</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You need the recursive option to download the pybind11 submodule.</p>
 </div>
 </div>
 <div class="section" id="compilation">

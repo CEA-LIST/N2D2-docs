@@ -101,7 +101,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#transpose-option-usage"><code class="docutils literal notranslate"><span class="pre">Transpose</span></code> option usage</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#with-the-python-api">With the Python API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#supported-operators">Supported operators</a></li>
 </ul>
 </li>
@@ -380,15 +379,6 @@ image, or a transposed vector for 1D signal inputs), like shown below:</p>
 <span class="na">File</span><span class="o">=</span><span class="s">sound_processing_graph.onnx</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="with-the-python-api">
-<h2>With the Python API<a class="headerlink" href="#with-the-python-api" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">DeepNetGenerator</span></code> can be used to load ONNX file as well as INI file.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">net</span> <span class="o">=</span> <span class="n">N2D2</span><span class="o">.</span><span class="n">Network</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">deepNet</span> <span class="o">=</span> <span class="n">N2D2</span><span class="o">.</span><span class="n">DeepNetGenerator</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="s2">&quot;mobilenet_v1_1.0_224.onnx&quot;</span><span class="p">)</span>
-<span class="n">deepNet</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
-</pre></div>
 </div>
 </div>
 <div class="section" id="supported-operators">
