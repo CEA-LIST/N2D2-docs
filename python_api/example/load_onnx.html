@@ -266,9 +266,10 @@
 <span class="n">model</span><span class="o">.</span><span class="n">run_test</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="line-block">
-<div class="line">And even exporting it to CPP in int 8 !</div>
-<div class="line">(Don’t forget to remove the softmax layer first because N2D2 does not export this layer for the CPP export)</div>
+<p>And even exporting it to CPP in int 8 !</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Don’t forget to remove the softmax layer first because N2D2 does not export this layer for the CPP export.</p>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;18&quot;</span><span class="p">)</span> <span class="c1"># removing Softmax layer before export !</span>
 <span class="n">n2d2</span><span class="o">.</span><span class="n">export_cpp</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">nb_bits</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">calibration</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
