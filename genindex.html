@@ -98,7 +98,7 @@
 <p class="caption"><span class="caption-text">Quantization and Export:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="quant/post.html">Post-training quantization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quant/qat.html">Quantization-Aware Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quant/qat.html">[NEW] Quantization-Aware Training</a></li>
 <li class="toctree-l1"><a class="reference internal" href="export/CPP.html">Export: C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="export/CPP_STM32.html">Export: C++/STM32</a></li>
 <li class="toctree-l1"><a class="reference internal" href="export/TensorRT.html">Export: TensorRT</a></li>
@@ -361,6 +361,8 @@
         <li><a href="core/core.html#N2D2.Cell_Frame_Top.Signals.__init__">(N2D2.Cell_Frame_Top.Signals method)</a>
 </li>
         <li><a href="python_api/cells.html#n2d2.cells.BatchNorm2d.__init__">(n2d2.cells.BatchNorm2d method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Block.__init__">(n2d2.cells.Block method)</a>
 </li>
         <li><a href="python_api/cells.html#n2d2.cells.Conv.__init__">(n2d2.cells.Conv method)</a>
 </li>
@@ -2173,8 +2175,12 @@
 </li>
       <li><a href="core/core.html#N2D2.BatchNormCell_Frame_float.Signals">BatchNormCell_Frame_float.Signals (class in N2D2)</a>
 </li>
-      <li><a href="python_api/interoperability.html#pytorch_interoperability.Block">Block (class in pytorch_interoperability)</a>
+      <li><a href="python_api/cells.html#n2d2.cells.Block">Block (class in n2d2.cells)</a>
+
+      <ul>
+        <li><a href="python_api/interoperability.html#pytorch_interoperability.Block">(class in pytorch_interoperability)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -3201,6 +3207,8 @@
 </li>
       <li><a href="python_api/cells.html#n2d2.cells.DeepNetCell.export_free_parameters">export_free_parameters() (n2d2.cells.DeepNetCell method)</a>
 </li>
+      <li><a href="python_api/export.html#n2d2.export.export_tensor_rt">export_tensor_rt() (in module n2d2.export)</a>
+</li>
       <li><a href="core/core.html#N2D2.AnchorCell.exportActivationParameters">exportActivationParameters() (N2D2.AnchorCell method)</a>
 
       <ul>
@@ -3951,17 +3959,23 @@
         <li><a href="python_api/cells.html#n2d2.cells.Fc.get_biases">(n2d2.cells.Fc method)</a>
 </li>
       </ul></li>
-      <li><a href="python_api/cells.html#n2d2.cells.DeepNetCell.get_cell">get_cell() (n2d2.cells.DeepNetCell method)</a>
+      <li><a href="python_api/interoperability.html#pytorch_interoperability.Block.get_block">get_block() (pytorch_interoperability.Block method)</a>
+</li>
+      <li><a href="python_api/cells.html#n2d2.cells.Block.get_cell">get_cell() (n2d2.cells.Block method)</a>
 
       <ul>
+        <li><a href="python_api/cells.html#n2d2.cells.DeepNetCell.get_cell">(n2d2.cells.DeepNetCell method)</a>
+</li>
         <li><a href="python_api/cells.html#n2d2.cells.Layer.get_cell">(n2d2.cells.Layer method)</a>
 </li>
         <li><a href="python_api/cells.html#n2d2.cells.Sequence.get_cell">(n2d2.cells.Sequence method)</a>
 </li>
       </ul></li>
-      <li><a href="python_api/cells.html#n2d2.cells.DeepNetCell.get_cells">get_cells() (n2d2.cells.DeepNetCell method)</a>
+      <li><a href="python_api/cells.html#n2d2.cells.Block.get_cells">get_cells() (n2d2.cells.Block method)</a>
 
       <ul>
+        <li><a href="python_api/cells.html#n2d2.cells.DeepNetCell.get_cells">(n2d2.cells.DeepNetCell method)</a>
+</li>
         <li><a href="python_api/cells.html#n2d2.cells.Layer.get_cells">(n2d2.cells.Layer method)</a>
 </li>
         <li><a href="python_api/cells.html#n2d2.cells.Sequence.get_cells">(n2d2.cells.Sequence method)</a>
@@ -8875,6 +8889,210 @@
         <li><a href="core/core.html#N2D2.UnpoolCell_Frame_CUDA.getPyModel">(N2D2.UnpoolCell_Frame_CUDA method)</a>
 </li>
       </ul></li>
+      <li><a href="core/core.html#N2D2.AnchorCell.getQuantizedNbBits">getQuantizedNbBits() (N2D2.AnchorCell method)</a>
+
+      <ul>
+        <li><a href="core/core.html#N2D2.AnchorCell_Frame.getQuantizedNbBits">(N2D2.AnchorCell_Frame method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.AnchorCell_Frame_CUDA.getQuantizedNbBits">(N2D2.AnchorCell_Frame_CUDA method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.BatchNormCell.getQuantizedNbBits">(N2D2.BatchNormCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.BatchNormCell_Frame_CUDA_double.getQuantizedNbBits">(N2D2.BatchNormCell_Frame_CUDA_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.BatchNormCell_Frame_CUDA_float.getQuantizedNbBits">(N2D2.BatchNormCell_Frame_CUDA_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.BatchNormCell_Frame_double.getQuantizedNbBits">(N2D2.BatchNormCell_Frame_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.BatchNormCell_Frame_float.getQuantizedNbBits">(N2D2.BatchNormCell_Frame_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.Cell.getQuantizedNbBits">(N2D2.Cell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.Cell_Frame_CUDA_double.getQuantizedNbBits">(N2D2.Cell_Frame_CUDA_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.Cell_Frame_CUDA_float.getQuantizedNbBits">(N2D2.Cell_Frame_CUDA_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.Cell_Frame_double.getQuantizedNbBits">(N2D2.Cell_Frame_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.Cell_Frame_float.getQuantizedNbBits">(N2D2.Cell_Frame_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ConvCell.getQuantizedNbBits">(N2D2.ConvCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ConvCell_Frame_CUDA_double.getQuantizedNbBits">(N2D2.ConvCell_Frame_CUDA_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ConvCell_Frame_CUDA_float.getQuantizedNbBits">(N2D2.ConvCell_Frame_CUDA_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ConvCell_Frame_double.getQuantizedNbBits">(N2D2.ConvCell_Frame_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ConvCell_Frame_float.getQuantizedNbBits">(N2D2.ConvCell_Frame_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.DeconvCell.getQuantizedNbBits">(N2D2.DeconvCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.DeconvCell_Frame_CUDA_double.getQuantizedNbBits">(N2D2.DeconvCell_Frame_CUDA_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.DeconvCell_Frame_CUDA_float.getQuantizedNbBits">(N2D2.DeconvCell_Frame_CUDA_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.DeconvCell_Frame_double.getQuantizedNbBits">(N2D2.DeconvCell_Frame_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.DeconvCell_Frame_float.getQuantizedNbBits">(N2D2.DeconvCell_Frame_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.DropoutCell.getQuantizedNbBits">(N2D2.DropoutCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.DropoutCell_Frame_CUDA_double.getQuantizedNbBits">(N2D2.DropoutCell_Frame_CUDA_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.DropoutCell_Frame_CUDA_float.getQuantizedNbBits">(N2D2.DropoutCell_Frame_CUDA_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.DropoutCell_Frame_double.getQuantizedNbBits">(N2D2.DropoutCell_Frame_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.DropoutCell_Frame_float.getQuantizedNbBits">(N2D2.DropoutCell_Frame_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ElemWiseCell.getQuantizedNbBits">(N2D2.ElemWiseCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ElemWiseCell_Frame.getQuantizedNbBits">(N2D2.ElemWiseCell_Frame method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ElemWiseCell_Frame_CUDA.getQuantizedNbBits">(N2D2.ElemWiseCell_Frame_CUDA method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.FcCell.getQuantizedNbBits">(N2D2.FcCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.FcCell_Frame_CUDA_double.getQuantizedNbBits">(N2D2.FcCell_Frame_CUDA_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.FcCell_Frame_CUDA_float.getQuantizedNbBits">(N2D2.FcCell_Frame_CUDA_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.FcCell_Frame_double.getQuantizedNbBits">(N2D2.FcCell_Frame_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.FcCell_Frame_float.getQuantizedNbBits">(N2D2.FcCell_Frame_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.FMPCell.getQuantizedNbBits">(N2D2.FMPCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.FMPCell_Frame.getQuantizedNbBits">(N2D2.FMPCell_Frame method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.FMPCell_Frame_CUDA.getQuantizedNbBits">(N2D2.FMPCell_Frame_CUDA method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.LRNCell.getQuantizedNbBits">(N2D2.LRNCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.LRNCell_Frame_CUDA_double.getQuantizedNbBits">(N2D2.LRNCell_Frame_CUDA_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.LRNCell_Frame_CUDA_float.getQuantizedNbBits">(N2D2.LRNCell_Frame_CUDA_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.LRNCell_Frame_double.getQuantizedNbBits">(N2D2.LRNCell_Frame_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.LRNCell_Frame_float.getQuantizedNbBits">(N2D2.LRNCell_Frame_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.LSTMCell.getQuantizedNbBits">(N2D2.LSTMCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.LSTMCell_Frame_CUDA_double.getQuantizedNbBits">(N2D2.LSTMCell_Frame_CUDA_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.LSTMCell_Frame_CUDA_float.getQuantizedNbBits">(N2D2.LSTMCell_Frame_CUDA_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.NormalizeCell.getQuantizedNbBits">(N2D2.NormalizeCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.NormalizeCell_Frame_CUDA_double.getQuantizedNbBits">(N2D2.NormalizeCell_Frame_CUDA_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.NormalizeCell_Frame_CUDA_float.getQuantizedNbBits">(N2D2.NormalizeCell_Frame_CUDA_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.NormalizeCell_Frame_double.getQuantizedNbBits">(N2D2.NormalizeCell_Frame_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.NormalizeCell_Frame_float.getQuantizedNbBits">(N2D2.NormalizeCell_Frame_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ObjectDetCell.getQuantizedNbBits">(N2D2.ObjectDetCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ObjectDetCell_Frame.getQuantizedNbBits">(N2D2.ObjectDetCell_Frame method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ObjectDetCell_Frame_CUDA.getQuantizedNbBits">(N2D2.ObjectDetCell_Frame_CUDA method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.PaddingCell.getQuantizedNbBits">(N2D2.PaddingCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.PaddingCell_Frame.getQuantizedNbBits">(N2D2.PaddingCell_Frame method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.PaddingCell_Frame_CUDA.getQuantizedNbBits">(N2D2.PaddingCell_Frame_CUDA method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.PoolCell.getQuantizedNbBits">(N2D2.PoolCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.PoolCell_Frame_CUDA_double.getQuantizedNbBits">(N2D2.PoolCell_Frame_CUDA_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.PoolCell_Frame_CUDA_float.getQuantizedNbBits">(N2D2.PoolCell_Frame_CUDA_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.PoolCell_Frame_double.getQuantizedNbBits">(N2D2.PoolCell_Frame_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.PoolCell_Frame_EXT_CUDA_double.getQuantizedNbBits">(N2D2.PoolCell_Frame_EXT_CUDA_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.PoolCell_Frame_EXT_CUDA_float.getQuantizedNbBits">(N2D2.PoolCell_Frame_EXT_CUDA_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.PoolCell_Frame_float.getQuantizedNbBits">(N2D2.PoolCell_Frame_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ProposalCell.getQuantizedNbBits">(N2D2.ProposalCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ProposalCell_Frame.getQuantizedNbBits">(N2D2.ProposalCell_Frame method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ProposalCell_Frame_CUDA.getQuantizedNbBits">(N2D2.ProposalCell_Frame_CUDA method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ResizeCell.getQuantizedNbBits">(N2D2.ResizeCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ResizeCell_Frame.getQuantizedNbBits">(N2D2.ResizeCell_Frame method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ResizeCell_Frame_CUDA.getQuantizedNbBits">(N2D2.ResizeCell_Frame_CUDA method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ROIPoolingCell.getQuantizedNbBits">(N2D2.ROIPoolingCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ROIPoolingCell_Frame.getQuantizedNbBits">(N2D2.ROIPoolingCell_Frame method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ROIPoolingCell_Frame_CUDA.getQuantizedNbBits">(N2D2.ROIPoolingCell_Frame_CUDA method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.RPCell.getQuantizedNbBits">(N2D2.RPCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.RPCell_Frame.getQuantizedNbBits">(N2D2.RPCell_Frame method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.RPCell_Frame_CUDA.getQuantizedNbBits">(N2D2.RPCell_Frame_CUDA method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ScalingCell.getQuantizedNbBits">(N2D2.ScalingCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ScalingCell_Frame_CUDA_double.getQuantizedNbBits">(N2D2.ScalingCell_Frame_CUDA_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ScalingCell_Frame_CUDA_float.getQuantizedNbBits">(N2D2.ScalingCell_Frame_CUDA_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ScalingCell_Frame_double.getQuantizedNbBits">(N2D2.ScalingCell_Frame_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ScalingCell_Frame_float.getQuantizedNbBits">(N2D2.ScalingCell_Frame_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.SoftmaxCell.getQuantizedNbBits">(N2D2.SoftmaxCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.SoftmaxCell_Frame_CUDA_double.getQuantizedNbBits">(N2D2.SoftmaxCell_Frame_CUDA_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.SoftmaxCell_Frame_CUDA_float.getQuantizedNbBits">(N2D2.SoftmaxCell_Frame_CUDA_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.SoftmaxCell_Frame_double.getQuantizedNbBits">(N2D2.SoftmaxCell_Frame_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.SoftmaxCell_Frame_float.getQuantizedNbBits">(N2D2.SoftmaxCell_Frame_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.TargetBiasCell.getQuantizedNbBits">(N2D2.TargetBiasCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.TargetBiasCell_Frame_CUDA_double.getQuantizedNbBits">(N2D2.TargetBiasCell_Frame_CUDA_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.TargetBiasCell_Frame_CUDA_float.getQuantizedNbBits">(N2D2.TargetBiasCell_Frame_CUDA_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.TargetBiasCell_Frame_double.getQuantizedNbBits">(N2D2.TargetBiasCell_Frame_double method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.TargetBiasCell_Frame_float.getQuantizedNbBits">(N2D2.TargetBiasCell_Frame_float method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ThresholdCell.getQuantizedNbBits">(N2D2.ThresholdCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ThresholdCell_Frame.getQuantizedNbBits">(N2D2.ThresholdCell_Frame method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.ThresholdCell_Frame_CUDA.getQuantizedNbBits">(N2D2.ThresholdCell_Frame_CUDA method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.TransformationCell.getQuantizedNbBits">(N2D2.TransformationCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.TransformationCell_Frame.getQuantizedNbBits">(N2D2.TransformationCell_Frame method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.TransformationCell_Frame_CUDA.getQuantizedNbBits">(N2D2.TransformationCell_Frame_CUDA method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.UnpoolCell.getQuantizedNbBits">(N2D2.UnpoolCell method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.UnpoolCell_Frame.getQuantizedNbBits">(N2D2.UnpoolCell_Frame method)</a>
+</li>
+        <li><a href="core/core.html#N2D2.UnpoolCell_Frame_CUDA.getQuantizedNbBits">(N2D2.UnpoolCell_Frame_CUDA method)</a>
+</li>
+      </ul></li>
       <li><a href="core/core.html#N2D2.Activation.getQuantizer">getQuantizer() (N2D2.Activation method)</a>
 
       <ul>
@@ -10597,6 +10815,16 @@
         <li><a href="core/core.html#N2D2.FcCell_Frame_double.initializeWeightQuantizer">(N2D2.FcCell_Frame_double method)</a>
 </li>
         <li><a href="core/core.html#N2D2.FcCell_Frame_float.initializeWeightQuantizer">(N2D2.FcCell_Frame_float method)</a>
+</li>
+      </ul></li>
+      <li><a href="python_api/cells.html#n2d2.cells.Block.is_integral">is_integral() (n2d2.cells.Block method)</a>
+
+      <ul>
+        <li><a href="python_api/cells.html#n2d2.cells.DeepNetCell.is_integral">(n2d2.cells.DeepNetCell method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Layer.is_integral">(n2d2.cells.Layer method)</a>
+</li>
+        <li><a href="python_api/cells.html#n2d2.cells.Sequence.is_integral">(n2d2.cells.Sequence method)</a>
 </li>
       </ul></li>
       <li><a href="core/core.html#N2D2.StimuliProvider.isCompositeStimuli">isCompositeStimuli() (N2D2.StimuliProvider method)</a>
@@ -12406,7 +12634,11 @@
       <li><a href="core/core.html#N2D2.ReshapeTransformation">ReshapeTransformation (class in N2D2)</a>
 </li>
       <li><a href="core/core.html#N2D2.BaseTensor.resize">resize() (N2D2.BaseTensor method)</a>
+
+      <ul>
+        <li><a href="python_api/tensor.html#n2d2.Tensor.resize">(n2d2.Tensor method)</a>
 </li>
+      </ul></li>
       <li><a href="core/core.html#N2D2.ResizeCell">ResizeCell (class in N2D2)</a>
 </li>
       <li><a href="core/core.html#N2D2.ResizeCell.FreeParametersType">ResizeCell.FreeParametersType (class in N2D2)</a>
@@ -12945,9 +13177,11 @@
         <li><a href="python_api/cells.html#n2d2.cells.Softmax.set_activation">(n2d2.cells.Softmax method)</a>
 </li>
       </ul></li>
-      <li><a href="python_api/cells.html#n2d2.cells.DeepNetCell.set_back_propagate">set_back_propagate() (n2d2.cells.DeepNetCell method)</a>
+      <li><a href="python_api/cells.html#n2d2.cells.Block.set_back_propagate">set_back_propagate() (n2d2.cells.Block method)</a>
 
       <ul>
+        <li><a href="python_api/cells.html#n2d2.cells.DeepNetCell.set_back_propagate">(n2d2.cells.DeepNetCell method)</a>
+</li>
         <li><a href="python_api/cells.html#n2d2.cells.Layer.set_back_propagate">(n2d2.cells.Layer method)</a>
 </li>
         <li><a href="python_api/cells.html#n2d2.cells.Sequence.set_back_propagate">(n2d2.cells.Sequence method)</a>
@@ -12984,6 +13218,8 @@
       <li><a href="python_api/cells.html#n2d2.cells.BatchNorm2d.set_solver">set_solver() (n2d2.cells.BatchNorm2d method)</a>
 
       <ul>
+        <li><a href="python_api/cells.html#n2d2.cells.Block.set_solver">(n2d2.cells.Block method)</a>
+</li>
         <li><a href="python_api/cells.html#n2d2.cells.Conv.set_solver">(n2d2.cells.Conv method)</a>
 </li>
         <li><a href="python_api/cells.html#n2d2.cells.Deconv.set_solver">(n2d2.cells.Deconv method)</a>

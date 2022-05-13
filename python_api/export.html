@@ -100,7 +100,7 @@
 <p class="caption"><span class="caption-text">Quantization and Export:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../quant/post.html">Post-training quantization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">Quantization-Aware Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">[NEW] Quantization-Aware Training</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/CPP.html">Export: C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/CPP_STM32.html">Export: C++/STM32</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/TensorRT.html">Export: TensorRT</a></li>
@@ -137,6 +137,10 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#export-cpp">Export CPP</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#export-cpp-tensorrt">Export CPP TensorRT</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Example</a></li>
 </ul>
 </li>
 </ul>
@@ -241,9 +245,9 @@ So if you want to calibrate your network, you need ot specify a data provider ot
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>deepnet_cell</strong> (<a class="reference internal" href="cells.html#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a>) – The Neural network you want to export.</p></li>
-<li><p><strong>provider</strong> (<a class="reference internal" href="databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a>, optional) – Data provider to use for calibration, default=None</p></li>
-<li><p><strong>nb_bits</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of bits per weight for exports, default=8</p></li>
+<li><p><strong>deepnet_cell</strong> – The Neural network you want to export.</p></li>
+<li><p><strong>provider</strong> – Data provider to use for calibration, default=None</p></li>
+<li><p><strong>nb_bits</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of bits for the weights and signals. Must be <code class="docutils literal notranslate"><span class="pre">8</span></code>, <code class="docutils literal notranslate"><span class="pre">16</span></code>, <code class="docutils literal notranslate"><span class="pre">32</span></code> or <code class="docutils literal notranslate"><span class="pre">64</span></code> for integer export, or <code class="docutils literal notranslate"><span class="pre">-32</span></code>, <code class="docutils literal notranslate"><span class="pre">-64</span></code> for floating point export, default=8</p></li>
 <li><p><strong>qat_sat</strong> (<em>bool</em><em>, </em><em>optional</em>) – Fuse a QAT trained with SAT method, default=False</p></li>
 <li><p><strong>export_no_unsigned</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, disable the use of unsigned data type in integer exports, default=False</p></li>
 <li><p><strong>calibration</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of stimuli used for the calibration (<code class="docutils literal notranslate"><span class="pre">0</span></code> = no calibration, <code class="docutils literal notranslate"><span class="pre">-1</span></code> = use the full test dataset), default=0</p></li>
@@ -302,9 +306,9 @@ If you look at the log you may see warning lines like this :</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>deepnet_cell</strong> (<a class="reference internal" href="cells.html#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a>) – The Neural network you want to export.</p></li>
-<li><p><strong>provider</strong> (<a class="reference internal" href="databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a>, optional) – Data provider to use for calibration, default=None</p></li>
-<li><p><strong>nb_bits</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of bits per weight for exports, default=8</p></li>
+<li><p><strong>deepnet_cell</strong> – The Neural network you want to export.</p></li>
+<li><p><strong>provider</strong> – Data provider to use for calibration, default=None</p></li>
+<li><p><strong>nb_bits</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of bits for the weights and signals. Must be <code class="docutils literal notranslate"><span class="pre">8</span></code>, <code class="docutils literal notranslate"><span class="pre">16</span></code>, <code class="docutils literal notranslate"><span class="pre">32</span></code> or <code class="docutils literal notranslate"><span class="pre">64</span></code> for integer export, or <code class="docutils literal notranslate"><span class="pre">-32</span></code>, <code class="docutils literal notranslate"><span class="pre">-64</span></code> for floating point export, default=8</p></li>
 <li><p><strong>qat_sat</strong> (<em>bool</em><em>, </em><em>optional</em>) – Fuse a QAT trained with SAT method, default=False</p></li>
 <li><p><strong>export_no_unsigned</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, disable the use of unsigned data type in integer exports, default=False</p></li>
 <li><p><strong>calibration</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of stimuli used for the calibration (<code class="docutils literal notranslate"><span class="pre">0</span></code> = no calibration, <code class="docutils literal notranslate"><span class="pre">-1</span></code> = use the full test dataset), default=0</p></li>
@@ -333,6 +337,46 @@ If you look at the log you may see warning lines like this :</p>
     <span class="n">nb_bits</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
     <span class="n">export_nb_stimuli_max</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">calibration</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="export-cpp-tensorrt">
+<h2>Export CPP TensorRT<a class="headerlink" href="#export-cpp-tensorrt" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="n2d2.export.export_tensor_rt">
+<code class="sig-prename descclassname">n2d2.export.</code><code class="sig-name descname">export_tensor_rt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">deepnet_cell</span><span class="p">:</span> <span class="n">n2d2.cells.cell.DeepNetCell</span></em>, <em class="sig-param"><span class="n">provider</span><span class="p">:</span> <span class="n">n2d2.provider.Provider</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.export.export_tensor_rt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a TensorRT export of the neural network.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>deepnet_cell</strong> – The Neural network you want to export.</p></li>
+<li><p><strong>provider</strong> – Data provider to use for calibration, default=None</p></li>
+<li><p><strong>nb_bits</strong> (<em>int</em><em>, </em><em>optional</em>) – Only 32 floating point precision is available for this export. You can calibrate your network later with the export tools, default=-32</p></li>
+<li><p><strong>qat_sat</strong> (<em>bool</em><em>, </em><em>optional</em>) – Fuse a QAT trained with SAT method, default=False</p></li>
+<li><p><strong>export_no_unsigned</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, disable the use of unsigned data type in integer exports, default=False</p></li>
+<li><p><strong>calibration</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of stimuli used for the calibration (<code class="docutils literal notranslate"><span class="pre">0</span></code> = no calibration, <code class="docutils literal notranslate"><span class="pre">-1</span></code> = use the full test dataset), default=0</p></li>
+<li><p><strong>export_no_cross_layer_equalization</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, disable the use of cross layer equalization in integer exports, default=False</p></li>
+<li><p><strong>wt_clipping_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – Weights clipping mode on export, can be <code class="docutils literal notranslate"><span class="pre">NONE</span></code>, <code class="docutils literal notranslate"><span class="pre">MSE</span></code> or <code class="docutils literal notranslate"><span class="pre">KL_DIVERGENCE</span></code>, default=”NONE”</p></li>
+<li><p><strong>act_clipping_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – activation clipping mode on export, can be <code class="docutils literal notranslate"><span class="pre">NONE</span></code>, <code class="docutils literal notranslate"><span class="pre">MSE</span></code> or <code class="docutils literal notranslate"><span class="pre">KL_DIVERGENCE</span></code> or <code class="docutils literal notranslate"><span class="pre">Quantile</span></code>, default=”MSE”</p></li>
+<li><p><strong>act_scaling_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – activation scaling mode on export, can be <code class="docutils literal notranslate"><span class="pre">NONE</span></code>, <code class="docutils literal notranslate"><span class="pre">FLOAT_MULT</span></code>, <code class="docutils literal notranslate"><span class="pre">FIXED_MULT16</span></code>, <code class="docutils literal notranslate"><span class="pre">SINGLE_SHIFT</span></code> or <code class="docutils literal notranslate"><span class="pre">DOUBLE_SHIFT</span></code>, default=”FLOAT_MULT”</p></li>
+<li><p><strong>act_quantile_value</strong> (<em>float</em><em>, </em><em>optional</em>) – Quantile value for <code class="docutils literal notranslate"><span class="pre">Quantile</span></code> clipping mode, default=0.9999</p></li>
+<li><p><strong>act_rescale_per_output</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, rescale activation per output on export, default=False</p></li>
+<li><p><strong>calibration_reload</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, reload and reuse the data of a previous calibration, default=False</p></li>
+<li><p><strong>report</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of steps between reportings, default=100</p></li>
+<li><p><strong>export_nb_stimuli_max</strong> (<em>int</em><em>, </em><em>optional</em>) – Maximum number of stimuli to export (0 = no dataset export, -1 = unlimited), default=-1</p></li>
+<li><p><strong>wt_round_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – Weights clipping mode on export, can be <code class="docutils literal notranslate"><span class="pre">NONE</span></code>, <code class="docutils literal notranslate"><span class="pre">RINTF</span></code>, default=”NONE”</p></li>
+<li><p><strong>b_round_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – Biases clipping mode on export, can be <code class="docutils literal notranslate"><span class="pre">NONE</span></code>, <code class="docutils literal notranslate"><span class="pre">RINTF</span></code>, default=”NONE”</p></li>
+<li><p><strong>c_round_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – Clip clipping mode on export, can be <code class="docutils literal notranslate"><span class="pre">NONE</span></code>, <code class="docutils literal notranslate"><span class="pre">RINTF</span></code>, default=”NONE”</p></li>
+<li><p><strong>find_lr</strong> (<em>int</em><em>, </em><em>optional</em>) – Find an appropriate learning rate over a number of iterations, default=0</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="section" id="id2">
+<h3>Example<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2</span><span class="o">.</span><span class="n">export</span><span class="o">.</span><span class="n">export_tensor_rt</span><span class="p">(</span><span class="n">DEEPNET_CELL</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

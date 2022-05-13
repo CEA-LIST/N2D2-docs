@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Quantization-Aware Training &mdash; N2D2  documentation</title>
+  <title>[NEW] Quantization-Aware Training &mdash; N2D2  documentation</title>
   
 
   
@@ -100,7 +100,7 @@
 <p class="caption"><span class="caption-text">Quantization and Export:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="post.html">Post-training quantization</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Quantization-Aware Training</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">[NEW] Quantization-Aware Training</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cell-quantizer-definition">Cell Quantizer Definition</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#lsq">LSQ</a></li>
@@ -117,7 +117,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#onnx-model-resnet-18-example-ini-file">ONNX model : ResNet-18 Example - INI File</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#onnx-model-resnet-18-example-python">ONNX model : ResNet-18 Example - Python</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#hand-made-model-lenet-example-ini-file">Hand-Made model : LeNet Example - INI File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#hand-made-model-lenet-example-python">Hand-Made model : LeNet Example - Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hand-made-model-lenet-example-python">Hand-Made model : LeNet Example - Python</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#part-1-learn-with-clamped-weights">Part 1 : Learn with clamped weights</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#part-2-quantized-lenet-with-sat">Part 2 : Quantized LeNet with SAT</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#results">Results</a><ul>
@@ -211,7 +215,7 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Quantization-Aware Training</li>
+      <li>[NEW] Quantization-Aware Training</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -230,8 +234,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="quantization-aware-training">
-<h1>Quantization-Aware Training<a class="headerlink" href="#quantization-aware-training" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="new-quantization-aware-training">
+<h1>[NEW] Quantization-Aware Training<a class="headerlink" href="#new-quantization-aware-training" title="Permalink to this headline">¶</a></h1>
 <p><strong>N2D2-IP only: available upon request.</strong></p>
 <div class="section" id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
@@ -880,7 +884,234 @@ The final test accuracy must reach at least 70%.</p>
 </div>
 <div class="section" id="onnx-model-resnet-18-example-python">
 <h3>ONNX model : ResNet-18 Example - Python<a class="headerlink" href="#onnx-model-resnet-18-example-python" title="Permalink to this headline">¶</a></h3>
-<p>Coming soon.</p>
+<p>In this example, we will do the same as in the previous section showcasing the python API.</p>
+<p>You can find the complete scrip for this tutorial here <a class="reference download internal" download="" href="../_downloads/05a92b45d4f6a6e98185cde34103944b/sat_qat_resnet-18.py"><code class="xref download docutils literal notranslate"><span class="pre">resnet18v1</span> <span class="pre">quantization</span> <span class="pre">example</span></code></a>.</p>
+<p>Firstly, you need to retrieved the <code class="docutils literal notranslate"><span class="pre">resnet18v1.onnx</span></code> file that you can pick-up at <a class="reference external" href="https://s3.amazonaws.com/onnx-model-zoo/resnet/resnet18v1/resnet18v1.onnx">https://s3.amazonaws.com/onnx-model-zoo/resnet/resnet18v1/resnet18v1.onnx</a>.
+Or with the N2D2 script <code class="docutils literal notranslate"><span class="pre">N2D2/tools/install_onnx_models.py</span></code> that will automatically install a set of pre-trained ONNX models under your <code class="docutils literal notranslate"><span class="pre">N2D2_MODELS</span></code> system path.</p>
+<p>Once this is done, you can create a data provider for the dataset <code class="docutils literal notranslate"><span class="pre">ILSVRC2012</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Create database&quot;</span><span class="p">)</span>
+<span class="n">database</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">ILSVRC2012</span><span class="p">(</span><span class="n">learn</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">random_partitioning</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">database</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">data_path</span><span class="p">,</span> <span class="n">label_path</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">label_path</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">database</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Create provider&quot;</span><span class="p">)</span>
+<span class="n">provider</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">DataProvider</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="n">database</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We will then do some pre-processing to the data-set.</p>
+<p>We use the <a class="reference internal" href="../python_api/databases.html#n2d2.transform.Composite" title="n2d2.transform.Composite"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.transform.Composite</span></code></a> to have a compact syntax and avoid multiple call to the method <code class="docutils literal notranslate"><span class="pre">add_transformation</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Adding transformations&quot;</span><span class="p">)</span>
+<span class="n">transformations</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">Composite</span><span class="p">([</span>
+    <span class="n">n2d2</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">ColorSpace</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">),</span>
+    <span class="n">n2d2</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">RangeAffine</span><span class="p">(</span><span class="s2">&quot;Divides&quot;</span><span class="p">,</span> <span class="mf">255.0</span><span class="p">),</span>
+    <span class="n">n2d2</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">RandomResizeCrop</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="n">scale_min</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">scale_max</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">ratio_min</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+                                    <span class="n">ratio_max</span><span class="o">=</span><span class="mf">1.33</span><span class="p">,</span> <span class="n">apply_to</span><span class="o">=</span><span class="s2">&quot;LearnOnly&quot;</span><span class="p">),</span>
+    <span class="n">n2d2</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">Rescale</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="n">keep_aspect_ratio</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">resize_to_fit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                          <span class="n">apply_to</span><span class="o">=</span><span class="s2">&quot;NoLearn&quot;</span><span class="p">),</span>
+    <span class="n">n2d2</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">PadCrop</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="n">apply_to</span><span class="o">=</span><span class="s2">&quot;NoLearn&quot;</span><span class="p">),</span>
+    <span class="n">n2d2</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">SliceExtraction</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="n">offset_x</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">offset_y</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">apply_to</span><span class="o">=</span><span class="s2">&quot;NoLearn&quot;</span><span class="p">),</span>
+<span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">transformations</span><span class="p">)</span>
+
+<span class="n">flip_trans</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">Flip</span><span class="p">(</span><span class="n">apply_to</span><span class="o">=</span><span class="s2">&quot;LearnOnly&quot;</span><span class="p">,</span> <span class="n">random_horizontal_flip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">provider</span><span class="o">.</span><span class="n">add_transformation</span><span class="p">(</span><span class="n">transformations</span><span class="p">)</span>
+<span class="n">provider</span><span class="o">.</span><span class="n">add_on_the_fly_transformation</span><span class="p">(</span><span class="n">flip_trans</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Once this is done, we can import the <code class="docutils literal notranslate"><span class="pre">resnet-18-v1</span></code> ONNX model using <a class="reference internal" href="../python_api/cells.html#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">DeepNetCell</span><span class="o">.</span><span class="n">load_from_ONNX</span><span class="p">(</span><span class="n">provider</span><span class="p">,</span> <span class="n">path_to_ONNX</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Once the ONNX model is loaded, we will change the configuration of the <a class="reference internal" href="../python_api/cells.html#n2d2.cells.Conv" title="n2d2.cells.Conv"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Conv</span></code></a>, <a class="reference internal" href="../python_api/cells.html#n2d2.cells.Fc" title="n2d2.cells.Fc"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Fc</span></code></a> and <a class="reference internal" href="../python_api/cells.html#n2d2.cells.BatchNorm2d" title="n2d2.cells.BatchNorm2d"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.BatchNorm2d</span></code></a> layers.
+To do so, we will iterate through the layer of our model and check the type of the layer.
+Then we will apply the wanted configuration for each cells.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Updating cells ...&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">model</span><span class="p">:</span>
+    <span class="c1">### Updating Conv Cells ###</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">Conv</span><span class="p">):</span>
+        <span class="c1"># You need to replace weights filler before adding the quantizer.</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">set_weights_filler</span><span class="p">(</span>
+            <span class="n">n2d2</span><span class="o">.</span><span class="n">filler</span><span class="o">.</span><span class="n">Xavier</span><span class="p">(</span>
+                <span class="n">variance_norm</span><span class="o">=</span><span class="s2">&quot;FanOut&quot;</span><span class="p">,</span>
+                <span class="n">scaling</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="p">),</span> <span class="n">refill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">cell</span><span class="o">.</span><span class="n">has_bias</span><span class="p">():</span>
+            <span class="n">cell</span><span class="o">.</span><span class="n">refill_bias</span><span class="p">()</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">quantizer</span> <span class="o">=</span> <span class="n">SATCell</span><span class="p">(</span>
+                <span class="n">apply_scaling</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">apply_quantization</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+
+        <span class="n">cell</span><span class="o">.</span><span class="n">set_solver_parameter</span><span class="p">(</span><span class="s2">&quot;learning_rate_policy&quot;</span><span class="p">,</span> <span class="s2">&quot;CosineDecay&quot;</span><span class="p">)</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">set_solver_parameter</span><span class="p">(</span><span class="s2">&quot;learning_rate&quot;</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">set_solver_parameter</span><span class="p">(</span><span class="s2">&quot;momentum&quot;</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">set_solver_parameter</span><span class="p">(</span><span class="s2">&quot;decay&quot;</span><span class="p">,</span> <span class="mf">0.00004</span><span class="p">)</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">set_solver_parameter</span><span class="p">(</span><span class="s2">&quot;max_iterations&quot;</span><span class="p">,</span> <span class="mi">192175050</span><span class="p">)</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">set_solver_parameter</span><span class="p">(</span><span class="s2">&quot;iteration_size&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1">### Updating Fc Cells ###</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">Fc</span><span class="p">):</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">set_weights_filler</span><span class="p">(</span>
+            <span class="n">n2d2</span><span class="o">.</span><span class="n">filler</span><span class="o">.</span><span class="n">Xavier</span><span class="p">(</span>
+                <span class="n">variance_norm</span><span class="o">=</span><span class="s2">&quot;FanOut&quot;</span><span class="p">,</span>
+                <span class="n">scaling</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="p">),</span> <span class="n">refill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">set_bias_filler</span><span class="p">(</span>
+            <span class="n">n2d2</span><span class="o">.</span><span class="n">filler</span><span class="o">.</span><span class="n">Constant</span><span class="p">(</span>
+                <span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="p">),</span> <span class="n">refill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+        <span class="n">cell</span><span class="o">.</span><span class="n">quantizer</span> <span class="o">=</span> <span class="n">SATCell</span><span class="p">(</span>
+                <span class="n">apply_scaling</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">apply_quantization</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">set_solver_parameter</span><span class="p">(</span><span class="s2">&quot;learning_rate_policy&quot;</span><span class="p">,</span> <span class="s2">&quot;CosineDecay&quot;</span><span class="p">)</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">set_solver_parameter</span><span class="p">(</span><span class="s2">&quot;learning_rate&quot;</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">set_solver_parameter</span><span class="p">(</span><span class="s2">&quot;momentum&quot;</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">set_solver_parameter</span><span class="p">(</span><span class="s2">&quot;decay&quot;</span><span class="p">,</span> <span class="mf">0.00004</span><span class="p">)</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">set_solver_parameter</span><span class="p">(</span><span class="s2">&quot;max_iterations&quot;</span><span class="p">,</span> <span class="mi">192175050</span><span class="p">)</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">set_solver_parameter</span><span class="p">(</span><span class="s2">&quot;iteration_size&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1">### Updating BatchNorm Cells ###</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">):</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">set_solver_parameter</span><span class="p">(</span><span class="s2">&quot;learning_rate_policy&quot;</span><span class="p">,</span> <span class="s2">&quot;CosineDecay&quot;</span><span class="p">)</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">set_solver_parameter</span><span class="p">(</span><span class="s2">&quot;learning_rate&quot;</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">set_solver_parameter</span><span class="p">(</span><span class="s2">&quot;momentum&quot;</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">set_solver_parameter</span><span class="p">(</span><span class="s2">&quot;decay&quot;</span><span class="p">,</span> <span class="mf">0.00004</span><span class="p">)</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">set_solver_parameter</span><span class="p">(</span><span class="s2">&quot;max_iterations&quot;</span><span class="p">,</span> <span class="mi">192175050</span><span class="p">)</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">set_solver_parameter</span><span class="p">(</span><span class="s2">&quot;iteration_size&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AFTER MODIFICATION :&quot;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Once this is done, we will do a regular training loop and save weights every time we met a new best <cite>precision</cite> during the validation phase.
+The clamped weights will be saved in a folder <cite>resnet_weights_clamped</cite>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">softmax</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">Softmax</span><span class="p">(</span><span class="n">with_loss</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">loss_function</span> <span class="o">=</span>  <span class="n">n2d2</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">Score</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
+<span class="n">max_precision</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">### Training ###&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nb_epochs</span><span class="p">):</span>
+    <span class="n">provider</span><span class="o">.</span><span class="n">set_partition</span><span class="p">(</span><span class="s2">&quot;Learn&quot;</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">learn</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"># Train Epoch: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; #&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">database</span><span class="o">.</span><span class="n">get_nb_stimuli</span><span class="p">(</span><span class="s1">&#39;Learn&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">batch_size</span><span class="p">)):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">read_random_batch</span><span class="p">()</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">loss_function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="n">x</span><span class="o">.</span><span class="n">back_propagate</span><span class="p">()</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Example: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">batch_size</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, loss: &quot;</span>
+              <span class="o">+</span> <span class="s2">&quot;</span><span class="si">{0:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">### Validation ###&quot;</span><span class="p">)</span>
+
+    <span class="n">loss_function</span><span class="o">.</span><span class="n">clear_success</span><span class="p">()</span>
+
+    <span class="n">provider</span><span class="o">.</span><span class="n">set_partition</span><span class="p">(</span><span class="s1">&#39;Validation&#39;</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">database</span><span class="o">.</span><span class="n">get_nb_stimuli</span><span class="p">(</span><span class="s1">&#39;Validation&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">batch_size</span><span class="p">)):</span>
+        <span class="n">batch_idx</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">batch_size</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">read_batch</span><span class="p">(</span><span class="n">batch_idx</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">loss_function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Validate example: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">batch_size</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, val success: &quot;</span>
+              <span class="o">+</span> <span class="s2">&quot;</span><span class="si">{0:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">loss_function</span><span class="o">.</span><span class="n">get_average_score</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="s2">&quot;Precision&quot;</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;%&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Ploting the network ...&quot;</span><span class="p">)</span>
+<span class="n">x</span><span class="o">.</span><span class="n">get_deepnet</span><span class="p">()</span><span class="o">.</span><span class="n">draw_graph</span><span class="p">(</span><span class="s2">&quot;./resnet18v1_clamped&quot;</span><span class="p">)</span>
+<span class="n">x</span><span class="o">.</span><span class="n">get_deepnet</span><span class="p">()</span><span class="o">.</span><span class="n">log_stats</span><span class="p">(</span><span class="s2">&quot;./resnet18v1_clamped_stats&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Saving weights !&quot;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">get_embedded_deepnet</span><span class="p">()</span><span class="o">.</span><span class="n">export_network_free_parameters</span><span class="p">(</span><span class="s2">&quot;resnet_weights_clamped&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Your <cite>resnet-18-v1</cite> model now have clamped weights !</p>
+<p>Now we will change the <code class="docutils literal notranslate"><span class="pre">quantizer</span></code> objects to quantize the network et 4 bits (range=15).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Updating cells&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">model</span><span class="p">:</span>
+    <span class="c1">### Updating Rectifier ###</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">activation</span><span class="p">,</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">activation</span><span class="o">.</span><span class="n">Rectifier</span><span class="p">):</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">activation</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">activation</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span>
+                <span class="n">quantizer</span><span class="o">=</span><span class="n">SATAct</span><span class="p">(</span>
+                    <span class="nb">range</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+                    <span class="n">solver</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span>
+                        <span class="n">learning_rate_policy</span> <span class="o">=</span> <span class="s2">&quot;CosineDecay&quot;</span><span class="p">,</span>
+                        <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                        <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+                        <span class="n">decay</span><span class="o">=</span><span class="mf">0.00004</span><span class="p">,</span>
+                        <span class="n">max_iterations</span><span class="o">=</span><span class="mi">115305030</span>
+        <span class="p">)))</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="p">(</span><span class="n">n2d2</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">Conv</span><span class="p">,</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">Fc</span><span class="p">)):</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">quantizer</span><span class="o">.</span><span class="n">set_quantization</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">quantizer</span><span class="o">.</span><span class="n">set_range</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="c1"># The first and last cell are in 8 bits precision !</span>
+<span class="n">model</span><span class="p">[</span><span class="s2">&quot;resnetv15_conv0_fwd&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">quantizer</span><span class="o">.</span><span class="n">set_range</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span>
+<span class="n">model</span><span class="p">[</span><span class="s2">&quot;resnetv15_dense0_fwd&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">quantizer</span><span class="o">.</span><span class="n">set_range</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Once the <code class="docutils literal notranslate"><span class="pre">quantizer</span></code> objects have been updated we can run a new training loop to learn the quantized wieghts and activations.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">### Training ###&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nb_epochs</span><span class="p">):</span>
+
+    <span class="n">provider</span><span class="o">.</span><span class="n">set_partition</span><span class="p">(</span><span class="s2">&quot;Learn&quot;</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">learn</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"># Train Epoch: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; #&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">database</span><span class="o">.</span><span class="n">get_nb_stimuli</span><span class="p">(</span><span class="s1">&#39;Learn&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">batch_size</span><span class="p">)):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">read_random_batch</span><span class="p">()</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">loss_function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="n">x</span><span class="o">.</span><span class="n">back_propagate</span><span class="p">()</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Example: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">batch_size</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, loss: &quot;</span>
+              <span class="o">+</span> <span class="s2">&quot;</span><span class="si">{0:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">### Validation ###&quot;</span><span class="p">)</span>
+
+    <span class="n">loss_function</span><span class="o">.</span><span class="n">clear_success</span><span class="p">()</span>
+
+    <span class="n">provider</span><span class="o">.</span><span class="n">set_partition</span><span class="p">(</span><span class="s1">&#39;Validation&#39;</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">database</span><span class="o">.</span><span class="n">get_nb_stimuli</span><span class="p">(</span><span class="s1">&#39;Validation&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">batch_size</span><span class="p">)):</span>
+        <span class="n">batch_idx</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">batch_size</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">read_batch</span><span class="p">(</span><span class="n">batch_idx</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">loss_function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Validate example: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">batch_size</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, val success: &quot;</span>
+              <span class="o">+</span> <span class="s2">&quot;</span><span class="si">{0:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">loss_function</span><span class="o">.</span><span class="n">get_average_score</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="s2">&quot;Precision&quot;</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;%&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">x</span><span class="o">.</span><span class="n">get_deepnet</span><span class="p">()</span><span class="o">.</span><span class="n">draw_graph</span><span class="p">(</span><span class="s2">&quot;./resnet18v1_quant&quot;</span><span class="p">)</span>
+<span class="n">x</span><span class="o">.</span><span class="n">get_deepnet</span><span class="p">()</span><span class="o">.</span><span class="n">log_stats</span><span class="p">(</span><span class="s2">&quot;./resnet18v1_quant_stats&quot;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">get_embedded_deepnet</span><span class="p">()</span><span class="o">.</span><span class="n">export_network_free_parameters</span><span class="p">(</span><span class="s2">&quot;resnet_weights_SAT&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can look at your quantized weights in the newly created <code class="docutils literal notranslate"><span class="pre">resnet_weights_SAT</span></code> folder.</p>
 </div>
 <div class="section" id="hand-made-model-lenet-example-ini-file">
 <h3>Hand-Made model : LeNet Example - INI File<a class="headerlink" href="#hand-made-model-lenet-example-ini-file" title="Permalink to this headline">¶</a></h3>
@@ -1051,7 +1282,7 @@ The final test accuracy must reach at least 98.9%:</p>
 for example <em>weights_clamped</em> folder.</p>
 <p>Congratulations! Your <code class="docutils literal notranslate"><span class="pre">LeNet</span></code> model have clamped weights now ! You can check the results
 in your <em>weights_clamped</em> folder, for example check your <em>conv3_weights_quant.distrib.png</em> file :</p>
-<div class="figure align-default">
+<div class="figure align-default" id="clamped-weights">
 <img alt="Clamp weights." src="../_images/qat_lenet_clamp.png" />
 </div>
 <p>Now that your <code class="docutils literal notranslate"><span class="pre">LeNet</span></code> model provides clamped weights you can play with it and try different quantization mode.
@@ -1126,7 +1357,7 @@ with this command:</p>
 </div>
 <p>Congratulations! Your <code class="docutils literal notranslate"><span class="pre">LeNet</span></code> model is now fully-quantized ! You can check the results
 in your <em>weights</em> folder, for example check your <em>conv3_weights_quant.distrib.png</em> file :</p>
-<div class="figure align-default">
+<div class="figure align-default" id="quantize-weights">
 <img alt="Quantized LeNet weights." src="../_images/qat_lenet_conv_q.png" />
 </div>
 <p>In addition you can have your model graph view that integrates the quantization information. This graph is automatically generated
@@ -1145,14 +1376,281 @@ of our quantized models under the <code class="docutils literal notranslate"><sp
 <p>Results must be exactly the same than with batch-normalization. Moreover quantizer modules have been entirely removed from your
 model !
 You can check the results in the newly generated <code class="docutils literal notranslate"><span class="pre">LeNet.ini.png</span></code> graph :</p>
-<div class="figure align-default">
+<div class="figure align-default" id="qat-without-batchnorm">
 <img alt="no batchnorm." src="../_images/qat_conv_nobn.png" />
 </div>
 <p>Moreover you can find your quantized weights and biases under the folder <code class="docutils literal notranslate"><span class="pre">weights_quantized</span></code>.</p>
 </div>
 <div class="section" id="hand-made-model-lenet-example-python">
 <h3>Hand-Made model : LeNet Example - Python<a class="headerlink" href="#hand-made-model-lenet-example-python" title="Permalink to this headline">¶</a></h3>
-<p>Coming soon.</p>
+<div class="section" id="part-1-learn-with-clamped-weights">
+<h4>Part 1 : Learn with clamped weights<a class="headerlink" href="#part-1-learn-with-clamped-weights" title="Permalink to this headline">¶</a></h4>
+<p>In this section, we will see how to apply the <code class="docutils literal notranslate"><span class="pre">SAT</span></code> quantization methodology using the python API.
+We will apply the SAT quantization procedure in a handmade LeNet model.</p>
+<p>You can get the script used in this example by clicking here : <a class="reference download internal" download="" href="../_downloads/6f6f531e6bdc31698897c6de665fa7ec/quantizer_handmade_part1.py"><code class="xref download docutils literal notranslate"><span class="pre">LeNet</span> <span class="pre">quantization</span> <span class="pre">example</span></code></a>.</p>
+<p>The first step is to learn <code class="docutils literal notranslate"><span class="pre">LeNet</span></code> on <code class="docutils literal notranslate"><span class="pre">MNIST</span></code> database with clamped weights.</p>
+<p>Let’s start by importing the folowing libraries and setting some global variables :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">n2d2</span>
+<span class="kn">import</span> <span class="nn">n2d2_ip</span>
+<span class="kn">from</span> <span class="nn">n2d2.cells.nn</span> <span class="kn">import</span> <span class="n">Dropout</span><span class="p">,</span> <span class="n">Fc</span><span class="p">,</span> <span class="n">Conv</span><span class="p">,</span> <span class="n">Pool2d</span><span class="p">,</span> <span class="n">BatchNorm2d</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">nb_epochs</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">256</span>
+<span class="n">n2d2</span><span class="o">.</span><span class="n">global_variables</span><span class="o">.</span><span class="n">cuda_device</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">n2d2</span><span class="o">.</span><span class="n">global_variables</span><span class="o">.</span><span class="n">default_model</span> <span class="o">=</span> <span class="s2">&quot;Frame_CUDA&quot;</span>
+</pre></div>
+</div>
+<p>Let’s create a <code class="docutils literal notranslate"><span class="pre">database</span></code> driver for MNIST, a <code class="docutils literal notranslate"><span class="pre">dataprovider</span></code> and apply <code class="docutils literal notranslate"><span class="pre">transformation</span></code> to the data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">### Create database ###&quot;</span><span class="p">)</span>
+<span class="n">database</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="n">data_path</span><span class="o">=</span><span class="n">data_path</span><span class="p">,</span> <span class="n">validation</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">database</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">### Create Provider ###&quot;</span><span class="p">)</span>
+<span class="n">provider</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">DataProvider</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">)</span>
+<span class="n">provider</span><span class="o">.</span><span class="n">add_transformation</span><span class="p">(</span><span class="n">n2d2</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">Rescale</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">32</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In our example we decided to quantize every convolutions and fully-connected layers.
+We will use the object <a class="reference internal" href="../python_api/cells.html#n2d2.ConfigSection" title="n2d2.ConfigSection"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.ConfigSection</span></code></a> to provide common parameters to the cells.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We need to use a function that will generate a new config section object to avoid giving the same objects to the one we are configuring.
+If we defined <code class="docutils literal notranslate"><span class="pre">conv_conf</span></code> as the <code class="docutils literal notranslate"><span class="pre">solver_conf</span></code> every <code class="docutils literal notranslate"><span class="pre">Conv</span> <span class="pre">cells</span></code> would have the same solver and quantizer object !</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">solver_conf</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">ConfigSection</span><span class="p">(</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">learning_rate_policy</span><span class="o">=</span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
+    <span class="n">momentum</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">decay</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">conv_conf</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">ConfigSection</span><span class="p">(</span>
+        <span class="n">activation</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">activation</span><span class="o">.</span><span class="n">Linear</span><span class="p">(),</span>
+        <span class="n">no_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">weights_solver</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="o">**</span><span class="n">solver_conf</span><span class="p">),</span>
+        <span class="n">bias_solver</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="o">**</span><span class="n">solver_conf</span><span class="p">),</span>
+        <span class="n">quantizer</span><span class="o">=</span><span class="n">n2d2_ip</span><span class="o">.</span><span class="n">quantizer</span><span class="o">.</span><span class="n">SATCell</span><span class="p">(</span>
+            <span class="n">apply_scaling</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="c1"># No scaling needed because each conv is followed by batch-normalization layers</span>
+            <span class="n">apply_quantization</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="c1"># Only clamp mode for the 1st step</span>
+    <span class="p">),)</span>
+<span class="k">def</span> <span class="nf">fc_conf</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">ConfigSection</span><span class="p">(</span>
+        <span class="n">activation</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">activation</span><span class="o">.</span><span class="n">Linear</span><span class="p">(),</span>
+        <span class="n">no_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">weights_solver</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="o">**</span><span class="n">solver_conf</span><span class="p">),</span>
+        <span class="n">bias_solver</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="o">**</span><span class="n">solver_conf</span><span class="p">),</span>
+        <span class="n">quantizer</span><span class="o">=</span><span class="n">n2d2_ip</span><span class="o">.</span><span class="n">quantizer</span><span class="o">.</span><span class="n">SATCell</span><span class="p">(</span>
+            <span class="n">apply_scaling</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># Scaling needed for Full-Connected</span>
+            <span class="n">apply_quantization</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="c1"># Only clamp mode for the 1st step</span>
+        <span class="p">),</span>
+    <span class="p">)</span>
+<span class="k">def</span> <span class="nf">bn_conf</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">ConfigSection</span><span class="p">(</span>
+        <span class="n">activation</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">activation</span><span class="o">.</span><span class="n">Rectifier</span><span class="p">(),</span>
+        <span class="n">scale_solver</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="o">**</span><span class="n">solver_conf</span><span class="p">),</span>
+        <span class="n">bias_solver</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="o">**</span><span class="n">solver_conf</span><span class="p">),</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Once we have defined the global parameters for each cell, we can define our <code class="docutils literal notranslate"><span class="pre">LeNet</span></code> model.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">### Loading Model ###&quot;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">Sequence</span><span class="p">([</span>
+    <span class="n">Conv</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">kernel_dims</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="o">**</span><span class="n">conv_conf</span><span class="p">()),</span>
+    <span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="o">**</span><span class="n">bn_conf</span><span class="p">()),</span>
+    <span class="n">Pool2d</span><span class="p">(</span><span class="n">pool_dims</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">stride_dims</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">pooling</span><span class="o">=</span><span class="s2">&quot;Max&quot;</span><span class="p">),</span>
+    <span class="n">Conv</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="o">**</span><span class="n">conv_conf</span><span class="p">()),</span>
+    <span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="o">**</span><span class="n">bn_conf</span><span class="p">()),</span>
+    <span class="n">Pool2d</span><span class="p">(</span><span class="n">pool_dims</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">stride_dims</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">pooling</span><span class="o">=</span><span class="s2">&quot;Max&quot;</span><span class="p">),</span>
+    <span class="n">Conv</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="o">**</span><span class="n">conv_conf</span><span class="p">()),</span>
+    <span class="n">Dropout</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Conv3.Dropout&quot;</span><span class="p">),</span>
+    <span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="o">**</span><span class="n">bn_conf</span><span class="p">()),</span>
+    <span class="n">Fc</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span> <span class="o">**</span><span class="n">fc_conf</span><span class="p">()),</span>
+    <span class="n">Dropout</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Fc1.Dropout&quot;</span><span class="p">),</span>
+    <span class="n">Fc</span><span class="p">(</span><span class="mi">84</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="o">**</span><span class="n">fc_conf</span><span class="p">()),</span>
+<span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+<span class="n">softmax</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">Softmax</span><span class="p">(</span><span class="n">with_loss</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">loss_function</span> <span class="o">=</span>  <span class="n">n2d2</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">Score</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The model defined, we can train it with a classic training loop :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">### Training ###&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nb_epochs</span><span class="p">):</span>
+
+    <span class="n">provider</span><span class="o">.</span><span class="n">set_partition</span><span class="p">(</span><span class="s2">&quot;Learn&quot;</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">learn</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"># Train Epoch: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; #&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">database</span><span class="o">.</span><span class="n">get_nb_stimuli</span><span class="p">(</span><span class="s1">&#39;Learn&#39;</span><span class="p">)</span><span class="o">/</span><span class="n">batch_size</span><span class="p">)):</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">read_random_batch</span><span class="p">()</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">loss_function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">back_propagate</span><span class="p">()</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Example: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">batch_size</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, loss: &quot;</span>
+              <span class="o">+</span> <span class="s2">&quot;</span><span class="si">{0:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">### Validation ###&quot;</span><span class="p">)</span>
+
+    <span class="n">loss_function</span><span class="o">.</span><span class="n">clear_success</span><span class="p">()</span>
+
+    <span class="n">provider</span><span class="o">.</span><span class="n">set_partition</span><span class="p">(</span><span class="s1">&#39;Validation&#39;</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">database</span><span class="o">.</span><span class="n">get_nb_stimuli</span><span class="p">(</span><span class="s1">&#39;Validation&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">batch_size</span><span class="p">)):</span>
+        <span class="n">batch_idx</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">batch_size</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">read_batch</span><span class="p">(</span><span class="n">batch_idx</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">loss_function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Validate example: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">batch_size</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, val success: &quot;</span>
+              <span class="o">+</span> <span class="s2">&quot;</span><span class="si">{0:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">loss_function</span><span class="o">.</span><span class="n">get_average_success</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&quot;%&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">### Testing ###&quot;</span><span class="p">)</span>
+
+<span class="n">provider</span><span class="o">.</span><span class="n">set_partition</span><span class="p">(</span><span class="s1">&#39;Test&#39;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">provider</span><span class="o">.</span><span class="n">get_database</span><span class="p">()</span><span class="o">.</span><span class="n">get_nb_stimuli</span><span class="p">(</span><span class="s1">&#39;Test&#39;</span><span class="p">)</span><span class="o">/</span><span class="n">batch_size</span><span class="p">)):</span>
+    <span class="n">batch_idx</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="n">batch_size</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">read_batch</span><span class="p">(</span><span class="n">batch_idx</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">loss_function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Example: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">batch_size</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, test success: &quot;</span>
+          <span class="o">+</span> <span class="s2">&quot;</span><span class="si">{0:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">loss_function</span><span class="o">.</span><span class="n">get_average_success</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&quot;%&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then, we can export the weights we have learned in order to use them for the second step.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">### Exporting weights ###</span>
+<span class="n">x</span><span class="o">.</span><span class="n">get_deepnet</span><span class="p">()</span><span class="o">.</span><span class="n">export_network_free_parameters</span><span class="p">(</span><span class="s2">&quot;./weights_clamped&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you check the generated file : <em>conv3_weights_quant.distrib.png</em> you should see the <a class="reference internal" href="#clamped-weights">clamped weights</a>.</p>
+</div>
+<div class="section" id="part-2-quantized-lenet-with-sat">
+<h4>Part 2 : Quantized LeNet with SAT<a class="headerlink" href="#part-2-quantized-lenet-with-sat" title="Permalink to this headline">¶</a></h4>
+<p>Now that we have learned clamped weights, we will quantize our network.</p>
+<p>You can get the script used in this example by clicking here : <a class="reference download internal" download="" href="../_downloads/85ffaf33bf6ddb287eddd928c4c8ec77/quantizer_handmade_part2.py"><code class="xref download docutils literal notranslate"><span class="pre">LeNet</span> <span class="pre">quantization</span> <span class="pre">example</span></code></a>.</p>
+<p>To do so, we will create a second script. We can begin by importing the <code class="docutils literal notranslate"><span class="pre">MNIST</span></code> database and create a <code class="docutils literal notranslate"><span class="pre">dataprovider</span></code> just like in the previous section.</p>
+<p>Then we will copy the <a class="reference internal" href="../python_api/cells.html#n2d2.ConfigSection" title="n2d2.ConfigSection"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.ConfigSection</span></code></a> from the previous section and add a quantizer argument.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">solver_conf</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">ConfigSection</span><span class="p">(</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">learning_rate_policy</span><span class="o">=</span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
+    <span class="n">momentum</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">decay</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">conv_conf</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">ConfigSection</span><span class="p">(</span>
+        <span class="n">activation</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">activation</span><span class="o">.</span><span class="n">Linear</span><span class="p">(),</span>
+        <span class="n">no_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">weights_solver</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="o">**</span><span class="n">solver_conf</span><span class="p">),</span>
+        <span class="n">bias_solver</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="o">**</span><span class="n">solver_conf</span><span class="p">),</span>
+        <span class="n">quantizer</span><span class="o">=</span><span class="n">n2d2_ip</span><span class="o">.</span><span class="n">quantizer</span><span class="o">.</span><span class="n">SATCell</span><span class="p">(</span>
+            <span class="n">apply_scaling</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">apply_quantization</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># ApplyQuantization is now set to True</span>
+            <span class="nb">range</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="c1"># Conv is now quantized in 4-bits range (2^4 - 1)</span>
+    <span class="p">))</span>
+<span class="k">def</span> <span class="nf">fc_conf</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">ConfigSection</span><span class="p">(</span>
+        <span class="n">activation</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">activation</span><span class="o">.</span><span class="n">Linear</span><span class="p">(),</span>
+        <span class="n">no_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">weights_solver</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="o">**</span><span class="n">solver_conf</span><span class="p">),</span>
+        <span class="n">bias_solver</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="o">**</span><span class="n">solver_conf</span><span class="p">),</span>
+        <span class="n">quantizer</span><span class="o">=</span><span class="n">n2d2_ip</span><span class="o">.</span><span class="n">quantizer</span><span class="o">.</span><span class="n">SATCell</span><span class="p">(</span>
+            <span class="n">apply_scaling</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">apply_quantization</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># ApplyQuantization is now set to True</span>
+            <span class="nb">range</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="c1"># Fc is now quantized in 4-bits range (2^4 - 1)</span>
+    <span class="p">))</span>
+<span class="k">def</span> <span class="nf">bn_conf</span><span class="p">():</span>
+  <span class="k">return</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">ConfigSection</span><span class="p">(</span>
+      <span class="n">activation</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">activation</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span>
+          <span class="n">quantizer</span><span class="o">=</span><span class="n">n2d2_ip</span><span class="o">.</span><span class="n">quantizer</span><span class="o">.</span><span class="n">SATAct</span><span class="p">(</span>
+              <span class="n">alpha</span><span class="o">=</span><span class="mf">6.0</span><span class="p">,</span>
+              <span class="nb">range</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="c1"># -&gt; 15 for 4-bits range (2^4-1)</span>
+      <span class="p">)),</span>
+      <span class="n">scale_solver</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="o">**</span><span class="n">solver_conf</span><span class="p">),</span>
+      <span class="n">bias_solver</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="o">**</span><span class="n">solver_conf</span><span class="p">),</span>
+  <span class="p">)</span>
+</pre></div>
+</div>
+<p>The configuration done, we will defined our new network.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The first <code class="docutils literal notranslate"><span class="pre">Convolution</span></code> and last <code class="docutils literal notranslate"><span class="pre">Fully</span> <span class="pre">Connected</span></code> layer have differents parameters because we will quantize them in 8-bits instead of 4-bit as it is a common practice.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">### Creating model ###</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">### Loading Model ###&quot;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">Sequence</span><span class="p">([</span>
+    <span class="n">Conv</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">kernel_dims</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+        <span class="n">activation</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">activation</span><span class="o">.</span><span class="n">Linear</span><span class="p">(),</span>
+        <span class="n">no_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">weights_solver</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="o">**</span><span class="n">solver_conf</span><span class="p">),</span>
+        <span class="n">bias_solver</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="o">**</span><span class="n">solver_conf</span><span class="p">),</span>
+        <span class="n">quantizer</span><span class="o">=</span><span class="n">n2d2_ip</span><span class="o">.</span><span class="n">quantizer</span><span class="o">.</span><span class="n">SATCell</span><span class="p">(</span>
+            <span class="n">apply_scaling</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">apply_quantization</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># ApplyQuantization is now set to True</span>
+            <span class="nb">range</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="c1"># Conv_0 is now quantized in 8-bits range (2^8 - 1)</span>
+    <span class="p">)),</span>
+    <span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="o">**</span><span class="n">bn_conf</span><span class="p">()),</span>
+    <span class="n">Pool2d</span><span class="p">(</span><span class="n">pool_dims</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">stride_dims</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">pooling</span><span class="o">=</span><span class="s2">&quot;Max&quot;</span><span class="p">),</span>
+    <span class="n">Conv</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="o">**</span><span class="n">conv_conf</span><span class="p">()),</span>
+    <span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="o">**</span><span class="n">bn_conf</span><span class="p">()),</span>
+    <span class="n">Pool2d</span><span class="p">(</span><span class="n">pool_dims</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">stride_dims</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">pooling</span><span class="o">=</span><span class="s2">&quot;Max&quot;</span><span class="p">),</span>
+    <span class="n">Conv</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="o">**</span><span class="n">conv_conf</span><span class="p">()),</span>
+    <span class="n">Dropout</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Conv3.Dropout&quot;</span><span class="p">),</span>
+    <span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="o">**</span><span class="n">bn_conf</span><span class="p">()),</span>
+    <span class="n">Fc</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span> <span class="o">**</span><span class="n">fc_conf</span><span class="p">()),</span>
+    <span class="n">Dropout</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Fc1.Dropout&quot;</span><span class="p">),</span>
+    <span class="n">Fc</span><span class="p">(</span><span class="mi">84</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="n">activation</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">activation</span><span class="o">.</span><span class="n">Linear</span><span class="p">(),</span>
+        <span class="n">no_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">weights_solver</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="o">**</span><span class="n">solver_conf</span><span class="p">),</span>
+        <span class="n">bias_solver</span><span class="o">=</span><span class="n">n2d2</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="o">**</span><span class="n">solver_conf</span><span class="p">),</span>
+        <span class="n">quantizer</span><span class="o">=</span><span class="n">n2d2_ip</span><span class="o">.</span><span class="n">quantizer</span><span class="o">.</span><span class="n">SATCell</span><span class="p">(</span>
+            <span class="n">apply_scaling</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">apply_quantization</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># ApplyQuantization is now set to True</span>
+            <span class="nb">range</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="c1"># Fc_1 is now quantized in 8-bits range (2^8 - 1)</span>
+    <span class="p">)),</span>
+<span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The model created we can import the learned parameter.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importing the clamped weights</span>
+<span class="n">model</span><span class="o">.</span><span class="n">import_free_parameters</span><span class="p">(</span><span class="s2">&quot;./weights_clamped&quot;</span><span class="p">,</span> <span class="n">ignore_not_exists</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The model is now ready for a training (you can use the training loop presented in the previous section).</p>
+<p>The training done, you can save the new quantized weights with the following line :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">### Exporting weights ###</span>
+<span class="n">x</span><span class="o">.</span><span class="n">get_deepnet</span><span class="p">()</span><span class="o">.</span><span class="n">export_network_free_parameters</span><span class="p">(</span><span class="s2">&quot;./new_weights&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you check the generated file : <em>conv3_weights_quant.distrib.png</em> you should see the <a class="reference internal" href="#quantize-weights">quantize weights</a>.</p>
+<p>You can fuse <code class="docutils literal notranslate"><span class="pre">BatchNorm</span></code> and <code class="docutils literal notranslate"><span class="pre">Conv</span></code> layers by using the following line :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">### Fuse ###</span>
+<span class="n">n2d2_ip</span><span class="o">.</span><span class="n">quantizer</span><span class="o">.</span><span class="n">fuse_qat</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">get_deepnet</span><span class="p">(),</span> <span class="n">provider</span><span class="p">,</span> <span class="s2">&quot;NONE&quot;</span><span class="p">)</span>
+<span class="n">x</span><span class="o">.</span><span class="n">get_deepnet</span><span class="p">()</span><span class="o">.</span><span class="n">draw_graph</span><span class="p">(</span><span class="s2">&quot;./lenet_quant.py&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can check the generated file : <em>lenet_quant.py.png</em> which should looks like the fig <a class="reference internal" href="#qat-without-batchnorm">QAT without Batchnorm</a>.</p>
+</div>
 </div>
 </div>
 <div class="section" id="results">

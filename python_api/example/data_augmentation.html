@@ -1,0 +1,379 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Data augmentation &mdash; N2D2  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Performance analysis" href="performance_analysis.html" />
+    <link rel="prev" title="Example" href="../example.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> N2D2
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/intro.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/about.html">About N2D2-IP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/simus.html">Performing simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/perfs_tools.html">Performance evaluation tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/tuto.html">Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../onnx/convert.html">Obtain ONNX models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../onnx/import.html">Import ONNX models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../onnx/transfer.html">Train from ONNX models</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../quant/post.html">Post-training quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quant/qat.html">[NEW] Quantization-Aware Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../export/CPP.html">Export: C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../export/CPP_STM32.html">Export: C++/STM32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../export/TensorRT.html">Export: TensorRT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../export/DNeuro.html">Export: DNeuro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../export/ONNX.html">Export: ONNX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../export/legacy.html">Export: other / legacy</a></li>
+</ul>
+<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../ini/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ini/databases.html">Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ini/data_analysis.html">Stimuli data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ini/environment.html">Stimuli provider (Environment)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ini/layers.html">Network Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ini/target.html">Targets (outputs &amp; losses)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../adversarial.html">Adversarial module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Python API:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../databases.html">Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cells.html">Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tensor.html">Tensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability.html">Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../export.html">Export</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../example.html">Example</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Data augmentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#preliminary">Preliminary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#loading-data">Loading data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Data augmentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-labels">Getting labels</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="performance_analysis.html">Performance analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="load_onnx.html">Load from ONNX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graph_manipulation.html">Graph manipulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="torch.html">Torch interoperability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keras.html">Keras interoperability</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../core/core.html">Core N2D2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core/example.html">Example</a></li>
+</ul>
+<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_intro.html">Introduction</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">N2D2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../example.html">Example</a> &raquo;</li>
+        
+      <li>Data augmentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/python_api/example/data_augmentation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="data-augmentation">
+<h1>Data augmentation<a class="headerlink" href="#data-augmentation" title="Permalink to this headline">¶</a></h1>
+<p>In this example, we will see how to use <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a> and <a class="reference internal" href="../databases.html#n2d2.transform.Transformation" title="n2d2.transform.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.transform.Transformation</span></code></a> to load data and do some data augmentation.</p>
+<p>You can find the full python script here <a class="reference download internal" download="" href="../../_downloads/3740b31858f42d0a2f23790c8a526182/data_augmentation.py"><code class="xref download docutils literal notranslate"><span class="pre">data_augmentation.py</span></code></a>.</p>
+<div class="section" id="preliminary">
+<h2>Preliminary<a class="headerlink" href="#preliminary" title="Permalink to this headline">¶</a></h2>
+<p>For this tutorial, we will use n2d2 for data augmentation, and numpy and matplotlib for the visualization.</p>
+<p>We will create a method plot_tensor to save the generated images from an <a class="reference internal" href="../tensor.html#n2d2.Tensor" title="n2d2.Tensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">n2d2</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">plot_tensor</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">tensor</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="loading-data">
+<h2>Loading data<a class="headerlink" href="#loading-data" title="Permalink to this headline">¶</a></h2>
+<p>We will begin by creating a <a class="reference internal" href="../databases.html#n2d2.database.MNIST" title="n2d2.database.MNIST"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.database.MNIST</span></code></a> driver to load the MNIST dataset.
+We will then create a provider to get the images, we use a batch size of 1 to get only one image.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">database</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="n">data_path</span><span class="o">=</span><span class="s2">&quot;/local/DATABASE/mnist&quot;</span><span class="p">,</span> <span class="n">validation</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">provider</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">DataProvider</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="p">[</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can get the number of data per partition by using the method <code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.database.Database.get_partition_summary()</span></code> which will print the paritionement of data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">database</span><span class="o">.</span><span class="n">get_partition_summary</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Output :</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Number of stimuli : 70000
+Learn         : 54000 stimuli (77.14%)
+Test          : 10000 stimuli (14.29%)
+Validation    : 6000 stimuli (8.57%)
+Unpartitioned : 0 stimuli (0.0%)
+</pre></div>
+</div>
+<p>To select which partition you want to read from you need to use the method <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider.set_partition" title="n2d2.provider.DataProvider.set_partition"><code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.set_partition()</span></code></a></p>
+<p>To read data from a <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a> you can use multiple methods.</p>
+<p>You can use the methods <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider.read_batch" title="n2d2.provider.DataProvider.read_batch"><code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.read_batch()</span></code></a> or <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider.read_random_batch" title="n2d2.provider.DataProvider.read_random_batch"><code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.read_random_batch()</span></code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a> is an <cite>iterable</cite>, so you can use the <code class="docutils literal notranslate"><span class="pre">next()</span></code> function or a for loop !</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># for loop example</span>
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">provider</span><span class="p">:</span>
+    <span class="k">pass</span>
+<span class="c1"># next example</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>For this tutorial we will use <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider.read_batch" title="n2d2.provider.DataProvider.read_batch"><code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.read_batch()</span></code></a> !</p>
+<p>With this code we will get the first image and plot it :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">read_batch</span><span class="p">(</span><span class="n">idx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">*</span> <span class="mi">255</span>
+<span class="n">plot_tensor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="s2">&quot;first_stimuli.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="figure align-default">
+<img alt="First stimuli of the MNIST dataset." src="../../_images/first_stimuli.png" />
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Data augmentation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>To do data augmentation with N2D2 we use <a class="reference internal" href="../databases.html#n2d2.transform.Transformation" title="n2d2.transform.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.transform.Transformation</span></code></a>.
+You can add transformation to provider with the method <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider.add_on_the_fly_transformation" title="n2d2.provider.DataProvider.add_on_the_fly_transformation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.add_on_the_fly_transformation()</span></code></a> and <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider.add_transformation" title="n2d2.provider.DataProvider.add_transformation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.add_transformation()</span></code></a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Since we already loaded the first image the method <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider.add_transformation" title="n2d2.provider.DataProvider.add_transformation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.add_transformation()</span></code></a> would not apply the transformation to the image.</p>
+</div>
+<p>By using the transformation <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.transform.Flip</span></code> we will flip vertically our image.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">provider</span><span class="o">.</span><span class="n">add_on_the_fly_transformation</span><span class="p">(</span><span class="n">n2d2</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">Flip</span><span class="p">(</span><span class="n">vertical_flip</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+<span class="n">image</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">read_batch</span><span class="p">(</span><span class="n">idx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">*</span> <span class="mi">255</span>
+<span class="n">plot_tensor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="s2">&quot;first_stimuli_fliped.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="figure align-default">
+<img alt="First stimuli of the MNIST dataset but flipped." src="../../_images/first_stimuli_fliped.png" />
+</div>
+<p>We will negate the first transformation with another <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.transform.Flip</span></code> which we will add with the method <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider.add_transformation" title="n2d2.provider.DataProvider.add_transformation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.add_transformation()</span></code></a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># negating the first transformation with another one</span>
+<span class="n">provider</span><span class="o">.</span><span class="n">add_transformation</span><span class="p">(</span><span class="n">n2d2</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">Flip</span><span class="p">(</span><span class="n">vertical_flip</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">read_batch</span><span class="p">(</span><span class="n">idx</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">*</span> <span class="mi">255</span>
+<span class="n">plot_tensor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="s2">&quot;second_stimuli.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="figure align-default">
+<img alt="Second stimuli of the MNIST dataset." src="../../_images/second_stimuli.png" />
+</div>
+</div>
+<div class="section" id="getting-labels">
+<h2>Getting labels<a class="headerlink" href="#getting-labels" title="Permalink to this headline">¶</a></h2>
+<p>To get the labels</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Second stimuli label : &quot;</span><span class="p">,</span> <span class="n">provider</span><span class="o">.</span><span class="n">get_labels</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><strong>Output :</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Second stimuli label : 5
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="performance_analysis.html" class="btn btn-neutral float-right" title="Performance analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../example.html" class="btn btn-neutral float-left" title="Example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, CEA LIST
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

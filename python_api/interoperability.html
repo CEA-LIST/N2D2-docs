@@ -100,7 +100,7 @@
 <p class="caption"><span class="caption-text">Quantization and Export:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../quant/post.html">Post-training quantization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">Quantization-Aware Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">[NEW] Quantization-Aware Training</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/CPP.html">Export: C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/CPP_STM32.html">Export: C++/STM32</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/TensorRT.html">Export: TensorRT</a></li>
@@ -393,14 +393,14 @@ The torch_model is exported to N2D2 via ONNX.</p>
 
 <dl class="py class">
 <dt id="pytorch_interoperability.Block">
-<em class="property">class </em><code class="sig-prename descclassname">pytorch_interoperability.</code><code class="sig-name descname">Block</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">block</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytorch_interoperability.Block" title="Permalink to this definition">¶</a></dt>
-<dd><p>PyTorch layer used to interface an <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Block</span></code> object in a PyTorch Network.</p>
+<em class="property">class </em><code class="sig-prename descclassname">pytorch_interoperability.</code><code class="sig-name descname">Block</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">block</span></em>, <em class="sig-param"><span class="n">need_to_flatten</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytorch_interoperability.Block" title="Permalink to this definition">¶</a></dt>
+<dd><p>PyTorch layer used to interface an <a class="reference internal" href="cells.html#n2d2.cells.Block" title="n2d2.cells.Block"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Block</span></code></a> object in a PyTorch Network.</p>
 <dl class="py method">
 <dt id="pytorch_interoperability.Block.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">block</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytorch_interoperability.Block.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">block</span></em>, <em class="sig-param"><span class="n">need_to_flatten</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytorch_interoperability.Block.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>block</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Block</span></code>) – n2d2 block object to interface with PyTorch</p>
+<dd class="field-odd"><p><strong>block</strong> (<a class="reference internal" href="cells.html#n2d2.cells.Block" title="n2d2.cells.Block"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Block</span></code></a>) – n2d2 block object to interface with PyTorch</p>
 </dd>
 </dl>
 </dd></dl>
@@ -410,6 +410,19 @@ The torch_model is exported to N2D2 via ONNX.</p>
 <code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytorch_interoperability.Block.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Use a custom <code class="docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code> that use, on forward the <code class="docutils literal notranslate"><span class="pre">Propagation</span></code> of n2d2.
 And on backward the <code class="docutils literal notranslate"><span class="pre">BackPropagation</span></code> and <code class="docutils literal notranslate"><span class="pre">Update</span></code> of n2d2.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pytorch_interoperability.Block.get_block">
+<code class="sig-name descname">get_block</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; n2d2.cells.cell.Block<a class="headerlink" href="#pytorch_interoperability.Block.get_block" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The Block used by the custom sequential</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="cells.html#n2d2.cells.Block" title="n2d2.cells.Block"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Block</span></code></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

@@ -100,7 +100,7 @@
 <p class="caption"><span class="caption-text">Quantization and Export:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../quant/post.html">Post-training quantization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">Quantization-Aware Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">[NEW] Quantization-Aware Training</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/CPP.html">Export: C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/CPP_STM32.html">Export: C++/STM32</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/TensorRT.html">Export: TensorRT</a></li>
@@ -935,30 +935,32 @@ This transformation is generally used on-the-fly
 <dl class="py method">
 <dt id="n2d2.transform.ColorSpace.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">color_space</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ColorSpace.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Possible values for color_space parameter :
-<code class="docutils literal notranslate"><span class="pre">BGR</span></code>: convert any gray, BGR or BGRA image to BGR,
-<code class="docutils literal notranslate"><span class="pre">RGB</span></code>: convert any gray, BGR or BGRA image to RGB,
-<code class="docutils literal notranslate"><span class="pre">HSV</span></code>: convert BGR image to HSV,
-<code class="docutils literal notranslate"><span class="pre">HLS</span></code>: convert BGR image to HLS,
-<code class="docutils literal notranslate"><span class="pre">YCrCb</span></code>: convert BGR image to YCrCb,
-<code class="docutils literal notranslate"><span class="pre">CIELab</span></code>: convert BGR image to CIELab,
-<code class="docutils literal notranslate"><span class="pre">CIELuv</span></code>: convert BGR image to CIELuv,
-<code class="docutils literal notranslate"><span class="pre">RGB_to_BGR</span></code>: convert RGB image to BGR,
-<code class="docutils literal notranslate"><span class="pre">RGB_to_HSV</span></code>: convert RGB image to HSV,
-<code class="docutils literal notranslate"><span class="pre">RGB_to_HLS</span></code>: convert RGB image to HLS,
-<code class="docutils literal notranslate"><span class="pre">RGB_to_YCrCb</span></code>: convert RGB image to YCrCb,
-<code class="docutils literal notranslate"><span class="pre">RGB_to_CIELab</span></code>: convert RGB image to CIELab,
-<code class="docutils literal notranslate"><span class="pre">RGB_to_CIELuv</span></code>: convert RGB image to CIELuv,
-<code class="docutils literal notranslate"><span class="pre">HSV_to_BGR</span></code>: convert HSV image to BGR,
-<code class="docutils literal notranslate"><span class="pre">HSV_to_RGB</span></code>: convert HSV image to RGB,
-<code class="docutils literal notranslate"><span class="pre">HLS_to_BGR</span></code>: convert HLS image to BGR,
-<code class="docutils literal notranslate"><span class="pre">HLS_to_RGB</span></code>: convert HLS image to RGB,
-<code class="docutils literal notranslate"><span class="pre">YCrCb_to_BGR</span></code>: convert YCrCb image to BGR,
-<code class="docutils literal notranslate"><span class="pre">YCrCb_to_RGB</span></code>: convert YCrCb image to RGB,
-<code class="docutils literal notranslate"><span class="pre">CIELab_to_BGR</span></code>: convert CIELab image to BGR,
-<code class="docutils literal notranslate"><span class="pre">CIELab_to_RGB</span></code>: convert CIELab image to RGB,
-<code class="docutils literal notranslate"><span class="pre">CIELuv_to_BGR</span></code>: convert CIELuv image to BGR,
-<code class="docutils literal notranslate"><span class="pre">CIELuv_to_RGB</span></code>: convert CIELuv image to RGB.</p>
+<dd><p>Possible values for <code class="docutils literal notranslate"><span class="pre">color_space</span></code> parameter :</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BGR</span></code>: convert any gray, BGR or BGRA image to BGR,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RGB</span></code>: convert any gray, BGR or BGRA image to RGB,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HSV</span></code>: convert BGR image to HSV,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HLS</span></code>: convert BGR image to HLS,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">YCrCb</span></code>: convert BGR image to YCrCb,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CIELab</span></code>: convert BGR image to CIELab,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CIELuv</span></code>: convert BGR image to CIELuv,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RGB_to_BGR</span></code>: convert RGB image to BGR,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RGB_to_HSV</span></code>: convert RGB image to HSV,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RGB_to_HLS</span></code>: convert RGB image to HLS,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RGB_to_YCrCb</span></code>: convert RGB image to YCrCb,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RGB_to_CIELab</span></code>: convert RGB image to CIELab,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RGB_to_CIELuv</span></code>: convert RGB image to CIELuv,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HSV_to_BGR</span></code>: convert HSV image to BGR,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HSV_to_RGB</span></code>: convert HSV image to RGB,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HLS_to_BGR</span></code>: convert HLS image to BGR,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HLS_to_RGB</span></code>: convert HLS image to RGB,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">YCrCb_to_BGR</span></code>: convert YCrCb image to BGR,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">YCrCb_to_RGB</span></code>: convert YCrCb image to RGB,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CIELab_to_BGR</span></code>: convert CIELab image to BGR,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CIELab_to_RGB</span></code>: convert CIELab image to RGB,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CIELuv_to_BGR</span></code>: convert CIELuv image to BGR,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CIELuv_to_RGB</span></code>: convert CIELuv image to RGB.</p></li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">

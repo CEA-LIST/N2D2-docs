@@ -100,7 +100,7 @@
 <p class="caption"><span class="caption-text">Quantization and Export:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../quant/post.html">Post-training quantization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">Quantization-Aware Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">[NEW] Quantization-Aware Training</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/CPP.html">Export: C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/CPP_STM32.html">Export: C++/STM32</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/TensorRT.html">Export: TensorRT</a></li>
@@ -124,6 +124,7 @@
 <li class="toctree-l1"><a class="reference internal" href="databases.html">Databases</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Cells</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#block">Block</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sequence">Sequence</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#layer">Layer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#deepnetcell">DeepNetCell</a><ul>
@@ -272,9 +273,9 @@
 <dl class="simple">
 <dt>Cells are organize with the following logic :</dt><dd><ul class="simple">
 <li><p><a class="reference internal" href="#n2d2.cells.NeuralNetworkCell" title="n2d2.cells.NeuralNetworkCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.NeuralNetworkCell</span></code></a> : Atomic cell of a neural network;</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Block</span></code> : Store a collection of <a class="reference internal" href="#n2d2.cells.NeuralNetworkCell" title="n2d2.cells.NeuralNetworkCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.NeuralNetworkCell</span></code></a>, the storage order does <strong>not</strong> determine the graph computation;</p></li>
+<li><p><a class="reference internal" href="#n2d2.cells.Block" title="n2d2.cells.Block"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Block</span></code></a> : Store a collection of <a class="reference internal" href="#n2d2.cells.NeuralNetworkCell" title="n2d2.cells.NeuralNetworkCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.NeuralNetworkCell</span></code></a>, the storage order does <strong>not</strong> determine the graph computation;</p></li>
 <li><p><a class="reference internal" href="#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a> : This cell allow you to use an <a class="reference internal" href="../core/core.html#N2D2.DeepNet" title="N2D2.DeepNet"><code class="xref py py-class docutils literal notranslate"><span class="pre">N2D2.DeepNet</span></code></a>, it can be used for <cite>ONNX</cite> and <cite>INI</cite> import or to run optimize learning;</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Iterable</span></code> : Similar to <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Block</span></code> but the order of storage determine the computation graph;</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Iterable</span></code> : Similar to <a class="reference internal" href="#n2d2.cells.Block" title="n2d2.cells.Block"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Block</span></code></a> but the order of storage determine the computation graph;</p></li>
 <li><p><a class="reference internal" href="#n2d2.cells.Sequence" title="n2d2.cells.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Sequence</span></code></a> : A vertical structure to create neural network;</p></li>
 <li><p><a class="reference internal" href="#n2d2.cells.Layer" title="n2d2.cells.Layer"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Layer</span></code></a> : An horizontal structure to create neural network.</p></li>
 </ul>
@@ -282,6 +283,62 @@
 </dl>
 <div class="figure align-default">
 <img alt="Cell class diagram" src="../_images/n2d2_cell_diagram.png" />
+</div>
+<div class="section" id="block">
+<h3>Block<a class="headerlink" href="#block" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="n2d2.cells.Block">
+<em class="property">class </em><code class="sig-prename descclassname">n2d2.cells.</code><code class="sig-name descname">Block</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cells</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Block" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Block class is the most general type of cell container, from which all other containers are derived.
+It saves its cells internally with a dictionary. The Block class has no implicit structure for propagation,
+the __call__ method therefore has to be defined explicitly.</p>
+<dl class="py method">
+<dt id="n2d2.cells.Block.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cells</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Block.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.Block.get_cell">
+<code class="sig-name descname">get_cell</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Block.get_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the low level view of a cell.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.Block.get_cells">
+<code class="sig-name descname">get_cells</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Block.get_cells" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns dictionary with all cells that are not Blocks (i.e. NeuralNetworkCells). This allows
+therefore to access all cells by a dictionary without having to consider the recursive block
+structure of the model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.Block.is_integral">
+<code class="sig-name descname">is_integral</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Block.is_integral" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the parameters of every cell have an integral precision.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.Block.set_back_propagate">
+<code class="sig-name descname">set_back_propagate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Block.set_back_propagate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set back_propagate boolean of trainable cells.
+:param value: If True trainable cell will enable back propagation.
+:type value: bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.Block.set_solver">
+<code class="sig-name descname">set_solver</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">solver</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Block.set_solver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a solver for every optimizable parameters in this Block. Optimizable parameters are weights, biases and quantizers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>solver</strong> (<a class="reference internal" href="#n2d2.solver.Solver" title="n2d2.solver.Solver"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.solver.Solver</span></code></a>, optional) – Solver to use for every optimizable parameters, default= <a class="reference internal" href="#n2d2.solver.SGD" title="n2d2.solver.SGD"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.solver.SGD</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="sequence">
 <h3>Sequence<a class="headerlink" href="#sequence" title="Permalink to this headline">¶</a></h3>
@@ -313,6 +370,12 @@
 <dd><p>Returns dictionary with all cells that are not Blocks (i.e. NeuralNetworkCells). This allows
 therefore to access all cells by a dictionary without having to consider the recursive block
 structure of the model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.Sequence.is_integral">
+<code class="sig-name descname">is_integral</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Sequence.is_integral" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the parameters of every cell have an integral precision.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -391,6 +454,12 @@ structure of the model</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="n2d2.cells.Layer.is_integral">
+<code class="sig-name descname">is_integral</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Layer.is_integral" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the parameters of every cell have an integral precision.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="n2d2.cells.Layer.set_back_propagate">
 <code class="sig-name descname">set_back_propagate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Layer.set_back_propagate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set back_propagate boolean of trainable cells.
@@ -421,7 +490,7 @@ structure of the model</p>
 <dt id="n2d2.cells.DeepNetCell">
 <em class="property">class </em><code class="sig-prename descclassname">n2d2.cells.</code><code class="sig-name descname">DeepNetCell</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N2D2_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.DeepNetCell" title="Permalink to this definition">¶</a></dt>
 <dd><p>n2d2 wrapper for a N2D2 deepnet object. Allows chaining a N2D2 deepnet (for example loaded from a ONNX or INI file)
-into the dynamic computation graph of the n2d2 API. During each use of the  the __call__ method,
+into the dynamic computation graph of the n2d2 API. During each use of the  the <code class="docutils literal notranslate"><span class="pre">__call__</span></code> method,
 the N2D2 deepnet is converted to a n2d2 representation and the N2D2 deepnet is concatenated to the deepnet of the
 incoming tensor object.
 The object is manipulated with the bound methods of the N2D2 DeepNet object, and its computation graph is
@@ -518,6 +587,12 @@ structure of the model</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="n2d2.cells.DeepNetCell.is_integral">
+<code class="sig-name descname">is_integral</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.DeepNetCell.is_integral" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the parameters of every cell have an integral precision.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="n2d2.cells.DeepNetCell.learn">
 <code class="sig-name descname">learn</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.DeepNetCell.learn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the network to <code class="docutils literal notranslate"><span class="pre">learn</span></code> mode.</p>
@@ -529,7 +604,7 @@ structure of the model</p>
 <dd><p>Load a deepnet from an INI file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>model_path</strong> (<em>str</em>) – Path to the ini file.</p>
+<dd class="field-odd"><p><strong>model_path</strong> (<em>str</em>) – Path to the <code class="docutils literal notranslate"><span class="pre">ini</span></code> file.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -542,8 +617,8 @@ structure of the model</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>provider</strong> (<a class="reference internal" href="databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a>) – Provider object to base deepnet upon</p></li>
-<li><p><strong>model_path</strong> (<em>str</em>) – Path to the model.</p></li>
-<li><p><strong>ini_file</strong> (<em>str</em>) – Path to an optional .ini file with additional onnx import instructions</p></li>
+<li><p><strong>model_path</strong> (<em>str</em>) – Path to the <code class="docutils literal notranslate"><span class="pre">onnx</span></code> model.</p></li>
+<li><p><strong>ini_file</strong> (<em>str</em>) – Path to an optional <code class="docutils literal notranslate"><span class="pre">.ini</span></code> file with additional onnx import instructions</p></li>
 <li><p><strong>ignore_cells</strong> (<em>list</em><em>, </em><em>optional</em>) – List of cells name to ignore, default=None</p></li>
 </ul>
 </dd>
@@ -556,7 +631,7 @@ structure of the model</p>
 <dd><p>Remove a cell from the encapsulated deepnet.
 :param name: Name of cell that shall be removed.
 :type name: str
-:param reconnect: If <cite>True</cite>, reconnects the parents with the child of the removed cell, default=True
+:param reconnect: If <code class="docutils literal notranslate"><span class="pre">True</span></code>, reconnects the parents with the child of the removed cell, default=True
 :type reconnect: bool, optional</p>
 </dd></dl>
 
@@ -571,12 +646,12 @@ structure of the model</p>
 <li><p><strong>report</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of steps between reportings, default=100</p></li>
 <li><p><strong>test_index</strong> (<em>int</em><em>, </em><em>optional</em>) – Test a single specific stimulus index in the Test set, default=-1</p></li>
 <li><p><strong>test_id</strong> (<em>int</em><em>, </em><em>optional</em>) – Test a single specific stimulus ID (takes precedence over <cite>test_index</cite>), default=-1</p></li>
-<li><p><strong>qat_sat</strong> (<em>bool</em><em>, </em><em>optional</em>) – Fuse a QAT trained with SAT method, default=False</p></li>
+<li><p><strong>qat_sat</strong> (<em>bool</em><em>, </em><em>optional</em>) – Fuse a QAT trained model with the SAT method, default=False</p></li>
 <li><p><strong>log_kernels</strong> (<em>bool</em><em>, </em><em>optional</em>) – Log kernels after learning, default=False</p></li>
-<li><p><strong>wt_round_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – Weights clipping mode on export, can be <cite>NONE</cite>,`RINTF`, default=”NONE”</p></li>
-<li><p><strong>b_round_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – Biases clipping mode on export, can be <cite>NONE</cite>,`RINTF`, default=”NONE”</p></li>
-<li><p><strong>c_round_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – Clip clipping mode on export, can be <cite>NONE</cite>,`RINTF`, default=”NONE”</p></li>
-<li><p><strong>act_scaling_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – activation scaling mode on export, can be <cite>NONE</cite>, <cite>FLOAT_MULT</cite>, <cite>FIXED_MULT16</cite>, <cite>SINGLE_SHIFT</cite> or <cite>DOUBLE_SHIFT</cite>, default=”FLOAT_MULT”</p></li>
+<li><p><strong>wt_round_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – Weights clipping mode on export, can be <code class="docutils literal notranslate"><span class="pre">NONE</span></code>, <code class="docutils literal notranslate"><span class="pre">RINTF</span></code>, default=”NONE”</p></li>
+<li><p><strong>b_round_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – Biases clipping mode on export, can be <code class="docutils literal notranslate"><span class="pre">NONE</span></code>, <code class="docutils literal notranslate"><span class="pre">RINTF</span></code>, default=”NONE”</p></li>
+<li><p><strong>c_round_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – Clip clipping mode on export, can be <code class="docutils literal notranslate"><span class="pre">NONE</span></code>,``RINTF``, default=”NONE”</p></li>
+<li><p><strong>act_scaling_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – activation scaling mode on export, can be <code class="docutils literal notranslate"><span class="pre">NONE</span></code>, <code class="docutils literal notranslate"><span class="pre">FLOAT_MULT</span></code>, <code class="docutils literal notranslate"><span class="pre">FIXED_MULT16</span></code>, <code class="docutils literal notranslate"><span class="pre">SINGLE_SHIFT</span></code> or <code class="docutils literal notranslate"><span class="pre">DOUBLE_SHIFT</span></code>, default=”FLOAT_MULT”</p></li>
 <li><p><strong>log_JSON</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, log JSON annotations, default=False</p></li>
 <li><p><strong>log_outputs</strong> (<em>int</em><em>, </em><em>optional</em>) – log layers outputs for the n-th stimulus (0 = no log), default=0</p></li>
 </ul>
@@ -772,9 +847,7 @@ structure of the model</p>
 <li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – Cell name, default = <code class="docutils literal notranslate"><span class="pre">CellType_id</span></code></p></li>
 <li><p><strong>activation</strong> (<a class="reference internal" href="#n2d2.activation.ActivationFunction" title="n2d2.activation.ActivationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.activation.ActivationFunction</span></code></a>, optional) – Activation function, default= None</p></li>
 <li><p><strong>datatype</strong> (<em>str</em><em>, </em><em>optional</em>) – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
-<li><p><strong>datatype</strong> – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
+<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <code class="docutils literal notranslate"><span class="pre">Frame</span></code> or <code class="docutils literal notranslate"><span class="pre">Frame_CUDA</span></code>, default=n2d2.global_variables.default_model</p></li>
 </ul>
 </dd>
 </dl>
@@ -1049,9 +1122,7 @@ structure of the model</p>
 <li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – Cell name, default = <code class="docutils literal notranslate"><span class="pre">CellType_id</span></code></p></li>
 <li><p><strong>activation</strong> (<a class="reference internal" href="#n2d2.activation.ActivationFunction" title="n2d2.activation.ActivationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.activation.ActivationFunction</span></code></a>, optional) – Activation function, default= None</p></li>
 <li><p><strong>datatype</strong> (<em>str</em><em>, </em><em>optional</em>) – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
-<li><p><strong>datatype</strong> – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
+<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <code class="docutils literal notranslate"><span class="pre">Frame</span></code> or <code class="docutils literal notranslate"><span class="pre">Frame_CUDA</span></code>, default=n2d2.global_variables.default_model</p></li>
 </ul>
 </dd>
 </dl>
@@ -1278,9 +1349,7 @@ structure of the model</p>
 <li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – Cell name, default = <code class="docutils literal notranslate"><span class="pre">CellType_id</span></code></p></li>
 <li><p><strong>activation</strong> (<a class="reference internal" href="#n2d2.activation.ActivationFunction" title="n2d2.activation.ActivationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.activation.ActivationFunction</span></code></a>, optional) – Activation function, default= None</p></li>
 <li><p><strong>datatype</strong> (<em>str</em><em>, </em><em>optional</em>) – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
-<li><p><strong>datatype</strong> – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
+<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <code class="docutils literal notranslate"><span class="pre">Frame</span></code> or <code class="docutils literal notranslate"><span class="pre">Frame_CUDA</span></code>, default=n2d2.global_variables.default_model</p></li>
 </ul>
 </dd>
 </dl>
@@ -1543,9 +1612,7 @@ structure of the model</p>
 <li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – Cell name, default = <code class="docutils literal notranslate"><span class="pre">CellType_id</span></code></p></li>
 <li><p><strong>activation</strong> (<a class="reference internal" href="#n2d2.activation.ActivationFunction" title="n2d2.activation.ActivationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.activation.ActivationFunction</span></code></a>, optional) – Activation function, default= None</p></li>
 <li><p><strong>datatype</strong> (<em>str</em><em>, </em><em>optional</em>) – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
-<li><p><strong>datatype</strong> – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
+<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <code class="docutils literal notranslate"><span class="pre">Frame</span></code> or <code class="docutils literal notranslate"><span class="pre">Frame_CUDA</span></code>, default=n2d2.global_variables.default_model</p></li>
 </ul>
 </dd>
 </dl>
@@ -1641,7 +1708,7 @@ structure of the model</p>
 <li><p><strong>shifts</strong> (<em>list</em><em>, </em><em>optional</em>) – Shifts for the <code class="docutils literal notranslate"><span class="pre">Sum</span></code> and <code class="docutils literal notranslate"><span class="pre">EuclideanSum</span></code> operation, in the same order as the inputs, default=[0.0]</p></li>
 <li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – Cell name, default = <code class="docutils literal notranslate"><span class="pre">CellType_id</span></code></p></li>
 <li><p><strong>activation</strong> (<a class="reference internal" href="#n2d2.activation.ActivationFunction" title="n2d2.activation.ActivationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.activation.ActivationFunction</span></code></a>, optional) – Activation function, default= None</p></li>
-<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
+<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <code class="docutils literal notranslate"><span class="pre">Frame</span></code> or <code class="docutils literal notranslate"><span class="pre">Frame_CUDA</span></code>, default=n2d2.global_variables.default_model</p></li>
 </ul>
 </dd>
 </dl>
@@ -1737,7 +1804,7 @@ structure of the model</p>
 <li><p><strong>right_pad</strong> (<em>int</em>) – Size of the right padding (positive or negative)</p></li>
 <li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – Cell name, default = <code class="docutils literal notranslate"><span class="pre">CellType_id</span></code></p></li>
 <li><p><strong>activation</strong> (<a class="reference internal" href="#n2d2.activation.ActivationFunction" title="n2d2.activation.ActivationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.activation.ActivationFunction</span></code></a>, optional) – Activation function, default= None</p></li>
-<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
+<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <code class="docutils literal notranslate"><span class="pre">Frame</span></code> or <code class="docutils literal notranslate"><span class="pre">Frame_CUDA</span></code>, default=n2d2.global_variables.default_model</p></li>
 </ul>
 </dd>
 </dl>
@@ -1832,9 +1899,7 @@ structure of the model</p>
 <li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – Cell name, default = <code class="docutils literal notranslate"><span class="pre">CellType_id</span></code></p></li>
 <li><p><strong>activation</strong> (<a class="reference internal" href="#n2d2.activation.ActivationFunction" title="n2d2.activation.ActivationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.activation.ActivationFunction</span></code></a>, optional) – Activation function, default= None</p></li>
 <li><p><strong>datatype</strong> (<em>str</em><em>, </em><em>optional</em>) – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
-<li><p><strong>datatype</strong> – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
+<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <code class="docutils literal notranslate"><span class="pre">Frame</span></code> or <code class="docutils literal notranslate"><span class="pre">Frame_CUDA</span></code>, default=n2d2.global_variables.default_model</p></li>
 </ul>
 </dd>
 </dl>
@@ -1934,9 +1999,7 @@ structure of the model</p>
 <li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – Cell name, default = <code class="docutils literal notranslate"><span class="pre">CellType_id</span></code></p></li>
 <li><p><strong>activation</strong> (<a class="reference internal" href="#n2d2.activation.ActivationFunction" title="n2d2.activation.ActivationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.activation.ActivationFunction</span></code></a>, optional) – Activation function, default= None</p></li>
 <li><p><strong>datatype</strong> (<em>str</em><em>, </em><em>optional</em>) – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
-<li><p><strong>datatype</strong> – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
+<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <code class="docutils literal notranslate"><span class="pre">Frame</span></code> or <code class="docutils literal notranslate"><span class="pre">Frame_CUDA</span></code>, default=n2d2.global_variables.default_model</p></li>
 </ul>
 </dd>
 </dl>
@@ -2059,9 +2122,7 @@ structure of the model</p>
 <li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – Cell name, default = <code class="docutils literal notranslate"><span class="pre">CellType_id</span></code></p></li>
 <li><p><strong>activation</strong> (<a class="reference internal" href="#n2d2.activation.ActivationFunction" title="n2d2.activation.ActivationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.activation.ActivationFunction</span></code></a>, optional) – Activation function, default= None</p></li>
 <li><p><strong>datatype</strong> (<em>str</em><em>, </em><em>optional</em>) – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
-<li><p><strong>datatype</strong> – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
+<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <code class="docutils literal notranslate"><span class="pre">Frame</span></code> or <code class="docutils literal notranslate"><span class="pre">Frame_CUDA</span></code>, default=n2d2.global_variables.default_model</p></li>
 </ul>
 </dd>
 </dl>
@@ -2156,7 +2217,7 @@ To load those parameters you can use the method <cite>import_free_parameters</ci
 <td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.cells.NeuralNetworkCell.export_free_parameters()</span></code></p></td>
 <td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.cells.NeuralNetworkCell.import_free_parameters()</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Block</span></code></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#n2d2.cells.Block" title="n2d2.cells.Block"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Block</span></code></a></p></td>
 <td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.cells.Block.import_free_parameters()</span></code></p></td>
 <td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.cells.Block.import_free_parameters()</span></code></p></td>
 </tr>
@@ -2373,9 +2434,7 @@ At construction time we will set the solver of one of them to a <a class="refere
 <li><p><strong>clamping</strong> (<em>str</em><em>, </em><em>optional</em>) – Weights clamping, format: <code class="docutils literal notranslate"><span class="pre">min:max</span></code>, or <code class="docutils literal notranslate"><span class="pre">:max</span></code>, or <code class="docutils literal notranslate"><span class="pre">min:</span></code>, or empty, default=””</p></li>
 <li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Can be either <code class="docutils literal notranslate"><span class="pre">Frame</span></code> or <code class="docutils literal notranslate"><span class="pre">Frame_CUDA</span></code>, default=n2d2.global_variables.default_model</p></li>
 <li><p><strong>datatype</strong> (<em>str</em><em>, </em><em>optional</em>) – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
-<li><p><strong>datatype</strong> – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
+<li><p><strong>model</strong> – Specify the kind of object to run, can be <code class="docutils literal notranslate"><span class="pre">Frame</span></code> or <code class="docutils literal notranslate"><span class="pre">Frame_CUDA</span></code>, default=n2d2.global_variables.default_model</p></li>
 </ul>
 </dd>
 </dl>
@@ -2418,9 +2477,7 @@ At construction time we will set the solver of one of them to a <a class="refere
 <li><p><strong>clamping</strong> (<em>str</em><em>, </em><em>optional</em>) – Weights clamping, format: <code class="docutils literal notranslate"><span class="pre">min:max</span></code>, or <code class="docutils literal notranslate"><span class="pre">:max</span></code>, or <code class="docutils literal notranslate"><span class="pre">min:</span></code>, or empty, default=””</p></li>
 <li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Can be either <code class="docutils literal notranslate"><span class="pre">Frame</span></code> or <code class="docutils literal notranslate"><span class="pre">Frame_CUDA</span></code>, default=n2d2.global_variables.default_model</p></li>
 <li><p><strong>datatype</strong> (<em>str</em><em>, </em><em>optional</em>) – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
-<li><p><strong>datatype</strong> – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
+<li><p><strong>model</strong> – Specify the kind of object to run, can be <code class="docutils literal notranslate"><span class="pre">Frame</span></code> or <code class="docutils literal notranslate"><span class="pre">Frame_CUDA</span></code>, default=n2d2.global_variables.default_model</p></li>
 </ul>
 </dd>
 </dl>
@@ -2727,9 +2784,7 @@ n2d2.Tensor([
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>quantizer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.quantizer.ActivationQuantizer</span></code>, optional) – Quantizer</p></li>
 <li><p><strong>datatype</strong> (<em>str</em><em>, </em><em>optional</em>) – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
-<li><p><strong>datatype</strong> – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
+<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <code class="docutils literal notranslate"><span class="pre">Frame</span></code> or <code class="docutils literal notranslate"><span class="pre">Frame_CUDA</span></code>, default=n2d2.global_variables.default_model</p></li>
 </ul>
 </dd>
 </dl>
@@ -2770,9 +2825,7 @@ n2d2.Tensor([
 <li><p><strong>clipping</strong> (<em>float</em><em>, </em><em>optional</em>) – Clipping value for positive outputs, default=0.0</p></li>
 <li><p><strong>quantizer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.quantizer.ActivationQuantizer</span></code>, optional) – Quantizer</p></li>
 <li><p><strong>datatype</strong> (<em>str</em><em>, </em><em>optional</em>) – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
-<li><p><strong>datatype</strong> – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
+<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <code class="docutils literal notranslate"><span class="pre">Frame</span></code> or <code class="docutils literal notranslate"><span class="pre">Frame_CUDA</span></code>, default=n2d2.global_variables.default_model</p></li>
 </ul>
 </dd>
 </dl>
@@ -2813,9 +2866,7 @@ n2d2.Tensor([
 <li><p><strong>alpha</strong> (<em>float</em><em>, </em><em>optional</em>) – <span class="math notranslate nohighlight">\(\alpha\)</span> parameter, default=1.0</p></li>
 <li><p><strong>quantizer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.quantizer.ActivationQuantizer</span></code>, optional) – Quantizer</p></li>
 <li><p><strong>datatype</strong> (<em>str</em><em>, </em><em>optional</em>) – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
-<li><p><strong>datatype</strong> – Datatype used by the object, can only be <code class="docutils literal notranslate"><span class="pre">float</span></code> at the moment, default=n2d2.global_variables.default_datatype</p></li>
-<li><p><strong>model</strong> – Specify the kind of object to run, can be <cite>Frame</cite> or <cite>Frame_CUDA</cite>, default=n2d2.global_variables.default_model</p></li>
+<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify the kind of object to run, can be <code class="docutils literal notranslate"><span class="pre">Frame</span></code> or <code class="docutils literal notranslate"><span class="pre">Frame_CUDA</span></code>, default=n2d2.global_variables.default_model</p></li>
 </ul>
 </dd>
 </dl>
