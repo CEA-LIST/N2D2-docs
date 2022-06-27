@@ -251,7 +251,7 @@
 <span class="n">y_test</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>When declaring the model, we will use the <a class="reference internal" href="../interoperability.html#keras_interoperability.wrap" title="keras_interoperability.wrap"><code class="xref py py-func docutils literal notranslate"><span class="pre">keras_interoperability.wrap()</span></code></a> function to generate an <a class="reference internal" href="../interoperability.html#keras_interoperability.CustomSequential" title="keras_interoperability.CustomSequential"><code class="xref py py-class docutils literal notranslate"><span class="pre">keras_interoperability.CustomSequential</span></code></a> which embedded N2D2.</p>
+<p>When declaring the model, we will use the <code class="xref py py-func docutils literal notranslate"><span class="pre">keras_interoperability.wrap()</span></code> function to generate an <code class="xref py py-class docutils literal notranslate"><span class="pre">keras_interoperability.CustomSequential</span></code> which embedded N2D2.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tf_model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
         <span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">input_shape</span><span class="p">),</span>
         <span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">),</span>
@@ -274,7 +274,7 @@
 </pre></div>
 </div>
 <p>And that is it ! You have successfully trained your model with N2D2 using the keras interface.</p>
-<p>You can then retrieve the N2D2 model by using the method <a class="reference internal" href="../interoperability.html#keras_interoperability.CustomSequential.get_deepnet_cell" title="keras_interoperability.CustomSequential.get_deepnet_cell"><code class="xref py py-meth docutils literal notranslate"><span class="pre">keras_interoperability.CustomSequential.get_deepnet_cell()</span></code></a> if you want to perform operation on it.</p>
+<p>You can then retrieve the N2D2 model by using the method <code class="xref py py-meth docutils literal notranslate"><span class="pre">keras_interoperability.CustomSequential.get_deepnet_cell()</span></code> if you want to perform operation on it.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_deepnet_cell</span><span class="p">()</span>
 </pre></div>
 </div>

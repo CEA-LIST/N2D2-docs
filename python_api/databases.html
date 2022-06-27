@@ -127,8 +127,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#dir">DIR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mnist">MNIST</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ilsvrc2012">ILSVRC2012</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cifar10">CIFAR10</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cifar100">CIFAR100</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cityscapes">Cityscapes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gtsrb">GTSRB</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#transformations">Transformations</a><ul>
@@ -137,6 +139,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#distortion">Distortion</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rescale">Rescale</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#colorspace">ColorSpace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flip">Flip</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rangeaffine">RangeAffine</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sliceextraction">SliceExtraction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#randomresizecrop">RandomResizeCrop</a></li>
@@ -237,7 +240,7 @@ The library allow you to add pre-process data with built in Transformation.</p>
 <div class="section" id="database">
 <h2>Database<a class="headerlink" href="#database" title="Permalink to this headline">¶</a></h2>
 <p>The python library provide you with multiple object to manipulate common database.</p>
-<p>Loading hand made database can be done using <a class="reference internal" href="#n2d2.database.DIR" title="n2d2.database.DIR"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.database.DIR</span></code></a>.</p>
+<p>Loading hand made database can be done using <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.database.DIR</span></code>.</p>
 <p>Like in the following example :</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creating the database object</span>
 <span class="n">db</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">DIR</span><span class="p">()</span>
@@ -256,923 +259,63 @@ The library allow you to add pre-process data with built in Transformation.</p>
 </div>
 <div class="section" id="dir">
 <h3>DIR<a class="headerlink" href="#dir" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="n2d2.database.DIR">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.database.</code><code class="sig-name descname">DIR</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_path</span></em>, <em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="n">test</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">validation</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">depth</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">label_path</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">label_depth</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">roi_file</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">roi_dir</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">roi_extension</span><span class="o">=</span><span class="default_value">'json'</span></em>, <em class="sig-param"><span class="n">per_label_partitioning</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">equiv_label_partitioning</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">ignore_mask</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">valid_extensions</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR" title="Permalink to this definition">¶</a></dt>
-<dd><p>Allow you to load your own database.</p>
-<dl class="py method">
-<dt id="n2d2.database.DIR.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.N2D2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the N2D2 object.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.DIR.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_path</span></em>, <em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="n">test</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">validation</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">depth</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">label_path</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">label_depth</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">roi_file</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">roi_dir</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">roi_extension</span><span class="o">=</span><span class="default_value">'json'</span></em>, <em class="sig-param"><span class="n">per_label_partitioning</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">equiv_label_partitioning</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">ignore_mask</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">valid_extensions</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data_path</strong> (<em>str</em>) – Path to the dataset file.</p></li>
-<li><p><strong>learn</strong> (<em>float</em>) – If <code class="docutils literal notranslate"><span class="pre">per_label_partitioning</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, fraction of images used for the learning; else, number of images used for the learning, regardless of their labels</p></li>
-<li><p><strong>test</strong> (<em>float</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">per_label_partitioning</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, fraction of images used for the test; else, number of images used for the test, regardless of their labels, default= <cite>[1.0-Learn-Validation]</cite></p></li>
-<li><p><strong>validation</strong> (<em>float</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">per_label_partitioning</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, fraction of images used for the validation; else, number of images used for the validation, regardless of their labels, default=0.0</p></li>
-<li><p><strong>depth</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of sub-directory levels to include, defaults=1</p></li>
-<li><p><strong>label_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to the label file, defaults=””</p></li>
-<li><p><strong>label_depth</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of sub-directory name levels used to form the data labels, defaults=0</p></li>
-<li><p><strong>roi_file</strong> (<em>str</em><em>, </em><em>optional</em>) – File containing the stimuli ROIs. If a ROI file is specified, <code class="docutils literal notranslate"><span class="pre">label_depth</span></code> should be set to <code class="docutils literal notranslate"><span class="pre">-1</span></code>, default=””</p></li>
-<li><p><strong>roi_dir</strong> (<em>str</em><em>, </em><em>optional</em>) – Directory containing the stimuli ROIs, default=””</p></li>
-<li><p><strong>roi_extension</strong> (<em>str</em><em>, </em><em>optional</em>) – Extension of the ROI files (used only if <code class="docutils literal notranslate"><span class="pre">roi_dir</span></code> is specified) , default=”json”</p></li>
-<li><p><strong>per_label_partitioning</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the <code class="docutils literal notranslate"><span class="pre">Learn</span></code>, <code class="docutils literal notranslate"><span class="pre">Validation</span></code> and <code class="docutils literal notranslate"><span class="pre">Test</span></code> parameters represent the fraction of the total stimuli to be partitioned in each set, instead of a number of stimuli, default=True</p></li>
-<li><p><strong>equiv_label_partitioning</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the stimuli are equi-partitioned in the <code class="docutils literal notranslate"><span class="pre">learn</span></code> and <code class="docutils literal notranslate"><span class="pre">validation</span></code> sets, meaning that the same number of stimuli for each label is used (only when <code class="docutils literal notranslate"><span class="pre">per_label_partitioning</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>). The remaining stimuli are partitioned in the <code class="docutils literal notranslate"><span class="pre">test</span></code> set, default=True</p></li>
-<li><p><strong>ignore_mask</strong> (<em>list</em><em>, </em><em>optional</em>) – List of mask strings to ignore. If any is present in a file path, the file gets ignored. The usual * and + wildcards are allowed, default=[]</p></li>
-<li><p><strong>valid_extensions</strong> (<em>list</em><em>, </em><em>optional</em>) – List of valid stimulus file extensions (if left empty, any file extension is considered a valid stimulus), default=[]</p></li>
-<li><p><strong>load_data_in_memory</strong> (<em>boolean</em><em>, </em><em>optional</em>) – if <cite>True</cite> cache data in memory, default=False</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.DIR.get_label_name">
-<code class="sig-name descname">get_label_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">label_idx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.get_label_name" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>label_idx</strong> (<em>int</em>) – Index of the label</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Label name</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.DIR.get_nb_stimuli">
-<code class="sig-name descname">get_nb_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">partition</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.get_nb_stimuli" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the number fo stimuli  available for this partition</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>partition</strong> (<em>str</em>) – The partition can be  <code class="docutils literal notranslate"><span class="pre">Learn</span></code>, <code class="docutils literal notranslate"><span class="pre">Validation</span></code>, <code class="docutils literal notranslate"><span class="pre">Test</span></code>,  <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.DIR.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.get_parameter" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.DIR.get_partition_summary">
-<code class="sig-name descname">get_partition_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.get_partition_summary" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the number of stimuli for each partition.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.DIR.partition_stimuli">
-<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="n">validation</span></em>, <em class="sig-param"><span class="n">test</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.partition_stimuli" title="Permalink to this definition">¶</a></dt>
-<dd><p>Partition the <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code> data with the given ratio (the sum of the given ratio must be equal to 1).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>learn</strong> (<em>float</em>) – Ratio for the <code class="docutils literal notranslate"><span class="pre">Learn</span></code> partition.</p></li>
-<li><p><strong>validation</strong> (<em>float</em>) – Ratio for the <code class="docutils literal notranslate"><span class="pre">Validation</span></code> partition.</p></li>
-<li><p><strong>test</strong> (<em>float</em>) – Ratio for the <code class="docutils literal notranslate"><span class="pre">Test</span></code> partition.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="mnist">
 <h3>MNIST<a class="headerlink" href="#mnist" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="n2d2.database.MNIST">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.database.</code><code class="sig-name descname">MNIST</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_path</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST" title="Permalink to this definition">¶</a></dt>
-<dd><p>MNIST database <a class="bibtex reference internal" href="../references.html#lecun1998" id="id1">[LBBH98]</a>.
-Label are hard coded, you don’t need to specify a path to the label file.</p>
-<dl class="py method">
-<dt id="n2d2.database.MNIST.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.N2D2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the N2D2 object.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.MNIST.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_path</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data_path</strong> (<em>str</em>) – Path to the database</p></li>
-<li><p><strong>label_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to the label, default=””</p></li>
-<li><p><strong>extract_roi</strong> (<em>boolean</em><em>, </em><em>optional</em>) – Set if we extract region of interest, default=False</p></li>
-<li><p><strong>validation</strong> (<em>float</em><em>, </em><em>optional</em>) – Fraction of the learning set used for validation, default=0.0</p></li>
-<li><p><strong>load_data_in_memory</strong> (<em>boolean</em><em>, </em><em>optional</em>) – if <cite>True</cite> cache data in memory, default=False</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.MNIST.get_label_name">
-<code class="sig-name descname">get_label_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">label_idx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.get_label_name" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>label_idx</strong> (<em>int</em>) – Index of the label</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Label name</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.MNIST.get_nb_stimuli">
-<code class="sig-name descname">get_nb_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">partition</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.get_nb_stimuli" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the number fo stimuli  available for this partition</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>partition</strong> (<em>str</em>) – The partition can be  <code class="docutils literal notranslate"><span class="pre">Learn</span></code>, <code class="docutils literal notranslate"><span class="pre">Validation</span></code>, <code class="docutils literal notranslate"><span class="pre">Test</span></code>,  <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.MNIST.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.get_parameter" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.MNIST.get_partition_summary">
-<code class="sig-name descname">get_partition_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.get_partition_summary" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the number of stimuli for each partition.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.MNIST.partition_stimuli">
-<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="n">validation</span></em>, <em class="sig-param"><span class="n">test</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.partition_stimuli" title="Permalink to this definition">¶</a></dt>
-<dd><p>Partition the <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code> data with the given ratio (the sum of the given ratio must be equal to 1).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>learn</strong> (<em>float</em>) – Ratio for the <code class="docutils literal notranslate"><span class="pre">Learn</span></code> partition.</p></li>
-<li><p><strong>validation</strong> (<em>float</em>) – Ratio for the <code class="docutils literal notranslate"><span class="pre">Validation</span></code> partition.</p></li>
-<li><p><strong>test</strong> (<em>float</em>) – Ratio for the <code class="docutils literal notranslate"><span class="pre">Test</span></code> partition.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="ilsvrc2012">
 <h3>ILSVRC2012<a class="headerlink" href="#ilsvrc2012" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="n2d2.database.ILSVRC2012">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.database.</code><code class="sig-name descname">ILSVRC2012</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012" title="Permalink to this definition">¶</a></dt>
-<dd><p>ILSVRC2012 database <a class="bibtex reference internal" href="../references.html#ilsvrc15" id="id2">[RDS+15]</a>.</p>
-<dl class="py method">
-<dt id="n2d2.database.ILSVRC2012.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.N2D2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the N2D2 object.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.ILSVRC2012.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>learn</strong> (<em>float</em>) – Fraction of images used for the learning</p></li>
-<li><p><strong>use_validation_for_test</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, use the validation partition for test, default=False</p></li>
-<li><p><strong>load_data_in_memory</strong> (<em>boolean</em><em>, </em><em>optional</em>) – if <cite>True</cite> cache data in memory, default=False</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.ILSVRC2012.get_label_name">
-<code class="sig-name descname">get_label_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">label_idx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.get_label_name" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>label_idx</strong> (<em>int</em>) – Index of the label</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Label name</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.ILSVRC2012.get_nb_stimuli">
-<code class="sig-name descname">get_nb_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">partition</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.get_nb_stimuli" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the number fo stimuli  available for this partition</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>partition</strong> (<em>str</em>) – The partition can be  <code class="docutils literal notranslate"><span class="pre">Learn</span></code>, <code class="docutils literal notranslate"><span class="pre">Validation</span></code>, <code class="docutils literal notranslate"><span class="pre">Test</span></code>,  <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.ILSVRC2012.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.get_parameter" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.ILSVRC2012.get_partition_summary">
-<code class="sig-name descname">get_partition_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.get_partition_summary" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the number of stimuli for each partition.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.ILSVRC2012.partition_stimuli">
-<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="n">validation</span></em>, <em class="sig-param"><span class="n">test</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.partition_stimuli" title="Permalink to this definition">¶</a></dt>
-<dd><p>Partition the <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code> data with the given ratio (the sum of the given ratio must be equal to 1).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>learn</strong> (<em>float</em>) – Ratio for the <code class="docutils literal notranslate"><span class="pre">Learn</span></code> partition.</p></li>
-<li><p><strong>validation</strong> (<em>float</em>) – Ratio for the <code class="docutils literal notranslate"><span class="pre">Validation</span></code> partition.</p></li>
-<li><p><strong>test</strong> (<em>float</em>) – Ratio for the <code class="docutils literal notranslate"><span class="pre">Test</span></code> partition.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+</div>
+<div class="section" id="cifar10">
+<h3>CIFAR10<a class="headerlink" href="#cifar10" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="cifar100">
 <h3>CIFAR100<a class="headerlink" href="#cifar100" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="n2d2.database.CIFAR100">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.database.</code><code class="sig-name descname">CIFAR100</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100" title="Permalink to this definition">¶</a></dt>
-<dd><p>CIFAR100 database <a class="bibtex reference internal" href="../references.html#krizhevsky2009" id="id3">[Kri09]</a>.</p>
-<dl class="py method">
-<dt id="n2d2.database.CIFAR100.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.N2D2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the N2D2 object.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.CIFAR100.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to the database, default=”<code class="docutils literal notranslate"><span class="pre">$N2D2_DATA</span></code>/cifar-100-binary”</p></li>
-<li><p><strong>validation</strong> (<em>float</em><em>, </em><em>optional</em>) – Fraction of the learning set used for validation, default=0.0</p></li>
-<li><p><strong>use_coarse</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, use the coarse labeling (10 labels instead of 100), default=False</p></li>
-<li><p><strong>load_data_in_memory</strong> (<em>boolean</em><em>, </em><em>optional</em>) – if <cite>True</cite> cache data in memory, default=False</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.CIFAR100.get_label_name">
-<code class="sig-name descname">get_label_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">label_idx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.get_label_name" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>label_idx</strong> (<em>int</em>) – Index of the label</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Label name</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.CIFAR100.get_nb_stimuli">
-<code class="sig-name descname">get_nb_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">partition</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.get_nb_stimuli" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the number fo stimuli  available for this partition</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>partition</strong> (<em>str</em>) – The partition can be  <code class="docutils literal notranslate"><span class="pre">Learn</span></code>, <code class="docutils literal notranslate"><span class="pre">Validation</span></code>, <code class="docutils literal notranslate"><span class="pre">Test</span></code>,  <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.CIFAR100.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.get_parameter" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.CIFAR100.get_partition_summary">
-<code class="sig-name descname">get_partition_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.get_partition_summary" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the number of stimuli for each partition.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.CIFAR100.partition_stimuli">
-<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="n">validation</span></em>, <em class="sig-param"><span class="n">test</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.partition_stimuli" title="Permalink to this definition">¶</a></dt>
-<dd><p>Partition the <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code> data with the given ratio (the sum of the given ratio must be equal to 1).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>learn</strong> (<em>float</em>) – Ratio for the <code class="docutils literal notranslate"><span class="pre">Learn</span></code> partition.</p></li>
-<li><p><strong>validation</strong> (<em>float</em>) – Ratio for the <code class="docutils literal notranslate"><span class="pre">Validation</span></code> partition.</p></li>
-<li><p><strong>test</strong> (<em>float</em>) – Ratio for the <code class="docutils literal notranslate"><span class="pre">Test</span></code> partition.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="cityscapes">
 <h3>Cityscapes<a class="headerlink" href="#cityscapes" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="n2d2.database.Cityscapes">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.database.</code><code class="sig-name descname">Cityscapes</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Cityscapes database <a class="bibtex reference internal" href="../references.html#cordts2016cityscapes" id="id4">[COR+16]</a>.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Don’t forget to install the <strong>libjsoncpp-dev</strong> package on your device if you wish to use this database.</p>
 </div>
-<dl class="py method">
-<dt id="n2d2.database.Cityscapes.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.N2D2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the N2D2 object.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.Cityscapes.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>inc_train_extra</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, includes the left 8-bit images - <code class="docutils literal notranslate"><span class="pre">trainextra</span></code> set (19,998 images), default=False</p></li>
-<li><p><strong>use_coarse</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, only use coarse annotations (which are the only annotations available for the <code class="docutils literal notranslate"><span class="pre">trainextra</span></code> set), default=False</p></li>
-<li><p><strong>single_instance_labels</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, convert group labels to single instance labels (for example, <code class="docutils literal notranslate"><span class="pre">cargroup</span></code> becomes <code class="docutils literal notranslate"><span class="pre">car</span></code>), default=True</p></li>
-<li><p><strong>load_data_in_memory</strong> (<em>boolean</em><em>, </em><em>optional</em>) – if <cite>True</cite> cache data in memory, default=False</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.Cityscapes.get_label_name">
-<code class="sig-name descname">get_label_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">label_idx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.get_label_name" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>label_idx</strong> (<em>int</em>) – Index of the label</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Label name</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.Cityscapes.get_nb_stimuli">
-<code class="sig-name descname">get_nb_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">partition</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.get_nb_stimuli" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the number fo stimuli  available for this partition</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>partition</strong> (<em>str</em>) – The partition can be  <code class="docutils literal notranslate"><span class="pre">Learn</span></code>, <code class="docutils literal notranslate"><span class="pre">Validation</span></code>, <code class="docutils literal notranslate"><span class="pre">Test</span></code>,  <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.Cityscapes.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.get_parameter" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.Cityscapes.get_partition_summary">
-<code class="sig-name descname">get_partition_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.get_partition_summary" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the number of stimuli for each partition.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.database.Cityscapes.partition_stimuli">
-<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="n">validation</span></em>, <em class="sig-param"><span class="n">test</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.partition_stimuli" title="Permalink to this definition">¶</a></dt>
-<dd><p>Partition the <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code> data with the given ratio (the sum of the given ratio must be equal to 1).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>learn</strong> (<em>float</em>) – Ratio for the <code class="docutils literal notranslate"><span class="pre">Learn</span></code> partition.</p></li>
-<li><p><strong>validation</strong> (<em>float</em>) – Ratio for the <code class="docutils literal notranslate"><span class="pre">Validation</span></code> partition.</p></li>
-<li><p><strong>test</strong> (<em>float</em>) – Ratio for the <code class="docutils literal notranslate"><span class="pre">Test</span></code> partition.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="gtsrb">
+<h3>GTSRB<a class="headerlink" href="#gtsrb" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 <div class="section" id="transformations">
 <h2>Transformations<a class="headerlink" href="#transformations" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
-<dt id="n2d2.transform.Transformation">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.transform.</code><code class="sig-name descname">Transformation</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Transformation" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="py method">
-<dt id="n2d2.transform.Transformation.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Transformation.N2D2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the N2D2 object.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.transform.Transformation.__init__">
-<em class="property">abstract </em><code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Transformation.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>apply_to</strong> (<em>str</em><em>, </em><em>optional</em>) – To which partition the transform is applied. One of: <code class="docutils literal notranslate"><span class="pre">LearnOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">ValidationOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">TestOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">NoLearn</span></code>, <code class="docutils literal notranslate"><span class="pre">NoValidation</span></code>, <code class="docutils literal notranslate"><span class="pre">NoTest</span></code>, <code class="docutils literal notranslate"><span class="pre">All</span></code>, default=”All”</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.transform.Transformation.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Transformation.get_parameter" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 <div class="section" id="composite">
 <h3>Composite<a class="headerlink" href="#composite" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="n2d2.transform.Composite">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.transform.</code><code class="sig-name descname">Composite</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">transformations</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Composite" title="Permalink to this definition">¶</a></dt>
-<dd><p>A composition of transformations.</p>
-<dl class="py method">
-<dt id="n2d2.transform.Composite.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Composite.N2D2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the N2D2 object.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.transform.Composite.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">transformations</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Composite.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>transformations</strong> (<em>list</em>) – List of the transformations to use.</p></li>
-<li><p><strong>apply_to</strong> (<em>str</em><em>, </em><em>optional</em>) – To which partition the transform is applied. One of: <code class="docutils literal notranslate"><span class="pre">LearnOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">ValidationOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">TestOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">NoLearn</span></code>, <code class="docutils literal notranslate"><span class="pre">NoValidation</span></code>, <code class="docutils literal notranslate"><span class="pre">NoTest</span></code>, <code class="docutils literal notranslate"><span class="pre">All</span></code>, default=”All”</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.transform.Composite.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Composite.get_parameter" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.transform.Composite.get_transformations">
-<code class="sig-name descname">get_transformations</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Composite.get_transformations" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the list of transformations applied by the composite transformation</p>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="padcrop">
 <h3>PadCrop<a class="headerlink" href="#padcrop" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="n2d2.transform.PadCrop">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.transform.</code><code class="sig-name descname">PadCrop</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.PadCrop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pad/crop the image to a specified size.</p>
-<dl class="py method">
-<dt id="n2d2.transform.PadCrop.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.PadCrop.N2D2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the N2D2 object.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.transform.PadCrop.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.PadCrop.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Possible values for border_type parameter : 
-<code class="docutils literal notranslate"><span class="pre">ConstantBorder</span></code>: pad with <code class="docutils literal notranslate"><span class="pre">BorderValue</span></code>, 
-<code class="docutils literal notranslate"><span class="pre">ReplicateBorder</span></code>: last element is replicated throughout, like aaaaaa|abcdefgh|hhhhhhh, 
-<code class="docutils literal notranslate"><span class="pre">ReflectBorder</span></code>: border will be mirror reflection of the border elements, like fedcba|abcdefgh|hgfedcb,
-<code class="docutils literal notranslate"><span class="pre">WrapBorder</span></code>: it will look like cdefgh|abcdefgh|abcdefg, 
-<code class="docutils literal notranslate"><span class="pre">MinusOneReflectBorder</span></code>: same as <code class="docutils literal notranslate"><span class="pre">ReflectBorder</span></code> but with a slight change, like gfedcb|abcdefgh|gfedcba, 
-<code class="docutils literal notranslate"><span class="pre">MeanBorder</span></code>: pad with the mean color of the image</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>width</strong> (<em>int</em>) – Width of the padded/cropped image</p></li>
-<li><p><strong>height</strong> (<em>int</em>) – height of the padded/cropped image</p></li>
-<li><p><strong>border_type</strong> (<em>str</em><em>, </em><em>optional</em>) – Border type used when padding, default=”MinusOneReflectBorder”</p></li>
-<li><p><strong>border_value</strong> (<em>list</em><em>, </em><em>optional</em>) – Background color used when padding with <code class="docutils literal notranslate"><span class="pre">BorderType</span></code> is <code class="docutils literal notranslate"><span class="pre">ConstantBorder</span></code>,default=[0.0, 0.0, 0.0]</p></li>
-<li><p><strong>apply_to</strong> (<em>str</em><em>, </em><em>optional</em>) – To which partition the transform is applied. One of: <code class="docutils literal notranslate"><span class="pre">LearnOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">ValidationOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">TestOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">NoLearn</span></code>, <code class="docutils literal notranslate"><span class="pre">NoValidation</span></code>, <code class="docutils literal notranslate"><span class="pre">NoTest</span></code>, <code class="docutils literal notranslate"><span class="pre">All</span></code>, default=”All”</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.transform.PadCrop.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.PadCrop.get_parameter" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="distortion">
 <h3>Distortion<a class="headerlink" href="#distortion" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="n2d2.transform.Distortion">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.transform.</code><code class="sig-name descname">Distortion</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Distortion" title="Permalink to this definition">¶</a></dt>
-<dd><p>Apply elastic distortion to the image. 
-This transformation is generally used on-the-fly 
-(so that a different distortion is performed for each image), and for the learning only.</p>
-<dl class="py method">
-<dt id="n2d2.transform.Distortion.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Distortion.N2D2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the N2D2 object.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.transform.Distortion.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Distortion.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>elastic_gaussian_size</strong> (<em>int</em><em>, </em><em>optional</em>) – Size of the gaussian for elastic distortion (in pixels), default=15</p></li>
-<li><p><strong>elastic_sigma</strong> (<em>float</em><em>, </em><em>optional</em>) – Sigma of the gaussian for elastic distortion, default=6.0</p></li>
-<li><p><strong>elastic_scaling</strong> (<em>float</em><em>, </em><em>optional</em>) – Scaling of the gaussian for elastic distortion, default=0.0</p></li>
-<li><p><strong>scaling</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximum random scaling amplitude (+/-, in percentage), default=0.0</p></li>
-<li><p><strong>rotation</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximum random rotation amplitude (+/-, in °), default=0.0</p></li>
-<li><p><strong>apply_to</strong> (<em>str</em><em>, </em><em>optional</em>) – To which partition the transform is applied. One of: <code class="docutils literal notranslate"><span class="pre">LearnOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">ValidationOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">TestOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">NoLearn</span></code>, <code class="docutils literal notranslate"><span class="pre">NoValidation</span></code>, <code class="docutils literal notranslate"><span class="pre">NoTest</span></code>, <code class="docutils literal notranslate"><span class="pre">All</span></code>, default=”All”</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.transform.Distortion.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Distortion.get_parameter" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="rescale">
 <h3>Rescale<a class="headerlink" href="#rescale" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="n2d2.transform.Rescale">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.transform.</code><code class="sig-name descname">Rescale</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Rescale" title="Permalink to this definition">¶</a></dt>
-<dd><p>Rescale the image to a specified size.</p>
-<dl class="py method">
-<dt id="n2d2.transform.Rescale.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Rescale.N2D2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the N2D2 object.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.transform.Rescale.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Rescale.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>width</strong> (<em>int</em>) – Width of the rescaled image</p></li>
-<li><p><strong>height</strong> (<em>int</em>) – Height of the rescaled image</p></li>
-<li><p><strong>keep_aspect_ratio</strong> (<em>bool</em><em>, </em><em>optional</em>) – If true, keeps the aspect ratio of the image, default=False</p></li>
-<li><p><strong>resize_to_fit</strong> (<em>bool</em><em>, </em><em>optional</em>) – If true, resize along the longest dimension when <code class="docutils literal notranslate"><span class="pre">KeepAspectRatio</span></code> is true, default=True</p></li>
-<li><p><strong>apply_to</strong> (<em>str</em><em>, </em><em>optional</em>) – To which partition the transform is applied. One of: <code class="docutils literal notranslate"><span class="pre">LearnOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">ValidationOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">TestOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">NoLearn</span></code>, <code class="docutils literal notranslate"><span class="pre">NoValidation</span></code>, <code class="docutils literal notranslate"><span class="pre">NoTest</span></code>, <code class="docutils literal notranslate"><span class="pre">All</span></code>, default=”All”</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.transform.Rescale.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Rescale.get_parameter" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="colorspace">
 <h3>ColorSpace<a class="headerlink" href="#colorspace" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="n2d2.transform.ColorSpace">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.transform.</code><code class="sig-name descname">ColorSpace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">color_space</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ColorSpace" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="py method">
-<dt id="n2d2.transform.ColorSpace.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ColorSpace.N2D2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the N2D2 object.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.transform.ColorSpace.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">color_space</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ColorSpace.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Possible values for <code class="docutils literal notranslate"><span class="pre">color_space</span></code> parameter :</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">BGR</span></code>: convert any gray, BGR or BGRA image to BGR,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">RGB</span></code>: convert any gray, BGR or BGRA image to RGB,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">HSV</span></code>: convert BGR image to HSV,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">HLS</span></code>: convert BGR image to HLS,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">YCrCb</span></code>: convert BGR image to YCrCb,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CIELab</span></code>: convert BGR image to CIELab,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CIELuv</span></code>: convert BGR image to CIELuv,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">RGB_to_BGR</span></code>: convert RGB image to BGR,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">RGB_to_HSV</span></code>: convert RGB image to HSV,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">RGB_to_HLS</span></code>: convert RGB image to HLS,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">RGB_to_YCrCb</span></code>: convert RGB image to YCrCb,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">RGB_to_CIELab</span></code>: convert RGB image to CIELab,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">RGB_to_CIELuv</span></code>: convert RGB image to CIELuv,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">HSV_to_BGR</span></code>: convert HSV image to BGR,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">HSV_to_RGB</span></code>: convert HSV image to RGB,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">HLS_to_BGR</span></code>: convert HLS image to BGR,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">HLS_to_RGB</span></code>: convert HLS image to RGB,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">YCrCb_to_BGR</span></code>: convert YCrCb image to BGR,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">YCrCb_to_RGB</span></code>: convert YCrCb image to RGB,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CIELab_to_BGR</span></code>: convert CIELab image to BGR,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CIELab_to_RGB</span></code>: convert CIELab image to RGB,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CIELuv_to_BGR</span></code>: convert CIELuv image to BGR,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CIELuv_to_RGB</span></code>: convert CIELuv image to RGB.</p></li>
-</ul>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>color_space</strong> (<em>str</em>) – Convert image color.</p></li>
-<li><p><strong>apply_to</strong> (<em>str</em><em>, </em><em>optional</em>) – To which partition the transform is applied. One of: <code class="docutils literal notranslate"><span class="pre">LearnOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">ValidationOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">TestOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">NoLearn</span></code>, <code class="docutils literal notranslate"><span class="pre">NoValidation</span></code>, <code class="docutils literal notranslate"><span class="pre">NoTest</span></code>, <code class="docutils literal notranslate"><span class="pre">All</span></code>, default=”All”</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.transform.ColorSpace.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ColorSpace.get_parameter" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+</div>
+<div class="section" id="flip">
+<h3>Flip<a class="headerlink" href="#flip" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="rangeaffine">
 <h3>RangeAffine<a class="headerlink" href="#rangeaffine" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="n2d2.transform.RangeAffine">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.transform.</code><code class="sig-name descname">RangeAffine</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">first_operator</span></em>, <em class="sig-param"><span class="n">first_value</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RangeAffine" title="Permalink to this definition">¶</a></dt>
-<dd><p>Apply an affine transformation to the values of the image.</p>
-<dl class="py method">
-<dt id="n2d2.transform.RangeAffine.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RangeAffine.N2D2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the N2D2 object.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.transform.RangeAffine.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">first_operator</span></em>, <em class="sig-param"><span class="n">first_value</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RangeAffine.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>first_operator</strong> (<em>str</em>) – First operator, can be <code class="docutils literal notranslate"><span class="pre">Plus</span></code>, <code class="docutils literal notranslate"><span class="pre">Minus</span></code>, <code class="docutils literal notranslate"><span class="pre">Multiplies</span></code>, <code class="docutils literal notranslate"><span class="pre">Divides</span></code></p></li>
-<li><p><strong>first_value</strong> (<em>float</em>) – First value</p></li>
-<li><p><strong>second_operator</strong> (<em>str</em><em>, </em><em>optional</em>) – Second operator, can be <code class="docutils literal notranslate"><span class="pre">Plus</span></code>, <code class="docutils literal notranslate"><span class="pre">Minus</span></code>, <code class="docutils literal notranslate"><span class="pre">Multiplies</span></code>, <code class="docutils literal notranslate"><span class="pre">Divides</span></code>, default=”Plus”</p></li>
-<li><p><strong>second_value</strong> (<em>float</em><em>, </em><em>optional</em>) – Second value, default=0.0</p></li>
-<li><p><strong>apply_to</strong> (<em>str</em><em>, </em><em>optional</em>) – To which partition the transform is applied. One of: <code class="docutils literal notranslate"><span class="pre">LearnOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">ValidationOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">TestOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">NoLearn</span></code>, <code class="docutils literal notranslate"><span class="pre">NoValidation</span></code>, <code class="docutils literal notranslate"><span class="pre">NoTest</span></code>, <code class="docutils literal notranslate"><span class="pre">All</span></code>, default=”All”</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.transform.RangeAffine.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RangeAffine.get_parameter" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="sliceextraction">
 <h3>SliceExtraction<a class="headerlink" href="#sliceextraction" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="n2d2.transform.SliceExtraction">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.transform.</code><code class="sig-name descname">SliceExtraction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.SliceExtraction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Extract a slice from an image.</p>
-<dl class="py method">
-<dt id="n2d2.transform.SliceExtraction.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.SliceExtraction.N2D2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the N2D2 object.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.transform.SliceExtraction.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.SliceExtraction.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Possible values for border_type parameter
-<code class="docutils literal notranslate"><span class="pre">ConstantBorder</span></code>: pad with <code class="docutils literal notranslate"><span class="pre">BorderValue</span></code>, 
-<code class="docutils literal notranslate"><span class="pre">ReplicateBorder</span></code>: last element is replicated throughout, like aaaaaa|abcdefgh|hhhhhhh, 
-<code class="docutils literal notranslate"><span class="pre">ReflectBorder</span></code>: border will be mirror reflection of the border elements, like fedcba|abcdefgh|hgfedcb,
-<code class="docutils literal notranslate"><span class="pre">WrapBorder</span></code>: it will look like cdefgh|abcdefgh|abcdefg,
-<code class="docutils literal notranslate"><span class="pre">MinusOneReflectBorder</span></code>: same as <code class="docutils literal notranslate"><span class="pre">ReflectBorder</span></code> but with a slight change, like gfedcb|abcdefgh|gfedcba, 
-<code class="docutils literal notranslate"><span class="pre">MeanBorder</span></code>: pad with the mean color of the image</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>width</strong> (<em>int</em>) – Width of the slice to extract</p></li>
-<li><p><strong>height</strong> (<em>int</em>) – Height of the slice to extract</p></li>
-<li><p><strong>offset_x</strong> (<em>int</em><em>, </em><em>optional</em>) – X offset of the slice to extract, default=0</p></li>
-<li><p><strong>offset_y</strong> (<em>int</em><em>, </em><em>optional</em>) – Y offset of the slice to extract, default=0</p></li>
-<li><p><strong>random_offset_x</strong> (<em>bool</em><em>, </em><em>optional</em>) – If true, the X offset is chosen randomly, default=False</p></li>
-<li><p><strong>random_offset_y</strong> (<em>bool</em><em>, </em><em>optional</em>) – If true, the Y offset is chosen randomly, default=False</p></li>
-<li><p><strong>random_rotation</strong> (<em>bool</em><em>, </em><em>optional</em>) – If true, extract randomly rotated slices, default=False</p></li>
-<li><p><strong>random_rotation_range</strong> (<em>list</em><em>, </em><em>optional</em>) – Range of the random rotations, in degrees, counterclockwise (if <code class="docutils literal notranslate"><span class="pre">RandomRotation</span></code> is enabled), default=[0.0, 360.0]</p></li>
-<li><p><strong>random_scaling</strong> (<em>bool</em><em>, </em><em>optional</em>) – If true, extract randomly scaled slices, default=False</p></li>
-<li><p><strong>random_scaling_range</strong> (<em>list</em><em>, </em><em>optional</em>) – Range of the random scaling (if <code class="docutils literal notranslate"><span class="pre">RandomRotation</span></code> is enabled), default=[0.8, 1.2]</p></li>
-<li><p><strong>allow_padding</strong> (<em>bool</em><em>, </em><em>optional</em>) – If true, zero-padding is allowed if the image is smaller than the slice to extract, default=False</p></li>
-<li><p><strong>border_type</strong> (<em>str</em><em>, </em><em>optional</em>) – Border type used when padding, default=”MinusOneReflectBorder”</p></li>
-<li><p><strong>apply_to</strong> (<em>str</em><em>, </em><em>optional</em>) – To which partition the transform is applied. One of: <code class="docutils literal notranslate"><span class="pre">LearnOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">ValidationOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">TestOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">NoLearn</span></code>, <code class="docutils literal notranslate"><span class="pre">NoValidation</span></code>, <code class="docutils literal notranslate"><span class="pre">NoTest</span></code>, <code class="docutils literal notranslate"><span class="pre">All</span></code>, default=”All”</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.transform.SliceExtraction.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.SliceExtraction.get_parameter" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="randomresizecrop">
 <h3>RandomResizeCrop<a class="headerlink" href="#randomresizecrop" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="n2d2.transform.RandomResizeCrop">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.transform.</code><code class="sig-name descname">RandomResizeCrop</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RandomResizeCrop" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="py method">
-<dt id="n2d2.transform.RandomResizeCrop.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RandomResizeCrop.N2D2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the N2D2 object.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.transform.RandomResizeCrop.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RandomResizeCrop.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>width</strong> (<em>int</em>) – Width of the image to Crop.</p></li>
-<li><p><strong>height</strong> (<em>int</em>) – Height of the image to Crop.</p></li>
-<li><p><strong>apply_to</strong> (<em>str</em><em>, </em><em>optional</em>) – To which partition the transform is applied. One of: <code class="docutils literal notranslate"><span class="pre">LearnOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">ValidationOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">TestOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">NoLearn</span></code>, <code class="docutils literal notranslate"><span class="pre">NoValidation</span></code>, <code class="docutils literal notranslate"><span class="pre">NoTest</span></code>, <code class="docutils literal notranslate"><span class="pre">All</span></code>, default=”All”</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.transform.RandomResizeCrop.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RandomResizeCrop.get_parameter" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="channelextraction">
 <h3>ChannelExtraction<a class="headerlink" href="#channelextraction" title="Permalink to this headline">¶</a></h3>
-<dl class="py class">
-<dt id="n2d2.transform.ChannelExtraction">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.transform.</code><code class="sig-name descname">ChannelExtraction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">channel</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ChannelExtraction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Extract an image channel.</p>
-<dl class="py method">
-<dt id="n2d2.transform.ChannelExtraction.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ChannelExtraction.N2D2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the N2D2 object.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.transform.ChannelExtraction.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">channel</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ChannelExtraction.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <code class="docutils literal notranslate"><span class="pre">channel</span></code> parameter can take the following values :
-<code class="docutils literal notranslate"><span class="pre">Blue</span></code>: blue channel in the BGR colorspace, or first channel of any colorspace, 
-<code class="docutils literal notranslate"><span class="pre">Green</span></code>: green channel in the BGR colorspace, or second channel of any colorspace,
-<code class="docutils literal notranslate"><span class="pre">Red</span></code>: red channel in the BGR colorspace, or third channel of any colorspace,
-<code class="docutils literal notranslate"><span class="pre">Hue</span></code>: hue channel in the HSV colorspace,
-<code class="docutils literal notranslate"><span class="pre">Saturation</span></code>: saturation channel in the HSV colorspace,
-<code class="docutils literal notranslate"><span class="pre">Value</span></code>: value channel in the HSV colorspace,
-<code class="docutils literal notranslate"><span class="pre">Gray</span></code>: gray conversion,
-<code class="docutils literal notranslate"><span class="pre">Y</span></code>: Y channel in the YCbCr colorspace,
-<code class="docutils literal notranslate"><span class="pre">Cb</span></code>: Cb channel in the YCbCr colorspace,
-<code class="docutils literal notranslate"><span class="pre">Cr</span></code>: Cr channel in the YCbCr colorspace</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>channel</strong> (<em>str</em>) – channel to extract</p></li>
-<li><p><strong>apply_to</strong> (<em>str</em><em>, </em><em>optional</em>) – To which partition the transform is applied. One of: <code class="docutils literal notranslate"><span class="pre">LearnOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">ValidationOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">TestOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">NoLearn</span></code>, <code class="docutils literal notranslate"><span class="pre">NoValidation</span></code>, <code class="docutils literal notranslate"><span class="pre">NoTest</span></code>, <code class="docutils literal notranslate"><span class="pre">All</span></code>, default=”All”</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="n2d2.transform.ChannelExtraction.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ChannelExtraction.get_parameter" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 </div>
 <div class="section" id="sending-data-to-the-neural-network">
 <h2>Sending data to the Neural Network<a class="headerlink" href="#sending-data-to-the-neural-network" title="Permalink to this headline">¶</a></h2>
 <p>Once a database is loaded, n2d2 use <a class="reference internal" href="#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a> to provide data to the neural network.</p>
-<p>The <a class="reference internal" href="#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a> will automatically apply the <a class="reference internal" href="#n2d2.transform.Transformation" title="n2d2.transform.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.transform.Transformation</span></code></a> to the dataset.
+<p>The <a class="reference internal" href="#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a> will automatically apply the <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.transform.Transformation</span></code> to the dataset.
 To add a transformation to the provider, you should use the method <code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.transform.Transformation.add_transformation()</span></code>.</p>
 <dl class="py class">
 <dt id="n2d2.provider.DataProvider">
@@ -1257,7 +400,7 @@ To add a transformation to the provider, you should use the method <code class="
 <dd class="field-odd"><p>Data.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="tensor.html#n2d2.Tensor" title="n2d2.Tensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></a></p>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1296,7 +439,7 @@ To add a transformation to the provider, you should use the method <code class="
 <dd class="field-odd"><p>Labels associated with the current batch.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="tensor.html#n2d2.Tensor" title="n2d2.Tensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></a></p>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1348,7 +491,7 @@ To add a transformation to the provider, you should use the method <code class="
 <dd class="field-even"><p>Return a batch of data</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="tensor.html#n2d2.Tensor" title="n2d2.Tensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></a></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1361,7 +504,7 @@ To add a transformation to the provider, you should use the method <code class="
 <dd class="field-odd"><p>Return a random batch</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="tensor.html#n2d2.Tensor" title="n2d2.Tensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></a></p>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1403,7 +546,7 @@ To add a transformation to the provider, you should use the method <code class="
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>In this example, we will show you how to create a <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.database.Database</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.Provider</span></code> and apply <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.transformation.Transformation</span></code> to the data.</p>
-<p>We will use the <a class="reference internal" href="#n2d2.database.MNIST" title="n2d2.database.MNIST"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.database.MNIST</span></code></a> database driver, rescale the images to a 32x32 pixels size and then print the data used for the learning.</p>
+<p>We will use the <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.database.MNIST</span></code> database driver, rescale the images to a 32x32 pixels size and then print the data used for the learning.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Loading data</span>
 <span class="n">database</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="n">data_path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">validation</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 
