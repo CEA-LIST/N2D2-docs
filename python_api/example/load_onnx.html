@@ -224,7 +224,7 @@
 </div>
 <div class="section" id="loading-an-onnx">
 <h2>Loading an ONNX<a class="headerlink" href="#loading-an-onnx" title="Permalink to this headline">¶</a></h2>
-<p>Before loading the ONNX file, we need to create an <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.database.MNIST</span></code> and <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a> objects.</p>
+<p>Before loading the ONNX file, we need to create an <a class="reference internal" href="../databases.html#n2d2.database.MNIST" title="n2d2.database.MNIST"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.database.MNIST</span></code></a> and <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a> objects.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change default model to run with CUDA</span>
 <span class="n">n2d2</span><span class="o">.</span><span class="n">global_variables</span><span class="o">.</span><span class="n">default_model</span> <span class="o">=</span> <span class="s2">&quot;Frame_CUDA&quot;</span>
 <span class="c1"># Change cuda device (default 0)</span>

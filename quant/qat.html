@@ -899,7 +899,7 @@ Or with the N2D2 script <code class="docutils literal notranslate"><span class="
 </pre></div>
 </div>
 <p>We will then do some pre-processing to the data-set.</p>
-<p>We use the <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.transform.Composite</span></code> to have a compact syntax and avoid multiple call to the method <code class="docutils literal notranslate"><span class="pre">add_transformation</span></code>.</p>
+<p>We use the <a class="reference internal" href="../python_api/databases.html#n2d2.transform.Composite" title="n2d2.transform.Composite"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.transform.Composite</span></code></a> to have a compact syntax and avoid multiple call to the method <code class="docutils literal notranslate"><span class="pre">add_transformation</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Adding transformations&quot;</span><span class="p">)</span>
 <span class="n">transformations</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">Composite</span><span class="p">([</span>
     <span class="n">n2d2</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">ColorSpace</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">),</span>
@@ -921,11 +921,11 @@ Or with the N2D2 script <code class="docutils literal notranslate"><span class="
 <span class="nb">print</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Once this is done, we can import the <code class="docutils literal notranslate"><span class="pre">resnet-18-v1</span></code> ONNX model using <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code>.</p>
+<p>Once this is done, we can import the <code class="docutils literal notranslate"><span class="pre">resnet-18-v1</span></code> ONNX model using <a class="reference internal" href="../python_api/cells.html#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">DeepNetCell</span><span class="o">.</span><span class="n">load_from_ONNX</span><span class="p">(</span><span class="n">provider</span><span class="p">,</span> <span class="n">path_to_ONNX</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Once the ONNX model is loaded, we will change the configuration of the <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Conv</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Fc</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.BatchNorm2d</span></code> layers.
+<p>Once the ONNX model is loaded, we will change the configuration of the <a class="reference internal" href="../python_api/cells.html#n2d2.cells.Conv" title="n2d2.cells.Conv"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Conv</span></code></a>, <a class="reference internal" href="../python_api/cells.html#n2d2.cells.Fc" title="n2d2.cells.Fc"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Fc</span></code></a> and <a class="reference internal" href="../python_api/cells.html#n2d2.cells.BatchNorm2d" title="n2d2.cells.BatchNorm2d"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.BatchNorm2d</span></code></a> layers.
 To do so, we will iterate through the layer of our model and check the type of the layer.
 Then we will apply the wanted configuration for each cells.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Updating cells ...&quot;</span><span class="p">)</span>
@@ -1412,7 +1412,7 @@ We will apply the SAT quantization procedure in a handmade LeNet model.</p>
 </pre></div>
 </div>
 <p>In our example we decided to quantize every convolutions and fully-connected layers.
-We will use the object <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.ConfigSection</span></code> to provide common parameters to the cells.</p>
+We will use the object <a class="reference internal" href="../python_api/cells.html#n2d2.ConfigSection" title="n2d2.ConfigSection"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.ConfigSection</span></code></a> to provide common parameters to the cells.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>We need to use a function that will generate a new config section object to avoid giving the same objects to the one we are configuring.
@@ -1548,7 +1548,7 @@ If we defined <code class="docutils literal notranslate"><span class="pre">conv_
 <p>Now that we have learned clamped weights, we will quantize our network.</p>
 <p>You can get the script used in this example by clicking here : <a class="reference download internal" download="" href="../_downloads/85ffaf33bf6ddb287eddd928c4c8ec77/quantizer_handmade_part2.py"><code class="xref download docutils literal notranslate"><span class="pre">LeNet</span> <span class="pre">quantization</span> <span class="pre">example</span></code></a>.</p>
 <p>To do so, we will create a second script. We can begin by importing the <code class="docutils literal notranslate"><span class="pre">MNIST</span></code> database and create a <code class="docutils literal notranslate"><span class="pre">dataprovider</span></code> just like in the previous section.</p>
-<p>Then we will copy the <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.ConfigSection</span></code> from the previous section and add a quantizer argument.</p>
+<p>Then we will copy the <a class="reference internal" href="../python_api/cells.html#n2d2.ConfigSection" title="n2d2.ConfigSection"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.ConfigSection</span></code></a> from the previous section and add a quantizer argument.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">solver_conf</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">ConfigSection</span><span class="p">(</span>
     <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
     <span class="n">learning_rate_policy</span><span class="o">=</span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
