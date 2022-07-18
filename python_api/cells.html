@@ -344,6 +344,26 @@ structure of the model</p>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt id="n2d2.cells.Block.to_deepnet_cell">
+<code class="sig-name descname">to_deepnet_cell</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">provider</span></em>, <em class="sig-param"><span class="n">target</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Block.to_deepnet_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a <a class="reference internal" href="#n2d2.cells.Block" title="n2d2.cells.Block"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Block</span></code></a> to a <a class="reference internal" href="#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>provider</strong> (<a class="reference internal" href="databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a>) – Data provider used by the neural network</p></li>
+<li><p><strong>target</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.target.Target</span></code>) – Target object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The corresponding <a class="reference internal" href="#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -407,7 +427,7 @@ structure of the model</p>
 <dl class="py method">
 <dt id="n2d2.cells.Sequence.to_deepnet_cell">
 <code class="sig-name descname">to_deepnet_cell</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">provider</span></em>, <em class="sig-param"><span class="n">target</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Sequence.to_deepnet_cell" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a <a class="reference internal" href="#n2d2.cells.Sequence" title="n2d2.cells.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Sequence</span></code></a> to a <a class="reference internal" href="#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a></p>
+<dd><p>Convert a <a class="reference internal" href="#n2d2.cells.Block" title="n2d2.cells.Block"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Block</span></code></a> to a <a class="reference internal" href="#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -481,6 +501,26 @@ structure of the model</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>solver</strong> (<a class="reference internal" href="#n2d2.solver.Solver" title="n2d2.solver.Solver"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.solver.Solver</span></code></a>, optional) – Solver to use for every optimizable parameters, default= <a class="reference internal" href="#n2d2.solver.SGD" title="n2d2.solver.SGD"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.solver.SGD</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.Layer.to_deepnet_cell">
+<code class="sig-name descname">to_deepnet_cell</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">provider</span></em>, <em class="sig-param"><span class="n">target</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Layer.to_deepnet_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a <a class="reference internal" href="#n2d2.cells.Block" title="n2d2.cells.Block"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Block</span></code></a> to a <a class="reference internal" href="#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>provider</strong> (<a class="reference internal" href="databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a>) – Data provider used by the neural network</p></li>
+<li><p><strong>target</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.target.Target</span></code>) – Target object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The corresponding <a class="reference internal" href="#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -689,6 +729,26 @@ structure of the model</p>
 <dt id="n2d2.cells.DeepNetCell.test">
 <code class="sig-name descname">test</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.DeepNetCell.test" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the network to <code class="docutils literal notranslate"><span class="pre">test</span></code> mode.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.DeepNetCell.to_deepnet_cell">
+<code class="sig-name descname">to_deepnet_cell</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">provider</span></em>, <em class="sig-param"><span class="n">target</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.DeepNetCell.to_deepnet_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a <a class="reference internal" href="#n2d2.cells.Block" title="n2d2.cells.Block"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Block</span></code></a> to a <a class="reference internal" href="#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>provider</strong> (<a class="reference internal" href="databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a>) – Data provider used by the neural network</p></li>
+<li><p><strong>target</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.target.Target</span></code>) – Target object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The corresponding <a class="reference internal" href="#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
