@@ -695,8 +695,8 @@ structure of the model</p>
 <li><p><strong>test_id</strong> (<em>int</em><em>, </em><em>optional</em>) – Test a single specific stimulus ID (takes precedence over <cite>test_index</cite>), default=-1</p></li>
 <li><p><strong>qat_sat</strong> (<em>bool</em><em>, </em><em>optional</em>) – Fuse a QAT trained model with the SAT method, default=False</p></li>
 <li><p><strong>log_kernels</strong> (<em>bool</em><em>, </em><em>optional</em>) – Log kernels after learning, default=False</p></li>
-<li><p><strong>wt_round_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – Weights clipping mode on export, can be <code class="docutils literal notranslate"><span class="pre">NONE</span></code>, <code class="docutils literal notranslate"><span class="pre">RINTF</span></code>, default=”NONE”</p></li>
-<li><p><strong>b_round_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – Biases clipping mode on export, can be <code class="docutils literal notranslate"><span class="pre">NONE</span></code>, <code class="docutils literal notranslate"><span class="pre">RINTF</span></code>, default=”NONE”</p></li>
+<li><p><strong>wt_round_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – Weights clipping mode on export, can be <code class="docutils literal notranslate"><span class="pre">NONE</span></code>,``RINTF``, default=”NONE”</p></li>
+<li><p><strong>b_round_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – Biases clipping mode on export, can be <code class="docutils literal notranslate"><span class="pre">NONE</span></code>,``RINTF``, default=”NONE”</p></li>
 <li><p><strong>c_round_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – Clip clipping mode on export, can be <code class="docutils literal notranslate"><span class="pre">NONE</span></code>,``RINTF``, default=”NONE”</p></li>
 <li><p><strong>act_scaling_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – activation scaling mode on export, can be <code class="docutils literal notranslate"><span class="pre">NONE</span></code>, <code class="docutils literal notranslate"><span class="pre">FLOAT_MULT</span></code>, <code class="docutils literal notranslate"><span class="pre">FIXED_MULT16</span></code>, <code class="docutils literal notranslate"><span class="pre">SINGLE_SHIFT</span></code> or <code class="docutils literal notranslate"><span class="pre">DOUBLE_SHIFT</span></code>, default=”FLOAT_MULT”</p></li>
 <li><p><strong>log_JSON</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, log JSON annotations, default=False</p></li>
@@ -721,6 +721,17 @@ structure of the model</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>solver</strong> (<a class="reference internal" href="#n2d2.solver.Solver" title="n2d2.solver.Solver"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.solver.Solver</span></code></a>, optional) – Solver to use for every optimizable parameters, default= <a class="reference internal" href="#n2d2.solver.SGD" title="n2d2.solver.SGD"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.solver.SGD</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.DeepNetCell.summary">
+<code class="sig-name descname">summary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">verbose</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.DeepNetCell.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method synthesize current deepnet’s layers in a table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>verbose</strong> (<em>bool</em>) – display implicit layers like BN</p>
 </dd>
 </dl>
 </dd></dl>
