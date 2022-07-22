@@ -295,13 +295,13 @@
 <h3>Block<a class="headerlink" href="#block" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
 <dt id="n2d2.cells.Block">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.cells.</code><code class="sig-name descname">Block</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cells</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Block" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">n2d2.cells.</code><code class="sig-name descname">Block</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cells</span><span class="p">:</span> <span class="n">List<span class="p">[</span>n2d2.cells.cell.Cell<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Block" title="Permalink to this definition">¶</a></dt>
 <dd><p>The Block class is the most general type of cell container, from which all other containers are derived.
 It saves its cells internally with a dictionary. The Block class has no implicit structure for propagation,
 the __call__ method therefore has to be defined explicitly.</p>
 <dl class="py method">
 <dt id="n2d2.cells.Block.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cells</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Block.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cells</span><span class="p">:</span> <span class="n">List<span class="p">[</span>n2d2.cells.cell.Cell<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Block.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -371,11 +371,11 @@ structure of the model</p>
 <h3>Sequence<a class="headerlink" href="#sequence" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
 <dt id="n2d2.cells.Sequence">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.cells.</code><code class="sig-name descname">Sequence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cells</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Sequence" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">n2d2.cells.</code><code class="sig-name descname">Sequence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cells</span><span class="p">:</span> <span class="n">List<span class="p">[</span>n2d2.cells.cell.Cell<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Sequence" title="Permalink to this definition">¶</a></dt>
 <dd><p>This implementation of the Iterable class describes a sequential (vertical) ordering of cells.</p>
 <dl class="py method">
 <dt id="n2d2.cells.Sequence.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cells</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Sequence.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cells</span><span class="p">:</span> <span class="n">List<span class="p">[</span>n2d2.cells.cell.Cell<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Sequence.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -564,7 +564,7 @@ python APIs implicit way of constructing graphs.</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.DeepNetCell.fit">
-<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn_epoch</span></em>, <em class="sig-param"><span class="n">log_epoch</span><span class="o">=</span><span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">avg_window</span><span class="o">=</span><span class="default_value">10000</span></em>, <em class="sig-param"><span class="n">bench</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">ban_multi_device</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">valid_metric</span><span class="o">=</span><span class="default_value">'Sensitivity'</span></em>, <em class="sig-param"><span class="n">stop_valid</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">log_kernels</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.DeepNetCell.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn_epoch</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">log_epoch</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">avg_window</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">10000</span></em>, <em class="sig-param"><span class="n">bench</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">ban_multi_device</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">valid_metric</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'Sensitivity'</span></em>, <em class="sig-param"><span class="n">stop_valid</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">log_kernels</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.DeepNetCell.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method is used to train the <a class="reference internal" href="#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a> object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -647,7 +647,7 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.DeepNetCell.load_from_INI">
-<em class="property">classmethod </em><code class="sig-name descname">load_from_INI</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.DeepNetCell.load_from_INI" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">load_from_INI</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.DeepNetCell.load_from_INI" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load a deepnet from an INI file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -684,7 +684,7 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.DeepNetCell.run_test">
-<code class="sig-name descname">run_test</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">log</span><span class="o">=</span><span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">report</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">test_index</span><span class="o">=</span><span class="default_value">- 1</span></em>, <em class="sig-param"><span class="n">test_id</span><span class="o">=</span><span class="default_value">- 1</span></em>, <em class="sig-param"><span class="n">qat_sat</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">log_kernels</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">wt_round_mode</span><span class="o">=</span><span class="default_value">'NONE'</span></em>, <em class="sig-param"><span class="n">b_round_mode</span><span class="o">=</span><span class="default_value">'NONE'</span></em>, <em class="sig-param"><span class="n">c_round_mode</span><span class="o">=</span><span class="default_value">'NONE'</span></em>, <em class="sig-param"><span class="n">act_scaling_mode</span><span class="o">=</span><span class="default_value">'FLOAT_MULT'</span></em>, <em class="sig-param"><span class="n">log_JSON</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">log_outputs</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.DeepNetCell.run_test" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">run_test</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">log</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">report</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">100</span></em>, <em class="sig-param"><span class="n">test_index</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">- 1</span></em>, <em class="sig-param"><span class="n">test_id</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">- 1</span></em>, <em class="sig-param"><span class="n">qat_sat</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">log_kernels</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">wt_round_mode</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'NONE'</span></em>, <em class="sig-param"><span class="n">b_round_mode</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'NONE'</span></em>, <em class="sig-param"><span class="n">c_round_mode</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'NONE'</span></em>, <em class="sig-param"><span class="n">act_scaling_mode</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'FLOAT_MULT'</span></em>, <em class="sig-param"><span class="n">log_JSON</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">log_outputs</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.DeepNetCell.run_test" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method is used to train the <a class="reference internal" href="#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a> object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -863,7 +863,7 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.NeuralNetworkCell.set_activation">
-<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.NeuralNetworkCell.set_activation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n">n2d2.activation.activation.ActivationFunction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.NeuralNetworkCell.set_activation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set an activation function to the N2D2 object and update config parameter of the n2d2 object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1054,7 +1054,7 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.Conv.set_activation">
-<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Conv.set_activation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n">n2d2.activation.activation.ActivationFunction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Conv.set_activation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set an activation function to the N2D2 object and update config parameter of the n2d2 object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1323,7 +1323,7 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.Deconv.set_activation">
-<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Deconv.set_activation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n">n2d2.activation.activation.ActivationFunction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Deconv.set_activation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set an activation function to the N2D2 object and update config parameter of the n2d2 object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1563,7 +1563,7 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.Fc.set_activation">
-<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Fc.set_activation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n">n2d2.activation.activation.ActivationFunction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Fc.set_activation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set an activation function to the N2D2 object and update config parameter of the n2d2 object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1739,7 +1739,7 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.Dropout.set_activation">
-<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Dropout.set_activation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n">n2d2.activation.activation.ActivationFunction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Dropout.set_activation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set an activation function to the N2D2 object and update config parameter of the n2d2 object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1835,7 +1835,7 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.ElemWise.set_activation">
-<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.ElemWise.set_activation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n">n2d2.activation.activation.ActivationFunction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.ElemWise.set_activation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set an activation function to the N2D2 object and update config parameter of the n2d2 object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1931,7 +1931,7 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.Padding.set_activation">
-<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Padding.set_activation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n">n2d2.activation.activation.ActivationFunction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Padding.set_activation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set an activation function to the N2D2 object and update config parameter of the n2d2 object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2026,7 +2026,7 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.Softmax.set_activation">
-<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Softmax.set_activation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n">n2d2.activation.activation.ActivationFunction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Softmax.set_activation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set an activation function to the N2D2 object and update config parameter of the n2d2 object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2126,7 +2126,7 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.BatchNorm2d.set_activation">
-<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.BatchNorm2d.set_activation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n">n2d2.activation.activation.ActivationFunction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.BatchNorm2d.set_activation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set an activation function to the N2D2 object and update config parameter of the n2d2 object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2249,7 +2249,7 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.Pool.set_activation">
-<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Pool.set_activation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n">n2d2.activation.activation.ActivationFunction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Pool.set_activation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set an activation function to the N2D2 object and update config parameter of the n2d2 object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2342,7 +2342,7 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.Activation.set_activation">
-<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Activation.set_activation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n">n2d2.activation.activation.ActivationFunction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Activation.set_activation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set an activation function to the N2D2 object and update config parameter of the n2d2 object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2436,7 +2436,7 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.Reshape.set_activation">
-<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Reshape.set_activation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n">n2d2.activation.activation.ActivationFunction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Reshape.set_activation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set an activation function to the N2D2 object and update config parameter of the n2d2 object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2532,7 +2532,7 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.Resize.set_activation">
-<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Resize.set_activation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n">n2d2.activation.activation.ActivationFunction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Resize.set_activation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set an activation function to the N2D2 object and update config parameter of the n2d2 object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2626,7 +2626,7 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.Scaling.set_activation">
-<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Scaling.set_activation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n">n2d2.activation.activation.ActivationFunction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Scaling.set_activation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set an activation function to the N2D2 object and update config parameter of the n2d2 object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2718,7 +2718,7 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.Transformation.set_activation">
-<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Transformation.set_activation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n">n2d2.activation.activation.ActivationFunction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Transformation.set_activation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set an activation function to the N2D2 object and update config parameter of the n2d2 object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2812,7 +2812,7 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.Transpose.set_activation">
-<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Transpose.set_activation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n">n2d2.activation.activation.ActivationFunction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Transpose.set_activation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set an activation function to the N2D2 object and update config parameter of the n2d2 object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
