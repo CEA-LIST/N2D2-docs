@@ -124,7 +124,11 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Databases</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#database">Database</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dir">DIR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dir">DIR</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#loading-a-custom-database">Loading a custom database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#handling-labelization">Handling labelization</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#mnist">MNIST</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ilsvrc2012">ILSVRC2012</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cifar10">CIFAR10</a></li>
@@ -259,6 +263,106 @@ The library allow you to add pre-process data with built in Transformation.</p>
 </div>
 <div class="section" id="dir">
 <h3>DIR<a class="headerlink" href="#dir" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="loading-a-custom-database">
+<h4>Loading a custom database<a class="headerlink" href="#loading-a-custom-database" title="Permalink to this headline">¶</a></h4>
+<p>Hand made database stored in files directories are directly supported
+with the <code class="docutils literal notranslate"><span class="pre">DIR_Database</span></code> module. For example, suppose your database is
+organized as following :</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GST/airplanes</span></code>: 800 images</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GST/car_side</span></code>: 123 images</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GST/Faces</span></code>: 435 images</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GST/Motorbikes</span></code>: 798 images</p></li>
+</ul>
+<p>You can then instanciate this database as input of your neural network
+using the following line:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">database</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">DIR</span><span class="p">(</span><span class="s2">&quot;./GST&quot;</span><span class="p">,</span> <span class="n">learn</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">validation</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Each subdirectory will be treated as a different label, so there will be
+4 different labels, named after the directory name.</p>
+<p>The stimuli are equi-partitioned for the learning set and the validation
+set, meaning that the same number of stimuli for each category is used.
+If the learn fraction is 0.4 and the validation fraction is 0.2, as in
+the example above, the partitioning will be the following:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 24%" />
+<col style="width: 18%" />
+<col style="width: 24%" />
+<col style="width: 16%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Label ID</p></td>
+<td><p>Label name</p></td>
+<td><p>Learn set</p></td>
+<td><p>Validation set</p></td>
+<td><p>Test set</p></td>
+</tr>
+<tr class="row-even"><td><p>[0.5ex] 0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">airplanes</span></code></p></td>
+<td><p>49</p></td>
+<td><p>25</p></td>
+<td><p>726</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">car_side</span></code></p></td>
+<td><p>49</p></td>
+<td><p>25</p></td>
+<td><p>49</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Faces</span></code></p></td>
+<td><p>49</p></td>
+<td><p>25</p></td>
+<td><p>361</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Motorbikes</span></code></p></td>
+<td><p>49</p></td>
+<td><p>25</p></td>
+<td><p>724</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Total:</p></td>
+<td><p>196</p></td>
+<td><p>100</p></td>
+<td><p>1860</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">equiv_label_partitioning</span></code> is 1 (default setting), the number of stimuli
+per label that will be partitioned in the learn and validation sets will
+correspond to the number of stimuli from the label with the fewest stimuli.</p>
+</div>
+<p>To load and partition more than one <code class="docutils literal notranslate"><span class="pre">DataPath</span></code>, one can use the
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.database.Database.load()</span></code> method.</p>
+<p>This method will load data in the partition <code class="docutils literal notranslate"><span class="pre">Unpartitionned</span></code>, you can move the stimuli
+in the <code class="docutils literal notranslate"><span class="pre">Learn</span></code>, <code class="docutils literal notranslate"><span class="pre">Validation</span></code> or <code class="docutils literal notranslate"><span class="pre">Test</span></code> partition using the
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.database.Database.partition_stimuli()</span></code> method.</p>
+</div>
+<div class="section" id="handling-labelization">
+<h4>Handling labelization<a class="headerlink" href="#handling-labelization" title="Permalink to this headline">¶</a></h4>
+<p>By default, your labels will be ordered by alphabetical order.
+If you need your label to be in a specific order, you can specify it using
+an exterior file we will name it <code class="docutils literal notranslate"><span class="pre">label.dat</span></code> for this example :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">airplanes</span> <span class="mi">0</span>
+<span class="n">car_side</span> <span class="mi">1</span>
+<span class="n">Motorbikes</span> <span class="mi">3</span>
+<span class="n">Faces</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>Then to load the database we will use :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">database</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">DIR</span><span class="p">(</span><span class="s2">&quot;./GST&quot;</span><span class="p">,</span> <span class="n">learn</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">validation</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">label_path</span><span class="o">=</span><span class="s2">&quot;./label.dat&quot;</span><span class="p">,</span> <span class="n">label_depth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>It is important to specify <code class="docutils literal notranslate"><span class="pre">label_depth=0</span></code> if you are specifying <code class="docutils literal notranslate"><span class="pre">label_path</span></code> !</p>
+</div>
 <dl class="py class">
 <dt id="n2d2.database.DIR">
 <em class="property">class </em><code class="sig-prename descclassname">n2d2.database.</code><code class="sig-name descname">DIR</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_path</span></em>, <em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="n">test</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">validation</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">depth</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">label_path</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">label_depth</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">roi_file</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">roi_dir</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">roi_extension</span><span class="o">=</span><span class="default_value">'json'</span></em>, <em class="sig-param"><span class="n">per_label_partitioning</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">equiv_label_partitioning</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">ignore_mask</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">valid_extensions</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR" title="Permalink to this definition">¶</a></dt>
@@ -280,8 +384,8 @@ The library allow you to add pre-process data with built in Transformation.</p>
 <li><p><strong>test</strong> (<em>float</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">per_label_partitioning</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, fraction of images used for the test;         else, number of images used for the test, regardless of their labels, default= <cite>[1.0-Learn-Validation]</cite></p></li>
 <li><p><strong>validation</strong> (<em>float</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">per_label_partitioning</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, fraction of images used for the validation;         else, number of images used for the validation, regardless of their labels, default=0.0</p></li>
 <li><p><strong>depth</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of sub-directory levels to include, defaults=1</p></li>
-<li><p><strong>label_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to the label file, defaults=””</p></li>
-<li><p><strong>label_depth</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of sub-directory name levels used to form the data labels, defaults=0</p></li>
+<li><p><strong>label_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to the label file, if not empty <code class="docutils literal notranslate"><span class="pre">label_path</span></code> should be set to <code class="docutils literal notranslate"><span class="pre">0</span></code>, defaults=””</p></li>
+<li><p><strong>label_depth</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of sub-directory name levels used to form the data labels, defaults=1</p></li>
 <li><p><strong>roi_file</strong> (<em>str</em><em>, </em><em>optional</em>) – File containing the stimuli ROIs. If a ROI file is specified, <code class="docutils literal notranslate"><span class="pre">label_depth</span></code> should be set to <code class="docutils literal notranslate"><span class="pre">-1</span></code>, default=””</p></li>
 <li><p><strong>roi_dir</strong> (<em>str</em><em>, </em><em>optional</em>) – Directory containing the stimuli ROIs, default=””</p></li>
 <li><p><strong>roi_extension</strong> (<em>str</em><em>, </em><em>optional</em>) – Extension of the ROI files (used only if <code class="docutils literal notranslate"><span class="pre">roi_dir</span></code> is specified) , default=”json”</p></li>
@@ -355,6 +459,7 @@ The library allow you to add pre-process data with built in Transformation.</p>
 
 </dd></dl>
 
+</div>
 </div>
 <div class="section" id="mnist">
 <h3>MNIST<a class="headerlink" href="#mnist" title="Permalink to this headline">¶</a></h3>
