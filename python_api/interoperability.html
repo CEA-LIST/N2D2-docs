@@ -372,7 +372,7 @@ The opposite conversion is done with no memory copy.</p>
 <h3>Documentation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <dl class="py function">
 <dt id="pytorch_interoperability.wrap">
-<code class="sig-prename descclassname">pytorch_interoperability.</code><code class="sig-name descname">wrap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">torch_model</span></em>, <em class="sig-param"><span class="n">input_size</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytorch_interoperability.wrap" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pytorch_interoperability.</code><code class="sig-name descname">wrap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">torch_model</span></em>, <em class="sig-param"><span class="n">input_size</span></em>, <em class="sig-param"><span class="n">opset_version</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytorch_interoperability.wrap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function generating a <code class="docutils literal notranslate"><span class="pre">torch.nn.Module</span></code> which embed a <a class="reference internal" href="cells.html#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a>.
 The torch_model is exported to N2D2 via ONNX.</p>
 <dl class="field-list simple">
