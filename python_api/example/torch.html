@@ -221,7 +221,7 @@ And run the network with N2D2 instead of Torch.</p>
 <p>You can find the full python script here <a class="reference download internal" download="" href="../../_downloads/063fcce3709158988a569aaa9a8e7d78/torch_example.py"><code class="xref download docutils literal notranslate"><span class="pre">torch_example.py</span></code></a>.</p>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<p>Firstly, we import the same libraries as in the tutorial plus our <code class="docutils literal notranslate"><span class="pre">pytorch_interoperability</span></code> and <code class="docutils literal notranslate"><span class="pre">n2d2</span></code> libraries.</p>
+<p>Firstly, we import the same libraries as in the tutorial plus our <code class="docutils literal notranslate"><span class="pre">pytorch_to_n2d2</span></code> and <code class="docutils literal notranslate"><span class="pre">n2d2</span></code> libraries.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">torchvision</span>
 <span class="kn">import</span> <span class="nn">torchvision.transforms</span> <span class="k">as</span> <span class="nn">transforms</span>
@@ -231,7 +231,7 @@ And run the network with N2D2 instead of Torch.</p>
 <span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
 <span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
 <span class="kn">import</span> <span class="nn">n2d2</span>
-<span class="kn">import</span> <span class="nn">pytorch_interoperability</span>
+<span class="kn">import</span> <span class="nn">pytorch_to_n2d2</span>
 </pre></div>
 </div>
 <p>We then still follow the tutorial and add the code to load the data and we define the Network.</p>
@@ -290,13 +290,13 @@ And run the network with N2D2 instead of Torch.</p>
         <span class="k">return</span> <span class="n">x</span>
 </pre></div>
 </div>
-<p>Here we begin to add our code, we intialize the Torch Network and we pass it to the <a class="reference internal" href="../interoperability.html#pytorch_interoperability.wrap" title="pytorch_interoperability.wrap"><code class="xref py py-func docutils literal notranslate"><span class="pre">pytorch_interoperability.wrap()</span></code></a> method.
+<p>Here we begin to add our code, we intialize the Torch Network and we pass it to the <a class="reference internal" href="../interoperability.html#pytorch_to_n2d2.wrap" title="pytorch_to_n2d2.wrap"><code class="xref py py-func docutils literal notranslate"><span class="pre">pytorch_to_n2d2.wrap()</span></code></a> method.
 This will give us a <code class="docutils literal notranslate"><span class="pre">torch.nn.Module</span></code> which run N2D2 and that we will use instead of the Torch Network.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torch_net</span> <span class="o">=</span> <span class="n">Net</span><span class="p">()</span>
 <span class="c1"># specify that we want to use CUDA.</span>
 <span class="n">n2d2</span><span class="o">.</span><span class="n">global_variables</span><span class="o">.</span><span class="n">default_model</span> <span class="o">=</span> <span class="s2">&quot;Frame_CUDA&quot;</span>
 <span class="c1"># creating a model which run with N2D2 backend.</span>
-<span class="n">net</span> <span class="o">=</span> <span class="n">pytorch_interoperability</span><span class="o">.</span><span class="n">wrap</span><span class="p">(</span><span class="n">torch_net</span><span class="p">,</span> <span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">))</span>
+<span class="n">net</span> <span class="o">=</span> <span class="n">pytorch_to_n2d2</span><span class="o">.</span><span class="n">wrap</span><span class="p">(</span><span class="n">torch_net</span><span class="p">,</span> <span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">))</span>
 
 <span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
 <span class="c1"># Reminder : We define an optimizer, but it will not be used to optimized N2D2 parameters.</span>
