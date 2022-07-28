@@ -873,6 +873,22 @@ structure of the model</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="n2d2.cells.NeuralNetworkCell.is_exportable_to">
+<em class="property">static </em><code class="sig-name descname">is_exportable_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">export_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.cells.NeuralNetworkCell.is_exportable_to" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>export_name</strong> (<em>str</em>) – Name of the export</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the cell is exportable to the <code class="docutils literal notranslate"><span class="pre">export_name</span></code> export.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="n2d2.cells.NeuralNetworkCell.set_activation">
 <code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n">n2d2.activation.activation.ActivationFunction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.NeuralNetworkCell.set_activation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set an activation function to the N2D2 object and update config parameter of the n2d2 object.</p>
@@ -1047,6 +1063,22 @@ structure of the model</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.Conv.is_exportable_to">
+<em class="property">static </em><code class="sig-name descname">is_exportable_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.cells.Conv.is_exportable_to" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>export_name</strong> (<em>str</em>) – Name of the export</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the cell is exportable to the <code class="docutils literal notranslate"><span class="pre">export_name</span></code> export.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1321,6 +1353,22 @@ structure of the model</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="n2d2.cells.Deconv.is_exportable_to">
+<em class="property">static </em><code class="sig-name descname">is_exportable_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.cells.Deconv.is_exportable_to" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>export_name</strong> (<em>str</em>) – Name of the export</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the cell is exportable to the <code class="docutils literal notranslate"><span class="pre">export_name</span></code> export.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="n2d2.cells.Deconv.refill_bias">
 <code class="sig-name descname">refill_bias</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Deconv.refill_bias" title="Permalink to this definition">¶</a></dt>
 <dd><p>Re-fill the bias using the associated bias filler</p>
@@ -1435,7 +1483,7 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.Fc.get_bias">
-<code class="sig-name descname">get_bias</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">output_index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Fc.get_bias" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_bias</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">output_index</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Fc.get_bias" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>output_index</strong> (<em>int</em>) – </p>
@@ -1561,6 +1609,22 @@ structure of the model</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="n2d2.cells.Fc.is_exportable_to">
+<em class="property">static </em><code class="sig-name descname">is_exportable_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.cells.Fc.is_exportable_to" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>export_name</strong> (<em>str</em>) – Name of the export</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the cell is exportable to the <code class="docutils literal notranslate"><span class="pre">export_name</span></code> export.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="n2d2.cells.Fc.refill_bias">
 <code class="sig-name descname">refill_bias</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Fc.refill_bias" title="Permalink to this definition">¶</a></dt>
 <dd><p>Re-fill the bias using the associated bias filler</p>
@@ -1585,12 +1649,12 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.Fc.set_bias">
-<code class="sig-name descname">set_bias</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">output_index</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Fc.set_bias" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_bias</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">output_index</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n">n2d2.tensor.Tensor</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Fc.set_bias" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>output_index</strong> (<em>int</em>) – </p></li>
-<li><p><strong>value</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>) – </p></li>
+<li><p><strong>value</strong> (<a class="reference internal" href="tensor.html#n2d2.Tensor" title="n2d2.Tensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></a>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -1599,9 +1663,12 @@ structure of the model</p>
 <dl class="py method">
 <dt id="n2d2.cells.Fc.set_bias_filler">
 <code class="sig-name descname">set_bias_filler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filler</span></em>, <em class="sig-param"><span class="n">refill</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Fc.set_bias_filler" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set a filler for the bias.
-:param filler: Filler object
-:type filler: <code class="xref py py-class docutils literal notranslate"><span class="pre">Filler</span></code></p>
+<dd><p>Set a filler for the bias.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filler</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Filler</span></code>) – Filler object</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -1617,7 +1684,7 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.Fc.set_solver">
-<code class="sig-name descname">set_solver</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">solver</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Fc.set_solver" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_solver</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">solver</span><span class="p">:</span> <span class="n">n2d2.solver.solver.Solver</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Fc.set_solver" title="Permalink to this definition">¶</a></dt>
 <dd><p>“Set the weights and bias solver with the same solver.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1749,6 +1816,22 @@ structure of the model</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="n2d2.cells.Dropout.is_exportable_to">
+<em class="property">static </em><code class="sig-name descname">is_exportable_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">export_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.cells.Dropout.is_exportable_to" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>export_name</strong> (<em>str</em>) – Name of the export</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the cell is exportable to the <code class="docutils literal notranslate"><span class="pre">export_name</span></code> export.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="n2d2.cells.Dropout.set_activation">
 <code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n">n2d2.activation.activation.ActivationFunction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Dropout.set_activation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set an activation function to the N2D2 object and update config parameter of the n2d2 object.</p>
@@ -1840,6 +1923,22 @@ structure of the model</p>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.ElemWise.is_exportable_to">
+<em class="property">static </em><code class="sig-name descname">is_exportable_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.cells.ElemWise.is_exportable_to" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>export_name</strong> (<em>str</em>) – Name of the export</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the cell is exportable to the <code class="docutils literal notranslate"><span class="pre">export_name</span></code> export.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1941,6 +2040,22 @@ structure of the model</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="n2d2.cells.Padding.is_exportable_to">
+<em class="property">static </em><code class="sig-name descname">is_exportable_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.cells.Padding.is_exportable_to" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>export_name</strong> (<em>str</em>) – Name of the export</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the cell is exportable to the <code class="docutils literal notranslate"><span class="pre">export_name</span></code> export.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="n2d2.cells.Padding.set_activation">
 <code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n">n2d2.activation.activation.ActivationFunction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Padding.set_activation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set an activation function to the N2D2 object and update config parameter of the n2d2 object.</p>
@@ -2031,6 +2146,22 @@ structure of the model</p>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.Softmax.is_exportable_to">
+<em class="property">static </em><code class="sig-name descname">is_exportable_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.cells.Softmax.is_exportable_to" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>export_name</strong> (<em>str</em>) – Name of the export</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the cell is exportable to the <code class="docutils literal notranslate"><span class="pre">export_name</span></code> export.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2131,6 +2262,22 @@ structure of the model</p>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.BatchNorm2d.is_exportable_to">
+<em class="property">static </em><code class="sig-name descname">is_exportable_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.cells.BatchNorm2d.is_exportable_to" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>export_name</strong> (<em>str</em>) – Name of the export</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the cell is exportable to the <code class="docutils literal notranslate"><span class="pre">export_name</span></code> export.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2259,6 +2406,22 @@ structure of the model</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="n2d2.cells.Pool.is_exportable_to">
+<em class="property">static </em><code class="sig-name descname">is_exportable_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.cells.Pool.is_exportable_to" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>export_name</strong> (<em>str</em>) – Name of the export</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the cell is exportable to the <code class="docutils literal notranslate"><span class="pre">export_name</span></code> export.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="n2d2.cells.Pool.set_activation">
 <code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n">n2d2.activation.activation.ActivationFunction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Pool.set_activation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set an activation function to the N2D2 object and update config parameter of the n2d2 object.</p>
@@ -2347,6 +2510,22 @@ structure of the model</p>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.Activation.is_exportable_to">
+<em class="property">static </em><code class="sig-name descname">is_exportable_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.cells.Activation.is_exportable_to" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>export_name</strong> (<em>str</em>) – Name of the export</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the cell is exportable to the <code class="docutils literal notranslate"><span class="pre">export_name</span></code> export.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2441,6 +2620,22 @@ structure of the model</p>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.Reshape.is_exportable_to">
+<em class="property">static </em><code class="sig-name descname">is_exportable_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.cells.Reshape.is_exportable_to" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>export_name</strong> (<em>str</em>) – Name of the export</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the cell is exportable to the <code class="docutils literal notranslate"><span class="pre">export_name</span></code> export.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2542,6 +2737,22 @@ structure of the model</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="n2d2.cells.Resize.is_exportable_to">
+<em class="property">static </em><code class="sig-name descname">is_exportable_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.cells.Resize.is_exportable_to" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>export_name</strong> (<em>str</em>) – Name of the export</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the cell is exportable to the <code class="docutils literal notranslate"><span class="pre">export_name</span></code> export.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="n2d2.cells.Resize.set_activation">
 <code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n">n2d2.activation.activation.ActivationFunction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Resize.set_activation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set an activation function to the N2D2 object and update config parameter of the n2d2 object.</p>
@@ -2631,6 +2842,22 @@ structure of the model</p>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.Scaling.is_exportable_to">
+<em class="property">static </em><code class="sig-name descname">is_exportable_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.cells.Scaling.is_exportable_to" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>export_name</strong> (<em>str</em>) – Name of the export</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the cell is exportable to the <code class="docutils literal notranslate"><span class="pre">export_name</span></code> export.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2728,6 +2955,22 @@ structure of the model</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="n2d2.cells.Transformation.is_exportable_to">
+<em class="property">static </em><code class="sig-name descname">is_exportable_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">export_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.cells.Transformation.is_exportable_to" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>export_name</strong> (<em>str</em>) – Name of the export</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the cell is exportable to the <code class="docutils literal notranslate"><span class="pre">export_name</span></code> export.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="n2d2.cells.Transformation.set_activation">
 <code class="sig-name descname">set_activation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n">n2d2.activation.activation.ActivationFunction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.Transformation.set_activation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set an activation function to the N2D2 object and update config parameter of the n2d2 object.</p>
@@ -2817,6 +3060,22 @@ structure of the model</p>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.Transpose.is_exportable_to">
+<em class="property">static </em><code class="sig-name descname">is_exportable_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.cells.Transpose.is_exportable_to" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>export_name</strong> (<em>str</em>) – Name of the export</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the cell is exportable to the <code class="docutils literal notranslate"><span class="pre">export_name</span></code> export.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
 </dd></dl>
