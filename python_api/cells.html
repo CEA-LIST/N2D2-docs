@@ -629,7 +629,7 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.DeepNetCell.import_free_parameters">
-<code class="sig-name descname">import_free_parameters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dir_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">ignore_not_exists</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.DeepNetCell.import_free_parameters" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">import_free_parameters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dir_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">ignore_not_exists</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.cells.DeepNetCell.import_free_parameters" title="Permalink to this definition">¶</a></dt>
 <dd><p>Import deepnet parameters.</p>
 </dd></dl>
 
@@ -667,6 +667,45 @@ structure of the model</p>
 <li><p><strong>model_path</strong> (<em>str</em>) – Path to the <code class="docutils literal notranslate"><span class="pre">onnx</span></code> model.</p></li>
 <li><p><strong>ini_file</strong> (<em>str</em>) – Path to an optional <code class="docutils literal notranslate"><span class="pre">.ini</span></code> file with additional onnx import instructions</p></li>
 <li><p><strong>ignore_cells</strong> (<em>list</em><em>, </em><em>optional</em>) – List of cells name to ignore, default=None</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.DeepNetCell.log_confusion_matrix">
+<code class="sig-name descname">log_confusion_matrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">partition</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'Test'</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.cells.DeepNetCell.log_confusion_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log a confusion matrix of the given data partition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Path to the directory where you want to save the data.</p></li>
+<li><p><strong>partition</strong> (<em>str</em><em>, </em><em>otpionnal</em>) – The partition can be  <code class="docutils literal notranslate"><span class="pre">Learn</span></code>, <code class="docutils literal notranslate"><span class="pre">Validation</span></code>, <code class="docutils literal notranslate"><span class="pre">Test</span></code>,  <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code>, default=”Test”</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.DeepNetCell.log_stats">
+<code class="sig-name descname">log_stats</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.cells.DeepNetCell.log_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Export statistics of the graph</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dirname</strong> (<em>str</em>) – path to the directory where you want to save the data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.DeepNetCell.log_success">
+<code class="sig-name descname">log_success</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">partition</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'Test'</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.cells.DeepNetCell.log_success" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a graph of the loss and the validation score as a function of the step number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Path to the directory where you want to save the data.</p></li>
+<li><p><strong>partition</strong> (<em>str</em><em>, </em><em>otpionnal</em>) – The partition can be  <code class="docutils literal notranslate"><span class="pre">Learn</span></code>, <code class="docutils literal notranslate"><span class="pre">Validation</span></code>, <code class="docutils literal notranslate"><span class="pre">Test</span></code>,  <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code>, default=”Test”</p></li>
 </ul>
 </dd>
 </dl>
@@ -712,6 +751,17 @@ structure of the model</p>
 <dd><p>Set back_propagate boolean of trainable cells.
 :param value: If True trainable cell will enable back propagation.
 :type value: bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.cells.DeepNetCell.set_provider">
+<code class="sig-name descname">set_provider</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">provider</span><span class="p">:</span> <span class="n">n2d2.provider.Provider</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.cells.DeepNetCell.set_provider" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a data provider to the deepnetcell</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>provider</strong> (<em>Provider</em>) – Data provider to use.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">

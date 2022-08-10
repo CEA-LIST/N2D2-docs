@@ -400,6 +400,17 @@ an exterior file we will name it <code class="docutils literal notranslate"><spa
 </dd></dl>
 
 <dl class="py method">
+<dt id="n2d2.database.DIR.download">
+<em class="property">classmethod </em><code class="sig-name descname">download</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.database.DIR.download" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download the dataset at the defined path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path where to download the dataset, default=$(N2D2_DATA)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="n2d2.database.DIR.get_label_name">
 <code class="sig-name descname">get_label_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">label_idx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.get_label_name" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
@@ -443,8 +454,21 @@ an exterior file we will name it <code class="docutils literal notranslate"><spa
 </dd></dl>
 
 <dl class="py method">
+<dt id="n2d2.database.DIR.is_downloadable">
+<em class="property">classmethod </em><code class="sig-name descname">is_downloadable</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.database.DIR.is_downloadable" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the database is downloadable.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="n2d2.database.DIR.partition_stimuli">
-<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="n">validation</span></em>, <em class="sig-param"><span class="n">test</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.partition_stimuli" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">validation</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">test</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.partition_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Partition the <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code> data with the given ratio (the sum of the given ratio must be equal to 1).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -486,6 +510,17 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 <li><p><strong>validation</strong> (<em>float</em><em>, </em><em>optional</em>) – Fraction of the learning set used for validation, default=0.0</p></li>
 <li><p><strong>load_data_in_memory</strong> (<em>boolean</em><em>, </em><em>optional</em>) – if <cite>True</cite> cache data in memory, default=False</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.database.MNIST.download">
+<em class="property">classmethod </em><code class="sig-name descname">download</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.database.MNIST.download" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download the dataset at the defined path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path where to download the dataset, default=$(N2D2_DATA)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -534,8 +569,21 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="n2d2.database.MNIST.is_downloadable">
+<em class="property">classmethod </em><code class="sig-name descname">is_downloadable</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.database.MNIST.is_downloadable" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the database is downloadable.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="n2d2.database.MNIST.partition_stimuli">
-<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="n">validation</span></em>, <em class="sig-param"><span class="n">test</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.partition_stimuli" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">validation</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">test</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.partition_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Partition the <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code> data with the given ratio (the sum of the given ratio must be equal to 1).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -573,6 +621,17 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 <li><p><strong>use_validation_for_test</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, use the validation partition for test, default=False</p></li>
 <li><p><strong>load_data_in_memory</strong> (<em>boolean</em><em>, </em><em>optional</em>) – if <cite>True</cite> cache data in memory, default=False</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.database.ILSVRC2012.download">
+<em class="property">classmethod </em><code class="sig-name descname">download</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.database.ILSVRC2012.download" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download the dataset at the defined path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path where to download the dataset, default=$(N2D2_DATA)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -621,8 +680,21 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="n2d2.database.ILSVRC2012.is_downloadable">
+<em class="property">classmethod </em><code class="sig-name descname">is_downloadable</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.database.ILSVRC2012.is_downloadable" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the database is downloadable.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="n2d2.database.ILSVRC2012.partition_stimuli">
-<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="n">validation</span></em>, <em class="sig-param"><span class="n">test</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.partition_stimuli" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">validation</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">test</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.partition_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Partition the <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code> data with the given ratio (the sum of the given ratio must be equal to 1).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -660,6 +732,17 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 <li><p><strong>validation</strong> (<em>float</em><em>, </em><em>optional</em>) – Fraction of the learning set used for validation, default=0.0</p></li>
 <li><p><strong>load_data_in_memory</strong> (<em>boolean</em><em>, </em><em>optional</em>) – if <cite>True</cite> cache data in memory, default=False</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.database.CIFAR10.download">
+<em class="property">classmethod </em><code class="sig-name descname">download</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.database.CIFAR10.download" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download the dataset at the defined path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path where to download the dataset, default=$(N2D2_DATA)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -708,8 +791,21 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="n2d2.database.CIFAR10.is_downloadable">
+<em class="property">classmethod </em><code class="sig-name descname">is_downloadable</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.database.CIFAR10.is_downloadable" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the database is downloadable.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="n2d2.database.CIFAR10.partition_stimuli">
-<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="n">validation</span></em>, <em class="sig-param"><span class="n">test</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR10.partition_stimuli" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">validation</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">test</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR10.partition_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Partition the <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code> data with the given ratio (the sum of the given ratio must be equal to 1).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -748,6 +844,17 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 <li><p><strong>use_coarse</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, use the coarse labeling (10 labels instead of 100), default=False</p></li>
 <li><p><strong>load_data_in_memory</strong> (<em>boolean</em><em>, </em><em>optional</em>) – if <cite>True</cite> cache data in memory, default=False</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.database.CIFAR100.download">
+<em class="property">classmethod </em><code class="sig-name descname">download</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.database.CIFAR100.download" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download the dataset at the defined path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path where to download the dataset, default=$(N2D2_DATA)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -796,8 +903,21 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="n2d2.database.CIFAR100.is_downloadable">
+<em class="property">classmethod </em><code class="sig-name descname">is_downloadable</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.database.CIFAR100.is_downloadable" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the database is downloadable.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="n2d2.database.CIFAR100.partition_stimuli">
-<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="n">validation</span></em>, <em class="sig-param"><span class="n">test</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.partition_stimuli" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">validation</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">test</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.partition_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Partition the <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code> data with the given ratio (the sum of the given ratio must be equal to 1).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -840,6 +960,17 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 <li><p><strong>single_instance_labels</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, convert group labels to single instance labels (for example, <code class="docutils literal notranslate"><span class="pre">cargroup</span></code> becomes <code class="docutils literal notranslate"><span class="pre">car</span></code>), default=True</p></li>
 <li><p><strong>load_data_in_memory</strong> (<em>boolean</em><em>, </em><em>optional</em>) – if <cite>True</cite> cache data in memory, default=False</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.database.Cityscapes.download">
+<em class="property">classmethod </em><code class="sig-name descname">download</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.database.Cityscapes.download" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download the dataset at the defined path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path where to download the dataset, default=$(N2D2_DATA)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -888,8 +1019,21 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="n2d2.database.Cityscapes.is_downloadable">
+<em class="property">classmethod </em><code class="sig-name descname">is_downloadable</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.database.Cityscapes.is_downloadable" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the database is downloadable.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="n2d2.database.Cityscapes.partition_stimuli">
-<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="n">validation</span></em>, <em class="sig-param"><span class="n">test</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.partition_stimuli" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">validation</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">test</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.partition_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Partition the <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code> data with the given ratio (the sum of the given ratio must be equal to 1).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -926,6 +1070,17 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 <li><p><strong>validation</strong> (<em>float</em>) – Fraction of the learning set used for validation</p></li>
 <li><p><strong>load_data_in_memory</strong> (<em>boolean</em><em>, </em><em>optional</em>) – if <cite>True</cite> cache data in memory, default=False</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="n2d2.database.GTSRB.download">
+<em class="property">classmethod </em><code class="sig-name descname">download</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.database.GTSRB.download" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download the dataset at the defined path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path where to download the dataset, default=$(N2D2_DATA)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -974,8 +1129,21 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="n2d2.database.GTSRB.is_downloadable">
+<em class="property">classmethod </em><code class="sig-name descname">is_downloadable</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.database.GTSRB.is_downloadable" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the database is downloadable.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="n2d2.database.GTSRB.partition_stimuli">
-<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="n">validation</span></em>, <em class="sig-param"><span class="n">test</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.GTSRB.partition_stimuli" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">validation</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">test</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.GTSRB.partition_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Partition the <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code> data with the given ratio (the sum of the given ratio must be equal to 1).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

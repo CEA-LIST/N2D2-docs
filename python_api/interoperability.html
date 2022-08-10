@@ -234,16 +234,17 @@
 <h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
 <dl class="py function">
 <dt id="keras_to_n2d2.wrap">
-<code class="sig-prename descclassname">keras_to_n2d2.</code><code class="sig-name descname">wrap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tf_model</span><span class="p">:</span> <span class="n">tensorflow.python.keras.engine.sequential.Sequential</span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">for_export</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; keras_to_n2d2.keras_interface.CustomSequential<a class="headerlink" href="#keras_to_n2d2.wrap" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">keras_to_n2d2.</code><code class="sig-name descname">wrap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tf_model</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>tensorflow.python.keras.engine.sequential.Sequential<span class="p">, </span>tensorflow.python.keras.engine.training.Model<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">for_export</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">opset_version</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">10</span></em><span class="sig-paren">)</span> &#x2192; keras_to_n2d2.keras_interface.CustomSequential<a class="headerlink" href="#keras_to_n2d2.wrap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a custom model which run with N2D2 on backend.
 The conversion between TensorFlow/Keras and N2D2 is done with ONNX.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>tf_model</strong> (<code class="docutils literal notranslate"><span class="pre">keras.Sequential</span></code>) – The TensorFlow/Keras model to transfert to N2D2.</p></li>
+<li><p><strong>tf_model</strong> (Union[<code class="docutils literal notranslate"><span class="pre">keras.Sequential</span></code>, <code class="docutils literal notranslate"><span class="pre">keras.models.Model</span></code>]) – The TensorFlow/Keras model to transfert to N2D2.</p></li>
 <li><p><strong>batch_size</strong> (<em>int</em>) – Batch size used.</p></li>
 <li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the model, default=tf_model.name</p></li>
 <li><p><strong>for_export</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, remove some layers to make the model exportable, default=False</p></li>
+<li><p><strong>opset_version</strong> (<em>int</em><em>, </em><em>optional</em>) – Opset version used to generate the intermediate ONNX file., default=10</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -372,7 +373,7 @@ The opposite conversion is done with no memory copy.</p>
 <h3>Documentation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <dl class="py function">
 <dt id="pytorch_to_n2d2.wrap">
-<code class="sig-prename descclassname">pytorch_to_n2d2.</code><code class="sig-name descname">wrap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">torch_model</span></em>, <em class="sig-param"><span class="n">input_size</span></em>, <em class="sig-param"><span class="n">opset_version</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytorch_to_n2d2.wrap" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pytorch_to_n2d2.</code><code class="sig-name descname">wrap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">torch_model</span><span class="p">:</span> <span class="n">torch.nn.modules.module.Module</span></em>, <em class="sig-param"><span class="n">input_size</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>list<span class="p">, </span>tuple<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">opset_version</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">11</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pytorch_to_n2d2.pytorch_interface.Block<a class="headerlink" href="#pytorch_to_n2d2.wrap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function generating a <code class="docutils literal notranslate"><span class="pre">torch.nn.Module</span></code> which embed a <a class="reference internal" href="cells.html#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a>.
 The torch_model is exported to N2D2 via ONNX.</p>
 <dl class="field-list simple">
@@ -380,6 +381,8 @@ The torch_model is exported to N2D2 via ONNX.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>torch_model</strong> (<code class="docutils literal notranslate"><span class="pre">torch.nn.Module</span></code>) – Torch model to convert to N2D2.</p></li>
 <li><p><strong>input_size</strong> (<code class="docutils literal notranslate"><span class="pre">list</span></code>) – The size of the input of the network, the format required is NCHW.</p></li>
+<li><p><strong>opset_version</strong> (<em>int</em><em>, </em><em>optional</em>) – Opset version used to generate the intermediate ONNX file, default=11</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – Enable the verbose output of torch onnx export, default=False</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -423,6 +426,12 @@ And on backward the <code class="docutils literal notranslate"><span class="pre"
 <dd class="field-even"><p><a class="reference internal" href="cells.html#n2d2.cells.Block" title="n2d2.cells.Block"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Block</span></code></a></p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pytorch_to_n2d2.Block.summary">
+<code class="sig-name descname">summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#pytorch_to_n2d2.Block.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print model information.</p>
 </dd></dl>
 
 </dd></dl>
