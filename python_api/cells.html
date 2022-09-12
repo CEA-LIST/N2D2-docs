@@ -658,7 +658,7 @@ structure of the model</p>
 
 <dl class="py method">
 <dt id="n2d2.cells.DeepNetCell.load_from_ONNX">
-<em class="property">classmethod </em><code class="sig-name descname">load_from_ONNX</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">provider</span><span class="p">:</span> <span class="n"><a class="reference internal" href="databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider">n2d2.provider.DataProvider</a></span></em>, <em class="sig-param"><span class="n">model_path</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">ini_file</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ignore_cells</span><span class="p">:</span> <span class="n">list</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.DeepNetCell.load_from_ONNX" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">load_from_ONNX</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">provider</span><span class="p">:</span> <span class="n"><a class="reference internal" href="databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider">n2d2.provider.DataProvider</a></span></em>, <em class="sig-param"><span class="n">model_path</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">ini_file</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ignore_cells</span><span class="p">:</span> <span class="n">list</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ignore_input_size</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.cells.DeepNetCell.load_from_ONNX" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load a deepnet from an ONNX file given a provider object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -667,6 +667,7 @@ structure of the model</p>
 <li><p><strong>model_path</strong> (<em>str</em>) – Path to the <code class="docutils literal notranslate"><span class="pre">onnx</span></code> model.</p></li>
 <li><p><strong>ini_file</strong> (<em>str</em>) – Path to an optional <code class="docutils literal notranslate"><span class="pre">.ini</span></code> file with additional onnx import instructions</p></li>
 <li><p><strong>ignore_cells</strong> (<em>list</em><em>, </em><em>optional</em>) – List of cells name to ignore, default=None</p></li>
+<li><p><strong>ignore_input_size</strong> (<em>bool</em><em>, </em><em>optional</em>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, the input size specified in the ONNXmodle is ignored and the <code class="docutils literal notranslate"><span class="pre">n2d2.provider.Provider</span></code> size is used, default=False</p></li>
 </ul>
 </dd>
 </dl>
