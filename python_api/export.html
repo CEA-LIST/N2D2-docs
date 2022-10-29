@@ -391,7 +391,7 @@ If you look at the log you may see warning lines like this :</p>
 <h3>Documentation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <dl class="py function">
 <dt id="n2d2.export.export_cpp">
-<code class="sig-prename descclassname">n2d2.export.</code><code class="sig-name descname">export_cpp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">deepnet_cell</span><span class="p">:</span> <span class="n">n2d2.cells.cell.DeepNetCell</span></em>, <em class="sig-param"><span class="n">provider</span><span class="p">:</span> <span class="n">n2d2.provider.Provider</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.export.export_cpp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">n2d2.export.</code><code class="sig-name descname">export_cpp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">deepnet_cell</span><span class="p">:</span> <span class="n">n2d2.cells.cell.DeepNetCell</span></em>, <em class="sig-param"><span class="n">provider</span><span class="p">:</span> <span class="n">n2d2.provider.Provider</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">optimize_buffer_memory</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.export.export_cpp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a CPP export of the neural network.</p>
 <blockquote>
 <div><p>List of exportable cells :</p>
@@ -476,6 +476,7 @@ If you look at the log you may see warning lines like this :</p>
 <li><p><strong>b_round_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – Biases clipping mode on export, can be <code class="docutils literal notranslate"><span class="pre">NONE</span></code>, <code class="docutils literal notranslate"><span class="pre">RINTF</span></code>, default=”NONE”</p></li>
 <li><p><strong>c_round_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – Clip clipping mode on export, can be <code class="docutils literal notranslate"><span class="pre">NONE</span></code>, <code class="docutils literal notranslate"><span class="pre">RINTF</span></code>, default=”NONE”</p></li>
 <li><p><strong>find_lr</strong> (<em>int</em><em>, </em><em>optional</em>) – Find an appropriate learning rate over a number of iterations, default=0</p></li>
+<li><p><strong>optimize_buffer_memory</strong> (<em>bool</em><em>, </em><em>optional</em>) – If False deactivate memory optimization, default=True</p></li>
 </ul>
 </dd>
 </dl>
