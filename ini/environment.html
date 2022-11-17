@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,11 +28,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -83,7 +87,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Introduction:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/about.html">About N2D2-IP</a></li>
@@ -91,13 +95,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro/perfs_tools.html">Performance evaluation tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/tuto.html">Tutorials</a></li>
 </ul>
-<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<p class="caption" role="heading"><span class="caption-text">ONNX Import:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/convert.html">Obtain ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/import.html">Import ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/transfer.html">Train from ONNX models</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Quantization and Export:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../quant/post.html">Post-training quantization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">Quantization-Aware Training</a></li>
@@ -108,7 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../export/ONNX.html">Export: ONNX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/legacy.html">Export: other / legacy</a></li>
 </ul>
-<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<p class="caption" role="heading"><span class="caption-text">INI File Interface:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="databases.html">Databases</a></li>
@@ -179,7 +183,7 @@
 <li class="toctree-l1"><a class="reference internal" href="target.html">Targets (outputs &amp; losses)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../adversarial.html">Adversarial module</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Python API:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Python API:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/databases.html">Databases</a></li>
@@ -189,12 +193,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../python_api/export.html">Export</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++/Python core:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../core/core.html">Core N2D2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++ API / Developer:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../dev_intro.html">Introduction</a></li>
 </ul>
@@ -263,9 +267,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="stimuli-provider-environment">
-<h1>Stimuli provider (Environment)<a class="headerlink" href="#stimuli-provider-environment" title="Permalink to this headline">¶</a></h1>
+<h1>Stimuli provider (Environment)<a class="headerlink" href="#stimuli-provider-environment" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">database</span></code> section must feed a stimuli provider (or environment), which is
 instantiated with a section named <code class="docutils literal notranslate"><span class="pre">sp</span></code> (or <code class="docutils literal notranslate"><span class="pre">env</span></code>) in the INI file. When the
 two sections are present in the INI file, they are implicitly connected: the
@@ -358,7 +362,7 @@ present, meaning that the labels of the image must have the same dimension than
 the image (and cannot be a single class value as in classification problem).</p>
 </div>
 <div class="section" id="data-range-and-conversion">
-<h2>Data range and conversion<a class="headerlink" href="#data-range-and-conversion" title="Permalink to this headline">¶</a></h2>
+<h2>Data range and conversion<a class="headerlink" href="#data-range-and-conversion" title="Permalink to this heading">¶</a></h2>
 <p>A configuration section can be associated to a <code class="docutils literal notranslate"><span class="pre">StimuliProvider</span></code>, as shown
 below. The <code class="docutils literal notranslate"><span class="pre">DataSignedMapping=1</span></code> parameter specifies that the input value
 range must be interpreted as signed, even if the values are unsigned, which is
@@ -412,7 +416,7 @@ automatically generated by N2D2.</span><a class="headerlink" href="#id2" title="
 </div>
 </div>
 <div class="section" id="images-slicing-during-training-and-inference">
-<h2>Images slicing during training and inference<a class="headerlink" href="#images-slicing-during-training-and-inference" title="Permalink to this headline">¶</a></h2>
+<h2>Images slicing during training and inference<a class="headerlink" href="#images-slicing-during-training-and-inference" title="Permalink to this heading">¶</a></h2>
 <p>In N2D2, the input dimensions of a neural network is fixed and cannot be
 changed dynamically during the training and inference, as images are processed
 in batch, like any other deep learning framework. Therefore, in order to deal
@@ -462,7 +466,7 @@ can be used.</p></li>
 </ol>
 </div>
 <div class="section" id="blending-for-data-augmentation">
-<h2>Blending for data augmentation<a class="headerlink" href="#blending-for-data-augmentation" title="Permalink to this headline">¶</a></h2>
+<h2>Blending for data augmentation<a class="headerlink" href="#blending-for-data-augmentation" title="Permalink to this heading">¶</a></h2>
 <p>Complex data augmentation / pre-processing pipelines can be created by combining
 the different available transformations. It is even possible to use multiple
 <code class="docutils literal notranslate"><span class="pre">Database</span></code> and <code class="docutils literal notranslate"><span class="pre">StimuliProvider</span></code>, to create for example a “blending” pipeline,
@@ -585,7 +589,7 @@ attached to the <code class="docutils literal notranslate"><span class="pre">Ble
 </div>
 </div>
 <div class="section" id="built-in-transformations">
-<h2>Built-in transformations<a class="headerlink" href="#built-in-transformations" title="Permalink to this headline">¶</a></h2>
+<h2>Built-in transformations<a class="headerlink" href="#built-in-transformations" title="Permalink to this heading">¶</a></h2>
 <p>There are 6 possible categories of transformations:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">env.Transformation[...]</span></code> Transformations applied to the input images
@@ -676,7 +680,7 @@ the INI file regardless of their suffix.</strong></p>
 </div>
 <p>List of available transformations:</p>
 <div class="section" id="affinetransformation">
-<h3>AffineTransformation<a class="headerlink" href="#affinetransformation" title="Permalink to this headline">¶</a></h3>
+<h3>AffineTransformation<a class="headerlink" href="#affinetransformation" title="Permalink to this heading">¶</a></h3>
 <p>Apply an element-wise affine transformation to the image with matrixes
 of the same size.</p>
 <table class="docutils align-default">
@@ -713,7 +717,7 @@ operator :</p>
 \substack{\odot\\op_{2nd}}\;B_{2nd}\end{split}\]</div>
 </div>
 <div class="section" id="apodizationtransformation">
-<h3>ApodizationTransformation<a class="headerlink" href="#apodizationtransformation" title="Permalink to this headline">¶</a></h3>
+<h3>ApodizationTransformation<a class="headerlink" href="#apodizationtransformation" title="Permalink to this heading">¶</a></h3>
 <p>Apply an apodization window to each data row.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -756,7 +760,7 @@ operator :</p>
 </tbody>
 </table>
 <div class="section" id="gaussian-window">
-<h4>Gaussian window<a class="headerlink" href="#gaussian-window" title="Permalink to this headline">¶</a></h4>
+<h4>Gaussian window<a class="headerlink" href="#gaussian-window" title="Permalink to this heading">¶</a></h4>
 <p>Gaussian window.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -776,7 +780,7 @@ operator :</p>
 </table>
 </div>
 <div class="section" id="blackman-window">
-<h4>Blackman window<a class="headerlink" href="#blackman-window" title="Permalink to this headline">¶</a></h4>
+<h4>Blackman window<a class="headerlink" href="#blackman-window" title="Permalink to this heading">¶</a></h4>
 <p>Blackman window.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -796,7 +800,7 @@ operator :</p>
 </table>
 </div>
 <div class="section" id="kaiser-window">
-<h4>Kaiser window<a class="headerlink" href="#kaiser-window" title="Permalink to this headline">¶</a></h4>
+<h4>Kaiser window<a class="headerlink" href="#kaiser-window" title="Permalink to this heading">¶</a></h4>
 <p>Kaiser window.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -817,7 +821,7 @@ operator :</p>
 </div>
 </div>
 <div class="section" id="centroidcroptransformation">
-<h3>CentroidCropTransformation<a class="headerlink" href="#centroidcroptransformation" title="Permalink to this headline">¶</a></h3>
+<h3>CentroidCropTransformation<a class="headerlink" href="#centroidcroptransformation" title="Permalink to this heading">¶</a></h3>
 <p>Find the centroid of the image and crop the image so that the center of the image
 matches the centroid location. The cropping can be done on both axis, or just
 one axis with the <code class="docutils literal notranslate"><span class="pre">Axis</span></code> parameter. If <code class="docutils literal notranslate"><span class="pre">Axis</span></code> is 1, only the horizontal axis
@@ -845,7 +849,7 @@ dimension (by cropping for example to the smallest image obtained after
 <code class="docutils literal notranslate"><span class="pre">CentroidCropTransformation</span></code>), all centered on their respective centroid.</p>
 </div>
 <div class="section" id="blendingtransformation">
-<h3>BlendingTransformation<a class="headerlink" href="#blendingtransformation" title="Permalink to this headline">¶</a></h3>
+<h3>BlendingTransformation<a class="headerlink" href="#blendingtransformation" title="Permalink to this heading">¶</a></h3>
 <p><strong>N2D2-IP only: available upon request.</strong></p>
 <p>This transformation can be used to blend image objects, provided by another
 <code class="docutils literal notranslate"><span class="pre">Database</span></code> and associated <code class="docutils literal notranslate"><span class="pre">StimuliProvider</span></code>, to the images of the current
@@ -905,7 +909,7 @@ size. Indeed, the density parameter is checked only <em>after</em> the first obj
 </tbody>
 </table>
 <div class="section" id="blendingmethod">
-<h4><code class="docutils literal notranslate"><span class="pre">BlendingMethod</span></code><a class="headerlink" href="#blendingmethod" title="Permalink to this headline">¶</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">BlendingMethod</span></code><a class="headerlink" href="#blendingmethod" title="Permalink to this heading">¶</a></h4>
 <p>In the following equations, <span class="math notranslate nohighlight">\(O\)</span> is the object image, <span class="math notranslate nohighlight">\(I\)</span> is the image
 of the current pipe on which objects must be inserted.
 And <span class="math notranslate nohighlight">\(R\)</span> is the resulting image.</p>
@@ -938,7 +942,7 @@ And <span class="math notranslate nohighlight">\(R\)</span> is the resulting ima
 </dl>
 </div>
 <div class="section" id="labels-mapping">
-<h4>Labels mapping<a class="headerlink" href="#labels-mapping" title="Permalink to this headline">¶</a></h4>
+<h4>Labels mapping<a class="headerlink" href="#labels-mapping" title="Permalink to this heading">¶</a></h4>
 <p>When processing the first batch of data, you might get a message like the
 following in the console:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BlendingTransformation</span><span class="p">:</span> <span class="n">labels</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="n">required</span> <span class="k">with</span> <span class="n">the</span> <span class="n">following</span> <span class="n">mapping</span><span class="p">:</span>
@@ -986,7 +990,7 @@ the current database, an error is emitted:</p>
 </div>
 </div>
 <div class="section" id="channeldroptransformation">
-<h3>ChannelDropTransformation<a class="headerlink" href="#channeldroptransformation" title="Permalink to this headline">¶</a></h3>
+<h3>ChannelDropTransformation<a class="headerlink" href="#channeldroptransformation" title="Permalink to this heading">¶</a></h3>
 <p><strong>N2D2-IP only: available upon request.</strong></p>
 <p>Randomly drop some channels of the image and replace them with a constant value.
 This can be useful to simulate missing channel data in multi-channel data.</p>
@@ -1012,7 +1016,7 @@ probabilities, in the order of the image channels)</p></td>
 </table>
 </div>
 <div class="section" id="channelextractiontransformation">
-<h3>ChannelExtractionTransformation<a class="headerlink" href="#channelextractiontransformation" title="Permalink to this headline">¶</a></h3>
+<h3>ChannelExtractionTransformation<a class="headerlink" href="#channelextractiontransformation" title="Permalink to this heading">¶</a></h3>
 <p>Extract an image channel.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1059,7 +1063,7 @@ probabilities, in the order of the image channels)</p></td>
 </table>
 </div>
 <div class="section" id="channelshaketransformation">
-<h3>ChannelShakeTransformation<a class="headerlink" href="#channelshaketransformation" title="Permalink to this headline">¶</a></h3>
+<h3>ChannelShakeTransformation<a class="headerlink" href="#channelshaketransformation" title="Permalink to this heading">¶</a></h3>
 <p><strong>N2D2-IP only: available upon request.</strong></p>
 <p>Randomly shift some channels of the image.
 This can be useful to simulate misalignment between multiple channel data.</p>
@@ -1114,7 +1118,7 @@ pixels in the vertical direction, use: <code class="docutils literal notranslate
 </tbody>
 </table>
 <div class="section" id="distribution">
-<h4><code class="docutils literal notranslate"><span class="pre">Distribution</span></code><a class="headerlink" href="#distribution" title="Permalink to this headline">¶</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">Distribution</span></code><a class="headerlink" href="#distribution" title="Permalink to this heading">¶</a></h4>
 <p>Possible distribution and meaning of the range.
 For example with <code class="docutils literal notranslate"><span class="pre">VerticalRange[1]=-5.0</span> <span class="pre">5.0</span></code>.</p>
 <dl class="simple">
@@ -1129,7 +1133,7 @@ The range defines the std. dev. such that range = 6 sigma.</p>
 </div>
 </div>
 <div class="section" id="colorspacetransformation">
-<h3>ColorSpaceTransformation<a class="headerlink" href="#colorspacetransformation" title="Permalink to this headline">¶</a></h3>
+<h3>ColorSpaceTransformation<a class="headerlink" href="#colorspacetransformation" title="Permalink to this heading">¶</a></h3>
 <p>Change the current image colorspace.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1216,7 +1220,7 @@ The range defines the std. dev. such that range = 6 sigma.</p>
 <p>Note that the default colorspace in N2D2 is BGR, the same as in OpenCV.</p>
 </div>
 <div class="section" id="dfttransformation">
-<h3>DFTTransformation<a class="headerlink" href="#dfttransformation" title="Permalink to this headline">¶</a></h3>
+<h3>DFTTransformation<a class="headerlink" href="#dfttransformation" title="Permalink to this heading">¶</a></h3>
 <p>Apply a DFT to the data. The input data must be single channel, the
 resulting data is two channels, the first for the real part and the
 second for the imaginary part.</p>
@@ -1240,7 +1244,7 @@ second for the imaginary part.</p>
 underlying FFT implementation.</p>
 </div>
 <div class="section" id="distortiontransformation">
-<h3>DistortionTransformation<a class="headerlink" href="#distortiontransformation" title="Permalink to this headline">¶</a></h3>
+<h3>DistortionTransformation<a class="headerlink" href="#distortiontransformation" title="Permalink to this heading">¶</a></h3>
 <p>Apply elastic distortion to the image. This transformation is generally
 used on-the-fly (so that a different distortion is performed for each
 image), and for the learning only.</p>
@@ -1274,7 +1278,7 @@ image), and for the learning only.</p>
 </table>
 </div>
 <div class="section" id="equalizetransformation">
-<h3>EqualizeTransformation<a class="headerlink" href="#equalizetransformation" title="Permalink to this headline">¶</a></h3>
+<h3>EqualizeTransformation<a class="headerlink" href="#equalizetransformation" title="Permalink to this heading">¶</a></h3>
 <p>Image histogram equalization.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1303,11 +1307,11 @@ image), and for the learning only.</p>
 </table>
 </div>
 <div class="section" id="expandlabeltransformation">
-<h3>ExpandLabelTransformation<a class="headerlink" href="#expandlabeltransformation" title="Permalink to this headline">¶</a></h3>
+<h3>ExpandLabelTransformation<a class="headerlink" href="#expandlabeltransformation" title="Permalink to this heading">¶</a></h3>
 <p>Expand single image label (1x1 pixel) to full frame label.</p>
 </div>
 <div class="section" id="filtertransformation">
-<h3>FilterTransformation<a class="headerlink" href="#filtertransformation" title="Permalink to this headline">¶</a></h3>
+<h3>FilterTransformation<a class="headerlink" href="#filtertransformation" title="Permalink to this heading">¶</a></h3>
 <p>Apply a convolution filter to the image.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1341,7 +1345,7 @@ image), and for the learning only.</p>
 </tbody>
 </table>
 <div class="section" id="kernel">
-<h4>* kernel<a class="headerlink" href="#kernel" title="Permalink to this headline">¶</a></h4>
+<h4>* kernel<a class="headerlink" href="#kernel" title="Permalink to this heading">¶</a></h4>
 <p>Custom kernel.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1373,7 +1377,7 @@ assumed to be square.</p>
 </div>
 </div>
 <div class="section" id="gaussian-kernel">
-<h4>Gaussian kernel<a class="headerlink" href="#gaussian-kernel" title="Permalink to this headline">¶</a></h4>
+<h4>Gaussian kernel<a class="headerlink" href="#gaussian-kernel" title="Permalink to this heading">¶</a></h4>
 <p>Gaussian kernel.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1402,7 +1406,7 @@ assumed to be square.</p>
 </table>
 </div>
 <div class="section" id="log-kernel">
-<h4>LoG kernel<a class="headerlink" href="#log-kernel" title="Permalink to this headline">¶</a></h4>
+<h4>LoG kernel<a class="headerlink" href="#log-kernel" title="Permalink to this heading">¶</a></h4>
 <p>Laplacian Of Gaussian kernel.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1431,7 +1435,7 @@ assumed to be square.</p>
 </table>
 </div>
 <div class="section" id="dog-kernel">
-<h4>DoG kernel<a class="headerlink" href="#dog-kernel" title="Permalink to this headline">¶</a></h4>
+<h4>DoG kernel<a class="headerlink" href="#dog-kernel" title="Permalink to this heading">¶</a></h4>
 <p>Difference Of Gaussian kernel kernel.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1463,7 +1467,7 @@ assumed to be square.</p>
 </table>
 </div>
 <div class="section" id="gabor-kernel">
-<h4>Gabor kernel<a class="headerlink" href="#gabor-kernel" title="Permalink to this headline">¶</a></h4>
+<h4>Gabor kernel<a class="headerlink" href="#gabor-kernel" title="Permalink to this heading">¶</a></h4>
 <p>Gabor kernel.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1502,7 +1506,7 @@ assumed to be square.</p>
 </div>
 </div>
 <div class="section" id="fliptransformation">
-<h3>FlipTransformation<a class="headerlink" href="#fliptransformation" title="Permalink to this headline">¶</a></h3>
+<h3>FlipTransformation<a class="headerlink" href="#fliptransformation" title="Permalink to this heading">¶</a></h3>
 <p>Image flip transformation.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1531,7 +1535,7 @@ assumed to be square.</p>
 </table>
 </div>
 <div class="section" id="gradientfiltertransformation">
-<h3>GradientFilterTransformation<a class="headerlink" href="#gradientfiltertransformation" title="Permalink to this headline">¶</a></h3>
+<h3>GradientFilterTransformation<a class="headerlink" href="#gradientfiltertransformation" title="Permalink to this heading">¶</a></h3>
 <p>Compute image gradient.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1575,7 +1579,7 @@ assumed to be square.</p>
 </table>
 </div>
 <div class="section" id="labelfiltertransformation">
-<h3>LabelFilterTransformation<a class="headerlink" href="#labelfiltertransformation" title="Permalink to this headline">¶</a></h3>
+<h3>LabelFilterTransformation<a class="headerlink" href="#labelfiltertransformation" title="Permalink to this heading">¶</a></h3>
 <p>Filter labels in the image. The specified labels can be removed, kept (meaning
 all the other labels removed), or merged (the specified labels are replace by
 the first one).</p>
@@ -1604,7 +1608,7 @@ the first one).</p>
 <p>This transformation filters both pixel-wise labels and ROIs.</p>
 </div>
 <div class="section" id="labelsliceextractiontransformation">
-<h3>LabelSliceExtractionTransformation<a class="headerlink" href="#labelsliceextractiontransformation" title="Permalink to this headline">¶</a></h3>
+<h3>LabelSliceExtractionTransformation<a class="headerlink" href="#labelsliceextractiontransformation" title="Permalink to this heading">¶</a></h3>
 <p>Extract a slice from an image belonging to a given label.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1708,7 +1712,7 @@ with <code class="docutils literal notranslate"><span class="pre">SlicesMargin</
 </div>
 </div>
 <div class="section" id="magnitudephasetransformation">
-<h3>MagnitudePhaseTransformation<a class="headerlink" href="#magnitudephasetransformation" title="Permalink to this headline">¶</a></h3>
+<h3>MagnitudePhaseTransformation<a class="headerlink" href="#magnitudephasetransformation" title="Permalink to this heading">¶</a></h3>
 <p>Compute the magnitude and phase of a complex two channels input data,
 with the first channel <span class="math notranslate nohighlight">\(x\)</span> being the real part and the second
 channel <span class="math notranslate nohighlight">\(y\)</span> the imaginary part. The resulting data is two
@@ -1739,7 +1743,7 @@ phase.</p>
 \[\theta_{i,j} = atan2(y_{i,j}, x_{i,j})\]</div>
 </div>
 <div class="section" id="morphologicalreconstructiontransformation">
-<h3>MorphologicalReconstructionTransformation<a class="headerlink" href="#morphologicalreconstructiontransformation" title="Permalink to this headline">¶</a></h3>
+<h3>MorphologicalReconstructionTransformation<a class="headerlink" href="#morphologicalreconstructiontransformation" title="Permalink to this heading">¶</a></h3>
 <p>Apply a morphological reconstruction transformation to the image. This
 transformation is also useful for post-processing.</p>
 <table class="docutils align-default">
@@ -1784,7 +1788,7 @@ transformation is also useful for post-processing.</p>
 </table>
 </div>
 <div class="section" id="morphologytransformation">
-<h3>MorphologyTransformation<a class="headerlink" href="#morphologytransformation" title="Permalink to this headline">¶</a></h3>
+<h3>MorphologyTransformation<a class="headerlink" href="#morphologytransformation" title="Permalink to this heading">¶</a></h3>
 <p>Apply a morphology transformation to the image. This transformation is
 also useful for post-processing.</p>
 <table class="docutils align-default">
@@ -1838,7 +1842,7 @@ also useful for post-processing.</p>
 </table>
 </div>
 <div class="section" id="normalizetransformation">
-<h3>NormalizeTransformation<a class="headerlink" href="#normalizetransformation" title="Permalink to this headline">¶</a></h3>
+<h3>NormalizeTransformation<a class="headerlink" href="#normalizetransformation" title="Permalink to this heading">¶</a></h3>
 <p>Normalize the image.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1891,7 +1895,7 @@ also useful for post-processing.</p>
 </table>
 </div>
 <div class="section" id="padcroptransformation">
-<h3>PadCropTransformation<a class="headerlink" href="#padcroptransformation" title="Permalink to this headline">¶</a></h3>
+<h3>PadCropTransformation<a class="headerlink" href="#padcroptransformation" title="Permalink to this heading">¶</a></h3>
 <p>Pad/crop the image to a specified size.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1938,7 +1942,7 @@ also useful for post-processing.</p>
 </table>
 </div>
 <div class="section" id="roiextractiontransformation">
-<h3>ROIExtractionTransformation<a class="headerlink" href="#roiextractiontransformation" title="Permalink to this headline">¶</a></h3>
+<h3>ROIExtractionTransformation<a class="headerlink" href="#roiextractiontransformation" title="Permalink to this heading">¶</a></h3>
 <p>The transformation is typically used as the last transformation of the object
 extraction pipeline to be used for blending in a <code class="docutils literal notranslate"><span class="pre">BlendingTransformation</span></code>.
 A random object of with the label <code class="docutils literal notranslate"><span class="pre">Label</span></code> is extracted from the image.</p>
@@ -2025,7 +2029,7 @@ Bounding boxes with fewer than <code class="docutils literal notranslate"><span 
 <p>Note that these parameters applies only when <code class="docutils literal notranslate"><span class="pre">LabelSegmentation</span></code> is true (1).</p>
 </div>
 <div class="section" id="randomaffinetransformation">
-<h3>RandomAffineTransformation<a class="headerlink" href="#randomaffinetransformation" title="Permalink to this headline">¶</a></h3>
+<h3>RandomAffineTransformation<a class="headerlink" href="#randomaffinetransformation" title="Permalink to this heading">¶</a></h3>
 <p>Apply a global random affine transformation to the values of the image.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -2093,7 +2097,7 @@ Bounding boxes with fewer than <code class="docutils literal notranslate"><span 
 \[v(i,j) = \text{cv::saturate\_cast&lt;T&gt;}\left(\alpha \left(\frac{v(i,j)}{S}\right)^{\gamma} S + \beta.S\right)\]</div>
 </div>
 <div class="section" id="rangeaffinetransformation">
-<h3>RangeAffineTransformation<a class="headerlink" href="#rangeaffinetransformation" title="Permalink to this headline">¶</a></h3>
+<h3>RangeAffineTransformation<a class="headerlink" href="#rangeaffinetransformation" title="Permalink to this heading">¶</a></h3>
 <p>Apply an affine transformation to the values of the image.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -2126,7 +2130,7 @@ Bounding boxes with fewer than <code class="docutils literal notranslate"><span 
 \substack{o\\op_{2nd}}\;val_{2nd}\end{split}\]</div>
 </div>
 <div class="section" id="rangeclippingtransformation">
-<h3>RangeClippingTransformation<a class="headerlink" href="#rangeclippingtransformation" title="Permalink to this headline">¶</a></h3>
+<h3>RangeClippingTransformation<a class="headerlink" href="#rangeclippingtransformation" title="Permalink to this heading">¶</a></h3>
 <p>Clip the value range of the image.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -2149,7 +2153,7 @@ Bounding boxes with fewer than <code class="docutils literal notranslate"><span 
 </table>
 </div>
 <div class="section" id="rescaletransformation">
-<h3>RescaleTransformation<a class="headerlink" href="#rescaletransformation" title="Permalink to this headline">¶</a></h3>
+<h3>RescaleTransformation<a class="headerlink" href="#rescaletransformation" title="Permalink to this heading">¶</a></h3>
 <p>Rescale the image to a specified size.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -2178,7 +2182,7 @@ Bounding boxes with fewer than <code class="docutils literal notranslate"><span 
 </table>
 </div>
 <div class="section" id="reshapetransformation">
-<h3>ReshapeTransformation<a class="headerlink" href="#reshapetransformation" title="Permalink to this headline">¶</a></h3>
+<h3>ReshapeTransformation<a class="headerlink" href="#reshapetransformation" title="Permalink to this heading">¶</a></h3>
 <p>Reshape the data to a specified size.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -2204,7 +2208,7 @@ Bounding boxes with fewer than <code class="docutils literal notranslate"><span 
 </table>
 </div>
 <div class="section" id="sliceextractiontransformation">
-<h3>SliceExtractionTransformation<a class="headerlink" href="#sliceextractiontransformation" title="Permalink to this headline">¶</a></h3>
+<h3>SliceExtractionTransformation<a class="headerlink" href="#sliceextractiontransformation" title="Permalink to this heading">¶</a></h3>
 <p>Extract a slice from an image.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -2278,7 +2282,7 @@ Bounding boxes with fewer than <code class="docutils literal notranslate"><span 
 </table>
 </div>
 <div class="section" id="striperemovetransformation">
-<h3>StripeRemoveTransformation<a class="headerlink" href="#striperemovetransformation" title="Permalink to this headline">¶</a></h3>
+<h3>StripeRemoveTransformation<a class="headerlink" href="#striperemovetransformation" title="Permalink to this heading">¶</a></h3>
 <p>Remove one or several stripe(s) (a group of rows or columns) from 2D data.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -2313,7 +2317,7 @@ Bounding boxes with fewer than <code class="docutils literal notranslate"><span 
 </table>
 </div>
 <div class="section" id="thresholdtransformation">
-<h3>ThresholdTransformation<a class="headerlink" href="#thresholdtransformation" title="Permalink to this headline">¶</a></h3>
+<h3>ThresholdTransformation<a class="headerlink" href="#thresholdtransformation" title="Permalink to this heading">¶</a></h3>
 <p>Apply a thresholding transformation to the image. This transformation is
 also useful for post-processing.</p>
 <table class="docutils align-default">
@@ -2358,7 +2362,7 @@ also useful for post-processing.</p>
 </table>
 </div>
 <div class="section" id="trimtransformation">
-<h3>TrimTransformation<a class="headerlink" href="#trimtransformation" title="Permalink to this headline">¶</a></h3>
+<h3>TrimTransformation<a class="headerlink" href="#trimtransformation" title="Permalink to this heading">¶</a></h3>
 <p>Trim the image.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -2387,7 +2391,7 @@ also useful for post-processing.</p>
 </table>
 </div>
 <div class="section" id="wallisfiltertransformation">
-<h3>WallisFilterTransformation<a class="headerlink" href="#wallisfiltertransformation" title="Permalink to this headline">¶</a></h3>
+<h3>WallisFilterTransformation<a class="headerlink" href="#wallisfiltertransformation" title="Permalink to this heading">¶</a></h3>
 <p>Apply Wallis filter to the image.</p>
 <table class="docutils align-default">
 <colgroup>

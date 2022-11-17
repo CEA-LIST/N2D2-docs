@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,11 +28,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -83,7 +86,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Introduction:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/about.html">About N2D2-IP</a></li>
@@ -91,7 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro/perfs_tools.html">Performance evaluation tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/tuto.html">Tutorials</a></li>
 </ul>
-<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<p class="caption" role="heading"><span class="caption-text">ONNX Import:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="convert.html">Obtain ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="import.html">Import ONNX models</a></li>
@@ -106,7 +109,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Quantization and Export:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../quant/post.html">Post-training quantization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">Quantization-Aware Training</a></li>
@@ -117,7 +120,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../export/ONNX.html">Export: ONNX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/legacy.html">Export: other / legacy</a></li>
 </ul>
-<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<p class="caption" role="heading"><span class="caption-text">INI File Interface:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ini/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ini/databases.html">Databases</a></li>
@@ -127,7 +130,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../ini/target.html">Targets (outputs &amp; losses)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../adversarial.html">Adversarial module</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Python API:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Python API:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/databases.html">Databases</a></li>
@@ -137,12 +140,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../python_api/export.html">Export</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++/Python core:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../core/core.html">Core N2D2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++ API / Developer:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../dev_intro.html">Introduction</a></li>
 </ul>
@@ -211,7 +214,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="train-from-onnx-models">
-<h1>Train from ONNX models<a class="headerlink" href="#train-from-onnx-models" title="Permalink to this headline">¶</a></h1>
+<h1>Train from ONNX models<a class="headerlink" href="#train-from-onnx-models" title="Permalink to this heading">¶</a></h1>
 <p>The ONNX specification does not include any training parameter. To perform a
 training on an imported ONNX model, it is possible to add the training elements
 (solvers, learning rate scheduler…) on top of an ONNX model in N2D2, in the
@@ -219,14 +222,14 @@ INI file directly or using the Python API.</p>
 <p>This is particularly useful to perform transfer learning from an existing ONNX
 model trained on ImageNet for example.</p>
 <div class="section" id="with-an-ini-file">
-<h2>With an INI file<a class="headerlink" href="#with-an-ini-file" title="Permalink to this headline">¶</a></h2>
+<h2>With an INI file<a class="headerlink" href="#with-an-ini-file" title="Permalink to this heading">¶</a></h2>
 <p>We propose in this section to apply transfer learning to a MobileNet v1 ONNX
 model. We assume that this model is obtained by converting the reference
 pre-trained model from Google using the <code class="docutils literal notranslate"><span class="pre">tools/mobilenet_v1_to_onnx.sh</span></code> tool
 provided in N2D2. The resulting model file name is therefore assumed to be
 <code class="docutils literal notranslate"><span class="pre">mobilenet_v1_1.0_224.onnx</span></code>.</p>
 <div class="section" id="remove-the-original-classifier">
-<h3>1) Remove the original classifier<a class="headerlink" href="#remove-the-original-classifier" title="Permalink to this headline">¶</a></h3>
+<h3>1) Remove the original classifier<a class="headerlink" href="#remove-the-original-classifier" title="Permalink to this heading">¶</a></h3>
 <p>The first step to perform transfer learning is to remove the existing classifier
 from the ONNX model. To do so, one can simply use the <code class="docutils literal notranslate"><span class="pre">Ignore</span></code> parameter in
 the ONNX INI section.</p>
@@ -240,7 +243,7 @@ the ONNX INI section.</p>
 </div>
 </div>
 <div class="section" id="add-a-new-classifier-to-the-onnx-model">
-<h3>2) Add a new classifier to the ONNX model<a class="headerlink" href="#add-a-new-classifier-to-the-onnx-model" title="Permalink to this headline">¶</a></h3>
+<h3>2) Add a new classifier to the ONNX model<a class="headerlink" href="#add-a-new-classifier-to-the-onnx-model" title="Permalink to this heading">¶</a></h3>
 <p>The next step is to add a new classifier (fully connected layer with a softmax)
 and connect it to the last layer in the ONNX model.</p>
 <p>In order to properly handle graph dependencies, all the N2D2 layers connected
@@ -281,7 +284,7 @@ to the <code class="docutils literal notranslate"><span class="pre">Fc</span></c
 specified as usual for this layer.</p>
 </div>
 <div class="section" id="fine-tuning-optional">
-<h3>3) Fine tuning (optional)<a class="headerlink" href="#fine-tuning-optional" title="Permalink to this headline">¶</a></h3>
+<h3>3) Fine tuning (optional)<a class="headerlink" href="#fine-tuning-optional" title="Permalink to this heading">¶</a></h3>
 <p>If one wants to also fine-tune the existing ONNX layers, one must set the
 solver configuration for the ONNX layers, using default configuration sections.</p>
 <p>Default configuration sections applies to all the layers of the same type in the
@@ -329,7 +332,7 @@ look in <code class="docutils literal notranslate"><span class="pre">models/Mobi
 </div>
 </div>
 <div class="section" id="with-the-python-api">
-<h2>With the Python API<a class="headerlink" href="#with-the-python-api" title="Permalink to this headline">¶</a></h2>
+<h2>With the Python API<a class="headerlink" href="#with-the-python-api" title="Permalink to this heading">¶</a></h2>
 <p>Coming soon.</p>
 </div>
 </div>

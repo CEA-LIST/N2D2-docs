@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,11 +28,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -83,7 +86,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Introduction:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/about.html">About N2D2-IP</a></li>
@@ -91,13 +94,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro/perfs_tools.html">Performance evaluation tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/tuto.html">Tutorials</a></li>
 </ul>
-<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<p class="caption" role="heading"><span class="caption-text">ONNX Import:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/convert.html">Obtain ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/import.html">Import ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/transfer.html">Train from ONNX models</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Quantization and Export:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../quant/post.html">Post-training quantization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">Quantization-Aware Training</a></li>
@@ -108,7 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../export/ONNX.html">Export: ONNX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/legacy.html">Export: other / legacy</a></li>
 </ul>
-<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<p class="caption" role="heading"><span class="caption-text">INI File Interface:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ini/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ini/databases.html">Databases</a></li>
@@ -118,7 +121,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../ini/target.html">Targets (outputs &amp; losses)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../adversarial.html">Adversarial module</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Python API:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Python API:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="databases.html">Databases</a></li>
@@ -128,6 +131,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#keras-experimental-feature">Keras <em>[experimental feature]</em></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#presentation">Presentation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#keras_to_n2d2.wrap"><code class="docutils literal notranslate"><span class="pre">wrap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#keras_to_n2d2.CustomSequential"><code class="docutils literal notranslate"><span class="pre">CustomSequential</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#changing-the-optimizer">Changing the optimizer</a></li>
 </ul>
 </li>
@@ -137,7 +142,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#pytorch-experimental-feature">PyTorch <em>[experimental feature]</em></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Presentation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tensor-conversion">Tensor conversion</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pytorch_to_n2d2.wrap"><code class="docutils literal notranslate"><span class="pre">wrap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytorch_to_n2d2.Block"><code class="docutils literal notranslate"><span class="pre">Block</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">Example</a></li>
 </ul>
 </li>
@@ -146,12 +155,12 @@
 <li class="toctree-l1"><a class="reference internal" href="export.html">Export</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++/Python core:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../core/core.html">Core N2D2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++ API / Developer:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../dev_intro.html">Introduction</a></li>
 </ul>
@@ -220,21 +229,21 @@
            <div itemprop="articleBody">
             
   <div class="section" id="interoperability">
-<h1>Interoperability<a class="headerlink" href="#interoperability" title="Permalink to this headline">¶</a></h1>
+<h1>Interoperability<a class="headerlink" href="#interoperability" title="Permalink to this heading">¶</a></h1>
 <p>In this section, we will present how you can use n2d2 with other python framework.</p>
 <div class="section" id="keras-experimental-feature">
-<h2>Keras <em>[experimental feature]</em><a class="headerlink" href="#keras-experimental-feature" title="Permalink to this headline">¶</a></h2>
+<h2>Keras <em>[experimental feature]</em><a class="headerlink" href="#keras-experimental-feature" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="presentation">
-<h3>Presentation<a class="headerlink" href="#presentation" title="Permalink to this headline">¶</a></h3>
+<h3>Presentation<a class="headerlink" href="#presentation" title="Permalink to this heading">¶</a></h3>
 <p>The Keras interoperability allow you to train a model using the N2D2 backend with the TensorFlow/Keras frontend.</p>
 <p>The interoperability consist of a wrapper around the N2D2 Network.</p>
 <p>In order to integrate N2D2 into the Keras environment, we run TensorFlow in eager mode.</p>
 </div>
 <div class="section" id="documentation">
-<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
+<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">¶</a></h3>
 <dl class="py function">
-<dt id="keras_to_n2d2.wrap">
-<code class="sig-prename descclassname">keras_to_n2d2.</code><code class="sig-name descname">wrap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tf_model</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>tensorflow.python.keras.engine.sequential.Sequential<span class="p">, </span>tensorflow.python.keras.engine.training.Model<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">for_export</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">opset_version</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">10</span></em><span class="sig-paren">)</span> &#x2192; keras_to_n2d2.keras_interface.CustomSequential<a class="headerlink" href="#keras_to_n2d2.wrap" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="keras_to_n2d2.wrap">
+<span class="sig-prename descclassname"><span class="pre">keras_to_n2d2.</span></span><span class="sig-name descname"><span class="pre">wrap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tf_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequential</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Model</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">for_export</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opset_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#keras_to_n2d2.CustomSequential" title="keras_to_n2d2.keras_interface.CustomSequential"><span class="pre">CustomSequential</span></a></span></span><a class="headerlink" href="#keras_to_n2d2.wrap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a custom model which run with N2D2 on backend.
 The conversion between TensorFlow/Keras and N2D2 is done with ONNX.</p>
 <dl class="field-list simple">
@@ -257,12 +266,12 @@ The conversion between TensorFlow/Keras and N2D2 is done with ONNX.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="keras_to_n2d2.CustomSequential">
-<em class="property">class </em><code class="sig-prename descclassname">keras_to_n2d2.</code><code class="sig-name descname">CustomSequential</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#keras_to_n2d2.CustomSequential" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="keras_to_n2d2.CustomSequential">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">keras_to_n2d2.</span></span><span class="sig-name descname"><span class="pre">CustomSequential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#keras_to_n2d2.CustomSequential" title="Permalink to this definition">¶</a></dt>
 <dd><p>A customSequential model which embedded an N2D2 Network.</p>
 <dl class="py method">
-<dt id="keras_to_n2d2.CustomSequential.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">deepnet_cell</span><span class="p">:</span> <span class="n">n2d2.cells.cell.DeepNetCell</span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">outputs_shape</span><span class="p">:</span> <span class="n">tensorflow.python.framework.ops.Tensor</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#keras_to_n2d2.CustomSequential.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="keras_to_n2d2.CustomSequential.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deepnet_cell</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cells.html#n2d2.cells.DeepNetCell" title="n2d2.cells.cell.DeepNetCell"><span class="pre">DeepNetCell</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputs_shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#keras_to_n2d2.CustomSequential.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -276,8 +285,8 @@ The conversion between TensorFlow/Keras and N2D2 is done with ONNX.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="keras_to_n2d2.CustomSequential.call">
-<code class="sig-name descname">call</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n">tensorflow.python.framework.ops.Tensor</span></em>, <em class="sig-param"><span class="n">training</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; tensorflow.python.framework.ops.Tensor<a class="headerlink" href="#keras_to_n2d2.CustomSequential.call" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="keras_to_n2d2.CustomSequential.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">training</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#keras_to_n2d2.CustomSequential.call" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method called to run the forward pass.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -290,8 +299,8 @@ The conversion between TensorFlow/Keras and N2D2 is done with ONNX.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="keras_to_n2d2.CustomSequential.compile">
-<code class="sig-name descname">compile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">optimizer</span><span class="p">:</span> <span class="n">n2d2.solver.solver.Solver</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#keras_to_n2d2.CustomSequential.compile" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="keras_to_n2d2.CustomSequential.compile">
+<span class="sig-name descname"><span class="pre">compile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimizer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="cells.html#n2d2.solver.Solver" title="n2d2.solver.solver.Solver"><span class="pre">Solver</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#keras_to_n2d2.CustomSequential.compile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Overwritten Tensorflow compile method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -301,14 +310,14 @@ The conversion between TensorFlow/Keras and N2D2 is done with ONNX.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="keras_to_n2d2.CustomSequential.custom_op">
-<code class="sig-name descname">custom_op</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">tensorflow.python.framework.ops.Tensor</span></em><span class="sig-paren">)</span><a class="headerlink" href="#keras_to_n2d2.CustomSequential.custom_op" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="keras_to_n2d2.CustomSequential.custom_op">
+<span class="sig-name descname"><span class="pre">custom_op</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#keras_to_n2d2.CustomSequential.custom_op" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method to handle propagation</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="keras_to_n2d2.CustomSequential.get_deepnet_cell">
-<code class="sig-name descname">get_deepnet_cell</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; n2d2.cells.cell.DeepNetCell<a class="headerlink" href="#keras_to_n2d2.CustomSequential.get_deepnet_cell" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="keras_to_n2d2.CustomSequential.get_deepnet_cell">
+<span class="sig-name descname"><span class="pre">get_deepnet_cell</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="cells.html#n2d2.cells.DeepNetCell" title="n2d2.cells.cell.DeepNetCell"><span class="pre">DeepNetCell</span></a></span></span><a class="headerlink" href="#keras_to_n2d2.CustomSequential.get_deepnet_cell" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The DeepNet Cell used by the custom sequential</p>
@@ -320,15 +329,15 @@ The conversion between TensorFlow/Keras and N2D2 is done with ONNX.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="keras_to_n2d2.CustomSequential.summary">
-<code class="sig-name descname">summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#keras_to_n2d2.CustomSequential.summary" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="keras_to_n2d2.CustomSequential.summary">
+<span class="sig-name descname"><span class="pre">summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#keras_to_n2d2.CustomSequential.summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print model information.</p>
 </dd></dl>
 
 </dd></dl>
 
 <div class="section" id="changing-the-optimizer">
-<h4>Changing the optimizer<a class="headerlink" href="#changing-the-optimizer" title="Permalink to this headline">¶</a></h4>
+<h4>Changing the optimizer<a class="headerlink" href="#changing-the-optimizer" title="Permalink to this heading">¶</a></h4>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Due to the implementation, n2d2 parameters are not visible to <code class="docutils literal notranslate"><span class="pre">Keras</span></code> and thus cannot be optimized by a <code class="docutils literal notranslate"><span class="pre">Keras</span></code> optimizer.</p>
@@ -343,14 +352,14 @@ This will change the method used to optimize the parameters.</p>
 </div>
 </div>
 <div class="section" id="example">
-<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h3>
 <p>See the <a class="reference internal" href="example/keras.html"><span class="doc">keras example</span></a> section.</p>
 </div>
 </div>
 <div class="section" id="pytorch-experimental-feature">
-<h2>PyTorch <em>[experimental feature]</em><a class="headerlink" href="#pytorch-experimental-feature" title="Permalink to this headline">¶</a></h2>
+<h2>PyTorch <em>[experimental feature]</em><a class="headerlink" href="#pytorch-experimental-feature" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="id1">
-<h3>Presentation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3>Presentation<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
 <p>The PyTorch interoperability allow you to run an n2d2 model by using the Torch functions.</p>
 <p>The interoperability consist of a wrapper around the N2D2 Network.
 We created an autograd function which on <code class="docutils literal notranslate"><span class="pre">Forward</span></code> call the n2d2 <code class="docutils literal notranslate"><span class="pre">Propagate</span></code> method and on <code class="docutils literal notranslate"><span class="pre">Backward</span></code> call the n2d2 <code class="docutils literal notranslate"><span class="pre">Back</span> <span class="pre">Propagate</span></code> and <code class="docutils literal notranslate"><span class="pre">Update</span></code> methods.</p>
@@ -363,17 +372,17 @@ We created an autograd function which on <code class="docutils literal notransla
 </div>
 </div>
 <div class="section" id="tensor-conversion">
-<h3>Tensor conversion<a class="headerlink" href="#tensor-conversion" title="Permalink to this headline">¶</a></h3>
+<h3>Tensor conversion<a class="headerlink" href="#tensor-conversion" title="Permalink to this heading">¶</a></h3>
 <p>In order to achieve this interoperability, we need to convert Tensor from <code class="docutils literal notranslate"><span class="pre">Torch</span></code> to <code class="docutils literal notranslate"><span class="pre">n2d2</span></code> and vice versa.</p>
 <p><a class="reference internal" href="tensor.html#n2d2.Tensor" title="n2d2.Tensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></a> require a contiguous memory space which is not the case for <code class="docutils literal notranslate"><span class="pre">Torch</span></code>. Thus the conversion <code class="docutils literal notranslate"><span class="pre">Torch</span></code> to <code class="docutils literal notranslate"><span class="pre">n2d2</span></code> require a memory copy.
 The opposite conversion is done with no memory copy.</p>
 <p>If you work with <code class="docutils literal notranslate"><span class="pre">CUDA</span></code> tensor, the conversion <code class="docutils literal notranslate"><span class="pre">Torch</span></code> to <code class="docutils literal notranslate"><span class="pre">n2d2</span></code> is also done with no copy on the GPU (a copy on the host is however required).</p>
 </div>
 <div class="section" id="id2">
-<h3>Documentation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3>Documentation<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
 <dl class="py function">
-<dt id="pytorch_to_n2d2.wrap">
-<code class="sig-prename descclassname">pytorch_to_n2d2.</code><code class="sig-name descname">wrap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">torch_model</span><span class="p">:</span> <span class="n">torch.nn.modules.module.Module</span></em>, <em class="sig-param"><span class="n">input_size</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>list<span class="p">, </span>tuple<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">opset_version</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">11</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pytorch_to_n2d2.pytorch_interface.Block<a class="headerlink" href="#pytorch_to_n2d2.wrap" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pytorch_to_n2d2.wrap">
+<span class="sig-prename descclassname"><span class="pre">pytorch_to_n2d2.</span></span><span class="sig-name descname"><span class="pre">wrap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">torch_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opset_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytorch_to_n2d2.Block" title="pytorch_to_n2d2.pytorch_interface.Block"><span class="pre">Block</span></a></span></span><a class="headerlink" href="#pytorch_to_n2d2.wrap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function generating a <code class="docutils literal notranslate"><span class="pre">torch.nn.Module</span></code> which embed a <a class="reference internal" href="cells.html#n2d2.cells.DeepNetCell" title="n2d2.cells.DeepNetCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.DeepNetCell</span></code></a>.
 The torch_model is exported to N2D2 via ONNX.</p>
 <dl class="field-list simple">
@@ -395,12 +404,12 @@ The torch_model is exported to N2D2 via ONNX.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="pytorch_to_n2d2.Block">
-<em class="property">class </em><code class="sig-prename descclassname">pytorch_to_n2d2.</code><code class="sig-name descname">Block</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">block</span></em>, <em class="sig-param"><span class="n">need_to_flatten</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytorch_to_n2d2.Block" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pytorch_to_n2d2.Block">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytorch_to_n2d2.</span></span><span class="sig-name descname"><span class="pre">Block</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">block</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">need_to_flatten</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytorch_to_n2d2.Block" title="Permalink to this definition">¶</a></dt>
 <dd><p>PyTorch layer used to interface an <a class="reference internal" href="cells.html#n2d2.cells.Block" title="n2d2.cells.Block"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Block</span></code></a> object in a PyTorch Network.</p>
 <dl class="py method">
-<dt id="pytorch_to_n2d2.Block.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">block</span></em>, <em class="sig-param"><span class="n">need_to_flatten</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytorch_to_n2d2.Block.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pytorch_to_n2d2.Block.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">block</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">need_to_flatten</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytorch_to_n2d2.Block.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>block</strong> (<a class="reference internal" href="cells.html#n2d2.cells.Block" title="n2d2.cells.Block"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Block</span></code></a>) – n2d2 block object to interface with PyTorch</p>
@@ -409,15 +418,15 @@ The torch_model is exported to N2D2 via ONNX.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="pytorch_to_n2d2.Block.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n">torch.Tensor</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytorch_to_n2d2.Block.forward" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pytorch_to_n2d2.Block.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytorch_to_n2d2.Block.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Use a custom <code class="docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code> that use, on forward the <code class="docutils literal notranslate"><span class="pre">Propagation</span></code> of n2d2.
 And on backward the <code class="docutils literal notranslate"><span class="pre">BackPropagation</span></code> and <code class="docutils literal notranslate"><span class="pre">Update</span></code> of n2d2.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="pytorch_to_n2d2.Block.get_block">
-<code class="sig-name descname">get_block</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; n2d2.cells.cell.Block<a class="headerlink" href="#pytorch_to_n2d2.Block.get_block" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pytorch_to_n2d2.Block.get_block">
+<span class="sig-name descname"><span class="pre">get_block</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="cells.html#n2d2.cells.Block" title="n2d2.cells.cell.Block"><span class="pre">Block</span></a></span></span><a class="headerlink" href="#pytorch_to_n2d2.Block.get_block" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The Block used by the custom sequential</p>
@@ -429,8 +438,8 @@ And on backward the <code class="docutils literal notranslate"><span class="pre"
 </dd></dl>
 
 <dl class="py method">
-<dt id="pytorch_to_n2d2.Block.summary">
-<code class="sig-name descname">summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#pytorch_to_n2d2.Block.summary" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pytorch_to_n2d2.Block.summary">
+<span class="sig-name descname"><span class="pre">summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pytorch_to_n2d2.Block.summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print model information.</p>
 </dd></dl>
 
@@ -438,7 +447,7 @@ And on backward the <code class="docutils literal notranslate"><span class="pre"
 
 </div>
 <div class="section" id="id3">
-<h3>Example<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3>Example<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
 <p>See the <a class="reference internal" href="example/torch.html"><span class="doc">torch example</span></a> section.</p>
 </div>
 </div>

@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,11 +28,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -83,7 +87,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Introduction:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/about.html">About N2D2-IP</a></li>
@@ -91,13 +95,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro/perfs_tools.html">Performance evaluation tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/tuto.html">Tutorials</a></li>
 </ul>
-<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<p class="caption" role="heading"><span class="caption-text">ONNX Import:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/convert.html">Obtain ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/import.html">Import ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/transfer.html">Train from ONNX models</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Quantization and Export:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Post-training quantization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#principle">Principle</a><ul>
@@ -127,7 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../export/ONNX.html">Export: ONNX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/legacy.html">Export: other / legacy</a></li>
 </ul>
-<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<p class="caption" role="heading"><span class="caption-text">INI File Interface:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ini/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ini/databases.html">Databases</a></li>
@@ -137,7 +141,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../ini/target.html">Targets (outputs &amp; losses)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../adversarial.html">Adversarial module</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Python API:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Python API:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/databases.html">Databases</a></li>
@@ -147,12 +151,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../python_api/export.html">Export</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++/Python core:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../core/core.html">Core N2D2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++ API / Developer:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../dev_intro.html">Introduction</a></li>
 </ul>
@@ -221,12 +225,12 @@
            <div itemprop="articleBody">
             
   <div class="section" id="post-training-quantization">
-<span id="post-quant-label"></span><h1>Post-training quantization<a class="headerlink" href="#post-training-quantization" title="Permalink to this headline">¶</a></h1>
+<span id="post-quant-label"></span><h1>Post-training quantization<a class="headerlink" href="#post-training-quantization" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="principle">
-<h2>Principle<a class="headerlink" href="#principle" title="Permalink to this headline">¶</a></h2>
+<h2>Principle<a class="headerlink" href="#principle" title="Permalink to this heading">¶</a></h2>
 <p>The post-training quantization algorithm is done in 3 steps:</p>
 <div class="section" id="weights-normalization">
-<h3>1) Weights normalization<a class="headerlink" href="#weights-normalization" title="Permalink to this headline">¶</a></h3>
+<h3>1) Weights normalization<a class="headerlink" href="#weights-normalization" title="Permalink to this heading">¶</a></h3>
 <p>All weights are rescaled in the range <span class="math notranslate nohighlight">\([-1.0, 1.0]\)</span>.</p>
 <dl class="simple">
 <dt>Per layer normalization</dt><dd><p>There is a single weights scaling factor, global to the layer.</p>
@@ -238,7 +242,7 @@ output channels, at the expense of more factors to be saved in memory.</p>
 </dl>
 </div>
 <div class="section" id="activations-normalization">
-<h3>2) Activations normalization<a class="headerlink" href="#activations-normalization" title="Permalink to this headline">¶</a></h3>
+<h3>2) Activations normalization<a class="headerlink" href="#activations-normalization" title="Permalink to this heading">¶</a></h3>
 <p>Activations at each layer are rescaled in the range <span class="math notranslate nohighlight">\([-1.0, 1.0]\)</span> for signed
 outputs and <span class="math notranslate nohighlight">\([0.0, 1.0]\)</span> for unsigned outputs.</p>
 <p>The <strong>optimal quantization threshold value</strong> of the activation output of each
@@ -266,7 +270,7 @@ clipped quantized distribution. Two distance algorithms can be used:</p>
 taken into account during quantization.</p>
 </div>
 <div class="section" id="quantization">
-<h3>3) Quantization<a class="headerlink" href="#quantization" title="Permalink to this headline">¶</a></h3>
+<h3>3) Quantization<a class="headerlink" href="#quantization" title="Permalink to this heading">¶</a></h3>
 <p>Inputs, weights, biases and activations are quantized to the desired
 <span class="math notranslate nohighlight">\(nbbits\)</span> precision.</p>
 <p>Convert ranges from <span class="math notranslate nohighlight">\([-1.0, 1.0]\)</span> and <span class="math notranslate nohighlight">\([0.0, 1.0]\)</span> to
@@ -274,15 +278,15 @@ taken into account during quantization.</p>
 into account all dependencies.</p>
 </div>
 <div class="section" id="additional-optimization-strategies">
-<h3>Additional optimization strategies<a class="headerlink" href="#additional-optimization-strategies" title="Permalink to this headline">¶</a></h3>
+<h3>Additional optimization strategies<a class="headerlink" href="#additional-optimization-strategies" title="Permalink to this heading">¶</a></h3>
 <div class="section" id="weights-clipping-optional">
-<h4>Weights clipping (optional)<a class="headerlink" href="#weights-clipping-optional" title="Permalink to this headline">¶</a></h4>
+<h4>Weights clipping (optional)<a class="headerlink" href="#weights-clipping-optional" title="Permalink to this heading">¶</a></h4>
 <p>Weights can be clipped using the same strategy than for the activations (
 finding the optimal quantization threshold using the weights histogram).
 However, this usually leads to worse results than no clipping.</p>
 </div>
 <div class="section" id="activation-scaling-factor-approximation">
-<h4>Activation scaling factor approximation<a class="headerlink" href="#activation-scaling-factor-approximation" title="Permalink to this headline">¶</a></h4>
+<h4>Activation scaling factor approximation<a class="headerlink" href="#activation-scaling-factor-approximation" title="Permalink to this heading">¶</a></h4>
 <p>The activation scaling factor <span class="math notranslate nohighlight">\(\alpha\)</span> can be approximated the following
 ways:</p>
 <ul class="simple">
@@ -294,7 +298,7 @@ ways:</p>
 </div>
 </div>
 <div class="section" id="usage-in-n2d2">
-<h2>Usage in N2D2<a class="headerlink" href="#usage-in-n2d2" title="Permalink to this headline">¶</a></h2>
+<h2>Usage in N2D2<a class="headerlink" href="#usage-in-n2d2" title="Permalink to this heading">¶</a></h2>
 <p>All the post-training strategies described above are available in N2D2 for any
 export type. To apply post-training quantization during export, simply use the
 <code class="docutils literal notranslate"><span class="pre">-calib</span></code> command line argument.</p>
@@ -335,7 +339,7 @@ or <code class="docutils literal notranslate"><span class="pre">Double-shift</sp
 </tbody>
 </table>
 <div class="section" id="act-rescaling-mode">
-<h3><code class="docutils literal notranslate"><span class="pre">-act-rescaling-mode</span></code><a class="headerlink" href="#act-rescaling-mode" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">-act-rescaling-mode</span></code><a class="headerlink" href="#act-rescaling-mode" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">-act-rescaling-mode</span></code> specifies how the activation scaling must be approximated,
 for values other than <code class="docutils literal notranslate"><span class="pre">Floating-point</span></code>. This allows to avoid floating-point
 operation altogether in the generated code, even for complex, multi-branches networks.
@@ -350,7 +354,7 @@ when computing the scaling multiplication before the right shift (<span class="m
 is used as fallback for these layers.</p>
 </div>
 <div class="section" id="command-line-example">
-<h3>Command line example<a class="headerlink" href="#command-line-example" title="Permalink to this headline">¶</a></h3>
+<h3>Command line example<a class="headerlink" href="#command-line-example" title="Permalink to this heading">¶</a></h3>
 <p>Command line example to run the C++ Export on a INI file containing an ONNX
 model:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2</span> <span class="n">MobileNet_ONNX</span><span class="o">.</span><span class="n">ini</span> <span class="o">-</span><span class="n">seed</span> <span class="mi">1</span> <span class="o">-</span><span class="n">w</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span> <span class="o">-</span><span class="n">export</span> <span class="n">CPP</span> <span class="o">-</span><span class="n">fuse</span> <span class="o">-</span><span class="n">calib</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="n">act</span><span class="o">-</span><span class="n">clipping</span><span class="o">-</span><span class="n">mode</span> <span class="n">KL</span><span class="o">-</span><span class="n">Divergence</span>
@@ -359,7 +363,7 @@ model:</p>
 </div>
 </div>
 <div class="section" id="examples-and-results">
-<h2>Examples and results<a class="headerlink" href="#examples-and-results" title="Permalink to this headline">¶</a></h2>
+<h2>Examples and results<a class="headerlink" href="#examples-and-results" title="Permalink to this heading">¶</a></h2>
 <p>Post-training quantization accuracy obtained with some models from the ONNX
 Model Zoo are reported in the table below, using <code class="docutils literal notranslate"><span class="pre">-calib</span> <span class="pre">1000</span></code>:</p>
 <table class="docutils align-default">

@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,11 +28,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -83,7 +87,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Introduction:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/about.html">About N2D2-IP</a></li>
@@ -91,13 +95,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro/perfs_tools.html">Performance evaluation tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/tuto.html">Tutorials</a></li>
 </ul>
-<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<p class="caption" role="heading"><span class="caption-text">ONNX Import:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/convert.html">Obtain ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/import.html">Import ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/transfer.html">Train from ONNX models</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Quantization and Export:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../quant/post.html">Post-training quantization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">Quantization-Aware Training</a></li>
@@ -130,7 +134,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ONNX.html">Export: ONNX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="legacy.html">Export: other / legacy</a></li>
 </ul>
-<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<p class="caption" role="heading"><span class="caption-text">INI File Interface:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ini/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ini/databases.html">Databases</a></li>
@@ -140,7 +144,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../ini/target.html">Targets (outputs &amp; losses)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../adversarial.html">Adversarial module</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Python API:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Python API:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/databases.html">Databases</a></li>
@@ -150,12 +154,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../python_api/export.html">Export</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++/Python core:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../core/core.html">Core N2D2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++ API / Developer:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../dev_intro.html">Introduction</a></li>
 </ul>
@@ -224,7 +228,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="export-dneuro">
-<h1>Export: DNeuro<a class="headerlink" href="#export-dneuro" title="Permalink to this headline">¶</a></h1>
+<h1>Export: DNeuro<a class="headerlink" href="#export-dneuro" title="Permalink to this heading">¶</a></h1>
 <p><strong>N2D2-IP only: available upon request.</strong></p>
 <dl class="simple">
 <dt>Export type: <code class="docutils literal notranslate"><span class="pre">DNeuro_V2</span></code></dt><dd><p>DNeuro RTL export for FPGA.</p>
@@ -234,7 +238,7 @@
 </pre></div>
 </div>
 <div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>DNeuro is a synthetizable dataflow architecture, optimized for deep
 convolutional neural networks (CNN). It allows a fine grain allocation
 control of the DSP and memory resources, for each layer in a network.
@@ -252,7 +256,7 @@ specific type and configuration of layers (convolution, max pooling…),
 that can be chained to form a full neural network. The bloc allocation
 and chaining is done automatically with N2D2.</p>
 <div class="section" id="interface">
-<h3>Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h3>
+<h3>Interface<a class="headerlink" href="#interface" title="Permalink to this heading">¶</a></h3>
 <p>The DNeuro interface is extremely simple and behaves like a
 pipeline/FIFO.</p>
 <p>An example of the top-level DNeuro RTL entity is described below, for
@@ -283,7 +287,7 @@ one input channel and 3 output channels:</p>
 </div>
 </div>
 <div class="section" id="supported-layers">
-<h3>Supported layers<a class="headerlink" href="#supported-layers" title="Permalink to this headline">¶</a></h3>
+<h3>Supported layers<a class="headerlink" href="#supported-layers" title="Permalink to this heading">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 49%" />
@@ -416,9 +420,9 @@ up to two configurable thresholds</p></td>
 </div>
 </div>
 <div class="section" id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="simulation">
-<h3>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">¶</a></h3>
+<h3>Simulation<a class="headerlink" href="#simulation" title="Permalink to this heading">¶</a></h3>
 <p>When a network is exported, test vectors are exported automatically too, if
 the <code class="docutils literal notranslate"><span class="pre">-db-export</span></code> command line option value is &gt; 0 (by default, the full test
 set is exported). All the test vectors are exported for the C++ emulator, while
@@ -434,7 +438,7 @@ for ModelSim.</p>
 </div>
 </div>
 <div class="section" id="c-emulation">
-<h3>C++ emulation<a class="headerlink" href="#c-emulation" title="Permalink to this headline">¶</a></h3>
+<h3>C++ emulation<a class="headerlink" href="#c-emulation" title="Permalink to this heading">¶</a></h3>
 <p>The DNeuro export comes with a C++ bit-accurate emulator.</p>
 <p>By default, the provided emulator will use the same parameters as the ones
 defined in the export. For testing purposes it is possible to change the
@@ -458,7 +462,7 @@ emulator generates for each network’s layer an output file
 expected for the DNeuro IP.</p>
 </div>
 <div class="section" id="synthesis">
-<h3>Synthesis<a class="headerlink" href="#synthesis" title="Permalink to this headline">¶</a></h3>
+<h3>Synthesis<a class="headerlink" href="#synthesis" title="Permalink to this heading">¶</a></h3>
 <p>To generate a project ready for synthesis in Vivado or Quartus, use the scripts
 provided in <code class="docutils literal notranslate"><span class="pre">RTL/NETWORK/simu/PythonTOOL</span></code>. To generate a Vivado project, run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">RTL</span><span class="o">/</span><span class="n">NETWORK</span><span class="o">/</span><span class="n">simu</span>
@@ -476,7 +480,7 @@ directories <code class="docutils literal notranslate"><span class="pre">CONV_CO
 </div>
 </div>
 <div class="section" id="export-parameters">
-<h3>Export parameters<a class="headerlink" href="#export-parameters" title="Permalink to this headline">¶</a></h3>
+<h3>Export parameters<a class="headerlink" href="#export-parameters" title="Permalink to this heading">¶</a></h3>
 <p>Extra parameters can be passed during export using the
 <code class="docutils literal notranslate"><span class="pre">-export-parameters</span> <span class="pre">params.ini</span></code> command line argument. The parameters must be
 saved in an INI-like file.</p>
@@ -570,7 +574,7 @@ be transparent</p></td>
 </table>
 </div>
 <div class="section" id="fpga-compatibility-tables">
-<h3>FPGA compatibility tables<a class="headerlink" href="#fpga-compatibility-tables" title="Permalink to this headline">¶</a></h3>
+<h3>FPGA compatibility tables<a class="headerlink" href="#fpga-compatibility-tables" title="Permalink to this heading">¶</a></h3>
 <dl>
 <dt>Legend:</dt><dd><div class="line-block">
 <div class="line"><span class="math notranslate nohighlight">\(\bullet\)</span> should be OK for the standard 224x224 input, but depends on the resolution;</div>
@@ -1665,9 +1669,9 @@ be transparent</p></td>
 </div>
 </div>
 <div class="section" id="aerial-imagery-segmentation-demo">
-<h2>Aerial Imagery Segmentation DEMO<a class="headerlink" href="#aerial-imagery-segmentation-demo" title="Permalink to this headline">¶</a></h2>
+<h2>Aerial Imagery Segmentation DEMO<a class="headerlink" href="#aerial-imagery-segmentation-demo" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="specifications">
-<h3>Specifications<a class="headerlink" href="#specifications" title="Permalink to this headline">¶</a></h3>
+<h3>Specifications<a class="headerlink" href="#specifications" title="Permalink to this heading">¶</a></h3>
 <p>Specifications of the Aerial Imagery Segmentation DEMO:</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1797,7 +1801,7 @@ be transparent</p></td>
 </div>
 </div>
 <div class="section" id="application-preview">
-<h3>Application preview<a class="headerlink" href="#application-preview" title="Permalink to this headline">¶</a></h3>
+<h3>Application preview<a class="headerlink" href="#application-preview" title="Permalink to this heading">¶</a></h3>
 <p>The application preview is a web-based interface allowing to freely
 navigate on a map and see the segmentation result in real time. Its main
 characteristics are:</p>
@@ -1837,7 +1841,7 @@ in N2D2, create a TensorRT export with the following commands:</p>
 </div>
 </div>
 <div class="section" id="dneuro-generation">
-<h3>DNeuro generation<a class="headerlink" href="#dneuro-generation" title="Permalink to this headline">¶</a></h3>
+<h3>DNeuro generation<a class="headerlink" href="#dneuro-generation" title="Permalink to this heading">¶</a></h3>
 <p>Generate the DNeuro project:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2</span> <span class="n">MobileNet_DEMO</span><span class="o">.</span><span class="n">ini</span> <span class="o">-</span><span class="n">export</span> <span class="n">DNeuro_V2</span> <span class="o">-</span><span class="n">fuse</span> <span class="o">-</span><span class="n">w</span> <span class="n">weights_normalized</span> <span class="o">-</span><span class="n">db</span><span class="o">-</span><span class="n">export</span> <span class="mi">10</span> <span class="o">-</span><span class="n">export</span><span class="o">-</span><span class="n">parameters</span> <span class="n">MobileNet_DEMO_DNeuro</span><span class="o">.</span><span class="n">ini</span> <span class="o">-</span><span class="n">calib</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="n">calib</span><span class="o">-</span><span class="n">reload</span>
 <span class="n">cd</span> <span class="n">export_DNeuro_V2_int8</span>
@@ -1956,7 +1960,7 @@ calibration data with the <code class="docutils literal notranslate"><span class
 </div>
 </div>
 <div class="section" id="face-detection-demo">
-<h2>Face Detection DEMO<a class="headerlink" href="#face-detection-demo" title="Permalink to this headline">¶</a></h2>
+<h2>Face Detection DEMO<a class="headerlink" href="#face-detection-demo" title="Permalink to this heading">¶</a></h2>
 <p>This demo uses the open-source <em>AppFaceDetection</em> application that comes
 with N2D2.</p>
 <div class="figure align-default" id="id3">

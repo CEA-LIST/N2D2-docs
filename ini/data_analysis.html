@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,11 +28,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -83,7 +86,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Introduction:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/about.html">About N2D2-IP</a></li>
@@ -91,13 +94,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro/perfs_tools.html">Performance evaluation tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/tuto.html">Tutorials</a></li>
 </ul>
-<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<p class="caption" role="heading"><span class="caption-text">ONNX Import:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/convert.html">Obtain ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/import.html">Import ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/transfer.html">Train from ONNX models</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Quantization and Export:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../quant/post.html">Post-training quantization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">Quantization-Aware Training</a></li>
@@ -108,7 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../export/ONNX.html">Export: ONNX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/legacy.html">Export: other / legacy</a></li>
 </ul>
-<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<p class="caption" role="heading"><span class="caption-text">INI File Interface:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="databases.html">Databases</a></li>
@@ -122,7 +125,7 @@
 <li class="toctree-l1"><a class="reference internal" href="target.html">Targets (outputs &amp; losses)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../adversarial.html">Adversarial module</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Python API:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Python API:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/databases.html">Databases</a></li>
@@ -132,12 +135,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../python_api/export.html">Export</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++/Python core:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../core/core.html">Core N2D2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++ API / Developer:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../dev_intro.html">Introduction</a></li>
 </ul>
@@ -206,7 +209,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="stimuli-data-analysis">
-<h1>Stimuli data analysis<a class="headerlink" href="#stimuli-data-analysis" title="Permalink to this headline">¶</a></h1>
+<h1>Stimuli data analysis<a class="headerlink" href="#stimuli-data-analysis" title="Permalink to this heading">¶</a></h1>
 <p>You can enable stimuli data reporting with the following section (the
 name of the section must start with <code class="docutils literal notranslate"><span class="pre">env.StimuliData</span></code>):</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[env.StimuliData-raw]</span>
@@ -228,7 +231,7 @@ like:</p>
 </pre></div>
 </div>
 <div class="section" id="zero-mean-and-unity-standard-deviation-normalization">
-<h2>Zero-mean and unity standard deviation normalization<a class="headerlink" href="#zero-mean-and-unity-standard-deviation-normalization" title="Permalink to this headline">¶</a></h2>
+<h2>Zero-mean and unity standard deviation normalization<a class="headerlink" href="#zero-mean-and-unity-standard-deviation-normalization" title="Permalink to this heading">¶</a></h2>
 <p>It it possible to normalize the whole database to have zero mean and
 unity standard deviation on the learning set using a
 <code class="docutils literal notranslate"><span class="pre">RangeAffineTransformation</span></code> transformation:</p>
@@ -267,7 +270,7 @@ folder, as shown in figure [fig:frame0Mean1StdDev].</p>
 </div>
 </div>
 <div class="section" id="substracting-the-mean-image-of-the-set">
-<h2>Substracting the mean image of the set<a class="headerlink" href="#substracting-the-mean-image-of-the-set" title="Permalink to this headline">¶</a></h2>
+<h2>Substracting the mean image of the set<a class="headerlink" href="#substracting-the-mean-image-of-the-set" title="Permalink to this heading">¶</a></h2>
 <p>Using the <code class="docutils literal notranslate"><span class="pre">StimuliData</span></code> object followed with an
 <code class="docutils literal notranslate"><span class="pre">AffineTransformation</span></code>, it is also possible to use the mean image of
 the dataset to normalize the data:</p>

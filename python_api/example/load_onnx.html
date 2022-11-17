@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,11 +28,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -83,7 +86,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Introduction:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../intro/intro.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../intro/about.html">About N2D2-IP</a></li>
@@ -91,13 +94,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../../intro/perfs_tools.html">Performance evaluation tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../intro/tuto.html">Tutorials</a></li>
 </ul>
-<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<p class="caption" role="heading"><span class="caption-text">ONNX Import:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../onnx/convert.html">Obtain ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../onnx/import.html">Import ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../onnx/transfer.html">Train from ONNX models</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Quantization and Export:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../quant/post.html">Post-training quantization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quant/qat.html">Quantization-Aware Training</a></li>
@@ -108,7 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../export/ONNX.html">Export: ONNX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../export/legacy.html">Export: other / legacy</a></li>
 </ul>
-<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<p class="caption" role="heading"><span class="caption-text">INI File Interface:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../ini/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ini/databases.html">Databases</a></li>
@@ -118,7 +121,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../ini/target.html">Targets (outputs &amp; losses)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../adversarial.html">Adversarial module</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Python API:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Python API:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../databases.html">Databases</a></li>
@@ -140,12 +143,12 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++/Python core:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../core/core.html">Core N2D2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../core/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++ API / Developer:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../dev_intro.html">Introduction</a></li>
 </ul>
@@ -216,14 +219,14 @@
            <div itemprop="articleBody">
             
   <div class="section" id="load-from-onnx">
-<h1>Load from ONNX<a class="headerlink" href="#load-from-onnx" title="Permalink to this headline">¶</a></h1>
+<h1>Load from ONNX<a class="headerlink" href="#load-from-onnx" title="Permalink to this heading">¶</a></h1>
 <p>In this example, we will see step by step how to load a model from ONNX.</p>
 <p>You can find the full python script here <a class="reference download internal" download="" href="../../_downloads/e89ddb50d963008146b10dd89103dd60/lenet_onnx.py"><code class="xref download docutils literal notranslate"><span class="pre">lenet_onnx.py</span></code></a> with the associated onnx file here <a class="reference download internal" download="" href="../../_downloads/c4532cc9aba635fd857b328655dc6847/LeNet.onnx"><code class="xref download docutils literal notranslate"><span class="pre">LeNet.onnx</span></code></a>.</p>
 <div class="figure align-default">
 <img alt="LeNet_onnx_full." src="../../_images/LeNet_onnx_full.png" />
 </div>
 <div class="section" id="loading-an-onnx">
-<h2>Loading an ONNX<a class="headerlink" href="#loading-an-onnx" title="Permalink to this headline">¶</a></h2>
+<h2>Loading an ONNX<a class="headerlink" href="#loading-an-onnx" title="Permalink to this heading">¶</a></h2>
 <p>Before loading the ONNX file, we need to create an <a class="reference internal" href="../databases.html#n2d2.database.MNIST" title="n2d2.database.MNIST"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.database.MNIST</span></code></a> and <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a> objects.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change default model to run with CUDA</span>
 <span class="n">n2d2</span><span class="o">.</span><span class="n">global_variables</span><span class="o">.</span><span class="n">default_model</span> <span class="o">=</span> <span class="s2">&quot;Frame_CUDA&quot;</span>
@@ -261,7 +264,7 @@
 <p>The model has been exported successfully !</p>
 </div>
 <div class="section" id="training-and-exporting-the-model">
-<h2>Training and exporting the model<a class="headerlink" href="#training-and-exporting-the-model" title="Permalink to this headline">¶</a></h2>
+<h2>Training and exporting the model<a class="headerlink" href="#training-and-exporting-the-model" title="Permalink to this heading">¶</a></h2>
 <p>You can now do what you want with your imported model, like training it :</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">learn_epoch</span><span class="o">=</span><span class="n">nb_epochs</span><span class="p">,</span> <span class="n">valid_metric</span><span class="o">=</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
 <span class="n">model</span><span class="o">.</span><span class="n">run_test</span><span class="p">()</span>

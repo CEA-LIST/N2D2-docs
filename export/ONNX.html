@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,11 +28,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -83,7 +86,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Introduction:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/about.html">About N2D2-IP</a></li>
@@ -91,13 +94,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro/perfs_tools.html">Performance evaluation tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/tuto.html">Tutorials</a></li>
 </ul>
-<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<p class="caption" role="heading"><span class="caption-text">ONNX Import:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/convert.html">Obtain ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/import.html">Import ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/transfer.html">Train from ONNX models</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Quantization and Export:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../quant/post.html">Post-training quantization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">Quantization-Aware Training</a></li>
@@ -116,7 +119,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legacy.html">Export: other / legacy</a></li>
 </ul>
-<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<p class="caption" role="heading"><span class="caption-text">INI File Interface:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ini/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ini/databases.html">Databases</a></li>
@@ -126,7 +129,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../ini/target.html">Targets (outputs &amp; losses)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../adversarial.html">Adversarial module</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Python API:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Python API:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/databases.html">Databases</a></li>
@@ -136,12 +139,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../python_api/export.html">Export</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++/Python core:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../core/core.html">Core N2D2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++ API / Developer:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../dev_intro.html">Introduction</a></li>
 </ul>
@@ -210,7 +213,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="export-onnx">
-<span id="export-onnx-label"></span><h1>Export: ONNX<a class="headerlink" href="#export-onnx" title="Permalink to this headline">¶</a></h1>
+<span id="export-onnx-label"></span><h1>Export: ONNX<a class="headerlink" href="#export-onnx" title="Permalink to this heading">¶</a></h1>
 <dl class="simple">
 <dt>Export type: <code class="docutils literal notranslate"><span class="pre">ONNX</span></code></dt><dd><p>ONNX export.</p>
 </dd>
@@ -219,12 +222,12 @@
 </pre></div>
 </div>
 <div class="section" id="principle">
-<h2>Principle<a class="headerlink" href="#principle" title="Permalink to this headline">¶</a></h2>
+<h2>Principle<a class="headerlink" href="#principle" title="Permalink to this heading">¶</a></h2>
 <p>The ONNX export allows you to generate an ONNX model from a N2D2 model. The
 generated ONNX model is optimized for inference and can be quantized beforehand
 with either post-training quantization or Quantization Aware Training (QAT).</p>
 <div class="section" id="graph-optimizations">
-<h3>Graph optimizations<a class="headerlink" href="#graph-optimizations" title="Permalink to this headline">¶</a></h3>
+<h3>Graph optimizations<a class="headerlink" href="#graph-optimizations" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Weights are equalized between layers when possible;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">BatchNorm</span></code> is automatically fused with the preceding <code class="docutils literal notranslate"><span class="pre">Conv</span></code> or <code class="docutils literal notranslate"><span class="pre">Fc</span></code> when possible;</p></li>
@@ -233,7 +236,7 @@ with either post-training quantization or Quantization Aware Training (QAT).</p>
 </ul>
 </div>
 <div class="section" id="export-parameters">
-<h3>Export parameters<a class="headerlink" href="#export-parameters" title="Permalink to this headline">¶</a></h3>
+<h3>Export parameters<a class="headerlink" href="#export-parameters" title="Permalink to this heading">¶</a></h3>
 <p>Extra parameters can be passed during export using the
 <code class="docutils literal notranslate"><span class="pre">-export-parameters</span> <span class="pre">params.ini</span></code> command line argument. The parameters must be
 saved in an INI-like file.</p>
@@ -288,7 +291,7 @@ casting operator is required in a fully floating-point graph.</p>
 </div>
 </div>
 <div class="section" id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2</span> <span class="n">MobileNet_ONNX</span><span class="o">.</span><span class="n">ini</span> <span class="o">-</span><span class="n">seed</span> <span class="mi">1</span> <span class="o">-</span><span class="n">w</span> <span class="n">weights_validation</span> <span class="o">-</span><span class="n">export</span> <span class="n">ONNX</span> <span class="o">-</span><span class="n">nbbits</span> <span class="mi">8</span> <span class="o">-</span><span class="n">calib</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="n">db</span><span class="o">-</span><span class="n">export</span> <span class="mi">100</span> <span class="o">-</span><span class="n">test</span>
 </pre></div>
 </div>

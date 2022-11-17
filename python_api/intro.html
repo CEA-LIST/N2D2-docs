@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,11 +28,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -83,7 +86,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Introduction:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/about.html">About N2D2-IP</a></li>
@@ -91,13 +94,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro/perfs_tools.html">Performance evaluation tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/tuto.html">Tutorials</a></li>
 </ul>
-<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<p class="caption" role="heading"><span class="caption-text">ONNX Import:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/convert.html">Obtain ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/import.html">Import ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/transfer.html">Train from ONNX models</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Quantization and Export:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../quant/post.html">Post-training quantization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">Quantization-Aware Training</a></li>
@@ -108,7 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../export/ONNX.html">Export: ONNX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/legacy.html">Export: other / legacy</a></li>
 </ul>
-<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<p class="caption" role="heading"><span class="caption-text">INI File Interface:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ini/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ini/databases.html">Databases</a></li>
@@ -118,7 +121,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../ini/target.html">Targets (outputs &amp; losses)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../adversarial.html">Adversarial module</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Python API:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Python API:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installation-of-the-virtual-environment">Installation of the virtual environment</a></li>
@@ -150,12 +153,12 @@
 <li class="toctree-l1"><a class="reference internal" href="export.html">Export</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++/Python core:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../core/core.html">Core N2D2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++ API / Developer:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../dev_intro.html">Introduction</a></li>
 </ul>
@@ -224,7 +227,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h1>
 <p>For notation purposes, we will refer to the python library of N2D2 as n2d2.
 This library uses the core function of N2D2 and add an extra layer of abstraction to make the experience more user friendly.
 With the library you can import data, pre-process them, create a deep neural network model, train it and realize inference with it.
@@ -297,7 +300,7 @@ the N2D2 analysis tools</p></td>
 </tbody>
 </table>
 <div class="section" id="installation-of-the-virtual-environment">
-<h2>Installation of the virtual environment<a class="headerlink" href="#installation-of-the-virtual-environment" title="Permalink to this headline">¶</a></h2>
+<h2>Installation of the virtual environment<a class="headerlink" href="#installation-of-the-virtual-environment" title="Permalink to this heading">¶</a></h2>
 <div class="line-block">
 <div class="line">To run the python API, it’s good practice to use <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">3.7</span></code> or a newer version in a virtual environment.</div>
 <div class="line">To set up your environment, please follow these steps:</div>
@@ -319,13 +322,13 @@ deactivate
 <p>If everything went well, you should have the version <code class="docutils literal notranslate"><span class="pre">3.7</span></code> of python.</p>
 </div>
 <div class="section" id="installation-of-the-python-api">
-<h2>Installation of the Python API<a class="headerlink" href="#installation-of-the-python-api" title="Permalink to this headline">¶</a></h2>
+<h2>Installation of the Python API<a class="headerlink" href="#installation-of-the-python-api" title="Permalink to this heading">¶</a></h2>
 <div class="line-block">
 <div class="line">There are multiple methods to install the python API on your device.</div>
 <div class="line">Feel free to use the method of your choice.</div>
 </div>
 <div class="section" id="with-the-python-package-index-py-pi">
-<h3>With the Python Package Index (Py Pi)<a class="headerlink" href="#with-the-python-package-index-py-pi" title="Permalink to this headline">¶</a></h3>
+<h3>With the Python Package Index (Py Pi)<a class="headerlink" href="#with-the-python-package-index-py-pi" title="Permalink to this heading">¶</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>This method is not supported anymore, we are working on it !</p>
@@ -337,7 +340,7 @@ deactivate
 </div>
 </div>
 <div class="section" id="from-the-n2d2-github-repository">
-<h3>From the N2D2 Github repository<a class="headerlink" href="#from-the-n2d2-github-repository" title="Permalink to this headline">¶</a></h3>
+<h3>From the N2D2 Github repository<a class="headerlink" href="#from-the-n2d2-github-repository" title="Permalink to this heading">¶</a></h3>
 <p>You can have access to the developer version by importing the API from
 the N2D2 Github repository via <code class="docutils literal notranslate"><span class="pre">pip</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install git+https://github.com/CEA-LIST/N2D2
@@ -345,7 +348,7 @@ the N2D2 Github repository via <code class="docutils literal notranslate"><span 
 </div>
 </div>
 <div class="section" id="if-you-have-already-cloned-the-github-repository">
-<h3>If you have already cloned the Github repository<a class="headerlink" href="#if-you-have-already-cloned-the-github-repository" title="Permalink to this headline">¶</a></h3>
+<h3>If you have already cloned the Github repository<a class="headerlink" href="#if-you-have-already-cloned-the-github-repository" title="Permalink to this heading">¶</a></h3>
 <p>You can still build the python API with a cloned N2D2 repository.
 Go at the root of the N2D2 projet and follow the following steps
 (don’t forget to activate your virtual environment before).</p>
@@ -358,7 +361,7 @@ pip install .
 </div>
 </div>
 <div class="section" id="installation-for-developer">
-<h3>Installation for developer<a class="headerlink" href="#installation-for-developer" title="Permalink to this headline">¶</a></h3>
+<h3>Installation for developer<a class="headerlink" href="#installation-for-developer" title="Permalink to this heading">¶</a></h3>
 <p>If you want to install n2d2 as seomeone who wants to contribute to n2d2, we recommand the following setup :</p>
 <p>Inside your n2d2 project, create a build folder and compile N2D2 inside it :</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
@@ -378,9 +381,9 @@ cmake .. <span class="o">&amp;&amp;</span> make -j <span class="m">8</span>
 and then <code class="docutils literal notranslate"><span class="pre">n2d2</span></code> (verify that your <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> point the n2d2 python API).</p>
 </div>
 <div class="section" id="frequent-issues">
-<h3>Frequent issues<a class="headerlink" href="#frequent-issues" title="Permalink to this headline">¶</a></h3>
+<h3>Frequent issues<a class="headerlink" href="#frequent-issues" title="Permalink to this heading">¶</a></h3>
 <div class="section" id="module-not-found-n2d2">
-<h4>Module not found N2D2<a class="headerlink" href="#module-not-found-n2d2" title="Permalink to this headline">¶</a></h4>
+<h4>Module not found N2D2<a class="headerlink" href="#module-not-found-n2d2" title="Permalink to this heading">¶</a></h4>
 <p>If when you import <code class="docutils literal notranslate"><span class="pre">n2d2</span></code> you get this error :</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">ModuleNotFoundError</span><span class="p">:</span> <span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="s1">&#39;N2D2&#39;</span>
 </pre></div>
@@ -391,7 +394,7 @@ and then <code class="docutils literal notranslate"><span class="pre">n2d2</span
 <p>You should either make sure to use a virtualenv with the right python version or check the bellow section.</p>
 </div>
 <div class="section" id="n2d2-doesn-t-compile-with-the-right-version-of-python">
-<h4>N2D2 doesn’t compile with the right version of Python<a class="headerlink" href="#n2d2-doesn-t-compile-with-the-right-version-of-python" title="Permalink to this headline">¶</a></h4>
+<h4>N2D2 doesn’t compile with the right version of Python<a class="headerlink" href="#n2d2-doesn-t-compile-with-the-right-version-of-python" title="Permalink to this heading">¶</a></h4>
 <p>When compiling N2D2 you can use an argument to specify the python version you want to compile N2D2 for.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="o">-</span><span class="n">DPYTHON_EXECUTABLE</span><span class="o">=&lt;</span><span class="n">path_to_python_binary</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">path_to_n2d2_cmakefile</span><span class="o">&gt;</span>
 </pre></div>
@@ -404,7 +407,7 @@ and then <code class="docutils literal notranslate"><span class="pre">n2d2</span
 <p>For example, this shared object <code class="docutils literal notranslate"><span class="pre">N2D2.cpython-37m-x86_64-linux-gnu.so</span></code> have been compiled for python3.7.</p>
 </div>
 <div class="section" id="lib-not-found-when-compiling">
-<h4>Lib not found when compiling<a class="headerlink" href="#lib-not-found-when-compiling" title="Permalink to this headline">¶</a></h4>
+<h4>Lib not found when compiling<a class="headerlink" href="#lib-not-found-when-compiling" title="Permalink to this heading">¶</a></h4>
 <p>If CMake fails to find lib files when compiling, this may be due to the absence of the dependency <code class="docutils literal notranslate"><span class="pre">python3-dev</span></code>.</p>
 <p>When generating a new virtualenv after installing the dependency, you should see <code class="docutils literal notranslate"><span class="pre">include/python3.7m</span></code> inside the generated folder.</p>
 <p>If not, you may need to reboot in order to update system variables.</p>
@@ -412,7 +415,7 @@ and then <code class="docutils literal notranslate"><span class="pre">n2d2</span
 </div>
 </div>
 <div class="section" id="test-of-the-python-api">
-<h2>Test of the Python API<a class="headerlink" href="#test-of-the-python-api" title="Permalink to this headline">¶</a></h2>
+<h2>Test of the Python API<a class="headerlink" href="#test-of-the-python-api" title="Permalink to this heading">¶</a></h2>
 <p>Whatever the method you chose, it should compile the n2d2 libraries and add them to your virtual environnement.</p>
 <p>You can test it by trying to import n2d2 in your python interpreter :</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python
@@ -432,10 +435,10 @@ n2d2.Tensor<span class="o">([</span>
 </div>
 </div>
 <div class="section" id="default-values">
-<h2>Default values<a class="headerlink" href="#default-values" title="Permalink to this headline">¶</a></h2>
+<h2>Default values<a class="headerlink" href="#default-values" title="Permalink to this heading">¶</a></h2>
 <p>The python API used default values that you can modify at any time in your scripts.</p>
 <div class="section" id="list-of-modifiable-parameters">
-<h3>List of modifiable parameters<a class="headerlink" href="#list-of-modifiable-parameters" title="Permalink to this headline">¶</a></h3>
+<h3>List of modifiable parameters<a class="headerlink" href="#list-of-modifiable-parameters" title="Permalink to this heading">¶</a></h3>
 <p>Here we will list parameters which can be directly modified in your script.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -478,7 +481,7 @@ GPU by giving a tuple of device, default = <code class="docutils literal notrans
 </table>
 </div>
 <div class="section" id="example">
-<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2</span><span class="o">.</span><span class="n">global_variables</span><span class="o">.</span><span class="n">default_model</span> <span class="o">=</span> <span class="s2">&quot;Frame_CUDA&quot;</span>
 
 <span class="n">n2d2</span><span class="o">.</span><span class="n">global_variables</span><span class="o">.</span><span class="n">default_datatype</span> <span class="o">=</span> <span class="s2">&quot;double&quot;</span>

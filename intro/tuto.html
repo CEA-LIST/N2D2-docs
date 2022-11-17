@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,11 +28,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -83,7 +87,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Introduction:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="about.html">About N2D2-IP</a></li>
@@ -112,13 +116,13 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<p class="caption" role="heading"><span class="caption-text">ONNX Import:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/convert.html">Obtain ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/import.html">Import ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/transfer.html">Train from ONNX models</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Quantization and Export:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../quant/post.html">Post-training quantization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">Quantization-Aware Training</a></li>
@@ -129,7 +133,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../export/ONNX.html">Export: ONNX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/legacy.html">Export: other / legacy</a></li>
 </ul>
-<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<p class="caption" role="heading"><span class="caption-text">INI File Interface:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ini/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ini/databases.html">Databases</a></li>
@@ -139,7 +143,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../ini/target.html">Targets (outputs &amp; losses)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../adversarial.html">Adversarial module</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Python API:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Python API:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/databases.html">Databases</a></li>
@@ -149,12 +153,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../python_api/export.html">Export</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++/Python core:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../core/core.html">Core N2D2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++ API / Developer:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../dev_intro.html">Introduction</a></li>
 </ul>
@@ -223,11 +227,11 @@
            <div itemprop="articleBody">
             
   <div class="section" id="tutorials">
-<h1>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h1>
+<h1>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="learning-deep-neural-networks-tips-and-tricks">
-<h2>Learning deep neural networks: tips and tricks<a class="headerlink" href="#learning-deep-neural-networks-tips-and-tricks" title="Permalink to this headline">¶</a></h2>
+<h2>Learning deep neural networks: tips and tricks<a class="headerlink" href="#learning-deep-neural-networks-tips-and-tricks" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="choose-the-learning-solver">
-<h3>Choose the learning solver<a class="headerlink" href="#choose-the-learning-solver" title="Permalink to this headline">¶</a></h3>
+<h3>Choose the learning solver<a class="headerlink" href="#choose-the-learning-solver" title="Permalink to this heading">¶</a></h3>
 <p>Generally, you should use the SGD solver with a momemtum (typical value
 for the momentum: 0.9). It generalizes better, often significantly
 better, than adaptive methods like Adam
@@ -236,7 +240,7 @@ better, than adaptive methods like Adam
 prototyping, thanks to their fast convergence.</p>
 </div>
 <div class="section" id="choose-the-learning-hyper-parameters">
-<h3>Choose the learning hyper-parameters<a class="headerlink" href="#choose-the-learning-hyper-parameters" title="Permalink to this headline">¶</a></h3>
+<h3>Choose the learning hyper-parameters<a class="headerlink" href="#choose-the-learning-hyper-parameters" title="Permalink to this heading">¶</a></h3>
 <p>You can use the <code class="docutils literal notranslate"><span class="pre">-find-lr</span></code> option available in the <code class="docutils literal notranslate"><span class="pre">n2d2</span></code> executable
 to automatically find the best learning rate for a given neural network.</p>
 <p>Usage example:</p>
@@ -274,7 +278,7 @@ parameters update is therefore:</p>
 </div>
 </div>
 <div class="section" id="convergence-and-normalization">
-<h3>Convergence and normalization<a class="headerlink" href="#convergence-and-normalization" title="Permalink to this headline">¶</a></h3>
+<h3>Convergence and normalization<a class="headerlink" href="#convergence-and-normalization" title="Permalink to this heading">¶</a></h3>
 <p>Deep networks (&gt; 30 layers) and especially residual networks usually
 don’t converge without normalization. Indeed, batch normalization is
 almost always used. <em>ZeroInit</em> is a method that can be used to overcome
@@ -282,7 +286,7 @@ this issue without normalization <a class="bibtex reference internal" href="../r
 </div>
 </div>
 <div class="section" id="building-a-classifier-neural-network">
-<h2>Building a classifier neural network<a class="headerlink" href="#building-a-classifier-neural-network" title="Permalink to this headline">¶</a></h2>
+<h2>Building a classifier neural network<a class="headerlink" href="#building-a-classifier-neural-network" title="Permalink to this heading">¶</a></h2>
 <p>For this tutorial, we will use the classical MNIST handwritten digit
 dataset. A driver module already exists for this dataset, named
 <code class="docutils literal notranslate"><span class="pre">MNIST_IDX_Database</span></code>.</p>
@@ -486,7 +490,7 @@ section):</p>
 </div>
 </div>
 <div class="section" id="building-a-segmentation-neural-network">
-<h2>Building a segmentation neural network<a class="headerlink" href="#building-a-segmentation-neural-network" title="Permalink to this headline">¶</a></h2>
+<h2>Building a segmentation neural network<a class="headerlink" href="#building-a-segmentation-neural-network" title="Permalink to this heading">¶</a></h2>
 <p>In this tutorial, we will learn how to do image segmentation with N2D2.
 As an example, we will implement a face detection and gender recognition
 neural network, using the IMDB-WIKI dataset.</p>
@@ -582,7 +586,7 @@ the <em>models</em> directory of N2D2. It is a fully-CNN network.</p>
 classify their gender. We start from the <code class="docutils literal notranslate"><span class="pre">[drop2]</span></code> layer, which has
 128 channels of size 60x45.</p>
 <div class="section" id="faces-detection">
-<h3>Faces detection<a class="headerlink" href="#faces-detection" title="Permalink to this headline">¶</a></h3>
+<h3>Faces detection<a class="headerlink" href="#faces-detection" title="Permalink to this heading">¶</a></h3>
 <p>We want to first add an output stage for the faces detection. It is a
 1x1 convolutional layer with a single 60x45 output map. For each output
 pixel, this layer outputs the probability that the pixel belongs to a
@@ -630,7 +634,7 @@ described in the <em>IMDBWIKI_target_face.dat</em> file is easy:</p>
 </div>
 </div>
 <div class="section" id="gender-recognition">
-<h3>Gender recognition<a class="headerlink" href="#gender-recognition" title="Permalink to this headline">¶</a></h3>
+<h3>Gender recognition<a class="headerlink" href="#gender-recognition" title="Permalink to this heading">¶</a></h3>
 <p>We can also add a second output stage for gender recognition. Like
 before, it would be a 1x1 convolutional layer with a single 60x45 output
 map. But here, for each output pixel, this layer would output the
@@ -686,7 +690,7 @@ F-99 1
 </div>
 </div>
 <div class="section" id="rois-extraction">
-<h3>ROIs extraction<a class="headerlink" href="#rois-extraction" title="Permalink to this headline">¶</a></h3>
+<h3>ROIs extraction<a class="headerlink" href="#rois-extraction" title="Permalink to this heading">¶</a></h3>
 <p>The next step would be to extract detected face ROIs and assign for each
 ROI the most probable gender. To this end, we can first set a detection
 threshold, in terms of probability, to select face pixels. In the
@@ -730,7 +734,7 @@ be modified to:</p>
 probable gender of the ROI.</p>
 </div>
 <div class="section" id="data-visualization">
-<h3>Data visualization<a class="headerlink" href="#data-visualization" title="Permalink to this headline">¶</a></h3>
+<h3>Data visualization<a class="headerlink" href="#data-visualization" title="Permalink to this heading">¶</a></h3>
 <p>For each <em>Target</em> in the network, a corresponding folder is created in
 the simulation directory, which contains learning, validation and test
 confusion matrixes. The output estimation of the network for each
@@ -744,14 +748,14 @@ figure [fig:targetvisu].</p>
 </div>
 </div>
 <div class="section" id="transcoding-a-learned-network-in-spike-coding">
-<h2>Transcoding a learned network in spike-coding<a class="headerlink" href="#transcoding-a-learned-network-in-spike-coding" title="Permalink to this headline">¶</a></h2>
+<h2>Transcoding a learned network in spike-coding<a class="headerlink" href="#transcoding-a-learned-network-in-spike-coding" title="Permalink to this heading">¶</a></h2>
 <p>N2D2 embeds an event-based simulator (historically known as ’Xnet’) and
 allows to transcode a whole DNN in a spike-coding version and evaluate
 the resulting spiking neural network performances. In this tutorial, we
 will transcode the LeNet network described in section
 [sec:BuildingClassifierNN].</p>
 <div class="section" id="render-the-network-compatible-with-spike-simulations">
-<h3>Render the network compatible with spike simulations<a class="headerlink" href="#render-the-network-compatible-with-spike-simulations" title="Permalink to this headline">¶</a></h3>
+<h3>Render the network compatible with spike simulations<a class="headerlink" href="#render-the-network-compatible-with-spike-simulations" title="Permalink to this heading">¶</a></h3>
 <p>The first step is to specify that we want to use a transcode model
 (allowing both formal and spike simulation of the same network), by
 changing the <code class="docutils literal notranslate"><span class="pre">DefaultModel</span></code> to:</p>
@@ -823,7 +827,7 @@ into spikes, nor the spiking neuron parameters (threshold value, leak
 time constant…).</p>
 </div>
 <div class="section" id="configure-spike-coding-parameters">
-<h3>Configure spike-coding parameters<a class="headerlink" href="#configure-spike-coding-parameters" title="Permalink to this headline">¶</a></h3>
+<h3>Configure spike-coding parameters<a class="headerlink" href="#configure-spike-coding-parameters" title="Permalink to this heading">¶</a></h3>
 <p>The first step is to configure how the input stimuli data must be coded
 into spikes. To this end, we must attach a configuration section to the
 <em>Environment</em>. Here, we specify a periodic coding with random initial

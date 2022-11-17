@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,11 +28,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -83,7 +87,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Introduction:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="about.html">About N2D2-IP</a></li>
@@ -118,13 +122,13 @@
 <li class="toctree-l1"><a class="reference internal" href="perfs_tools.html">Performance evaluation tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tuto.html">Tutorials</a></li>
 </ul>
-<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<p class="caption" role="heading"><span class="caption-text">ONNX Import:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/convert.html">Obtain ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/import.html">Import ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/transfer.html">Train from ONNX models</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Quantization and Export:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../quant/post.html">Post-training quantization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">Quantization-Aware Training</a></li>
@@ -135,7 +139,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../export/ONNX.html">Export: ONNX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/legacy.html">Export: other / legacy</a></li>
 </ul>
-<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<p class="caption" role="heading"><span class="caption-text">INI File Interface:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ini/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ini/databases.html">Databases</a></li>
@@ -145,7 +149,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../ini/target.html">Targets (outputs &amp; losses)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../adversarial.html">Adversarial module</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Python API:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Python API:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/databases.html">Databases</a></li>
@@ -155,12 +159,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../python_api/export.html">Export</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++/Python core:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../core/core.html">Core N2D2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++ API / Developer:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../dev_intro.html">Introduction</a></li>
 </ul>
@@ -229,9 +233,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="performing-simulations">
-<h1>Performing simulations<a class="headerlink" href="#performing-simulations" title="Permalink to this headline">¶</a></h1>
+<h1>Performing simulations<a class="headerlink" href="#performing-simulations" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="minimum-system-requirements">
-<h2>Minimum system requirements<a class="headerlink" href="#minimum-system-requirements" title="Permalink to this headline">¶</a></h2>
+<h2>Minimum system requirements<a class="headerlink" href="#minimum-system-requirements" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Supported processors:</p>
 <ul>
@@ -263,11 +267,11 @@ processing</p></li>
 </ul>
 </div>
 <div class="section" id="obtaining-n2d2">
-<h2>Obtaining N2D2<a class="headerlink" href="#obtaining-n2d2" title="Permalink to this headline">¶</a></h2>
+<h2>Obtaining N2D2<a class="headerlink" href="#obtaining-n2d2" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="prerequisites">
-<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h3>
 <div class="section" id="red-hat-enterprise-linux-rhel-6">
-<h4>Red Hat Enterprise Linux (RHEL) 6<a class="headerlink" href="#red-hat-enterprise-linux-rhel-6" title="Permalink to this headline">¶</a></h4>
+<h4>Red Hat Enterprise Linux (RHEL) 6<a class="headerlink" href="#red-hat-enterprise-linux-rhel-6" title="Permalink to this heading">¶</a></h4>
 <p>Make sure you have the following packages installed:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">cmake</span></code></p></li>
@@ -297,7 +301,7 @@ the LD_LIBRARY_PATH environment variable.</p></li>
 </ul>
 </div>
 <div class="section" id="ubuntu">
-<h4>Ubuntu<a class="headerlink" href="#ubuntu" title="Permalink to this headline">¶</a></h4>
+<h4>Ubuntu<a class="headerlink" href="#ubuntu" title="Permalink to this heading">¶</a></h4>
 <p>Make sure you have the following packages installed, if they are
 available on your Ubuntu version:</p>
 <ul class="simple">
@@ -346,7 +350,7 @@ the LD_LIBRARY_PATH environment variable.</p></li>
 </ul>
 </div>
 <div class="section" id="windows">
-<h4>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h4>
+<h4>Windows<a class="headerlink" href="#windows" title="Permalink to this heading">¶</a></h4>
 <p>On Windows 64 bits, Visual Studio <span class="math notranslate nohighlight">\(\geq\)</span> 2015.2 (2015 Update 2) is
 required.</p>
 <p>Make sure you have the following software installed:</p>
@@ -395,7 +399,7 @@ environment variable.</p></li>
 </div>
 </div>
 <div class="section" id="getting-the-sources">
-<h3>Getting the sources<a class="headerlink" href="#getting-the-sources" title="Permalink to this headline">¶</a></h3>
+<h3>Getting the sources<a class="headerlink" href="#getting-the-sources" title="Permalink to this heading">¶</a></h3>
 <p>Use the following command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">recursive</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">CEA</span><span class="o">-</span><span class="n">LIST</span><span class="o">/</span><span class="n">N2D2</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
@@ -406,7 +410,7 @@ environment variable.</p></li>
 </div>
 </div>
 <div class="section" id="compilation">
-<h3>Compilation<a class="headerlink" href="#compilation" title="Permalink to this headline">¶</a></h3>
+<h3>Compilation<a class="headerlink" href="#compilation" title="Permalink to this heading">¶</a></h3>
 <p>To compile the program:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">build</span>
 <span class="n">cd</span> <span class="n">build</span>
@@ -423,7 +427,7 @@ select “Build”.</p>
 </div>
 </div>
 <div class="section" id="downloading-training-datasets">
-<h2>Downloading training datasets<a class="headerlink" href="#downloading-training-datasets" title="Permalink to this headline">¶</a></h2>
+<h2>Downloading training datasets<a class="headerlink" href="#downloading-training-datasets" title="Permalink to this heading">¶</a></h2>
 <p>A python script located in the repository root directory allows you to
 select and automatically download some well-known datasets, like MNIST
 and GTSRB (the script requires Python 2.x with bindings for GTK 2
@@ -441,7 +445,7 @@ Linux and C:\n2d2_data\ on Windows.</p>
 not set, in the default /local/$USER/n2d2_data/ path.</p>
 </div>
 <div class="section" id="run-the-learning">
-<h2>Run the learning<a class="headerlink" href="#run-the-learning" title="Permalink to this headline">¶</a></h2>
+<h2>Run the learning<a class="headerlink" href="#run-the-learning" title="Permalink to this heading">¶</a></h2>
 <p>The following command will run the learning for 600,000 image
 presentations/steps and log the performances of the network every 10,000
 steps:</p>
@@ -453,26 +457,26 @@ steps:</p>
 occasionally fail if the required precision is too high.</p>
 </div>
 <div class="section" id="test-a-learned-network">
-<h2>Test a learned network<a class="headerlink" href="#test-a-learned-network" title="Permalink to this headline">¶</a></h2>
+<h2>Test a learned network<a class="headerlink" href="#test-a-learned-network" title="Permalink to this heading">¶</a></h2>
 <p>After the learning is completed, this command evaluate the network
 performances on the test data set:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">n2d2</span> <span class="s2">&quot;mnist24_16c4s2_24c5s2_150_10.ini&quot;</span> <span class="o">-</span><span class="n">test</span>
 </pre></div>
 </div>
 <div class="section" id="interpreting-the-results">
-<h3>Interpreting the results<a class="headerlink" href="#interpreting-the-results" title="Permalink to this headline">¶</a></h3>
+<h3>Interpreting the results<a class="headerlink" href="#interpreting-the-results" title="Permalink to this heading">¶</a></h3>
 <div class="section" id="recognition-rate">
-<h4>Recognition rate<a class="headerlink" href="#recognition-rate" title="Permalink to this headline">¶</a></h4>
+<h4>Recognition rate<a class="headerlink" href="#recognition-rate" title="Permalink to this heading">¶</a></h4>
 <p>The recognition rate and the validation score are reported during the
 learning in the <em>TargetScore_/Success_validation.png</em> file, as shown
 in figure [fig:validationScore].</p>
 <div class="figure align-default" id="id1">
-<img alt="Recognition rate and validation score during learning." src="../_images/validation_score1.png" />
+<img alt="Recognition rate and validation score during learning." src="../_images/validation_score.png" />
 <p class="caption"><span class="caption-text">Recognition rate and validation score during learning.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="confusion-matrix">
-<h4>Confusion matrix<a class="headerlink" href="#confusion-matrix" title="Permalink to this headline">¶</a></h4>
+<h4>Confusion matrix<a class="headerlink" href="#confusion-matrix" title="Permalink to this heading">¶</a></h4>
 <p>The software automatically outputs the confusion matrix during learning,
 validation and test, with an example shown in figure
 [fig:ConfusionMatrix]. Each row of the matrix contains the number of
@@ -483,7 +487,7 @@ occurrences, corresponding to the same estimated label. Idealy, the
 matrix should be diagonal, with no occurrence of an estimated label for
 a different actual label (network mistake).</p>
 <div class="figure align-default" id="id2">
-<img alt="Example of confusion matrix obtained after the learning." src="../_images/confusion_matrix1.png" />
+<img alt="Example of confusion matrix obtained after the learning." src="../_images/confusion_matrix.png" />
 <p class="caption"><span class="caption-text">Example of confusion matrix obtained after the learning.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>The confusion matrix reports can be found in the simulation directory:</p>
@@ -494,7 +498,7 @@ a different actual label (network mistake).</p>
 </ul>
 </div>
 <div class="section" id="memory-and-computation-requirements">
-<h4>Memory and computation requirements<a class="headerlink" href="#memory-and-computation-requirements" title="Permalink to this headline">¶</a></h4>
+<h4>Memory and computation requirements<a class="headerlink" href="#memory-and-computation-requirements" title="Permalink to this heading">¶</a></h4>
 <p>The software also report the memory and computation requirements of the
 network, as shown in figure [fig:stats]. The corresponding report can be
 found in the <em>stats</em> sub-directory of the simulation.</p>
@@ -504,14 +508,14 @@ found in the <em>stats</em> sub-directory of the simulation.</p>
 </div>
 </div>
 <div class="section" id="kernels-and-weights-distribution">
-<h4>Kernels and weights distribution<a class="headerlink" href="#kernels-and-weights-distribution" title="Permalink to this headline">¶</a></h4>
+<h4>Kernels and weights distribution<a class="headerlink" href="#kernels-and-weights-distribution" title="Permalink to this heading">¶</a></h4>
 <p>The synaptic weights obtained during and after the learning can be
 analyzed, in terms of distribution (<em>weights</em> sub-directory of the
 simulation) or in terms of kernels (<em>kernels</em> sub-directory of the
 simulation), as shown in [fig:weights].</p>
 </div>
 <div class="section" id="output-maps-activity">
-<h4>Output maps activity<a class="headerlink" href="#output-maps-activity" title="Permalink to this headline">¶</a></h4>
+<h4>Output maps activity<a class="headerlink" href="#output-maps-activity" title="Permalink to this heading">¶</a></h4>
 <p>The initial output maps activity for each layer can be visualized in the
 <em>outputs_init</em> sub-directory of the simulation, as shown in figure
 [fig:outputs].</p>

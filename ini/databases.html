@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,11 +28,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -83,7 +86,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Introduction:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/about.html">About N2D2-IP</a></li>
@@ -91,13 +94,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro/perfs_tools.html">Performance evaluation tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/tuto.html">Tutorials</a></li>
 </ul>
-<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<p class="caption" role="heading"><span class="caption-text">ONNX Import:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/convert.html">Obtain ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/import.html">Import ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/transfer.html">Train from ONNX models</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Quantization and Export:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../quant/post.html">Post-training quantization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">Quantization-Aware Training</a></li>
@@ -108,7 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../export/ONNX.html">Export: ONNX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/legacy.html">Export: other / legacy</a></li>
 </ul>
-<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<p class="caption" role="heading"><span class="caption-text">INI File Interface:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Databases</a><ul>
@@ -156,7 +159,7 @@
 <li class="toctree-l1"><a class="reference internal" href="target.html">Targets (outputs &amp; losses)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../adversarial.html">Adversarial module</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Python API:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Python API:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/databases.html">Databases</a></li>
@@ -166,12 +169,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../python_api/export.html">Export</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++/Python core:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../core/core.html">Core N2D2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++ API / Developer:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../dev_intro.html">Introduction</a></li>
 </ul>
@@ -240,9 +243,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="databases">
-<h1>Databases<a class="headerlink" href="#databases" title="Permalink to this headline">¶</a></h1>
+<h1>Databases<a class="headerlink" href="#databases" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">Database</span></code> handles the raw data, annotations and how the datasets
 (learn, validation or test) should be build.
 N2D2 integrates pre-defined modules for several well-known database
@@ -294,7 +297,7 @@ sets is random, otherwise partitioning is in the order</p></td>
 </tbody>
 </table>
 <div class="section" id="compositelabel-parameter">
-<h3><code class="docutils literal notranslate"><span class="pre">CompositeLabel</span></code> parameter<a class="headerlink" href="#compositelabel-parameter" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">CompositeLabel</span></code> parameter<a class="headerlink" href="#compositelabel-parameter" title="Permalink to this heading">¶</a></h3>
 <p>A label is said to be composite when it is not a single <em>labelID</em> for the
 stimulus (the stimulus label is a matrix of size &gt; 1).
 For the same stimulus, different type of labels can be specified,
@@ -325,7 +328,7 @@ ROIs, if present, are applied.</p></li>
 </ul>
 </div>
 <div class="section" id="multi-channel-handling">
-<h3>Multi-channel handling<a class="headerlink" href="#multi-channel-handling" title="Permalink to this headline">¶</a></h3>
+<h3>Multi-channel handling<a class="headerlink" href="#multi-channel-handling" title="Permalink to this heading">¶</a></h3>
 <p>Multi-channel images are automatically handled and the default image format in
 N2D2 is <strong>BGR</strong>.</p>
 <p>Any <code class="docutils literal notranslate"><span class="pre">Database</span></code> can also handle multi-channel data, where each channel is stored
@@ -366,7 +369,7 @@ the <code class="docutils literal notranslate"><span class="pre">Database::readL
 </div>
 </div>
 <div class="section" id="mnist">
-<h2>MNIST<a class="headerlink" href="#mnist" title="Permalink to this headline">¶</a></h2>
+<h2>MNIST<a class="headerlink" href="#mnist" title="Permalink to this heading">¶</a></h2>
 <p>MNIST <a class="bibtex reference internal" href="../references.html#lecun1998" id="id1">[LBBH98]</a> is already fractionned into a
 learning set and a testing set, with:</p>
 <ul class="simple">
@@ -403,7 +406,7 @@ learning set and a testing set, with:</p>
 </table>
 </div>
 <div class="section" id="gtsrb">
-<h2>GTSRB<a class="headerlink" href="#gtsrb" title="Permalink to this headline">¶</a></h2>
+<h2>GTSRB<a class="headerlink" href="#gtsrb" title="Permalink to this heading">¶</a></h2>
 <p>GTSRB <a class="bibtex reference internal" href="../references.html#stallkamp2012" id="id2">[SSSI12]</a> is already fractionned into a
 learning set and a testing set, with:</p>
 <ul class="simple">
@@ -440,7 +443,7 @@ learning set and a testing set, with:</p>
 </table>
 </div>
 <div class="section" id="directory">
-<h2>Directory<a class="headerlink" href="#directory" title="Permalink to this headline">¶</a></h2>
+<h2>Directory<a class="headerlink" href="#directory" title="Permalink to this heading">¶</a></h2>
 <p>Hand made database stored in files directories are directly supported
 with the <code class="docutils literal notranslate"><span class="pre">DIR_Database</span></code> module. For example, suppose your database is
 organized as following (in the path specified in the <code class="docutils literal notranslate"><span class="pre">N2D2_DATA</span></code>
@@ -624,7 +627,7 @@ correspond to the number of stimuli from the label with the fewest stimuli.</p>
 </pre></div>
 </div>
 <div class="section" id="speech-commands-dataset">
-<h3><em>Speech Commands Dataset</em><a class="headerlink" href="#speech-commands-dataset" title="Permalink to this headline">¶</a></h3>
+<h3><em>Speech Commands Dataset</em><a class="headerlink" href="#speech-commands-dataset" title="Permalink to this heading">¶</a></h3>
 <p>Use with Speech Commands Data Set, released by the Google
 <a class="bibtex reference internal" href="../references.html#speechcommandsv2" id="id3">[Warden18]</a>.</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[database]</span>
@@ -639,7 +642,7 @@ correspond to the number of stimuli from the label with the fewest stimuli.</p>
 </div>
 </div>
 <div class="section" id="csv-data-files">
-<h2>CSV data files<a class="headerlink" href="#csv-data-files" title="Permalink to this headline">¶</a></h2>
+<h2>CSV data files<a class="headerlink" href="#csv-data-files" title="Permalink to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">CSV_Database</span></code> is a generic driver for handling CSV data files. It can be used
 to load one or several CSV files where each line is a different stimulus and one
 column contains the label.</p>
@@ -704,7 +707,7 @@ per label that will be partitioned in the learn and validation sets will
 correspond to the number of stimuli from the label with the fewest stimuli.</p>
 </div>
 <div class="section" id="usage-example">
-<h3>Usage example<a class="headerlink" href="#usage-example" title="Permalink to this headline">¶</a></h3>
+<h3>Usage example<a class="headerlink" href="#usage-example" title="Permalink to this heading">¶</a></h3>
 <p>In this example, we load the <em>Electrical Grid Stability Simulated Data Data Set</em>
 (<a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Electrical+Grid+Stability+Simulated+Data+">https://archive.ics.uci.edu/ml/datasets/Electrical+Grid+Stability+Simulated+Data+</a>).</p>
 <p>The CSV data file (<code class="docutils literal notranslate"><span class="pre">Data_for_UCI_named.csv</span></code>) is the following:</p>
@@ -731,9 +734,9 @@ validation set with a 0.7/0.3 ratio in the INI file with the following section:<
 </div>
 </div>
 <div class="section" id="other-built-in-databases">
-<h2>Other built-in databases<a class="headerlink" href="#other-built-in-databases" title="Permalink to this headline">¶</a></h2>
+<h2>Other built-in databases<a class="headerlink" href="#other-built-in-databases" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="actitracker-database">
-<h3>Actitracker_Database<a class="headerlink" href="#actitracker-database" title="Permalink to this headline">¶</a></h3>
+<h3>Actitracker_Database<a class="headerlink" href="#actitracker-database" title="Permalink to this heading">¶</a></h3>
 <p>Actitracker database, released by the WISDM Lab
 <a class="bibtex reference internal" href="../references.html#lockhart2011" id="id4">[LWX+11]</a>.</p>
 <table class="docutils align-default">
@@ -766,7 +769,7 @@ validation set with a 0.7/0.3 ratio in the INI file with the following section:<
 </table>
 </div>
 <div class="section" id="cifar10-database">
-<h3>CIFAR10_Database<a class="headerlink" href="#cifar10-database" title="Permalink to this headline">¶</a></h3>
+<h3>CIFAR10_Database<a class="headerlink" href="#cifar10-database" title="Permalink to this heading">¶</a></h3>
 <p>CIFAR10 database <a class="bibtex reference internal" href="../references.html#krizhevsky2009" id="id5">[Kri09]</a>.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -792,7 +795,7 @@ validation set with a 0.7/0.3 ratio in the INI file with the following section:<
 </table>
 </div>
 <div class="section" id="cifar100-database">
-<h3>CIFAR100_Database<a class="headerlink" href="#cifar100-database" title="Permalink to this headline">¶</a></h3>
+<h3>CIFAR100_Database<a class="headerlink" href="#cifar100-database" title="Permalink to this heading">¶</a></h3>
 <p>CIFAR100 database <a class="bibtex reference internal" href="../references.html#krizhevsky2009" id="id6">[Kri09]</a>.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -821,7 +824,7 @@ validation set with a 0.7/0.3 ratio in the INI file with the following section:<
 </table>
 </div>
 <div class="section" id="ckp-database">
-<h3>CKP_Database<a class="headerlink" href="#ckp-database" title="Permalink to this headline">¶</a></h3>
+<h3>CKP_Database<a class="headerlink" href="#ckp-database" title="Permalink to this heading">¶</a></h3>
 <p>The Extended Cohn-Kanade (CK+) database for expression recognition
 <a class="bibtex reference internal" href="../references.html#lucey2010" id="id7">[LuceyCohnKanade+10]</a>.</p>
 <table class="docutils align-default">
@@ -851,7 +854,7 @@ validation set with a 0.7/0.3 ratio in the INI file with the following section:<
 </table>
 </div>
 <div class="section" id="caltech101-dir-database">
-<h3>Caltech101_DIR_Database<a class="headerlink" href="#caltech101-dir-database" title="Permalink to this headline">¶</a></h3>
+<h3>Caltech101_DIR_Database<a class="headerlink" href="#caltech101-dir-database" title="Permalink to this heading">¶</a></h3>
 <p>Caltech 101 database <a class="bibtex reference internal" href="../references.html#feifei2004" id="id8">[FFFP04]</a>.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -886,7 +889,7 @@ validation set with a 0.7/0.3 ratio in the INI file with the following section:<
 </table>
 </div>
 <div class="section" id="caltech256-dir-database">
-<h3>Caltech256_DIR_Database<a class="headerlink" href="#caltech256-dir-database" title="Permalink to this headline">¶</a></h3>
+<h3>Caltech256_DIR_Database<a class="headerlink" href="#caltech256-dir-database" title="Permalink to this heading">¶</a></h3>
 <p>Caltech 256 database <a class="bibtex reference internal" href="../references.html#griffin2007" id="id9">[GHP07]</a>.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -921,7 +924,7 @@ validation set with a 0.7/0.3 ratio in the INI file with the following section:<
 </table>
 </div>
 <div class="section" id="caltechpedestrian-database">
-<h3>CaltechPedestrian_Database<a class="headerlink" href="#caltechpedestrian-database" title="Permalink to this headline">¶</a></h3>
+<h3>CaltechPedestrian_Database<a class="headerlink" href="#caltechpedestrian-database" title="Permalink to this heading">¶</a></h3>
 <p>Caltech Pedestrian database <a class="bibtex reference internal" href="../references.html#dollar2009" id="id10">[DollarWSP09]</a>.</p>
 <p>Note that the images and annotations must first be extracted from the
 seq video data located in the <em>videos</em> directory using the
@@ -988,7 +991,7 @@ annotations:</p>
 </table>
 </div>
 <div class="section" id="cityscapes-database">
-<h3>Cityscapes_Database<a class="headerlink" href="#cityscapes-database" title="Permalink to this headline">¶</a></h3>
+<h3>Cityscapes_Database<a class="headerlink" href="#cityscapes-database" title="Permalink to this heading">¶</a></h3>
 <p>Cityscapes database <a class="bibtex reference internal" href="../references.html#cordts2016cityscapes" id="id11">[COR+16]</a>.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1037,7 +1040,7 @@ sudo apt-get install libjsoncpp-dev
 </div>
 </div>
 <div class="section" id="daimler-database">
-<h3>Daimler_Database<a class="headerlink" href="#daimler-database" title="Permalink to this headline">¶</a></h3>
+<h3>Daimler_Database<a class="headerlink" href="#daimler-database" title="Permalink to this heading">¶</a></h3>
 <p>Daimler Monocular Pedestrian Detection Benchmark (Daimler Pedestrian).</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1066,7 +1069,7 @@ sudo apt-get install libjsoncpp-dev
 </table>
 </div>
 <div class="section" id="dota-database">
-<h3>DOTA_Database<a class="headerlink" href="#dota-database" title="Permalink to this headline">¶</a></h3>
+<h3>DOTA_Database<a class="headerlink" href="#dota-database" title="Permalink to this heading">¶</a></h3>
 <p>DOTA database <a class="bibtex reference internal" href="../references.html#dota" id="id12">[XBD+17]</a>.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1098,7 +1101,7 @@ sudo apt-get install libjsoncpp-dev
 </table>
 </div>
 <div class="section" id="fddb-database">
-<h3>FDDB_Database<a class="headerlink" href="#fddb-database" title="Permalink to this headline">¶</a></h3>
+<h3>FDDB_Database<a class="headerlink" href="#fddb-database" title="Permalink to this heading">¶</a></h3>
 <p>Face Detection Data Set and Benchmark (FDDB)
 <a class="bibtex reference internal" href="../references.html#jain2010" id="id13">[JLM10]</a>.</p>
 <table class="docutils align-default">
@@ -1134,7 +1137,7 @@ sudo apt-get install libjsoncpp-dev
 </table>
 </div>
 <div class="section" id="gtsdb-dir-database">
-<h3>GTSDB_DIR_Database<a class="headerlink" href="#gtsdb-dir-database" title="Permalink to this headline">¶</a></h3>
+<h3>GTSDB_DIR_Database<a class="headerlink" href="#gtsdb-dir-database" title="Permalink to this heading">¶</a></h3>
 <p>GTSDB database <a class="bibtex reference internal" href="../references.html#houben2013" id="id14">[HSS+13]</a>.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1163,7 +1166,7 @@ sudo apt-get install libjsoncpp-dev
 </table>
 </div>
 <div class="section" id="ilsvrc2012-database">
-<h3>ILSVRC2012_Database<a class="headerlink" href="#ilsvrc2012-database" title="Permalink to this headline">¶</a></h3>
+<h3>ILSVRC2012_Database<a class="headerlink" href="#ilsvrc2012-database" title="Permalink to this heading">¶</a></h3>
 <p>ILSVRC2012 database <a class="bibtex reference internal" href="../references.html#ilsvrc15" id="id15">[RDS+15]</a>.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1195,7 +1198,7 @@ sudo apt-get install libjsoncpp-dev
 </table>
 </div>
 <div class="section" id="kitti-database">
-<h3>KITTI_Database<a class="headerlink" href="#kitti-database" title="Permalink to this headline">¶</a></h3>
+<h3>KITTI_Database<a class="headerlink" href="#kitti-database" title="Permalink to this heading">¶</a></h3>
 <p>The KITTI Database provide ROI which can be use for autonomous driving
 and environment perception. The database provide 8 labeled different
 classes. Utilization of the KITTI Database is under licensing conditions
@@ -1225,7 +1228,7 @@ tracking data set (9 MB). Extract the downloaded archives in your
 </table>
 </div>
 <div class="section" id="kitti-road-database">
-<h3>KITTI_Road_Database<a class="headerlink" href="#kitti-road-database" title="Permalink to this headline">¶</a></h3>
+<h3>KITTI_Road_Database<a class="headerlink" href="#kitti-road-database" title="Permalink to this heading">¶</a></h3>
 <p>The KITTI Road Database provide ROI which can be used to road
 segmentation. The dataset provide 1 labeled class (road) on 289 training
 images. The 290 test images are not labeled. Utilization of the KITTI
@@ -1256,7 +1259,7 @@ folder.</p>
 </table>
 </div>
 <div class="section" id="kitti-object-database">
-<h3>KITTI_Object_Database<a class="headerlink" href="#kitti-object-database" title="Permalink to this headline">¶</a></h3>
+<h3>KITTI_Object_Database<a class="headerlink" href="#kitti-object-database" title="Permalink to this heading">¶</a></h3>
 <p>The KITTI Object Database provide ROI which can be use for autonomous
 driving and environment perception. The database provide 8 labeled
 different classes on 7481 training images. The 7518 test images are not
@@ -1288,7 +1291,7 @@ object data set (5 MB). Extract the downloaded archives in your
 </table>
 </div>
 <div class="section" id="litisrouen-database">
-<h3>LITISRouen_Database<a class="headerlink" href="#litisrouen-database" title="Permalink to this headline">¶</a></h3>
+<h3>LITISRouen_Database<a class="headerlink" href="#litisrouen-database" title="Permalink to this heading">¶</a></h3>
 <p>LITIS Rouen audio scene dataset <a class="bibtex reference internal" href="../references.html#rakotomamonjy2014" id="id16">[RG14]</a>.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1317,7 +1320,7 @@ object data set (5 MB). Extract the downloaded archives in your
 </table>
 </div>
 <div class="section" id="dataset-images-slicing">
-<h3>Dataset images slicing<a class="headerlink" href="#dataset-images-slicing" title="Permalink to this headline">¶</a></h3>
+<h3>Dataset images slicing<a class="headerlink" href="#dataset-images-slicing" title="Permalink to this heading">¶</a></h3>
 <p>It is possible to automatically slice images from a dataset, with a
 given slice size and stride, using the <code class="docutils literal notranslate"><span class="pre">.slicing</span></code> attribute. This
 effectively increases the number of stimuli in the set.</p>

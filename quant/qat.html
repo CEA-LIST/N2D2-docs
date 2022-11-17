@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,11 +28,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -83,7 +86,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Introduction:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/about.html">About N2D2-IP</a></li>
@@ -91,13 +94,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro/perfs_tools.html">Performance evaluation tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/tuto.html">Tutorials</a></li>
 </ul>
-<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<p class="caption" role="heading"><span class="caption-text">ONNX Import:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/convert.html">Obtain ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/import.html">Import ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/transfer.html">Train from ONNX models</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Quantization and Export:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="post.html">Post-training quantization</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Quantization-Aware Training</a><ul>
@@ -141,7 +144,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../export/ONNX.html">Export: ONNX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/legacy.html">Export: other / legacy</a></li>
 </ul>
-<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<p class="caption" role="heading"><span class="caption-text">INI File Interface:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ini/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ini/databases.html">Databases</a></li>
@@ -151,7 +154,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../ini/target.html">Targets (outputs &amp; losses)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../adversarial.html">Adversarial module</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Python API:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Python API:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/databases.html">Databases</a></li>
@@ -161,12 +164,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../python_api/export.html">Export</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++/Python core:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../core/core.html">Core N2D2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++ API / Developer:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../dev_intro.html">Introduction</a></li>
 </ul>
@@ -235,10 +238,10 @@
            <div itemprop="articleBody">
             
   <div class="section" id="quantization-aware-training">
-<h1>Quantization-Aware Training<a class="headerlink" href="#quantization-aware-training" title="Permalink to this headline">¶</a></h1>
+<h1>Quantization-Aware Training<a class="headerlink" href="#quantization-aware-training" title="Permalink to this heading">¶</a></h1>
 <p><strong>N2D2-IP only: available upon request.</strong></p>
 <div class="section" id="getting-started">
-<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h2>
 <p>N2D2 provides a complete design environement for a super wide range of quantization modes. Theses modes are implemented as a set of integrated highly modular blocks. N2D2 implements a per layer quantization scheme that can be different at
 each level of the neural network. This high granularity enables to search for the best implementation depending on the
 hardware constraints. Moreover to achieve the best performances, N2D2 implements the latest quantization methods currently at the best of the state-of-the-art, summarized in the figure below. Each dot represents one DNN (from the MobileNet or ResNet family), quantized with the number of bits indicated beside.</p>
@@ -305,7 +308,7 @@ In this mode, we replace the default quantization mode of the weights as follows
 </div>
 </div>
 <div class="section" id="cell-quantizer-definition">
-<h2>Cell Quantizer Definition<a class="headerlink" href="#cell-quantizer-definition" title="Permalink to this headline">¶</a></h2>
+<h2>Cell Quantizer Definition<a class="headerlink" href="#cell-quantizer-definition" title="Permalink to this heading">¶</a></h2>
 <p>N2D2 implements a cell quantizer block for discretizing weights and biases at training time. This cell quantizer block
 is totally transparent for the user. The quantization phase of the learnable parameters requires intensive operation
 to adapt the distribution of the full-precision weights and to adapt the gradient. In addition the implementation
@@ -343,7 +346,7 @@ of available computation resources.</p>
 </tbody>
 </table>
 <div class="section" id="lsq">
-<h3>LSQ<a class="headerlink" href="#lsq" title="Permalink to this headline">¶</a></h3>
+<h3>LSQ<a class="headerlink" href="#lsq" title="Permalink to this heading">¶</a></h3>
 <p>The Learned Step size Quantization method is tailored to learn the optimal quantization step size parameters in parallel with the network weights.
 As described in  <a class="bibtex reference internal" href="../references.html#bhalgat2020lsq" id="id1">[BLN+20]</a>, LSQ tries to estimate and scale the task loss gradient at each weight and activations layer’s quantizer step size,
 such that it can be learned in conjunction with other network parameters. This method can be initialized using weights from a pre-trained
@@ -369,7 +372,7 @@ full precision model.</p>
 </table>
 </div>
 <div class="section" id="sat">
-<h3>SAT<a class="headerlink" href="#sat" title="Permalink to this headline">¶</a></h3>
+<h3>SAT<a class="headerlink" href="#sat" title="Permalink to this heading">¶</a></h3>
 <p>Scale-Adjusted Training : <a class="bibtex reference internal" href="../references.html#jin2019efficient" id="id2">[JYL19]</a> method is one of the most promising solutions. The authors proposed SAT as a simple yet effective technique with which the rules of
 efficient training are maintained so that performance can be boosted and low-precision models can even surpass their
 full-precision counterparts in some cases. This method exploits DoReFa scheme for the weights quantization.</p>
@@ -399,7 +402,7 @@ full-precision counterparts in some cases. This method exploits DoReFa scheme fo
 </div>
 </div>
 <div class="section" id="activation-quantizer-definition">
-<h2>Activation Quantizer Definition<a class="headerlink" href="#activation-quantizer-definition" title="Permalink to this headline">¶</a></h2>
+<h2>Activation Quantizer Definition<a class="headerlink" href="#activation-quantizer-definition" title="Permalink to this heading">¶</a></h2>
 <p>N2D2 implements an activation quantizer block to discretize activation at training time. Activation quantizer block
 is totally transparent for the user. Quantization phase of the activation requires intensive operation
 to learn parameters that will rescale the histogram of full-precision activation at training time. In addition the implementation can become highly memory greedy which can be a problem to train a complex model on a single GPU without specific treatment (gradient accumulation etc..).
@@ -433,7 +436,7 @@ of available computing resources.</p>
 </tbody>
 </table>
 <div class="section" id="id3">
-<h3>LSQ<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3>LSQ<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
 <p>The Learned Step size Quantization method is tailored to learn the optimum quantization stepsize parameters in parallel to the network’s weights.
 As described in  <a class="bibtex reference internal" href="../references.html#bhalgat2020lsq" id="id4">[BLN+20]</a>, LSQ tries to estimate and scale the task loss gradient at each weight and activations layer’s quantizer step size,
 such that it can be learned in conjunction with other network parameters. This method can be initialized using weights from a pre-trained full precision model.</p>
@@ -458,7 +461,7 @@ such that it can be learned in conjunction with other network parameters. This m
 </table>
 </div>
 <div class="section" id="id5">
-<h3>SAT<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<h3>SAT<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
 <p>Scale-Adjusted Training : <a class="bibtex reference internal" href="../references.html#jin2019efficient" id="id6">[JYL19]</a> is one of the most promising solutions. The authors proposed SAT as a simple yet effective technique for which the rules of
 efficient training are maintained so that performance can be boosted and low-precision models can even surpass their
 full-precision counterparts in some cases.
@@ -482,7 +485,7 @@ This method exploits a CG-PACT scheme for the activations quantization which is 
 </div>
 </div>
 <div class="section" id="layer-compatibility-table">
-<h2>Layer compatibility table<a class="headerlink" href="#layer-compatibility-table" title="Permalink to this headline">¶</a></h2>
+<h2>Layer compatibility table<a class="headerlink" href="#layer-compatibility-table" title="Permalink to this heading">¶</a></h2>
 <p>Here we describe the compatibility table as a function of the quantization mode. The column <code class="docutils literal notranslate"><span class="pre">Cell</span></code> indicates layers that have a full support
 to quantize their learnable parameters during the training phase. The column <code class="docutils literal notranslate"><span class="pre">Activation</span></code> indicates layers that can support an activation quantizer to their
 output feature map. An additional column <code class="docutils literal notranslate"><span class="pre">Integer</span> <span class="pre">Core</span></code> indicates layers that can be represented without any full-precision
@@ -634,9 +637,9 @@ the network during a fusion phase. This method is guaranteed without any loss of
 performances.</em></p>
 </div>
 <div class="section" id="tutorial">
-<h2>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h2>
+<h2>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="onnx-model-resnet-18-example-ini-file">
-<h3>ONNX model : ResNet-18 Example - INI File<a class="headerlink" href="#onnx-model-resnet-18-example-ini-file" title="Permalink to this headline">¶</a></h3>
+<h3>ONNX model : ResNet-18 Example - INI File<a class="headerlink" href="#onnx-model-resnet-18-example-ini-file" title="Permalink to this heading">¶</a></h3>
 <p>In this example we show how to quantize the <code class="docutils literal notranslate"><span class="pre">resnet-18-v1</span></code> ONNX model with 4-bits weights and 4-bits activations using the <code class="docutils literal notranslate"><span class="pre">SAT</span></code> quantization method.
 We start from the <code class="docutils literal notranslate"><span class="pre">resnet18v1.onnx</span></code> file that you can pick-up at <a class="reference external" href="https://s3.amazonaws.com/onnx-model-zoo/resnet/resnet18v1/resnet18v1.onnx">https://s3.amazonaws.com/onnx-model-zoo/resnet/resnet18v1/resnet18v1.onnx</a> .
 You can also download it from the  N2D2 script <code class="docutils literal notranslate"><span class="pre">N2D2/tools/install_onnx_models.py</span></code> that will automatically install a set of pre-trained
@@ -883,7 +886,7 @@ The final test accuracy must reach at least 70%.</p>
 <p>Congratulations! Your <code class="docutils literal notranslate"><span class="pre">resnet-18-v1</span></code> model have now it’s weights parameters and activations quantized in a 4-bits way !</p>
 </div>
 <div class="section" id="onnx-model-resnet-18-example-python">
-<h3>ONNX model : ResNet-18 Example - Python<a class="headerlink" href="#onnx-model-resnet-18-example-python" title="Permalink to this headline">¶</a></h3>
+<h3>ONNX model : ResNet-18 Example - Python<a class="headerlink" href="#onnx-model-resnet-18-example-python" title="Permalink to this heading">¶</a></h3>
 <p>In this example, we will do the same as in the previous section showcasing the python API.</p>
 <p>You can find the complete scrip for this tutorial here <a class="reference download internal" download="" href="../_downloads/05a92b45d4f6a6e98185cde34103944b/sat_qat_resnet-18.py"><code class="xref download docutils literal notranslate"><span class="pre">resnet18v1</span> <span class="pre">quantization</span> <span class="pre">example</span></code></a>.</p>
 <p>Firstly, you need to retrieved the <code class="docutils literal notranslate"><span class="pre">resnet18v1.onnx</span></code> file that you can pick-up at <a class="reference external" href="https://s3.amazonaws.com/onnx-model-zoo/resnet/resnet18v1/resnet18v1.onnx">https://s3.amazonaws.com/onnx-model-zoo/resnet/resnet18v1/resnet18v1.onnx</a>.
@@ -1114,7 +1117,7 @@ The clamped weights will be saved in a folder <cite>resnet_weights_clamped</cite
 <p>You can look at your quantized weights in the newly created <code class="docutils literal notranslate"><span class="pre">resnet_weights_SAT</span></code> folder.</p>
 </div>
 <div class="section" id="hand-made-model-lenet-example-ini-file">
-<h3>Hand-Made model : LeNet Example - INI File<a class="headerlink" href="#hand-made-model-lenet-example-ini-file" title="Permalink to this headline">¶</a></h3>
+<h3>Hand-Made model : LeNet Example - INI File<a class="headerlink" href="#hand-made-model-lenet-example-ini-file" title="Permalink to this heading">¶</a></h3>
 <p>One can apply the <code class="docutils literal notranslate"><span class="pre">SAT</span></code> quantization methodology on the chosen deep neural network by adding the right parameters to the
 <code class="docutils literal notranslate"><span class="pre">.ini</span></code> file. Here we show how to configure the <code class="docutils literal notranslate"><span class="pre">.ini</span></code> file to correctly apply the SAT quantization.
 In this example we decide to apply the SAT quantization procedure in a hand-made LeNet model. The first step of the procedure consists
@@ -1382,9 +1385,9 @@ You can check the results in the newly generated <code class="docutils literal n
 <p>Moreover you can find your quantized weights and biases under the folder <code class="docutils literal notranslate"><span class="pre">weights_quantized</span></code>.</p>
 </div>
 <div class="section" id="hand-made-model-lenet-example-python">
-<h3>Hand-Made model : LeNet Example - Python<a class="headerlink" href="#hand-made-model-lenet-example-python" title="Permalink to this headline">¶</a></h3>
+<h3>Hand-Made model : LeNet Example - Python<a class="headerlink" href="#hand-made-model-lenet-example-python" title="Permalink to this heading">¶</a></h3>
 <div class="section" id="part-1-learn-with-clamped-weights">
-<h4>Part 1 : Learn with clamped weights<a class="headerlink" href="#part-1-learn-with-clamped-weights" title="Permalink to this headline">¶</a></h4>
+<h4>Part 1 : Learn with clamped weights<a class="headerlink" href="#part-1-learn-with-clamped-weights" title="Permalink to this heading">¶</a></h4>
 <p>In this section, we will see how to apply the <code class="docutils literal notranslate"><span class="pre">SAT</span></code> quantization methodology using the python API.
 We will apply the SAT quantization procedure in a handmade LeNet model.</p>
 <p>You can get the script used in this example by clicking here : <a class="reference download internal" download="" href="../_downloads/6f6f531e6bdc31698897c6de665fa7ec/quantizer_handmade_part1.py"><code class="xref download docutils literal notranslate"><span class="pre">LeNet</span> <span class="pre">quantization</span> <span class="pre">example</span></code></a>.</p>
@@ -1544,7 +1547,7 @@ If we defined <code class="docutils literal notranslate"><span class="pre">conv_
 <p>If you check the generated file : <em>conv3_weights_quant.distrib.png</em> you should see the <a class="reference internal" href="#clamped-weights">clamped weights</a>.</p>
 </div>
 <div class="section" id="part-2-quantized-lenet-with-sat">
-<h4>Part 2 : Quantized LeNet with SAT<a class="headerlink" href="#part-2-quantized-lenet-with-sat" title="Permalink to this headline">¶</a></h4>
+<h4>Part 2 : Quantized LeNet with SAT<a class="headerlink" href="#part-2-quantized-lenet-with-sat" title="Permalink to this heading">¶</a></h4>
 <p>Now that we have learned clamped weights, we will quantize our network.</p>
 <p>You can get the script used in this example by clicking here : <a class="reference download internal" download="" href="../_downloads/85ffaf33bf6ddb287eddd928c4c8ec77/quantizer_handmade_part2.py"><code class="xref download docutils literal notranslate"><span class="pre">LeNet</span> <span class="pre">quantization</span> <span class="pre">example</span></code></a>.</p>
 <p>To do so, we will create a second script. We can begin by importing the <code class="docutils literal notranslate"><span class="pre">MNIST</span></code> database and create a <code class="docutils literal notranslate"><span class="pre">dataprovider</span></code> just like in the previous section.</p>
@@ -1654,9 +1657,9 @@ If we defined <code class="docutils literal notranslate"><span class="pre">conv_
 </div>
 </div>
 <div class="section" id="results">
-<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="training-time-performances">
-<h3>Training Time Performances<a class="headerlink" href="#training-time-performances" title="Permalink to this headline">¶</a></h3>
+<h3>Training Time Performances<a class="headerlink" href="#training-time-performances" title="Permalink to this heading">¶</a></h3>
 <p>Quantization-aware training induces intensive operations at training phase. Forward and backward phases
 require a lot of additional arithmetic operations compared to the standard floating-point training. The cost of operations
 involved in quantization-aware training method directly impacts the training time of a model.</p>
@@ -1799,7 +1802,7 @@ observes performances differences compared to the <code class="docutils literal 
 datatype is reduced to <code class="docutils literal notranslate"><span class="pre">Float16</span></code>.</p>
 </div>
 <div class="section" id="mobilenet-v1">
-<h3>MobileNet-v1<a class="headerlink" href="#mobilenet-v1" title="Permalink to this headline">¶</a></h3>
+<h3>MobileNet-v1<a class="headerlink" href="#mobilenet-v1" title="Permalink to this heading">¶</a></h3>
 <p>Results obtained with the <code class="docutils literal notranslate"><span class="pre">SAT</span></code> method (~150 epochs) under the integer only mode :</p>
 <table class="docutils align-default">
 <colgroup>
@@ -1990,7 +1993,7 @@ Precision</p></th>
 </table>
 </div>
 <div class="section" id="mobilenet-v2">
-<h3>MobileNet-v2<a class="headerlink" href="#mobilenet-v2" title="Permalink to this headline">¶</a></h3>
+<h3>MobileNet-v2<a class="headerlink" href="#mobilenet-v2" title="Permalink to this heading">¶</a></h3>
 <p>Results obtained with the <code class="docutils literal notranslate"><span class="pre">SAT</span></code> method (~150 epochs) under the integer only mode :</p>
 <table class="docutils align-default">
 <colgroup>
@@ -2075,7 +2078,7 @@ Precision</p></th>
 </table>
 </div>
 <div class="section" id="resnet">
-<h3>ResNet<a class="headerlink" href="#resnet" title="Permalink to this headline">¶</a></h3>
+<h3>ResNet<a class="headerlink" href="#resnet" title="Permalink to this heading">¶</a></h3>
 <p>Results obtained with the <code class="docutils literal notranslate"><span class="pre">SAT</span></code> method (~150 epochs) under the integer only mode :</p>
 <table class="docutils align-default">
 <colgroup>
@@ -2160,7 +2163,7 @@ Precision</p></th>
 </table>
 </div>
 <div class="section" id="inception-v1">
-<h3>Inception-v1<a class="headerlink" href="#inception-v1" title="Permalink to this headline">¶</a></h3>
+<h3>Inception-v1<a class="headerlink" href="#inception-v1" title="Permalink to this heading">¶</a></h3>
 <p>Results obtained with the <code class="docutils literal notranslate"><span class="pre">SAT</span></code> method (~150 epochs) under the integer only mode :</p>
 <table class="docutils align-default">
 <colgroup>

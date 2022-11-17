@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,11 +28,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -81,7 +84,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Introduction:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="intro/intro.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intro/about.html">About N2D2-IP</a></li>
@@ -89,13 +92,13 @@
 <li class="toctree-l1"><a class="reference internal" href="intro/perfs_tools.html">Performance evaluation tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intro/tuto.html">Tutorials</a></li>
 </ul>
-<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<p class="caption" role="heading"><span class="caption-text">ONNX Import:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="onnx/convert.html">Obtain ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="onnx/import.html">Import ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="onnx/transfer.html">Train from ONNX models</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Quantization and Export:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="quant/post.html">Post-training quantization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quant/qat.html">Quantization-Aware Training</a></li>
@@ -106,7 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="export/ONNX.html">Export: ONNX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="export/legacy.html">Export: other / legacy</a></li>
 </ul>
-<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<p class="caption" role="heading"><span class="caption-text">INI File Interface:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ini/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ini/databases.html">Databases</a></li>
@@ -116,7 +119,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ini/target.html">Targets (outputs &amp; losses)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="adversarial.html">Adversarial module</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Python API:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Python API:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="python_api/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python_api/databases.html">Databases</a></li>
@@ -126,12 +129,12 @@
 <li class="toctree-l1"><a class="reference internal" href="python_api/export.html">Export</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python_api/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++/Python core:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="core/core.html">Core N2D2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="core/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++ API / Developer:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="dev_intro.html">Introduction</a></li>
 </ul>
@@ -12000,7 +12003,7 @@
 </li>
       <li><a href="core/core.html#N2D2.N_MNIST_Database.StimuliSetMask">N_MNIST_Database.StimuliSetMask (class in N2D2)</a>
 </li>
-      <li><a href="core/core.html#N2D2.Actitracker_Database.StimuliSet.name">name() (N2D2.Actitracker_Database.StimuliSet property)</a>
+      <li><a href="core/core.html#N2D2.Actitracker_Database.StimuliSet.name">name (N2D2.Actitracker_Database.StimuliSet property)</a>
 
       <ul>
         <li><a href="core/core.html#N2D2.Actitracker_Database.StimuliSetMask.name">(N2D2.Actitracker_Database.StimuliSetMask property)</a>
@@ -12558,7 +12561,7 @@
 </li>
       <li><a href="python_api/cells.html#n2d2.filler.Normal">Normal (class in n2d2.filler)</a>
 </li>
-      <li><a href="python_api/databases.html#n2d2.provider.DataProvider.normalize_sitmuli">normalize_sitmuli() (n2d2.provider.DataProvider method)</a>
+      <li><a href="python_api/databases.html#n2d2.provider.DataProvider.normalize_stimuli">normalize_stimuli() (n2d2.provider.DataProvider method)</a>
 </li>
       <li><a href="core/core.html#N2D2.NormalizeCell">NormalizeCell (class in N2D2)</a>
 </li>

@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,11 +28,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -83,7 +87,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Introduction:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/about.html">About N2D2-IP</a></li>
@@ -91,13 +95,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro/perfs_tools.html">Performance evaluation tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/tuto.html">Tutorials</a></li>
 </ul>
-<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<p class="caption" role="heading"><span class="caption-text">ONNX Import:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/convert.html">Obtain ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/import.html">Import ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/transfer.html">Train from ONNX models</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Quantization and Export:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../quant/post.html">Post-training quantization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">Quantization-Aware Training</a></li>
@@ -117,7 +121,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ONNX.html">Export: ONNX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="legacy.html">Export: other / legacy</a></li>
 </ul>
-<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<p class="caption" role="heading"><span class="caption-text">INI File Interface:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ini/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ini/databases.html">Databases</a></li>
@@ -127,7 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../ini/target.html">Targets (outputs &amp; losses)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../adversarial.html">Adversarial module</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Python API:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Python API:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/databases.html">Databases</a></li>
@@ -137,12 +141,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../python_api/export.html">Export</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++/Python core:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../core/core.html">Core N2D2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++ API / Developer:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../dev_intro.html">Introduction</a></li>
 </ul>
@@ -211,7 +215,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="export-tensorrt">
-<h1>Export: TensorRT<a class="headerlink" href="#export-tensorrt" title="Permalink to this headline">¶</a></h1>
+<h1>Export: TensorRT<a class="headerlink" href="#export-tensorrt" title="Permalink to this heading">¶</a></h1>
 <p>Export type: <code class="docutils literal notranslate"><span class="pre">CPP_TensorRT</span></code></p>
 <p>C++ export using TensorRT.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2</span> <span class="n">MobileNet_ONNX</span><span class="o">.</span><span class="n">ini</span> <span class="o">-</span><span class="n">seed</span> <span class="mi">1</span> <span class="o">-</span><span class="n">w</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span> <span class="o">-</span><span class="n">export</span> <span class="n">CPP_TensorRT</span> <span class="o">-</span><span class="n">nbbits</span> <span class="o">-</span><span class="mi">32</span>
@@ -223,7 +227,7 @@
 You need to use the export to calibrate your network.</p>
 </div>
 <div class="section" id="informations">
-<h2>Informations<a class="headerlink" href="#informations" title="Permalink to this headline">¶</a></h2>
+<h2>Informations<a class="headerlink" href="#informations" title="Permalink to this heading">¶</a></h2>
 <p>In order to exploit TensorRT optimizations, the N2D2 Framework provide a code generator linked with a C++/Python API
 that gives access to TensorRT methods, I/O handling and specifics control.
 The generated code is provided as a standalone code with its own compilation environment under a Makefile format. Moreover
@@ -243,7 +247,7 @@ You can find additional informations about how to implements new plugin layers h
 used by the N2D2 TensorRT generator when TensorRT doesn’t provide support to a requested layers.</p>
 </div>
 <div class="section" id="export-parameters">
-<h2>Export parameters<a class="headerlink" href="#export-parameters" title="Permalink to this headline">¶</a></h2>
+<h2>Export parameters<a class="headerlink" href="#export-parameters" title="Permalink to this heading">¶</a></h2>
 <p>Extra parameters can be passed during export using the
 <code class="docutils literal notranslate"><span class="pre">-export-parameters</span> <span class="pre">params.ini</span></code> command line argument. The parameters must be
 saved in an INI-like file.</p>
@@ -267,7 +271,7 @@ Beware that calibration files may take a lot of disk space!</p></td>
 </table>
 </div>
 <div class="section" id="benchmark-your-tensorrt-model-c-benchmark">
-<h2>Benchmark your TensorRT Model - C++ Benchmark<a class="headerlink" href="#benchmark-your-tensorrt-model-c-benchmark" title="Permalink to this headline">¶</a></h2>
+<h2>Benchmark your TensorRT Model - C++ Benchmark<a class="headerlink" href="#benchmark-your-tensorrt-model-c-benchmark" title="Permalink to this heading">¶</a></h2>
 <p>The TensorRT export is given with a C++ benchmark ready to be used. The benchmark program is able to evaluates the applicative performances
 of your model on the test dataset exported under the <code class="docutils literal notranslate"><span class="pre">stimuli</span></code> folder at export time. A per-layer execution time analysis is also performed
 to evaluates your mode latency and identify potential bottleneck.
@@ -330,7 +334,7 @@ You can find more informations about the INT8 calibration procedure with TensorR
 </tbody>
 </table>
 <div class="section" id="analyse-the-execution-performances-of-your-tensorrt-model-fp32">
-<h3>Analyse the execution performances of your TensorRT Model (FP32)<a class="headerlink" href="#analyse-the-execution-performances-of-your-tensorrt-model-fp32" title="Permalink to this headline">¶</a></h3>
+<h3>Analyse the execution performances of your TensorRT Model (FP32)<a class="headerlink" href="#analyse-the-execution-performances-of-your-tensorrt-model-fp32" title="Permalink to this heading">¶</a></h3>
 <p>Here is a small example that described how to report the per-layer analysis on execution time.</p>
 <p>Launch the Benchmark with the <code class="docutils literal notranslate"><span class="pre">-prof</span></code> argument :</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="nb">bin</span><span class="o">/</span><span class="n">n2d2_tensorRT_test</span> <span class="o">-</span><span class="n">prof</span>
@@ -352,7 +356,7 @@ You can find more informations about the INT8 calibration procedure with TensorR
 </div>
 </div>
 <div class="section" id="deploy-your-tensorrt-model-in-application">
-<h2>Deploy your TensorRT Model in Application<a class="headerlink" href="#deploy-your-tensorrt-model-in-application" title="Permalink to this headline">¶</a></h2>
+<h2>Deploy your TensorRT Model in Application<a class="headerlink" href="#deploy-your-tensorrt-model-in-application" title="Permalink to this heading">¶</a></h2>
 <p>The TensorRT export is provided with a C++ and a python interface. The python interface is accessible through a wrapper
 to the C++ API method and linked with the libboost-python librabry.</p>
 <p>You can integrates your model in your application environment as a library thanks to this API.</p>

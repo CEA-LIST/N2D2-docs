@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,11 +28,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -83,7 +86,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Introduction:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../intro/intro.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../intro/about.html">About N2D2-IP</a></li>
@@ -91,13 +94,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../../intro/perfs_tools.html">Performance evaluation tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../intro/tuto.html">Tutorials</a></li>
 </ul>
-<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<p class="caption" role="heading"><span class="caption-text">ONNX Import:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../onnx/convert.html">Obtain ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../onnx/import.html">Import ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../onnx/transfer.html">Train from ONNX models</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Quantization and Export:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../quant/post.html">Post-training quantization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quant/qat.html">Quantization-Aware Training</a></li>
@@ -108,7 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../export/ONNX.html">Export: ONNX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../export/legacy.html">Export: other / legacy</a></li>
 </ul>
-<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<p class="caption" role="heading"><span class="caption-text">INI File Interface:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../ini/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ini/databases.html">Databases</a></li>
@@ -118,7 +121,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../ini/target.html">Targets (outputs &amp; losses)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../adversarial.html">Adversarial module</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Python API:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Python API:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../databases.html">Databases</a></li>
@@ -140,12 +143,12 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++/Python core:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../core/core.html">Core N2D2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../core/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++ API / Developer:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../dev_intro.html">Introduction</a></li>
 </ul>
@@ -216,7 +219,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="graph-manipulation">
-<h1>Graph manipulation<a class="headerlink" href="#graph-manipulation" title="Permalink to this headline">¶</a></h1>
+<h1>Graph manipulation<a class="headerlink" href="#graph-manipulation" title="Permalink to this heading">¶</a></h1>
 <p>In this example we will see :</p>
 <blockquote>
 <div><ul class="simple">
@@ -234,7 +237,7 @@
 </pre></div>
 </div>
 <div class="section" id="printing-n2d2-graph">
-<h2>Printing n2d2 graph<a class="headerlink" href="#printing-n2d2-graph" title="Permalink to this headline">¶</a></h2>
+<h2>Printing n2d2 graph<a class="headerlink" href="#printing-n2d2-graph" title="Permalink to this heading">¶</a></h2>
 <p>The python API possess different vebosity level (default=`detailed`).</p>
 <p>Short representation: only with compulsory constructor arguments</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2</span><span class="o">.</span><span class="n">global_variables</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">global_variables</span><span class="o">.</span><span class="n">Verbosity</span><span class="o">.</span><span class="n">short</span>
@@ -298,7 +301,7 @@
 </div>
 </div>
 <div class="section" id="manipulating-sequences">
-<h2>Manipulating Sequences<a class="headerlink" href="#manipulating-sequences" title="Permalink to this headline">¶</a></h2>
+<h2>Manipulating Sequences<a class="headerlink" href="#manipulating-sequences" title="Permalink to this heading">¶</a></h2>
 <p>For this example we will show how you can use n2d2 to encapsulate Sequence.</p>
 <p>We will create a LeNet and separate it two parts the extractor and the classifier.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">n2d2.cells</span> <span class="kn">import</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Conv</span><span class="p">,</span> <span class="n">Pool2d</span><span class="p">,</span> <span class="n">Dropout</span><span class="p">,</span> <span class="n">Fc</span>

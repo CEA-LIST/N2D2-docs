@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,11 +28,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -83,7 +86,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Introduction:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/about.html">About N2D2-IP</a></li>
@@ -91,13 +94,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro/perfs_tools.html">Performance evaluation tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/tuto.html">Tutorials</a></li>
 </ul>
-<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<p class="caption" role="heading"><span class="caption-text">ONNX Import:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/convert.html">Obtain ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/import.html">Import ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/transfer.html">Train from ONNX models</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Quantization and Export:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../quant/post.html">Post-training quantization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">Quantization-Aware Training</a></li>
@@ -108,7 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../export/ONNX.html">Export: ONNX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/legacy.html">Export: other / legacy</a></li>
 </ul>
-<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<p class="caption" role="heading"><span class="caption-text">INI File Interface:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ini/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ini/databases.html">Databases</a></li>
@@ -118,7 +121,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../ini/target.html">Targets (outputs &amp; losses)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../adversarial.html">Adversarial module</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Python API:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Python API:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Databases</a><ul>
@@ -129,28 +132,106 @@
 <li class="toctree-l4"><a class="reference internal" href="#handling-labelization">Handling labelization</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#mnist">MNIST</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ilsvrc2012">ILSVRC2012</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cifar10">CIFAR10</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cifar100">CIFAR100</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cityscapes">Cityscapes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#gtsrb">GTSRB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mnist">MNIST</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.database.MNIST"><code class="docutils literal notranslate"><span class="pre">MNIST</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ilsvrc2012">ILSVRC2012</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.database.ILSVRC2012"><code class="docutils literal notranslate"><span class="pre">ILSVRC2012</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cifar10">CIFAR10</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.database.CIFAR10"><code class="docutils literal notranslate"><span class="pre">CIFAR10</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cifar100">CIFAR100</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.database.CIFAR100"><code class="docutils literal notranslate"><span class="pre">CIFAR100</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cityscapes">Cityscapes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.database.Cityscapes"><code class="docutils literal notranslate"><span class="pre">Cityscapes</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#gtsrb">GTSRB</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.database.GTSRB"><code class="docutils literal notranslate"><span class="pre">GTSRB</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#transformations">Transformations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#composite">Composite</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#padcrop">PadCrop</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#distortion">Distortion</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#rescale">Rescale</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#colorspace">ColorSpace</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#flip">Flip</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#rangeaffine">RangeAffine</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sliceextraction">SliceExtraction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#randomresizecrop">RandomResizeCrop</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#channelextraction">ChannelExtraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#n2d2.transform.Transformation"><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.transform.Transformation.N2D2"><code class="docutils literal notranslate"><span class="pre">Transformation.N2D2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.transform.Transformation.__init__"><code class="docutils literal notranslate"><span class="pre">Transformation.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.transform.Transformation.get_parameter"><code class="docutils literal notranslate"><span class="pre">Transformation.get_parameter()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#sending-data-to-the-neural-network">Sending data to the Neural Network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#composite">Composite</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.transform.Composite"><code class="docutils literal notranslate"><span class="pre">Composite</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#padcrop">PadCrop</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.transform.PadCrop"><code class="docutils literal notranslate"><span class="pre">PadCrop</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#distortion">Distortion</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.transform.Distortion"><code class="docutils literal notranslate"><span class="pre">Distortion</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rescale">Rescale</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.transform.Rescale"><code class="docutils literal notranslate"><span class="pre">Rescale</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#colorspace">ColorSpace</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.transform.ColorSpace"><code class="docutils literal notranslate"><span class="pre">ColorSpace</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#flip">Flip</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.transform.Flip"><code class="docutils literal notranslate"><span class="pre">Flip</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rangeaffine">RangeAffine</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.transform.RangeAffine"><code class="docutils literal notranslate"><span class="pre">RangeAffine</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sliceextraction">SliceExtraction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.transform.SliceExtraction"><code class="docutils literal notranslate"><span class="pre">SliceExtraction</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#randomresizecrop">RandomResizeCrop</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.transform.RandomResizeCrop"><code class="docutils literal notranslate"><span class="pre">RandomResizeCrop</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#channelextraction">ChannelExtraction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.transform.ChannelExtraction"><code class="docutils literal notranslate"><span class="pre">ChannelExtraction</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sending-data-to-the-neural-network">Sending data to the Neural Network</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#n2d2.provider.DataProvider"><code class="docutils literal notranslate"><span class="pre">DataProvider</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.provider.DataProvider.N2D2"><code class="docutils literal notranslate"><span class="pre">DataProvider.N2D2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.provider.DataProvider.__init__"><code class="docutils literal notranslate"><span class="pre">DataProvider.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.provider.DataProvider.add_on_the_fly_transformation"><code class="docutils literal notranslate"><span class="pre">DataProvider.add_on_the_fly_transformation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.provider.DataProvider.add_transformation"><code class="docutils literal notranslate"><span class="pre">DataProvider.add_transformation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.provider.DataProvider.all_batchs_provided"><code class="docutils literal notranslate"><span class="pre">DataProvider.all_batchs_provided()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.provider.DataProvider.get_batch_size"><code class="docutils literal notranslate"><span class="pre">DataProvider.get_batch_size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.provider.DataProvider.get_data"><code class="docutils literal notranslate"><span class="pre">DataProvider.get_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.provider.DataProvider.get_database"><code class="docutils literal notranslate"><span class="pre">DataProvider.get_database()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.provider.DataProvider.get_deepnet"><code class="docutils literal notranslate"><span class="pre">DataProvider.get_deepnet()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.provider.DataProvider.get_labels"><code class="docutils literal notranslate"><span class="pre">DataProvider.get_labels()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.provider.DataProvider.get_name"><code class="docutils literal notranslate"><span class="pre">DataProvider.get_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.provider.DataProvider.get_parameter"><code class="docutils literal notranslate"><span class="pre">DataProvider.get_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.provider.DataProvider.get_partition"><code class="docutils literal notranslate"><span class="pre">DataProvider.get_partition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.provider.DataProvider.normalize_stimuli"><code class="docutils literal notranslate"><span class="pre">DataProvider.normalize_stimuli()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.provider.DataProvider.read_batch"><code class="docutils literal notranslate"><span class="pre">DataProvider.read_batch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.provider.DataProvider.read_random_batch"><code class="docutils literal notranslate"><span class="pre">DataProvider.read_random_batch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.provider.DataProvider.set_batch"><code class="docutils literal notranslate"><span class="pre">DataProvider.set_batch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.provider.DataProvider.set_partition"><code class="docutils literal notranslate"><span class="pre">DataProvider.set_partition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.provider.DataProvider.set_reading_randomly"><code class="docutils literal notranslate"><span class="pre">DataProvider.set_reading_randomly()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
@@ -160,12 +241,12 @@
 <li class="toctree-l1"><a class="reference internal" href="export.html">Export</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++/Python core:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../core/core.html">Core N2D2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++ API / Developer:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../dev_intro.html">Introduction</a></li>
 </ul>
@@ -234,19 +315,19 @@
            <div itemprop="articleBody">
             
   <div class="section" id="databases">
-<h1>Databases<a class="headerlink" href="#databases" title="Permalink to this headline">¶</a></h1>
+<h1>Databases<a class="headerlink" href="#databases" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>The python library integrates pre-defined modules for several well-known database used in the deep learning community, such as MNIST, GTSRB, CIFAR10 and so on.
 That way, no extra step is necessary to be able to directly build a network and learn it on these database.
 The library allow you to add pre-process data with built in Transformation.</p>
 </div>
 <div class="section" id="database">
-<h2>Database<a class="headerlink" href="#database" title="Permalink to this headline">¶</a></h2>
+<h2>Database<a class="headerlink" href="#database" title="Permalink to this heading">¶</a></h2>
 <p>The python library provide you with multiple object to manipulate common database.</p>
 <p>Loading hand made database can be done using <a class="reference internal" href="#n2d2.database.DIR" title="n2d2.database.DIR"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.database.DIR</span></code></a>.</p>
 <p>Like in the following example :</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creating the database object</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creating the database object</span>
 <span class="n">db</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">DIR</span><span class="p">()</span>
 
 <span class="n">provider</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">DataProvider</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">data_dims</span><span class="p">)</span>
@@ -262,9 +343,9 @@ The library allow you to add pre-process data with built in Transformation.</p>
 </pre></div>
 </div>
 <div class="section" id="dir">
-<h3>DIR<a class="headerlink" href="#dir" title="Permalink to this headline">¶</a></h3>
+<h3>DIR<a class="headerlink" href="#dir" title="Permalink to this heading">¶</a></h3>
 <div class="section" id="loading-a-custom-database">
-<h4>Loading a custom database<a class="headerlink" href="#loading-a-custom-database" title="Permalink to this headline">¶</a></h4>
+<h4>Loading a custom database<a class="headerlink" href="#loading-a-custom-database" title="Permalink to this heading">¶</a></h4>
 <p>Hand made database stored in files directories are directly supported
 with the <code class="docutils literal notranslate"><span class="pre">DIR_Database</span></code> module. For example, suppose your database is
 organized as following :</p>
@@ -345,7 +426,7 @@ in the <code class="docutils literal notranslate"><span class="pre">Learn</span>
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.database.Database.partition_stimuli()</span></code> method.</p>
 </div>
 <div class="section" id="handling-labelization">
-<h4>Handling labelization<a class="headerlink" href="#handling-labelization" title="Permalink to this headline">¶</a></h4>
+<h4>Handling labelization<a class="headerlink" href="#handling-labelization" title="Permalink to this heading">¶</a></h4>
 <p>By default, your labels will be ordered by alphabetical order.
 If you need your label to be in a specific order, you can specify it using
 an exterior file we will name it <code class="docutils literal notranslate"><span class="pre">label.dat</span></code> for this example :</p>
@@ -364,18 +445,18 @@ an exterior file we will name it <code class="docutils literal notranslate"><spa
 <p>It is important to specify <code class="docutils literal notranslate"><span class="pre">label_depth=0</span></code> if you are specifying <code class="docutils literal notranslate"><span class="pre">label_path</span></code> !</p>
 </div>
 <dl class="py class">
-<dt id="n2d2.database.DIR">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.database.</code><code class="sig-name descname">DIR</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_path</span></em>, <em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="n">test</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">validation</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">depth</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">label_path</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">label_depth</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">roi_file</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">roi_dir</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">roi_extension</span><span class="o">=</span><span class="default_value">'json'</span></em>, <em class="sig-param"><span class="n">per_label_partitioning</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">equiv_label_partitioning</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">ignore_mask</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">valid_extensions</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.DIR">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">n2d2.database.</span></span><span class="sig-name descname"><span class="pre">DIR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roi_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roi_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roi_extension</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'json'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">per_label_partitioning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">equiv_label_partitioning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid_extensions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR" title="Permalink to this definition">¶</a></dt>
 <dd><p>Allow you to load your own database.</p>
 <dl class="py method">
-<dt id="n2d2.database.DIR.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.N2D2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.DIR.N2D2">
+<span class="sig-name descname"><span class="pre">N2D2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.N2D2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the N2D2 object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.DIR.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_path</span></em>, <em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="n">test</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">validation</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">depth</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">label_path</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">label_depth</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">roi_file</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">roi_dir</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">roi_extension</span><span class="o">=</span><span class="default_value">'json'</span></em>, <em class="sig-param"><span class="n">per_label_partitioning</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">equiv_label_partitioning</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">ignore_mask</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">valid_extensions</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.DIR.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roi_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roi_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roi_extension</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'json'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">per_label_partitioning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">equiv_label_partitioning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid_extensions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -400,8 +481,8 @@ an exterior file we will name it <code class="docutils literal notranslate"><spa
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.DIR.download">
-<em class="property">classmethod </em><code class="sig-name descname">download</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.database.DIR.download" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.DIR.download">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#n2d2.database.DIR.download" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download the dataset at the defined path</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -411,8 +492,8 @@ an exterior file we will name it <code class="docutils literal notranslate"><spa
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.DIR.get_label_name">
-<code class="sig-name descname">get_label_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">label_idx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.get_label_name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.DIR.get_label_name">
+<span class="sig-name descname"><span class="pre">get_label_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.get_label_name" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>label_idx</strong> (<em>int</em>) – Index of the label</p>
@@ -427,8 +508,8 @@ an exterior file we will name it <code class="docutils literal notranslate"><spa
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.DIR.get_nb_stimuli">
-<code class="sig-name descname">get_nb_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">partition</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.get_nb_stimuli" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.DIR.get_nb_stimuli">
+<span class="sig-name descname"><span class="pre">get_nb_stimuli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">partition</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.get_nb_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the number fo stimuli  available for this partition</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -438,8 +519,8 @@ an exterior file we will name it <code class="docutils literal notranslate"><spa
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.DIR.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.DIR.get_parameter">
+<span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.get_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
@@ -448,14 +529,14 @@ an exterior file we will name it <code class="docutils literal notranslate"><spa
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.DIR.get_partition_summary">
-<code class="sig-name descname">get_partition_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.get_partition_summary" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.DIR.get_partition_summary">
+<span class="sig-name descname"><span class="pre">get_partition_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.get_partition_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print the number of stimuli for each partition.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.DIR.is_downloadable">
-<em class="property">classmethod </em><code class="sig-name descname">is_downloadable</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.database.DIR.is_downloadable" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.DIR.is_downloadable">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_downloadable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#n2d2.database.DIR.is_downloadable" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the database is downloadable.</p>
@@ -467,8 +548,8 @@ an exterior file we will name it <code class="docutils literal notranslate"><spa
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.DIR.partition_stimuli">
-<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">validation</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">test</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.partition_stimuli" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.DIR.partition_stimuli">
+<span class="sig-name descname"><span class="pre">partition_stimuli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">learn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.partition_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Partition the <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code> data with the given ratio (the sum of the given ratio must be equal to 1).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -486,21 +567,21 @@ an exterior file we will name it <code class="docutils literal notranslate"><spa
 </div>
 </div>
 <div class="section" id="mnist">
-<h3>MNIST<a class="headerlink" href="#mnist" title="Permalink to this headline">¶</a></h3>
+<h3>MNIST<a class="headerlink" href="#mnist" title="Permalink to this heading">¶</a></h3>
 <dl class="py class">
-<dt id="n2d2.database.MNIST">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.database.</code><code class="sig-name descname">MNIST</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_path</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.MNIST">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">n2d2.database.</span></span><span class="sig-name descname"><span class="pre">MNIST</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_path</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST" title="Permalink to this definition">¶</a></dt>
 <dd><p>MNIST database <a class="bibtex reference internal" href="../references.html#lecun1998" id="id1">[LBBH98]</a>.
 Label are hard coded, you don’t need to specify a path to the label file.</p>
 <dl class="py method">
-<dt id="n2d2.database.MNIST.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.N2D2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.MNIST.N2D2">
+<span class="sig-name descname"><span class="pre">N2D2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.N2D2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the N2D2 object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.MNIST.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_path</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.MNIST.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_path</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -515,8 +596,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.MNIST.download">
-<em class="property">classmethod </em><code class="sig-name descname">download</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.database.MNIST.download" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.MNIST.download">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#n2d2.database.MNIST.download" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download the dataset at the defined path</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -526,8 +607,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.MNIST.get_label_name">
-<code class="sig-name descname">get_label_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">label_idx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.get_label_name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.MNIST.get_label_name">
+<span class="sig-name descname"><span class="pre">get_label_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.get_label_name" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>label_idx</strong> (<em>int</em>) – Index of the label</p>
@@ -542,8 +623,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.MNIST.get_nb_stimuli">
-<code class="sig-name descname">get_nb_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">partition</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.get_nb_stimuli" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.MNIST.get_nb_stimuli">
+<span class="sig-name descname"><span class="pre">get_nb_stimuli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">partition</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.get_nb_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the number fo stimuli  available for this partition</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -553,8 +634,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.MNIST.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.MNIST.get_parameter">
+<span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.get_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
@@ -563,14 +644,14 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.MNIST.get_partition_summary">
-<code class="sig-name descname">get_partition_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.get_partition_summary" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.MNIST.get_partition_summary">
+<span class="sig-name descname"><span class="pre">get_partition_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.get_partition_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print the number of stimuli for each partition.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.MNIST.is_downloadable">
-<em class="property">classmethod </em><code class="sig-name descname">is_downloadable</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.database.MNIST.is_downloadable" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.MNIST.is_downloadable">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_downloadable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#n2d2.database.MNIST.is_downloadable" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the database is downloadable.</p>
@@ -582,8 +663,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.MNIST.partition_stimuli">
-<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">validation</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">test</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.partition_stimuli" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.MNIST.partition_stimuli">
+<span class="sig-name descname"><span class="pre">partition_stimuli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">learn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.MNIST.partition_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Partition the <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code> data with the given ratio (the sum of the given ratio must be equal to 1).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -600,20 +681,20 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 
 </div>
 <div class="section" id="ilsvrc2012">
-<h3>ILSVRC2012<a class="headerlink" href="#ilsvrc2012" title="Permalink to this headline">¶</a></h3>
+<h3>ILSVRC2012<a class="headerlink" href="#ilsvrc2012" title="Permalink to this heading">¶</a></h3>
 <dl class="py class">
-<dt id="n2d2.database.ILSVRC2012">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.database.</code><code class="sig-name descname">ILSVRC2012</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.ILSVRC2012">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">n2d2.database.</span></span><span class="sig-name descname"><span class="pre">ILSVRC2012</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">learn</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012" title="Permalink to this definition">¶</a></dt>
 <dd><p>ILSVRC2012 database <a class="bibtex reference internal" href="../references.html#ilsvrc15" id="id2">[RDS+15]</a>.</p>
 <dl class="py method">
-<dt id="n2d2.database.ILSVRC2012.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.N2D2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.ILSVRC2012.N2D2">
+<span class="sig-name descname"><span class="pre">N2D2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.N2D2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the N2D2 object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.ILSVRC2012.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.ILSVRC2012.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">learn</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -626,8 +707,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.ILSVRC2012.download">
-<em class="property">classmethod </em><code class="sig-name descname">download</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.database.ILSVRC2012.download" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.ILSVRC2012.download">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#n2d2.database.ILSVRC2012.download" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download the dataset at the defined path</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -637,8 +718,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.ILSVRC2012.get_label_name">
-<code class="sig-name descname">get_label_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">label_idx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.get_label_name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.ILSVRC2012.get_label_name">
+<span class="sig-name descname"><span class="pre">get_label_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.get_label_name" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>label_idx</strong> (<em>int</em>) – Index of the label</p>
@@ -653,8 +734,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.ILSVRC2012.get_nb_stimuli">
-<code class="sig-name descname">get_nb_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">partition</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.get_nb_stimuli" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.ILSVRC2012.get_nb_stimuli">
+<span class="sig-name descname"><span class="pre">get_nb_stimuli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">partition</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.get_nb_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the number fo stimuli  available for this partition</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -664,8 +745,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.ILSVRC2012.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.ILSVRC2012.get_parameter">
+<span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.get_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
@@ -674,14 +755,14 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.ILSVRC2012.get_partition_summary">
-<code class="sig-name descname">get_partition_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.get_partition_summary" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.ILSVRC2012.get_partition_summary">
+<span class="sig-name descname"><span class="pre">get_partition_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.get_partition_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print the number of stimuli for each partition.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.ILSVRC2012.is_downloadable">
-<em class="property">classmethod </em><code class="sig-name descname">is_downloadable</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.database.ILSVRC2012.is_downloadable" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.ILSVRC2012.is_downloadable">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_downloadable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#n2d2.database.ILSVRC2012.is_downloadable" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the database is downloadable.</p>
@@ -693,8 +774,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.ILSVRC2012.partition_stimuli">
-<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">validation</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">test</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.partition_stimuli" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.ILSVRC2012.partition_stimuli">
+<span class="sig-name descname"><span class="pre">partition_stimuli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">learn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.ILSVRC2012.partition_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Partition the <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code> data with the given ratio (the sum of the given ratio must be equal to 1).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -711,20 +792,20 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 
 </div>
 <div class="section" id="cifar10">
-<h3>CIFAR10<a class="headerlink" href="#cifar10" title="Permalink to this headline">¶</a></h3>
+<h3>CIFAR10<a class="headerlink" href="#cifar10" title="Permalink to this heading">¶</a></h3>
 <dl class="py class">
-<dt id="n2d2.database.CIFAR10">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.database.</code><code class="sig-name descname">CIFAR10</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR10" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.CIFAR10">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">n2d2.database.</span></span><span class="sig-name descname"><span class="pre">CIFAR10</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR10" title="Permalink to this definition">¶</a></dt>
 <dd><p>CIFAR10 database <a class="bibtex reference internal" href="../references.html#krizhevsky2009" id="id3">[Kri09]</a>.</p>
 <dl class="py method">
-<dt id="n2d2.database.CIFAR10.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR10.N2D2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.CIFAR10.N2D2">
+<span class="sig-name descname"><span class="pre">N2D2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR10.N2D2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the N2D2 object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.CIFAR10.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR10.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.CIFAR10.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR10.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -737,8 +818,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.CIFAR10.download">
-<em class="property">classmethod </em><code class="sig-name descname">download</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.database.CIFAR10.download" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.CIFAR10.download">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#n2d2.database.CIFAR10.download" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download the dataset at the defined path</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -748,8 +829,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.CIFAR10.get_label_name">
-<code class="sig-name descname">get_label_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">label_idx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR10.get_label_name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.CIFAR10.get_label_name">
+<span class="sig-name descname"><span class="pre">get_label_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR10.get_label_name" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>label_idx</strong> (<em>int</em>) – Index of the label</p>
@@ -764,8 +845,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.CIFAR10.get_nb_stimuli">
-<code class="sig-name descname">get_nb_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">partition</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR10.get_nb_stimuli" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.CIFAR10.get_nb_stimuli">
+<span class="sig-name descname"><span class="pre">get_nb_stimuli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">partition</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR10.get_nb_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the number fo stimuli  available for this partition</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -775,8 +856,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.CIFAR10.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR10.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.CIFAR10.get_parameter">
+<span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR10.get_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
@@ -785,14 +866,14 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.CIFAR10.get_partition_summary">
-<code class="sig-name descname">get_partition_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR10.get_partition_summary" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.CIFAR10.get_partition_summary">
+<span class="sig-name descname"><span class="pre">get_partition_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR10.get_partition_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print the number of stimuli for each partition.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.CIFAR10.is_downloadable">
-<em class="property">classmethod </em><code class="sig-name descname">is_downloadable</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.database.CIFAR10.is_downloadable" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.CIFAR10.is_downloadable">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_downloadable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#n2d2.database.CIFAR10.is_downloadable" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the database is downloadable.</p>
@@ -804,8 +885,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.CIFAR10.partition_stimuli">
-<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">validation</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">test</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR10.partition_stimuli" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.CIFAR10.partition_stimuli">
+<span class="sig-name descname"><span class="pre">partition_stimuli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">learn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR10.partition_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Partition the <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code> data with the given ratio (the sum of the given ratio must be equal to 1).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -822,20 +903,20 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 
 </div>
 <div class="section" id="cifar100">
-<h3>CIFAR100<a class="headerlink" href="#cifar100" title="Permalink to this headline">¶</a></h3>
+<h3>CIFAR100<a class="headerlink" href="#cifar100" title="Permalink to this heading">¶</a></h3>
 <dl class="py class">
-<dt id="n2d2.database.CIFAR100">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.database.</code><code class="sig-name descname">CIFAR100</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.CIFAR100">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">n2d2.database.</span></span><span class="sig-name descname"><span class="pre">CIFAR100</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100" title="Permalink to this definition">¶</a></dt>
 <dd><p>CIFAR100 database <a class="bibtex reference internal" href="../references.html#krizhevsky2009" id="id4">[Kri09]</a>.</p>
 <dl class="py method">
-<dt id="n2d2.database.CIFAR100.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.N2D2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.CIFAR100.N2D2">
+<span class="sig-name descname"><span class="pre">N2D2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.N2D2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the N2D2 object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.CIFAR100.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.CIFAR100.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -849,8 +930,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.CIFAR100.download">
-<em class="property">classmethod </em><code class="sig-name descname">download</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.database.CIFAR100.download" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.CIFAR100.download">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#n2d2.database.CIFAR100.download" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download the dataset at the defined path</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -860,8 +941,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.CIFAR100.get_label_name">
-<code class="sig-name descname">get_label_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">label_idx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.get_label_name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.CIFAR100.get_label_name">
+<span class="sig-name descname"><span class="pre">get_label_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.get_label_name" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>label_idx</strong> (<em>int</em>) – Index of the label</p>
@@ -876,8 +957,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.CIFAR100.get_nb_stimuli">
-<code class="sig-name descname">get_nb_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">partition</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.get_nb_stimuli" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.CIFAR100.get_nb_stimuli">
+<span class="sig-name descname"><span class="pre">get_nb_stimuli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">partition</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.get_nb_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the number fo stimuli  available for this partition</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -887,8 +968,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.CIFAR100.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.CIFAR100.get_parameter">
+<span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.get_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
@@ -897,14 +978,14 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.CIFAR100.get_partition_summary">
-<code class="sig-name descname">get_partition_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.get_partition_summary" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.CIFAR100.get_partition_summary">
+<span class="sig-name descname"><span class="pre">get_partition_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.get_partition_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print the number of stimuli for each partition.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.CIFAR100.is_downloadable">
-<em class="property">classmethod </em><code class="sig-name descname">is_downloadable</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.database.CIFAR100.is_downloadable" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.CIFAR100.is_downloadable">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_downloadable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#n2d2.database.CIFAR100.is_downloadable" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the database is downloadable.</p>
@@ -916,8 +997,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.CIFAR100.partition_stimuli">
-<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">validation</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">test</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.partition_stimuli" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.CIFAR100.partition_stimuli">
+<span class="sig-name descname"><span class="pre">partition_stimuli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">learn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.CIFAR100.partition_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Partition the <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code> data with the given ratio (the sum of the given ratio must be equal to 1).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -934,24 +1015,24 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 
 </div>
 <div class="section" id="cityscapes">
-<h3>Cityscapes<a class="headerlink" href="#cityscapes" title="Permalink to this headline">¶</a></h3>
+<h3>Cityscapes<a class="headerlink" href="#cityscapes" title="Permalink to this heading">¶</a></h3>
 <dl class="py class">
-<dt id="n2d2.database.Cityscapes">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.database.</code><code class="sig-name descname">Cityscapes</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.Cityscapes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">n2d2.database.</span></span><span class="sig-name descname"><span class="pre">Cityscapes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cityscapes database <a class="bibtex reference internal" href="../references.html#cordts2016cityscapes" id="id5">[COR+16]</a>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Don’t forget to install the <strong>libjsoncpp-dev</strong> package on your device if you wish to use this database.</p>
 </div>
 <dl class="py method">
-<dt id="n2d2.database.Cityscapes.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.N2D2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.Cityscapes.N2D2">
+<span class="sig-name descname"><span class="pre">N2D2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.N2D2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the N2D2 object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.Cityscapes.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.Cityscapes.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -965,8 +1046,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.Cityscapes.download">
-<em class="property">classmethod </em><code class="sig-name descname">download</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.database.Cityscapes.download" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.Cityscapes.download">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#n2d2.database.Cityscapes.download" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download the dataset at the defined path</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -976,8 +1057,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.Cityscapes.get_label_name">
-<code class="sig-name descname">get_label_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">label_idx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.get_label_name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.Cityscapes.get_label_name">
+<span class="sig-name descname"><span class="pre">get_label_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.get_label_name" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>label_idx</strong> (<em>int</em>) – Index of the label</p>
@@ -992,8 +1073,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.Cityscapes.get_nb_stimuli">
-<code class="sig-name descname">get_nb_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">partition</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.get_nb_stimuli" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.Cityscapes.get_nb_stimuli">
+<span class="sig-name descname"><span class="pre">get_nb_stimuli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">partition</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.get_nb_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the number fo stimuli  available for this partition</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1003,8 +1084,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.Cityscapes.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.Cityscapes.get_parameter">
+<span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.get_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
@@ -1013,14 +1094,14 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.Cityscapes.get_partition_summary">
-<code class="sig-name descname">get_partition_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.get_partition_summary" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.Cityscapes.get_partition_summary">
+<span class="sig-name descname"><span class="pre">get_partition_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.get_partition_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print the number of stimuli for each partition.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.Cityscapes.is_downloadable">
-<em class="property">classmethod </em><code class="sig-name descname">is_downloadable</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.database.Cityscapes.is_downloadable" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.Cityscapes.is_downloadable">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_downloadable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#n2d2.database.Cityscapes.is_downloadable" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the database is downloadable.</p>
@@ -1032,8 +1113,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.Cityscapes.partition_stimuli">
-<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">validation</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">test</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.partition_stimuli" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.Cityscapes.partition_stimuli">
+<span class="sig-name descname"><span class="pre">partition_stimuli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">learn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Cityscapes.partition_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Partition the <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code> data with the given ratio (the sum of the given ratio must be equal to 1).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1050,20 +1131,20 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 
 </div>
 <div class="section" id="gtsrb">
-<h3>GTSRB<a class="headerlink" href="#gtsrb" title="Permalink to this headline">¶</a></h3>
+<h3>GTSRB<a class="headerlink" href="#gtsrb" title="Permalink to this heading">¶</a></h3>
 <dl class="py class">
-<dt id="n2d2.database.GTSRB">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.database.</code><code class="sig-name descname">GTSRB</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">validation</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.GTSRB" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.GTSRB">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">n2d2.database.</span></span><span class="sig-name descname"><span class="pre">GTSRB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">validation</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.GTSRB" title="Permalink to this definition">¶</a></dt>
 <dd><p>The German Traffic Sign Benchmark (<a class="reference external" href="https://benchmark.ini.rub.de/">https://benchmark.ini.rub.de/</a>) is a multi-class,     single-image classification challenge held at the International Joint Conference on Neural Networks (IJCNN) 2011.</p>
 <dl class="py method">
-<dt id="n2d2.database.GTSRB.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.GTSRB.N2D2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.GTSRB.N2D2">
+<span class="sig-name descname"><span class="pre">N2D2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.GTSRB.N2D2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the N2D2 object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.GTSRB.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">validation</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.GTSRB.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.GTSRB.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">validation</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.GTSRB.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1075,8 +1156,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.GTSRB.download">
-<em class="property">classmethod </em><code class="sig-name descname">download</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#n2d2.database.GTSRB.download" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.GTSRB.download">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#n2d2.database.GTSRB.download" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download the dataset at the defined path</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1086,8 +1167,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.GTSRB.get_label_name">
-<code class="sig-name descname">get_label_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">label_idx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.GTSRB.get_label_name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.GTSRB.get_label_name">
+<span class="sig-name descname"><span class="pre">get_label_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.GTSRB.get_label_name" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>label_idx</strong> (<em>int</em>) – Index of the label</p>
@@ -1102,8 +1183,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.GTSRB.get_nb_stimuli">
-<code class="sig-name descname">get_nb_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">partition</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.GTSRB.get_nb_stimuli" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.GTSRB.get_nb_stimuli">
+<span class="sig-name descname"><span class="pre">get_nb_stimuli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">partition</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.GTSRB.get_nb_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the number fo stimuli  available for this partition</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1113,8 +1194,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.GTSRB.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.GTSRB.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.GTSRB.get_parameter">
+<span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.GTSRB.get_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
@@ -1123,14 +1204,14 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.GTSRB.get_partition_summary">
-<code class="sig-name descname">get_partition_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.GTSRB.get_partition_summary" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.GTSRB.get_partition_summary">
+<span class="sig-name descname"><span class="pre">get_partition_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.GTSRB.get_partition_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print the number of stimuli for each partition.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.GTSRB.is_downloadable">
-<em class="property">classmethod </em><code class="sig-name descname">is_downloadable</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#n2d2.database.GTSRB.is_downloadable" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.GTSRB.is_downloadable">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_downloadable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#n2d2.database.GTSRB.is_downloadable" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the database is downloadable.</p>
@@ -1142,8 +1223,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.database.GTSRB.partition_stimuli">
-<code class="sig-name descname">partition_stimuli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learn</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">validation</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">test</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.GTSRB.partition_stimuli" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.database.GTSRB.partition_stimuli">
+<span class="sig-name descname"><span class="pre">partition_stimuli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">learn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.GTSRB.partition_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Partition the <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code> data with the given ratio (the sum of the given ratio must be equal to 1).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1161,19 +1242,19 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </div>
 </div>
 <div class="section" id="transformations">
-<h2>Transformations<a class="headerlink" href="#transformations" title="Permalink to this headline">¶</a></h2>
+<h2>Transformations<a class="headerlink" href="#transformations" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
-<dt id="n2d2.transform.Transformation">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.transform.</code><code class="sig-name descname">Transformation</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Transformation" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.Transformation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">n2d2.transform.</span></span><span class="sig-name descname"><span class="pre">Transformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Transformation" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="py method">
-<dt id="n2d2.transform.Transformation.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Transformation.N2D2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.Transformation.N2D2">
+<span class="sig-name descname"><span class="pre">N2D2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Transformation.N2D2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the N2D2 object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.Transformation.__init__">
-<em class="property">abstract </em><code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Transformation.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.Transformation.__init__">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Transformation.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>apply_to</strong> (<em>str</em><em>, </em><em>optional</em>) – To which partition the transform is applied. One of: <code class="docutils literal notranslate"><span class="pre">LearnOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">ValidationOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">TestOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">NoLearn</span></code>, <code class="docutils literal notranslate"><span class="pre">NoValidation</span></code>, <code class="docutils literal notranslate"><span class="pre">NoTest</span></code>, <code class="docutils literal notranslate"><span class="pre">All</span></code>, default=”All”</p>
@@ -1182,8 +1263,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.Transformation.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Transformation.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.Transformation.get_parameter">
+<span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Transformation.get_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
@@ -1194,20 +1275,20 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <div class="section" id="composite">
-<h3>Composite<a class="headerlink" href="#composite" title="Permalink to this headline">¶</a></h3>
+<h3>Composite<a class="headerlink" href="#composite" title="Permalink to this heading">¶</a></h3>
 <dl class="py class">
-<dt id="n2d2.transform.Composite">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.transform.</code><code class="sig-name descname">Composite</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">transformations</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Composite" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.Composite">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">n2d2.transform.</span></span><span class="sig-name descname"><span class="pre">Composite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformations</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Composite" title="Permalink to this definition">¶</a></dt>
 <dd><p>A composition of transformations.</p>
 <dl class="py method">
-<dt id="n2d2.transform.Composite.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Composite.N2D2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.Composite.N2D2">
+<span class="sig-name descname"><span class="pre">N2D2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Composite.N2D2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the N2D2 object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.Composite.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">transformations</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Composite.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.Composite.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformations</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Composite.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1219,8 +1300,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.Composite.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Composite.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.Composite.get_parameter">
+<span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Composite.get_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
@@ -1229,8 +1310,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.Composite.get_transformations">
-<code class="sig-name descname">get_transformations</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Composite.get_transformations" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.Composite.get_transformations">
+<span class="sig-name descname"><span class="pre">get_transformations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Composite.get_transformations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the list of transformations applied by the composite transformation</p>
 </dd></dl>
 
@@ -1238,20 +1319,20 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 
 </div>
 <div class="section" id="padcrop">
-<h3>PadCrop<a class="headerlink" href="#padcrop" title="Permalink to this headline">¶</a></h3>
+<h3>PadCrop<a class="headerlink" href="#padcrop" title="Permalink to this heading">¶</a></h3>
 <dl class="py class">
-<dt id="n2d2.transform.PadCrop">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.transform.</code><code class="sig-name descname">PadCrop</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.PadCrop" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.PadCrop">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">n2d2.transform.</span></span><span class="sig-name descname"><span class="pre">PadCrop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.PadCrop" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pad/crop the image to a specified size.</p>
 <dl class="py method">
-<dt id="n2d2.transform.PadCrop.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.PadCrop.N2D2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.PadCrop.N2D2">
+<span class="sig-name descname"><span class="pre">N2D2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.PadCrop.N2D2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the N2D2 object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.PadCrop.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.PadCrop.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.PadCrop.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.PadCrop.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Possible values for border_type parameter :         <code class="docutils literal notranslate"><span class="pre">ConstantBorder</span></code>: pad with <code class="docutils literal notranslate"><span class="pre">BorderValue</span></code>,         <code class="docutils literal notranslate"><span class="pre">ReplicateBorder</span></code>: last element is replicated throughout, like aaaaaa|abcdefgh|hhhhhhh,         <code class="docutils literal notranslate"><span class="pre">ReflectBorder</span></code>: border will be mirror reflection of the border elements, like fedcba|abcdefgh|hgfedcb,         <code class="docutils literal notranslate"><span class="pre">WrapBorder</span></code>: it will look like cdefgh|abcdefgh|abcdefg,         <code class="docutils literal notranslate"><span class="pre">MinusOneReflectBorder</span></code>: same as <code class="docutils literal notranslate"><span class="pre">ReflectBorder</span></code> but with a slight change, like gfedcb|abcdefgh|gfedcba,         <code class="docutils literal notranslate"><span class="pre">MeanBorder</span></code>: pad with the mean color of the image</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1267,8 +1348,8 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.PadCrop.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.PadCrop.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.PadCrop.get_parameter">
+<span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.PadCrop.get_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
@@ -1280,22 +1361,22 @@ Label are hard coded, you don’t need to specify a path to the label file.</p>
 
 </div>
 <div class="section" id="distortion">
-<h3>Distortion<a class="headerlink" href="#distortion" title="Permalink to this headline">¶</a></h3>
+<h3>Distortion<a class="headerlink" href="#distortion" title="Permalink to this heading">¶</a></h3>
 <dl class="py class">
-<dt id="n2d2.transform.Distortion">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.transform.</code><code class="sig-name descname">Distortion</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Distortion" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.Distortion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">n2d2.transform.</span></span><span class="sig-name descname"><span class="pre">Distortion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Distortion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Apply elastic distortion to the image.
 This transformation is generally used on-the-fly
 (so that a different distortion is performed for each image), and for the learning only.</p>
 <dl class="py method">
-<dt id="n2d2.transform.Distortion.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Distortion.N2D2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.Distortion.N2D2">
+<span class="sig-name descname"><span class="pre">N2D2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Distortion.N2D2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the N2D2 object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.Distortion.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Distortion.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.Distortion.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Distortion.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1311,8 +1392,8 @@ This transformation is generally used on-the-fly
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.Distortion.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Distortion.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.Distortion.get_parameter">
+<span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Distortion.get_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
@@ -1324,20 +1405,20 @@ This transformation is generally used on-the-fly
 
 </div>
 <div class="section" id="rescale">
-<h3>Rescale<a class="headerlink" href="#rescale" title="Permalink to this headline">¶</a></h3>
+<h3>Rescale<a class="headerlink" href="#rescale" title="Permalink to this heading">¶</a></h3>
 <dl class="py class">
-<dt id="n2d2.transform.Rescale">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.transform.</code><code class="sig-name descname">Rescale</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Rescale" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.Rescale">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">n2d2.transform.</span></span><span class="sig-name descname"><span class="pre">Rescale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Rescale" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rescale the image to a specified size.</p>
 <dl class="py method">
-<dt id="n2d2.transform.Rescale.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Rescale.N2D2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.Rescale.N2D2">
+<span class="sig-name descname"><span class="pre">N2D2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Rescale.N2D2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the N2D2 object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.Rescale.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Rescale.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.Rescale.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Rescale.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1352,8 +1433,8 @@ This transformation is generally used on-the-fly
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.Rescale.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Rescale.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.Rescale.get_parameter">
+<span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Rescale.get_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
@@ -1365,19 +1446,19 @@ This transformation is generally used on-the-fly
 
 </div>
 <div class="section" id="colorspace">
-<h3>ColorSpace<a class="headerlink" href="#colorspace" title="Permalink to this headline">¶</a></h3>
+<h3>ColorSpace<a class="headerlink" href="#colorspace" title="Permalink to this heading">¶</a></h3>
 <dl class="py class">
-<dt id="n2d2.transform.ColorSpace">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.transform.</code><code class="sig-name descname">ColorSpace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">color_space</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ColorSpace" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.ColorSpace">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">n2d2.transform.</span></span><span class="sig-name descname"><span class="pre">ColorSpace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color_space</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ColorSpace" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="py method">
-<dt id="n2d2.transform.ColorSpace.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ColorSpace.N2D2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.ColorSpace.N2D2">
+<span class="sig-name descname"><span class="pre">N2D2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ColorSpace.N2D2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the N2D2 object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.ColorSpace.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">color_space</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ColorSpace.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.ColorSpace.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color_space</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ColorSpace.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Possible values for <code class="docutils literal notranslate"><span class="pre">color_space</span></code> parameter :</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">BGR</span></code>: convert any gray, BGR or BGRA image to BGR,</p></li>
@@ -1415,8 +1496,8 @@ This transformation is generally used on-the-fly
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.ColorSpace.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ColorSpace.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.ColorSpace.get_parameter">
+<span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ColorSpace.get_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
@@ -1428,20 +1509,20 @@ This transformation is generally used on-the-fly
 
 </div>
 <div class="section" id="flip">
-<h3>Flip<a class="headerlink" href="#flip" title="Permalink to this headline">¶</a></h3>
+<h3>Flip<a class="headerlink" href="#flip" title="Permalink to this heading">¶</a></h3>
 <dl class="py class">
-<dt id="n2d2.transform.Flip">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.transform.</code><code class="sig-name descname">Flip</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Flip" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.Flip">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">n2d2.transform.</span></span><span class="sig-name descname"><span class="pre">Flip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Flip" title="Permalink to this definition">¶</a></dt>
 <dd><p>Image flip transformation.</p>
 <dl class="py method">
-<dt id="n2d2.transform.Flip.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Flip.N2D2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.Flip.N2D2">
+<span class="sig-name descname"><span class="pre">N2D2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Flip.N2D2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the N2D2 object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.Flip.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Flip.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.Flip.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Flip.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1456,8 +1537,8 @@ This transformation is generally used on-the-fly
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.Flip.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Flip.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.Flip.get_parameter">
+<span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Flip.get_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
@@ -1469,20 +1550,20 @@ This transformation is generally used on-the-fly
 
 </div>
 <div class="section" id="rangeaffine">
-<h3>RangeAffine<a class="headerlink" href="#rangeaffine" title="Permalink to this headline">¶</a></h3>
+<h3>RangeAffine<a class="headerlink" href="#rangeaffine" title="Permalink to this heading">¶</a></h3>
 <dl class="py class">
-<dt id="n2d2.transform.RangeAffine">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.transform.</code><code class="sig-name descname">RangeAffine</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">first_operator</span></em>, <em class="sig-param"><span class="n">first_value</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RangeAffine" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.RangeAffine">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">n2d2.transform.</span></span><span class="sig-name descname"><span class="pre">RangeAffine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">first_operator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RangeAffine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Apply an affine transformation to the values of the image.</p>
 <dl class="py method">
-<dt id="n2d2.transform.RangeAffine.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RangeAffine.N2D2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.RangeAffine.N2D2">
+<span class="sig-name descname"><span class="pre">N2D2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RangeAffine.N2D2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the N2D2 object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.RangeAffine.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">first_operator</span></em>, <em class="sig-param"><span class="n">first_value</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RangeAffine.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.RangeAffine.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">first_operator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RangeAffine.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1497,8 +1578,8 @@ This transformation is generally used on-the-fly
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.RangeAffine.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RangeAffine.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.RangeAffine.get_parameter">
+<span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RangeAffine.get_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
@@ -1510,20 +1591,20 @@ This transformation is generally used on-the-fly
 
 </div>
 <div class="section" id="sliceextraction">
-<h3>SliceExtraction<a class="headerlink" href="#sliceextraction" title="Permalink to this headline">¶</a></h3>
+<h3>SliceExtraction<a class="headerlink" href="#sliceextraction" title="Permalink to this heading">¶</a></h3>
 <dl class="py class">
-<dt id="n2d2.transform.SliceExtraction">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.transform.</code><code class="sig-name descname">SliceExtraction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.SliceExtraction" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.SliceExtraction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">n2d2.transform.</span></span><span class="sig-name descname"><span class="pre">SliceExtraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.SliceExtraction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract a slice from an image.</p>
 <dl class="py method">
-<dt id="n2d2.transform.SliceExtraction.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.SliceExtraction.N2D2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.SliceExtraction.N2D2">
+<span class="sig-name descname"><span class="pre">N2D2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.SliceExtraction.N2D2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the N2D2 object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.SliceExtraction.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.SliceExtraction.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.SliceExtraction.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.SliceExtraction.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Possible values for border_type          <code class="docutils literal notranslate"><span class="pre">ConstantBorder</span></code>: pad with <code class="docutils literal notranslate"><span class="pre">BorderValue</span></code>,         <code class="docutils literal notranslate"><span class="pre">ReplicateBorder</span></code>: last element is replicated throughout, like aaaaaa|abcdefgh|hhhhhhh,         <code class="docutils literal notranslate"><span class="pre">ReflectBorder</span></code>: border will be mirror reflection of the border elements, like fedcba|abcdefgh|hgfedcb,         <code class="docutils literal notranslate"><span class="pre">WrapBorder</span></code>: it will look like cdefgh|abcdefgh|abcdefg,         <code class="docutils literal notranslate"><span class="pre">MinusOneReflectBorder</span></code>: same as <code class="docutils literal notranslate"><span class="pre">ReflectBorder</span></code> but with a slight change, like gfedcb|abcdefgh|gfedcba,         <code class="docutils literal notranslate"><span class="pre">MeanBorder</span></code>: pad with the mean color of the image</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1547,8 +1628,8 @@ This transformation is generally used on-the-fly
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.SliceExtraction.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.SliceExtraction.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.SliceExtraction.get_parameter">
+<span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.SliceExtraction.get_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
@@ -1560,19 +1641,19 @@ This transformation is generally used on-the-fly
 
 </div>
 <div class="section" id="randomresizecrop">
-<h3>RandomResizeCrop<a class="headerlink" href="#randomresizecrop" title="Permalink to this headline">¶</a></h3>
+<h3>RandomResizeCrop<a class="headerlink" href="#randomresizecrop" title="Permalink to this heading">¶</a></h3>
 <dl class="py class">
-<dt id="n2d2.transform.RandomResizeCrop">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.transform.</code><code class="sig-name descname">RandomResizeCrop</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RandomResizeCrop" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.RandomResizeCrop">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">n2d2.transform.</span></span><span class="sig-name descname"><span class="pre">RandomResizeCrop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RandomResizeCrop" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="py method">
-<dt id="n2d2.transform.RandomResizeCrop.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RandomResizeCrop.N2D2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.RandomResizeCrop.N2D2">
+<span class="sig-name descname"><span class="pre">N2D2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RandomResizeCrop.N2D2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the N2D2 object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.RandomResizeCrop.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RandomResizeCrop.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.RandomResizeCrop.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RandomResizeCrop.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1585,8 +1666,8 @@ This transformation is generally used on-the-fly
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.RandomResizeCrop.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RandomResizeCrop.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.RandomResizeCrop.get_parameter">
+<span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.RandomResizeCrop.get_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
@@ -1598,20 +1679,20 @@ This transformation is generally used on-the-fly
 
 </div>
 <div class="section" id="channelextraction">
-<h3>ChannelExtraction<a class="headerlink" href="#channelextraction" title="Permalink to this headline">¶</a></h3>
+<h3>ChannelExtraction<a class="headerlink" href="#channelextraction" title="Permalink to this heading">¶</a></h3>
 <dl class="py class">
-<dt id="n2d2.transform.ChannelExtraction">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.transform.</code><code class="sig-name descname">ChannelExtraction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">channel</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ChannelExtraction" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.ChannelExtraction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">n2d2.transform.</span></span><span class="sig-name descname"><span class="pre">ChannelExtraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ChannelExtraction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract an image channel.</p>
 <dl class="py method">
-<dt id="n2d2.transform.ChannelExtraction.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ChannelExtraction.N2D2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.ChannelExtraction.N2D2">
+<span class="sig-name descname"><span class="pre">N2D2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ChannelExtraction.N2D2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the N2D2 object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.ChannelExtraction.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">channel</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ChannelExtraction.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.ChannelExtraction.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ChannelExtraction.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>The <code class="docutils literal notranslate"><span class="pre">channel</span></code> parameter can take the following values :
 <code class="docutils literal notranslate"><span class="pre">Blue</span></code>: blue channel in the BGR colorspace, or first channel of any colorspace,
 <code class="docutils literal notranslate"><span class="pre">Green</span></code>: green channel in the BGR colorspace, or second channel of any colorspace,
@@ -1634,8 +1715,8 @@ This transformation is generally used on-the-fly
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.transform.ChannelExtraction.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ChannelExtraction.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.transform.ChannelExtraction.get_parameter">
+<span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.ChannelExtraction.get_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
@@ -1648,23 +1729,23 @@ This transformation is generally used on-the-fly
 </div>
 </div>
 <div class="section" id="sending-data-to-the-neural-network">
-<h2>Sending data to the Neural Network<a class="headerlink" href="#sending-data-to-the-neural-network" title="Permalink to this headline">¶</a></h2>
+<h2>Sending data to the Neural Network<a class="headerlink" href="#sending-data-to-the-neural-network" title="Permalink to this heading">¶</a></h2>
 <p>Once a database is loaded, n2d2 use <a class="reference internal" href="#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a> to provide data to the neural network.</p>
 <p>The <a class="reference internal" href="#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a> will automatically apply the <a class="reference internal" href="#n2d2.transform.Transformation" title="n2d2.transform.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.transform.Transformation</span></code></a> to the dataset.
 To add a transformation to the provider, you should use the method <code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.transform.Transformation.add_transformation()</span></code>.</p>
 <dl class="py class">
-<dt id="n2d2.provider.DataProvider">
-<em class="property">class </em><code class="sig-prename descclassname">n2d2.provider.</code><code class="sig-name descname">DataProvider</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">database</span></em>, <em class="sig-param"><span class="n">size</span></em>, <em class="sig-param"><span class="n">random_read</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.provider.DataProvider">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">n2d2.provider.</span></span><span class="sig-name descname"><span class="pre">DataProvider</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_read</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider" title="Permalink to this definition">¶</a></dt>
 <dd><p>Provide the data to the network.</p>
 <dl class="py method">
-<dt id="n2d2.provider.DataProvider.N2D2">
-<code class="sig-name descname">N2D2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.N2D2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.provider.DataProvider.N2D2">
+<span class="sig-name descname"><span class="pre">N2D2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.N2D2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the N2D2 object.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.provider.DataProvider.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">database</span></em>, <em class="sig-param"><span class="n">size</span></em>, <em class="sig-param"><span class="n">random_read</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">config_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.provider.DataProvider.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_read</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1680,8 +1761,8 @@ To add a transformation to the provider, you should use the method <code class="
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.provider.DataProvider.add_on_the_fly_transformation">
-<code class="sig-name descname">add_on_the_fly_transformation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">transformation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.add_on_the_fly_transformation" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.provider.DataProvider.add_on_the_fly_transformation">
+<span class="sig-name descname"><span class="pre">add_on_the_fly_transformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.add_on_the_fly_transformation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add transformation to apply to the dataset when reading them.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1691,8 +1772,8 @@ To add a transformation to the provider, you should use the method <code class="
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.provider.DataProvider.add_transformation">
-<code class="sig-name descname">add_transformation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">transformation</span><span class="p">:</span> <span class="n">n2d2.transform.transformation.Transformation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.add_transformation" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.provider.DataProvider.add_transformation">
+<span class="sig-name descname"><span class="pre">add_transformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#n2d2.transform.Transformation" title="n2d2.transform.transformation.Transformation"><span class="pre">Transformation</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.add_transformation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Apply transformation to the dataset.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1702,8 +1783,8 @@ To add a transformation to the provider, you should use the method <code class="
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.provider.DataProvider.all_batchs_provided">
-<code class="sig-name descname">all_batchs_provided</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.all_batchs_provided" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.provider.DataProvider.all_batchs_provided">
+<span class="sig-name descname"><span class="pre">all_batchs_provided</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.all_batchs_provided" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>Return True if all batchs have been provided for the current partition.</p>
@@ -1715,8 +1796,8 @@ To add a transformation to the provider, you should use the method <code class="
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.provider.DataProvider.get_batch_size">
-<code class="sig-name descname">get_batch_size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.get_batch_size" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.provider.DataProvider.get_batch_size">
+<span class="sig-name descname"><span class="pre">get_batch_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.get_batch_size" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>Batch size</p>
@@ -1728,8 +1809,8 @@ To add a transformation to the provider, you should use the method <code class="
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.provider.DataProvider.get_data">
-<code class="sig-name descname">get_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.get_data" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.provider.DataProvider.get_data">
+<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.get_data" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>Data.</p>
@@ -1741,8 +1822,8 @@ To add a transformation to the provider, you should use the method <code class="
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.provider.DataProvider.get_database">
-<code class="sig-name descname">get_database</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.get_database" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.provider.DataProvider.get_database">
+<span class="sig-name descname"><span class="pre">get_database</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.get_database" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>Give the database</p>
@@ -1754,8 +1835,8 @@ To add a transformation to the provider, you should use the method <code class="
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.provider.DataProvider.get_deepnet">
-<code class="sig-name descname">get_deepnet</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.get_deepnet" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.provider.DataProvider.get_deepnet">
+<span class="sig-name descname"><span class="pre">get_deepnet</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.get_deepnet" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>DeepNet object</p>
@@ -1767,8 +1848,8 @@ To add a transformation to the provider, you should use the method <code class="
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.provider.DataProvider.get_labels">
-<code class="sig-name descname">get_labels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.get_labels" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.provider.DataProvider.get_labels">
+<span class="sig-name descname"><span class="pre">get_labels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.get_labels" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>Labels associated with the current batch.</p>
@@ -1780,8 +1861,8 @@ To add a transformation to the provider, you should use the method <code class="
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.provider.DataProvider.get_name">
-<code class="sig-name descname">get_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.get_name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.provider.DataProvider.get_name">
+<span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.get_name" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>Name of the data provider</p>
@@ -1793,8 +1874,8 @@ To add a transformation to the provider, you should use the method <code class="
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.provider.DataProvider.get_parameter">
-<code class="sig-name descname">get_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.provider.DataProvider.get_parameter">
+<span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.get_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
@@ -1803,8 +1884,8 @@ To add a transformation to the provider, you should use the method <code class="
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.provider.DataProvider.get_partition">
-<code class="sig-name descname">get_partition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.get_partition" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.provider.DataProvider.get_partition">
+<span class="sig-name descname"><span class="pre">get_partition</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.get_partition" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The partition can be  <code class="docutils literal notranslate"><span class="pre">Learn</span></code>, <code class="docutils literal notranslate"><span class="pre">Validation</span></code>, <code class="docutils literal notranslate"><span class="pre">Test</span></code>,  <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code></p>
@@ -1816,14 +1897,14 @@ To add a transformation to the provider, you should use the method <code class="
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.provider.DataProvider.normalize_sitmuli">
-<code class="sig-name descname">normalize_sitmuli</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.normalize_sitmuli" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.provider.DataProvider.normalize_stimuli">
+<span class="sig-name descname"><span class="pre">normalize_stimuli</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.normalize_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Normalize the stimuli of the database between [0,1]</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.provider.DataProvider.read_batch">
-<code class="sig-name descname">read_batch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">idx</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.read_batch" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.provider.DataProvider.read_batch">
+<span class="sig-name descname"><span class="pre">read_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.read_batch" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>idx</strong> (<em>int</em>) – Start index to begin reading the stimuli</p>
@@ -1838,8 +1919,8 @@ To add a transformation to the provider, you should use the method <code class="
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.provider.DataProvider.read_random_batch">
-<code class="sig-name descname">read_random_batch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.read_random_batch" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.provider.DataProvider.read_random_batch">
+<span class="sig-name descname"><span class="pre">read_random_batch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.read_random_batch" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>Return a random batch</p>
@@ -1851,8 +1932,8 @@ To add a transformation to the provider, you should use the method <code class="
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.provider.DataProvider.set_batch">
-<code class="sig-name descname">set_batch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">shuffle</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.set_batch" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.provider.DataProvider.set_batch">
+<span class="sig-name descname"><span class="pre">set_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shuffle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.set_batch" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>shuffle</strong> (<em>bool</em><em>, </em><em>optional</em>) – If true the data will be shuffled, default=True</p>
@@ -1861,8 +1942,8 @@ To add a transformation to the provider, you should use the method <code class="
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.provider.DataProvider.set_partition">
-<code class="sig-name descname">set_partition</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">partition</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.set_partition" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.provider.DataProvider.set_partition">
+<span class="sig-name descname"><span class="pre">set_partition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">partition</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.set_partition" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>partition</strong> (<em>str</em>) – The partition can be  <code class="docutils literal notranslate"><span class="pre">Learn</span></code>, <code class="docutils literal notranslate"><span class="pre">Validation</span></code>, <code class="docutils literal notranslate"><span class="pre">Test</span></code>,  <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code></p>
@@ -1871,8 +1952,8 @@ To add a transformation to the provider, you should use the method <code class="
 </dd></dl>
 
 <dl class="py method">
-<dt id="n2d2.provider.DataProvider.set_reading_randomly">
-<code class="sig-name descname">set_reading_randomly</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">random_read</span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.set_reading_randomly" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="n2d2.provider.DataProvider.set_reading_randomly">
+<span class="sig-name descname"><span class="pre">set_reading_randomly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">random_read</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.provider.DataProvider.set_reading_randomly" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set if we use get_batch or get_random_batch when iterating other the provider</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1885,10 +1966,10 @@ To add a transformation to the provider, you should use the method <code class="
 
 </div>
 <div class="section" id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
 <p>In this example, we will show you how to create a <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.database.Database</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.Provider</span></code> and apply <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.transformation.Transformation</span></code> to the data.</p>
 <p>We will use the <a class="reference internal" href="#n2d2.database.MNIST" title="n2d2.database.MNIST"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.database.MNIST</span></code></a> database driver, rescale the images to a 32x32 pixels size and then print the data used for the learning.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Loading data</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Loading data</span>
 <span class="n">database</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="n">data_path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">validation</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 
 <span class="c1"># Initializing DataProvider</span>

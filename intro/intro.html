@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,11 +28,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -83,7 +86,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Introduction:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Presentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#database-handling">Database handling</a></li>
@@ -99,13 +102,13 @@
 <li class="toctree-l1"><a class="reference internal" href="perfs_tools.html">Performance evaluation tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tuto.html">Tutorials</a></li>
 </ul>
-<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<p class="caption" role="heading"><span class="caption-text">ONNX Import:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/convert.html">Obtain ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/import.html">Import ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../onnx/transfer.html">Train from ONNX models</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Quantization and Export:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../quant/post.html">Post-training quantization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">Quantization-Aware Training</a></li>
@@ -116,7 +119,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../export/ONNX.html">Export: ONNX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/legacy.html">Export: other / legacy</a></li>
 </ul>
-<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<p class="caption" role="heading"><span class="caption-text">INI File Interface:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ini/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ini/databases.html">Databases</a></li>
@@ -126,7 +129,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../ini/target.html">Targets (outputs &amp; losses)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../adversarial.html">Adversarial module</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Python API:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Python API:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/databases.html">Databases</a></li>
@@ -136,12 +139,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../python_api/export.html">Export</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++/Python core:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../core/core.html">Core N2D2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++ API / Developer:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../dev_intro.html">Introduction</a></li>
 </ul>
@@ -210,7 +213,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="presentation">
-<h1>Presentation<a class="headerlink" href="#presentation" title="Permalink to this headline">¶</a></h1>
+<h1>Presentation<a class="headerlink" href="#presentation" title="Permalink to this heading">¶</a></h1>
 <p>The N2D2 platform is a comprehensive solution for fast and accurate Deep
 Neural Network (DNN) simulation and full and automated DNN-based
 applications building. The platform integrates database construction,
@@ -239,7 +242,7 @@ toolflow, which can automatically generate ready to use code for various
 targets such as embedded GPUs or full custom dedicated FPGA IP. Finally,
 we conclude by summarising the main features of the tool.</p>
 <div class="section" id="database-handling">
-<h2>Database handling<a class="headerlink" href="#database-handling" title="Permalink to this headline">¶</a></h2>
+<h2>Database handling<a class="headerlink" href="#database-handling" title="Permalink to this heading">¶</a></h2>
 <p>The tool integrates everything needed to handle custom or hand made
 databases:</p>
 <ul class="simple">
@@ -266,7 +269,7 @@ and testing sets.</p></li>
 </ul>
 </div>
 <div class="section" id="data-pre-processing">
-<h2>Data pre-processing<a class="headerlink" href="#data-pre-processing" title="Permalink to this headline">¶</a></h2>
+<h2>Data pre-processing<a class="headerlink" href="#data-pre-processing" title="Permalink to this heading">¶</a></h2>
 <p>Data pre-processing, such as image rescaling, normalization,
 filtering… is directly integrated into the toolflow, with no need for
 external tool or pre-processing. Each pre-processing step is called a
@@ -316,7 +319,7 @@ multi-label images)</p></li>
 </ul>
 </div>
 <div class="section" id="deep-network-building">
-<h2>Deep network building<a class="headerlink" href="#deep-network-building" title="Permalink to this headline">¶</a></h2>
+<h2>Deep network building<a class="headerlink" href="#deep-network-building" title="Permalink to this heading">¶</a></h2>
 <p>The building of a deep network is straightforward and can be done
 withing the same INI configuration file. Several layer types are
 available: convolutional, pooling, fully connected, Radial-basis
@@ -395,7 +398,7 @@ of large databases within tens of minutes to a few hours instead of
 several days or weeks for non-GPU accelerated learning.</p>
 </div>
 <div class="section" id="performances-evaluation">
-<h2>Performances evaluation<a class="headerlink" href="#performances-evaluation" title="Permalink to this headline">¶</a></h2>
+<h2>Performances evaluation<a class="headerlink" href="#performances-evaluation" title="Permalink to this heading">¶</a></h2>
 <p>The software automatically outputs all the information needed for the
 network applicative performances analysis, such as the recognition rate
 and the validation score during the learning; the confusion matrix
@@ -404,7 +407,7 @@ requirements of the network; the output maps activity for each layer,
 and so on, as shown in figure [fig:metrics].</p>
 </div>
 <div class="section" id="hardware-exports">
-<h2>Hardware exports<a class="headerlink" href="#hardware-exports" title="Permalink to this headline">¶</a></h2>
+<h2>Hardware exports<a class="headerlink" href="#hardware-exports" title="Permalink to this heading">¶</a></h2>
 <p>Once the learned DNN recognition rate performances are satisfying, an
 optimized version of the network can be automatically exported for
 various embedded targets. An automated network computation performances
@@ -450,7 +453,7 @@ second is more than one order of magnitude higher with GPUsand at least
 two orders of magnitude better with synthesized DNN on FPGA.</p>
 </div>
 <div class="section" id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
 <p>The N2D2 platform is today a complete and production ready neural
 network building tool, which does not require advanced knownledges in
 deep learning to be used. It is tailored for fast neural network

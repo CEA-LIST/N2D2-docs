@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,11 +28,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -83,7 +86,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Introduction:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Introduction:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Presentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/about.html">About N2D2-IP</a></li>
@@ -91,7 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro/perfs_tools.html">Performance evaluation tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/tuto.html">Tutorials</a></li>
 </ul>
-<p class="caption"><span class="caption-text">ONNX Import:</span></p>
+<p class="caption" role="heading"><span class="caption-text">ONNX Import:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Obtain ONNX models</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#convert-from-pytorch">Convert from PyTorch</a></li>
@@ -102,7 +105,7 @@
 <li class="toctree-l1"><a class="reference internal" href="import.html">Import ONNX models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="transfer.html">Train from ONNX models</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantization and Export:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Quantization and Export:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../quant/post.html">Post-training quantization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quant/qat.html">Quantization-Aware Training</a></li>
@@ -113,7 +116,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../export/ONNX.html">Export: ONNX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../export/legacy.html">Export: other / legacy</a></li>
 </ul>
-<p class="caption"><span class="caption-text">INI File Interface:</span></p>
+<p class="caption" role="heading"><span class="caption-text">INI File Interface:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ini/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ini/databases.html">Databases</a></li>
@@ -123,7 +126,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../ini/target.html">Targets (outputs &amp; losses)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../adversarial.html">Adversarial module</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Python API:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Python API:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/databases.html">Databases</a></li>
@@ -133,12 +136,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../python_api/export.html">Export</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python_api/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++/Python core:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++/Python core:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../core/core.html">Core N2D2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/example.html">Example</a></li>
 </ul>
-<p class="caption"><span class="caption-text">C++ API / Developer:</span></p>
+<p class="caption" role="heading"><span class="caption-text">C++ API / Developer:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../dev_intro.html">Introduction</a></li>
 </ul>
@@ -207,9 +210,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="obtain-onnx-models">
-<h1>Obtain ONNX models<a class="headerlink" href="#obtain-onnx-models" title="Permalink to this headline">¶</a></h1>
+<h1>Obtain ONNX models<a class="headerlink" href="#obtain-onnx-models" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="convert-from-pytorch">
-<h2>Convert from PyTorch<a class="headerlink" href="#convert-from-pytorch" title="Permalink to this headline">¶</a></h2>
+<h2>Convert from PyTorch<a class="headerlink" href="#convert-from-pytorch" title="Permalink to this heading">¶</a></h2>
 <p>ONNX conversion is natively supported in PyTorch with the <code class="docutils literal notranslate"><span class="pre">torch.onnx.export</span></code>
 function. An example of a pre-trained PyTorch model conversion to ONNX is
 provided in <code class="docutils literal notranslate"><span class="pre">tools/pytorch_to_onnx.py</span></code>:</p>
@@ -227,7 +230,7 @@ provided in <code class="docutils literal notranslate"><span class="pre">tools/p
 </div>
 </div>
 <div class="section" id="convert-from-tf-keras">
-<h2>Convert from TF/Keras<a class="headerlink" href="#convert-from-tf-keras" title="Permalink to this headline">¶</a></h2>
+<h2>Convert from TF/Keras<a class="headerlink" href="#convert-from-tf-keras" title="Permalink to this heading">¶</a></h2>
 <p>ONNX conversion is not natively supported by TF/Keras. Instead, a third-party
 tool must be used, like <code class="docutils literal notranslate"><span class="pre">keras2onnx</span></code> or <code class="docutils literal notranslate"><span class="pre">tf2onnx</span></code>. Currently, the <code class="docutils literal notranslate"><span class="pre">tf2onnx</span></code>
 is the most active and most maintained solution.</p>
@@ -268,7 +271,7 @@ python3 -m tf2onnx.convert --input <span class="nv">$tfmodel</span> --output <sp
 <code class="docutils literal notranslate"><span class="pre">tools/mobilenet_v3_to_onnx.sh</span></code>.</p>
 </div>
 <div class="section" id="download-pre-trained-models">
-<h2>Download pre-trained models<a class="headerlink" href="#download-pre-trained-models" title="Permalink to this headline">¶</a></h2>
+<h2>Download pre-trained models<a class="headerlink" href="#download-pre-trained-models" title="Permalink to this heading">¶</a></h2>
 <p>Many already trained ONNX models are freely available and ready to use in the
 ONNX Model Zoo: <a class="reference external" href="https://github.com/onnx/models/blob/master/README.md">https://github.com/onnx/models/blob/master/README.md</a></p>
 </div>
