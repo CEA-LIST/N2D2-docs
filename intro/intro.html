@@ -276,30 +276,30 @@ external tool or pre-processing. Each pre-processing step is called a
 <em>transformation</em>.</p>
 <p>The full sequence of transformations can be specified easily in a INI
 text configuration file. For example:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; First step: convert the image to grayscale</span>
-<span class="k">[env.Transformation-1]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">ChannelExtractionTransformation</span>
-<span class="na">CSChannel</span><span class="o">=</span><span class="s">Gray</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; First step: convert the image to grayscale</span><span class="w"></span>
+<span class="k">[env.Transformation-1]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">ChannelExtractionTransformation</span><span class="w"></span>
+<span class="na">CSChannel</span><span class="o">=</span><span class="s">Gray</span><span class="w"></span>
 
-<span class="c1">; Second step: rescale the image to a 29x29 size</span>
-<span class="k">[env.Transformation-2]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">RescaleTransformation</span>
-<span class="na">Width</span><span class="o">=</span><span class="s">29</span>
-<span class="na">Height</span><span class="o">=</span><span class="s">29</span>
+<span class="c1">; Second step: rescale the image to a 29x29 size</span><span class="w"></span>
+<span class="k">[env.Transformation-2]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">RescaleTransformation</span><span class="w"></span>
+<span class="na">Width</span><span class="o">=</span><span class="s">29</span><span class="w"></span>
+<span class="na">Height</span><span class="o">=</span><span class="s">29</span><span class="w"></span>
 
-<span class="c1">; Third step: apply histogram equalization to the image</span>
-<span class="k">[env.Transformation-3]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">EqualizeTransformation</span>
+<span class="c1">; Third step: apply histogram equalization to the image</span><span class="w"></span>
+<span class="k">[env.Transformation-3]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">EqualizeTransformation</span><span class="w"></span>
 
-<span class="c1">; Fourth step (only during learning): apply random elastic distortions to the images to extent the learning set</span>
-<span class="k">[env.OnTheFlyTransformation]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">DistortionTransformation</span>
-<span class="na">ApplyTo</span><span class="o">=</span><span class="s">LearnOnly</span>
-<span class="na">ElasticGaussianSize</span><span class="o">=</span><span class="s">21</span>
-<span class="na">ElasticSigma</span><span class="o">=</span><span class="s">6.0</span>
-<span class="na">ElasticScaling</span><span class="o">=</span><span class="s">20.0</span>
-<span class="na">Scaling</span><span class="o">=</span><span class="s">15.0</span>
-<span class="na">Rotation</span><span class="o">=</span><span class="s">15.0</span>
+<span class="c1">; Fourth step (only during learning): apply random elastic distortions to the images to extent the learning set</span><span class="w"></span>
+<span class="k">[env.OnTheFlyTransformation]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">DistortionTransformation</span><span class="w"></span>
+<span class="na">ApplyTo</span><span class="o">=</span><span class="s">LearnOnly</span><span class="w"></span>
+<span class="na">ElasticGaussianSize</span><span class="o">=</span><span class="s">21</span><span class="w"></span>
+<span class="na">ElasticSigma</span><span class="o">=</span><span class="s">6.0</span><span class="w"></span>
+<span class="na">ElasticScaling</span><span class="o">=</span><span class="s">20.0</span><span class="w"></span>
+<span class="na">Scaling</span><span class="o">=</span><span class="s">15.0</span><span class="w"></span>
+<span class="na">Rotation</span><span class="o">=</span><span class="s">15.0</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Example of pre-processing transformations built-in in the tool are:</p>
@@ -335,54 +335,54 @@ floating point numbers.</p>
 this presentation, shows how to build a DNN with 5 layers: one
 convolution layer, followed by one MAX pooling layer, followed by two
 fully connected layers and a softmax output layer.</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; Specify the input data format</span>
-<span class="k">[env]</span>
-<span class="na">SizeX</span><span class="o">=</span><span class="s">24</span>
-<span class="na">SizeY</span><span class="o">=</span><span class="s">24</span>
-<span class="na">BatchSize</span><span class="o">=</span><span class="s">12</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; Specify the input data format</span><span class="w"></span>
+<span class="k">[env]</span><span class="w"></span>
+<span class="na">SizeX</span><span class="o">=</span><span class="s">24</span><span class="w"></span>
+<span class="na">SizeY</span><span class="o">=</span><span class="s">24</span><span class="w"></span>
+<span class="na">BatchSize</span><span class="o">=</span><span class="s">12</span><span class="w"></span>
 
-<span class="c1">; First layer: convolutional with 3x3 kernels</span>
-<span class="k">[conv1]</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">env</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Conv</span>
-<span class="na">KernelWidth</span><span class="o">=</span><span class="s">3</span>
-<span class="na">KernelHeight</span><span class="o">=</span><span class="s">3</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">32</span>
-<span class="na">Stride</span><span class="o">=</span><span class="s">1</span>
+<span class="c1">; First layer: convolutional with 3x3 kernels</span><span class="w"></span>
+<span class="k">[conv1]</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">env</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Conv</span><span class="w"></span>
+<span class="na">KernelWidth</span><span class="o">=</span><span class="s">3</span><span class="w"></span>
+<span class="na">KernelHeight</span><span class="o">=</span><span class="s">3</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">32</span><span class="w"></span>
+<span class="na">Stride</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
 
-<span class="c1">; Second layer: MAX pooling with pooling area 2x2</span>
-<span class="k">[pool1]</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">conv1</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Pool</span>
-<span class="na">Pooling</span><span class="o">=</span><span class="s">Max</span>
-<span class="na">PoolWidth</span><span class="o">=</span><span class="s">2</span>
-<span class="na">PoolHeight</span><span class="o">=</span><span class="s">2</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">32</span>
-<span class="na">Stride</span><span class="o">=</span><span class="s">2</span>
-<span class="na">Mapping.Size</span><span class="o">=</span><span class="s">1 ; one to one connection between convolution output maps and pooling input maps</span>
+<span class="c1">; Second layer: MAX pooling with pooling area 2x2</span><span class="w"></span>
+<span class="k">[pool1]</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">conv1</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Pool</span><span class="w"></span>
+<span class="na">Pooling</span><span class="o">=</span><span class="s">Max</span><span class="w"></span>
+<span class="na">PoolWidth</span><span class="o">=</span><span class="s">2</span><span class="w"></span>
+<span class="na">PoolHeight</span><span class="o">=</span><span class="s">2</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">32</span><span class="w"></span>
+<span class="na">Stride</span><span class="o">=</span><span class="s">2</span><span class="w"></span>
+<span class="na">Mapping.Size</span><span class="o">=</span><span class="s">1 ; one to one connection between convolution output maps and pooling input maps</span><span class="w"></span>
 
-<span class="c1">; Third layer: fully connected layer with 60 neurons</span>
-<span class="k">[fc1]</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">pool1</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Fc</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">60</span>
+<span class="c1">; Third layer: fully connected layer with 60 neurons</span><span class="w"></span>
+<span class="k">[fc1]</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">pool1</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Fc</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">60</span><span class="w"></span>
 
-<span class="c1">; Fourth layer: fully connected with 10 neurons</span>
-<span class="k">[fc2]</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">fc1</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Fc</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">10</span>
+<span class="c1">; Fourth layer: fully connected with 10 neurons</span><span class="w"></span>
+<span class="k">[fc2]</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">fc1</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Fc</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">10</span><span class="w"></span>
 
-<span class="c1">; Final layer: softmax</span>
-<span class="k">[softmax]</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">fc2</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Softmax</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">10</span>
-<span class="na">WithLoss</span><span class="o">=</span><span class="s">1</span>
+<span class="c1">; Final layer: softmax</span><span class="w"></span>
+<span class="k">[softmax]</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">fc2</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Softmax</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">10</span><span class="w"></span>
+<span class="na">WithLoss</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
 
-<span class="k">[softmax.Target]</span>
-<span class="na">TargetValue</span><span class="o">=</span><span class="s">1.0</span>
-<span class="na">DefaultValue</span><span class="o">=</span><span class="s">0.0</span>
+<span class="k">[softmax.Target]</span><span class="w"></span>
+<span class="na">TargetValue</span><span class="o">=</span><span class="s">1.0</span><span class="w"></span>
+<span class="na">DefaultValue</span><span class="o">=</span><span class="s">0.0</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The resulting DNN is shown in figure [fig:DNNExample].</p>

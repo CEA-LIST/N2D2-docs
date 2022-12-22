@@ -246,15 +246,15 @@ study the consequences of differents attacks and implement your own attacks.</p>
 the Ini file of your network a new section called <code class="docutils literal notranslate"><span class="pre">[sp.Adversarial]</span></code>.
 In this section, you can specify the type of attack you wish to run as well as
 some parameters to design your attack.</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; Environment</span>
-<span class="k">[sp]</span>
-<span class="na">SizeX</span><span class="o">=</span><span class="s">32</span>
-<span class="na">SizeY</span><span class="o">=</span><span class="s">32</span>
-<span class="na">BatchSize</span><span class="o">=</span><span class="s">128</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; Environment</span><span class="w"></span>
+<span class="k">[sp]</span><span class="w"></span>
+<span class="na">SizeX</span><span class="o">=</span><span class="s">32</span><span class="w"></span>
+<span class="na">SizeY</span><span class="o">=</span><span class="s">32</span><span class="w"></span>
+<span class="na">BatchSize</span><span class="o">=</span><span class="s">128</span><span class="w"></span>
 
-<span class="k">[sp.Adversarial]</span>
-<span class="na">Attack</span><span class="o">=</span><span class="s">PGD</span>
-<span class="na">Eps</span><span class="o">=</span><span class="s">0.2</span>
+<span class="k">[sp.Adversarial]</span><span class="w"></span>
+<span class="na">Attack</span><span class="o">=</span><span class="s">PGD</span><span class="w"></span>
+<span class="na">Eps</span><span class="o">=</span><span class="s">0.2</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The parameters you can modify are indicated in the following table:</p>
@@ -355,38 +355,38 @@ Time elapsed: 4.62 s
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">include/Adversarial.hpp</span></code></p>
 <blockquote>
-<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span> <span class="nc">Attack_T</span> <span class="p">{</span>
-    <span class="n">None</span><span class="p">,</span>
-    <span class="n">Vanilla</span><span class="p">,</span>
-    <span class="n">GN</span><span class="p">,</span>
-    <span class="n">FGSM</span><span class="p">,</span>
-    <span class="n">PGD</span><span class="p">,</span>
-    <span class="n">My_attack</span>     <span class="o">&lt;---------------</span>
-<span class="p">};</span>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span><span class="w"> </span><span class="nc">Attack_T</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">None</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">Vanilla</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">GN</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGSM</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">PGD</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">My_attack</span><span class="w">     </span><span class="o">&lt;---------------</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
 
-<span class="p">...</span>
+<span class="p">...</span><span class="w"></span>
 
-<span class="k">namespace</span> <span class="p">{</span>
-<span class="k">template</span> <span class="o">&lt;&gt;</span>
-<span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="k">const</span> <span class="n">EnumStrings</span><span class="o">&lt;</span><span class="n">N2D2</span><span class="o">::</span><span class="n">Adversarial</span><span class="o">::</span><span class="n">Attack_T</span><span class="o">&gt;::</span><span class="n">data</span><span class="p">[]</span>
-    <span class="o">=</span> <span class="p">{</span><span class="s">&quot;None&quot;</span><span class="p">,</span> <span class="s">&quot;Vanilla&quot;</span><span class="p">,</span> <span class="s">&quot;GN&quot;</span><span class="p">,</span> <span class="s">&quot;FGSM&quot;</span><span class="p">,</span> <span class="s">&quot;PGD&quot;</span><span class="p">,</span> <span class="s">&quot;My_attack&quot;</span><span class="p">};</span>
-<span class="p">}</span>
+<span class="k">namespace</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">template</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">EnumStrings</span><span class="o">&lt;</span><span class="n">N2D2</span><span class="o">::</span><span class="n">Adversarial</span><span class="o">::</span><span class="n">Attack_T</span><span class="o">&gt;::</span><span class="n">data</span><span class="p">[]</span><span class="w"></span>
+<span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;None&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Vanilla&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;GN&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FGSM&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PGD&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;My_attack&quot;</span><span class="p">};</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="p">...</span>
+<span class="p">...</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="n">FFGSM_attack</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">DeepNet</span><span class="o">&gt;&amp;</span> <span class="n">deepNet</span><span class="p">,</span>
-          <span class="k">const</span> <span class="kt">float</span> <span class="n">eps</span><span class="p">,</span>
-          <span class="k">const</span> <span class="kt">float</span> <span class="n">alpha</span><span class="p">,</span>
-          <span class="k">const</span> <span class="kt">bool</span> <span class="n">targeted</span> <span class="o">=</span> <span class="nb">false</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">FFGSM_attack</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">DeepNet</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">deepNet</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">eps</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">alpha</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">targeted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">PGD_attack</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">DeepNet</span><span class="o">&gt;&amp;</span> <span class="n">deepNet</span><span class="p">,</span>
-                <span class="k">const</span> <span class="kt">float</span> <span class="n">eps</span><span class="p">,</span>
-                <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">nbIter</span><span class="p">,</span>
-                <span class="k">const</span> <span class="kt">float</span> <span class="n">alpha</span><span class="p">,</span>
-                <span class="k">const</span> <span class="kt">bool</span> <span class="n">targeted</span> <span class="o">=</span> <span class="nb">false</span><span class="p">,</span>
-                <span class="k">const</span> <span class="kt">bool</span> <span class="n">random_start</span> <span class="o">=</span> <span class="nb">false</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">PGD_attack</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">DeepNet</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">deepNet</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">eps</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nbIter</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">alpha</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">targeted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">random_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">My_attack</span><span class="p">();</span>                            <span class="o">&lt;---------------</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">My_attack</span><span class="p">();</span><span class="w">                            </span><span class="o">&lt;---------------</span><span class="w"></span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -394,23 +394,23 @@ Time elapsed: 4.62 s
 <li><p><code class="docutils literal notranslate"><span class="pre">src/Adversarial.cpp</span></code></p>
 <blockquote>
 <div><p>in the <code class="docutils literal notranslate"><span class="pre">attackLauncher</span></code> function, indicate your attack in the switch.</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">case</span> <span class="nl">Vanilla</span><span class="p">:</span>
-    <span class="n">Vanilla_attack</span><span class="p">();</span>
-    <span class="k">break</span><span class="p">;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">case</span><span class="w"> </span><span class="no">Vanilla</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">Vanilla_attack</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
 
-<span class="k">case</span> <span class="nl">FGSM</span><span class="p">:</span>
-    <span class="n">FGSM_attack</span><span class="p">(</span><span class="n">deepNet</span><span class="p">,</span> <span class="n">mEps</span><span class="p">,</span> <span class="n">mTargeted</span><span class="p">);</span>
-    <span class="k">break</span><span class="p">;</span>
+<span class="k">case</span><span class="w"> </span><span class="no">FGSM</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">FGSM_attack</span><span class="p">(</span><span class="n">deepNet</span><span class="p">,</span><span class="w"> </span><span class="n">mEps</span><span class="p">,</span><span class="w"> </span><span class="n">mTargeted</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
 
-<span class="k">case</span> <span class="nl">My_attack</span><span class="p">:</span>
-    <span class="n">My_attack</span><span class="p">();</span>                            <span class="o">&lt;---------------</span>
-    <span class="k">break</span><span class="p">;</span>
+<span class="k">case</span><span class="w"> </span><span class="no">My_attack</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">My_attack</span><span class="p">();</span><span class="w">                            </span><span class="o">&lt;---------------</span><span class="w"></span>
+<span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">N2D2</span><span class="o">::</span><span class="n">My_attack</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="cm">/* My implementation */</span>
-<span class="p">}</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">N2D2::My_attack</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="cm">/* My implementation */</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -420,12 +420,12 @@ Time elapsed: 4.62 s
 <div><p>If you need to add new parameters, add them in the class Adversarial and don’t
 forget to save them during the generation of the Adversarial layer. You can
 implement some setter methods in the <code class="docutils literal notranslate"><span class="pre">AdversarialGenerator</span></code> file.</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">adv</span><span class="o">-&gt;</span><span class="n">setEps</span><span class="p">(</span><span class="n">iniConfig</span><span class="p">.</span><span class="n">getProperty</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Eps&quot;</span><span class="p">,</span> <span class="n">adv</span><span class="o">-&gt;</span><span class="n">getEps</span><span class="p">()));</span>
-<span class="n">adv</span><span class="o">-&gt;</span><span class="n">setNbIterations</span><span class="p">(</span><span class="n">iniConfig</span><span class="p">.</span><span class="n">getProperty</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;NbIterations&quot;</span><span class="p">,</span> <span class="n">adv</span><span class="o">-&gt;</span><span class="n">getNbIterations</span><span class="p">()));</span>
-<span class="n">adv</span><span class="o">-&gt;</span><span class="n">setRandomStart</span><span class="p">(</span><span class="n">iniConfig</span><span class="p">.</span><span class="n">getProperty</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;RandomStart&quot;</span><span class="p">,</span> <span class="n">adv</span><span class="o">-&gt;</span><span class="n">getRandomStart</span><span class="p">()));</span>
-<span class="n">adv</span><span class="o">-&gt;</span><span class="n">setTargeted</span><span class="p">(</span><span class="n">iniConfig</span><span class="p">.</span><span class="n">getProperty</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Targeted&quot;</span><span class="p">,</span> <span class="n">adv</span><span class="o">-&gt;</span><span class="n">getTargeted</span><span class="p">()));</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">adv</span><span class="o">-&gt;</span><span class="n">setEps</span><span class="p">(</span><span class="n">iniConfig</span><span class="p">.</span><span class="n">getProperty</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Eps&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">adv</span><span class="o">-&gt;</span><span class="n">getEps</span><span class="p">()));</span><span class="w"></span>
+<span class="n">adv</span><span class="o">-&gt;</span><span class="n">setNbIterations</span><span class="p">(</span><span class="n">iniConfig</span><span class="p">.</span><span class="n">getProperty</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;NbIterations&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">adv</span><span class="o">-&gt;</span><span class="n">getNbIterations</span><span class="p">()));</span><span class="w"></span>
+<span class="n">adv</span><span class="o">-&gt;</span><span class="n">setRandomStart</span><span class="p">(</span><span class="n">iniConfig</span><span class="p">.</span><span class="n">getProperty</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;RandomStart&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">adv</span><span class="o">-&gt;</span><span class="n">getRandomStart</span><span class="p">()));</span><span class="w"></span>
+<span class="n">adv</span><span class="o">-&gt;</span><span class="n">setTargeted</span><span class="p">(</span><span class="n">iniConfig</span><span class="p">.</span><span class="n">getProperty</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Targeted&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">adv</span><span class="o">-&gt;</span><span class="n">getTargeted</span><span class="p">()));</span><span class="w"></span>
 
-<span class="k">return</span> <span class="n">adv</span><span class="p">;</span>
+<span class="k">return</span><span class="w"> </span><span class="n">adv</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 </div></blockquote>

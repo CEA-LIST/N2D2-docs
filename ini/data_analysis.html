@@ -212,10 +212,10 @@
 <h1>Stimuli data analysis<a class="headerlink" href="#stimuli-data-analysis" title="Permalink to this heading">¶</a></h1>
 <p>You can enable stimuli data reporting with the following section (the
 name of the section must start with <code class="docutils literal notranslate"><span class="pre">env.StimuliData</span></code>):</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[env.StimuliData-raw]</span>
-<span class="na">ApplyTo</span><span class="o">=</span><span class="s">LearnOnly</span>
-<span class="na">LogSizeRange</span><span class="o">=</span><span class="s">1</span>
-<span class="na">LogValueRange</span><span class="o">=</span><span class="s">1</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[env.StimuliData-raw]</span><span class="w"></span>
+<span class="na">ApplyTo</span><span class="o">=</span><span class="s">LearnOnly</span><span class="w"></span>
+<span class="na">LogSizeRange</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
+<span class="na">LogValueRange</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The stimuli data reported for the full MNIST learning set will look
@@ -235,13 +235,13 @@ like:</p>
 <p>It it possible to normalize the whole database to have zero mean and
 unity standard deviation on the learning set using a
 <code class="docutils literal notranslate"><span class="pre">RangeAffineTransformation</span></code> transformation:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; Stimuli normalization based on learning set global mean and std.dev.</span>
-<span class="k">[env.Transformation-normalize]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">RangeAffineTransformation</span>
-<span class="na">FirstOperator</span><span class="o">=</span><span class="s">Minus</span>
-<span class="na">FirstValue</span><span class="o">=</span><span class="s">[env.StimuliData-raw]_GlobalValue.mean</span>
-<span class="na">SecondOperator</span><span class="o">=</span><span class="s">Divides</span>
-<span class="na">SecondValue</span><span class="o">=</span><span class="s">[env.StimuliData-raw]_GlobalValue.stdDev</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; Stimuli normalization based on learning set global mean and std.dev.</span><span class="w"></span>
+<span class="k">[env.Transformation-normalize]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">RangeAffineTransformation</span><span class="w"></span>
+<span class="na">FirstOperator</span><span class="o">=</span><span class="s">Minus</span><span class="w"></span>
+<span class="na">FirstValue</span><span class="o">=</span><span class="s">[env.StimuliData-raw]_GlobalValue.mean</span><span class="w"></span>
+<span class="na">SecondOperator</span><span class="o">=</span><span class="s">Divides</span><span class="w"></span>
+<span class="na">SecondValue</span><span class="o">=</span><span class="s">[env.StimuliData-raw]_GlobalValue.stdDev</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The variables <code class="docutils literal notranslate"><span class="pre">_GlobalValue.mean</span></code> and <code class="docutils literal notranslate"><span class="pre">_GlobalValue.stdDev</span></code> are
@@ -274,14 +274,14 @@ folder, as shown in figure [fig:frame0Mean1StdDev].</p>
 <p>Using the <code class="docutils literal notranslate"><span class="pre">StimuliData</span></code> object followed with an
 <code class="docutils literal notranslate"><span class="pre">AffineTransformation</span></code>, it is also possible to use the mean image of
 the dataset to normalize the data:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[env.StimuliData-meanData]</span>
-<span class="na">ApplyTo</span><span class="o">=</span><span class="s">LearnOnly</span>
-<span class="na">MeanData</span><span class="o">=</span><span class="s">1 ; Provides the _MeanData parameter used in the transformation</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[env.StimuliData-meanData]</span><span class="w"></span>
+<span class="na">ApplyTo</span><span class="o">=</span><span class="s">LearnOnly</span><span class="w"></span>
+<span class="na">MeanData</span><span class="o">=</span><span class="s">1 ; Provides the _MeanData parameter used in the transformation</span><span class="w"></span>
 
-<span class="k">[env.Transformation]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">AffineTransformation</span>
-<span class="na">FirstOperator</span><span class="o">=</span><span class="s">Minus</span>
-<span class="na">FirstValue</span><span class="o">=</span><span class="s">[env.StimuliData-meanData]_MeanData</span>
+<span class="k">[env.Transformation]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">AffineTransformation</span><span class="w"></span>
+<span class="na">FirstOperator</span><span class="o">=</span><span class="s">Minus</span><span class="w"></span>
+<span class="na">FirstValue</span><span class="o">=</span><span class="s">[env.StimuliData-meanData]_MeanData</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The resulting global mean image can be visualized in

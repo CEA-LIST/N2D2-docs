@@ -261,10 +261,10 @@ the possibility to add a quantizer module, no need to import a new package or to
 just need to specify <code class="docutils literal notranslate"><span class="pre">QWeight</span></code> type and <code class="docutils literal notranslate"><span class="pre">QWeight.Range</span></code> for step level discretization.</p>
 </dd>
 </dl>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">...</span>
-<span class="na">QWeight</span><span class="o">=</span><span class="s">SAT ; Quantization Method can be ``LSQ`` or ``SAT``</span>
-<span class="na">QWeight.Range</span><span class="o">=</span><span class="s">15 ; Range is set to ``15`` step level, can be represented as a 4-bits word</span>
-<span class="na">...</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">...</span><span class="w"></span>
+<span class="na">QWeight</span><span class="o">=</span><span class="s">SAT ; Quantization Method can be ``LSQ`` or ``SAT``</span><span class="w"></span>
+<span class="na">QWeight.Range</span><span class="o">=</span><span class="s">15 ; Range is set to ``15`` step level, can be represented as a 4-bits word</span><span class="w"></span>
+<span class="na">...</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Example of fake-quantized weights on 4-bits / 15 levels:</p>
@@ -277,11 +277,11 @@ just need to specify <code class="docutils literal notranslate"><span class="pre
 In a similar manner, as for <code class="docutils literal notranslate"><span class="pre">QWeight</span></code> quantizer we specify the activation quantizer <code class="docutils literal notranslate"><span class="pre">QAct</span></code> for all layers that have a non-linear activation function. Where the method itself, here <code class="docutils literal notranslate"><span class="pre">QAct=SAT</span></code> ensures the non-linearity of the activation function.</p>
 </dd>
 </dl>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">...</span>
-<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear</span>
-<span class="na">QAct</span><span class="o">=</span><span class="s">SAT ; Quantization Method can be ``LSQ`` or ``SAT``</span>
-<span class="na">QAct.Range</span><span class="o">=</span><span class="s">7 ; Range is set to ``7`` step level, can be represented as a 3-bits word</span>
-<span class="na">...</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">...</span><span class="w"></span>
+<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear</span><span class="w"></span>
+<span class="na">QAct</span><span class="o">=</span><span class="s">SAT ; Quantization Method can be ``LSQ`` or ``SAT``</span><span class="w"></span>
+<span class="na">QAct.Range</span><span class="o">=</span><span class="s">7 ; Range is set to ``7`` step level, can be represented as a 3-bits word</span><span class="w"></span>
+<span class="na">...</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Example of an activation feature map quantized in 4-bits / 15 levels:</p>
@@ -297,9 +297,9 @@ In addition, hardware implementation like HLS or RTL description natively suppor
 In this mode, we replace the default quantization mode of the weights as follows :</p>
 </dd>
 </dl>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">...</span>
-<span class="na">QWeight.Mode</span><span class="o">=</span><span class="s">Integer ; Can be ``Default`` (fake-quantization) mode or ``Integer``(true integer) mode</span>
-<span class="na">...</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">...</span><span class="w"></span>
+<span class="na">QWeight.Mode</span><span class="o">=</span><span class="s">Integer ; Can be ``Default`` (fake-quantization) mode or ``Integer``(true integer) mode</span><span class="w"></span>
+<span class="na">...</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Example of full integer weights on 4-bits / 15 levels:</p>
@@ -651,65 +651,65 @@ like NETRON (<a class="reference external" href="https://lutzroeder.github.io/ne
 <p>In this example we focus to demonstrate how to apply <code class="docutils literal notranslate"><span class="pre">SAT</span></code> quantization procedure in the <code class="docutils literal notranslate"><span class="pre">resnet-18-v1</span></code> ONNX model. The first step of the procedure consists
 to learn <code class="docutils literal notranslate"><span class="pre">resnet-18-v1</span></code> on <code class="docutils literal notranslate"><span class="pre">ImageNet</span></code> database with clamped weights.</p>
 <p>First of all we instantiate driver dataset and pre-processing / data augmentation function:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">DefaultModel</span><span class="o">=</span><span class="s">Frame_CUDA</span>
-<span class="c1">;ImageNet dataset</span>
-<span class="k">[database]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">ILSVRC2012_Database</span>
-<span class="na">RandomPartitioning</span><span class="o">=</span><span class="s">1</span>
-<span class="na">Learn</span><span class="o">=</span><span class="s">1.0</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">DefaultModel</span><span class="o">=</span><span class="s">Frame_CUDA</span><span class="w"></span>
+<span class="c1">;ImageNet dataset</span><span class="w"></span>
+<span class="k">[database]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">ILSVRC2012_Database</span><span class="w"></span>
+<span class="na">RandomPartitioning</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
+<span class="na">Learn</span><span class="o">=</span><span class="s">1.0</span><span class="w"></span>
 
-<span class="c1">;Standard image resolution for ImageNet, batchsize=128</span>
-<span class="k">[sp]</span>
-<span class="na">SizeX</span><span class="o">=</span><span class="s">224</span>
-<span class="na">SizeY</span><span class="o">=</span><span class="s">224</span>
-<span class="na">NbChannels</span><span class="o">=</span><span class="s">3</span>
-<span class="na">BatchSize</span><span class="o">=</span><span class="s">128</span>
+<span class="c1">;Standard image resolution for ImageNet, batchsize=128</span><span class="w"></span>
+<span class="k">[sp]</span><span class="w"></span>
+<span class="na">SizeX</span><span class="o">=</span><span class="s">224</span><span class="w"></span>
+<span class="na">SizeY</span><span class="o">=</span><span class="s">224</span><span class="w"></span>
+<span class="na">NbChannels</span><span class="o">=</span><span class="s">3</span><span class="w"></span>
+<span class="na">BatchSize</span><span class="o">=</span><span class="s">128</span><span class="w"></span>
 
-<span class="k">[sp.Transformation-1]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">ColorSpaceTransformation</span>
-<span class="na">ColorSpace</span><span class="o">=</span><span class="s">RGB</span>
+<span class="k">[sp.Transformation-1]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">ColorSpaceTransformation</span><span class="w"></span>
+<span class="na">ColorSpace</span><span class="o">=</span><span class="s">RGB</span><span class="w"></span>
 
-<span class="k">[sp.Transformation-2]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">RangeAffineTransformation</span>
-<span class="na">FirstOperator</span><span class="o">=</span><span class="s">Divides</span>
-<span class="na">FirstValue</span><span class="o">=</span><span class="s">255.0</span>
+<span class="k">[sp.Transformation-2]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">RangeAffineTransformation</span><span class="w"></span>
+<span class="na">FirstOperator</span><span class="o">=</span><span class="s">Divides</span><span class="w"></span>
+<span class="na">FirstValue</span><span class="o">=</span><span class="s">255.0</span><span class="w"></span>
 
-<span class="k">[sp.Transformation-3]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">RandomResizeCropTransformation</span>
-<span class="na">Width</span><span class="o">=</span><span class="s">224</span>
-<span class="na">Height</span><span class="o">=</span><span class="s">224</span>
-<span class="na">ScaleMin</span><span class="o">=</span><span class="s">0.2</span>
-<span class="na">ScaleMax</span><span class="o">=</span><span class="s">1.0</span>
-<span class="na">RatioMin</span><span class="o">=</span><span class="s">0.75</span>
-<span class="na">RatioMax</span><span class="o">=</span><span class="s">1.33</span>
-<span class="na">ApplyTo</span><span class="o">=</span><span class="s">LearnOnly</span>
+<span class="k">[sp.Transformation-3]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">RandomResizeCropTransformation</span><span class="w"></span>
+<span class="na">Width</span><span class="o">=</span><span class="s">224</span><span class="w"></span>
+<span class="na">Height</span><span class="o">=</span><span class="s">224</span><span class="w"></span>
+<span class="na">ScaleMin</span><span class="o">=</span><span class="s">0.2</span><span class="w"></span>
+<span class="na">ScaleMax</span><span class="o">=</span><span class="s">1.0</span><span class="w"></span>
+<span class="na">RatioMin</span><span class="o">=</span><span class="s">0.75</span><span class="w"></span>
+<span class="na">RatioMax</span><span class="o">=</span><span class="s">1.33</span><span class="w"></span>
+<span class="na">ApplyTo</span><span class="o">=</span><span class="s">LearnOnly</span><span class="w"></span>
 
-<span class="k">[sp.Transformation-4]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">RescaleTransformation</span>
-<span class="na">Width</span><span class="o">=</span><span class="s">256</span>
-<span class="na">Height</span><span class="o">=</span><span class="s">256</span>
-<span class="na">KeepAspectRatio</span><span class="o">=</span><span class="s">1</span>
-<span class="na">ResizeToFit</span><span class="o">=</span><span class="s">0</span>
-<span class="na">ApplyTo</span><span class="o">=</span><span class="s">NoLearn</span>
+<span class="k">[sp.Transformation-4]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">RescaleTransformation</span><span class="w"></span>
+<span class="na">Width</span><span class="o">=</span><span class="s">256</span><span class="w"></span>
+<span class="na">Height</span><span class="o">=</span><span class="s">256</span><span class="w"></span>
+<span class="na">KeepAspectRatio</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
+<span class="na">ResizeToFit</span><span class="o">=</span><span class="s">0</span><span class="w"></span>
+<span class="na">ApplyTo</span><span class="o">=</span><span class="s">NoLearn</span><span class="w"></span>
 
-<span class="k">[sp.Transformation-5]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">PadCropTransformation</span>
-<span class="na">Width</span><span class="o">=</span><span class="s">[sp.Transformation-4]Width</span>
-<span class="na">Height</span><span class="o">=</span><span class="s">[sp.Transformation-4]Height</span>
-<span class="na">ApplyTo</span><span class="o">=</span><span class="s">NoLearn</span>
+<span class="k">[sp.Transformation-5]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">PadCropTransformation</span><span class="w"></span>
+<span class="na">Width</span><span class="o">=</span><span class="s">[sp.Transformation-4]Width</span><span class="w"></span>
+<span class="na">Height</span><span class="o">=</span><span class="s">[sp.Transformation-4]Height</span><span class="w"></span>
+<span class="na">ApplyTo</span><span class="o">=</span><span class="s">NoLearn</span><span class="w"></span>
 
-<span class="k">[sp.Transformation-6]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">SliceExtractionTransformation</span>
-<span class="na">Width</span><span class="o">=</span><span class="s">[sp]SizeX</span>
-<span class="na">Height</span><span class="o">=</span><span class="s">[sp]SizeY</span>
-<span class="na">OffsetX</span><span class="o">=</span><span class="s">16</span>
-<span class="na">OffsetY</span><span class="o">=</span><span class="s">16</span>
-<span class="na">ApplyTo</span><span class="o">=</span><span class="s">NoLearn</span>
+<span class="k">[sp.Transformation-6]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">SliceExtractionTransformation</span><span class="w"></span>
+<span class="na">Width</span><span class="o">=</span><span class="s">[sp]SizeX</span><span class="w"></span>
+<span class="na">Height</span><span class="o">=</span><span class="s">[sp]SizeY</span><span class="w"></span>
+<span class="na">OffsetX</span><span class="o">=</span><span class="s">16</span><span class="w"></span>
+<span class="na">OffsetY</span><span class="o">=</span><span class="s">16</span><span class="w"></span>
+<span class="na">ApplyTo</span><span class="o">=</span><span class="s">NoLearn</span><span class="w"></span>
 
-<span class="k">[sp.OnTheFlyTransformation-7]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">FlipTransformation</span>
-<span class="na">ApplyTo</span><span class="o">=</span><span class="s">LearnOnly</span>
-<span class="na">RandomHorizontalFlip</span><span class="o">=</span><span class="s">1</span>
+<span class="k">[sp.OnTheFlyTransformation-7]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">FlipTransformation</span><span class="w"></span>
+<span class="na">ApplyTo</span><span class="o">=</span><span class="s">LearnOnly</span><span class="w"></span>
+<span class="na">RandomHorizontalFlip</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Now that dataset driver and pre-processing are well defined we can now focus on the neural network configuration.
@@ -717,76 +717,76 @@ In our example we decide to quantize all convolutions and fully-connected layers
 A base block common to all convolution layers can be defined in the <em>.ini</em> file. This specific base-block uses <code class="docutils literal notranslate"><span class="pre">onnx:Conv_def</span></code> that will
 overwrite the native definition of all convolution layers defined in the ONNX file.
 This base block is used to set quantization parameters, like weights bits range, the scaling mode and the quantization mode, and also solver configuration.</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[onnx:Conv_def]</span>
-<span class="na">QWeight</span><span class="o">=</span><span class="s">SAT</span>
-<span class="na">QWeight.ApplyScaling</span><span class="o">=</span><span class="s">0  ; No scaling needed because each conv is followed by batch-normalization layers</span>
-<span class="na">QWeight.ApplyQuantization</span><span class="o">=</span><span class="s">0 ; Only clamp mode for the 1st step</span>
-<span class="na">WeightsFiller</span><span class="o">=</span><span class="s">XavierFiller ; Specific filler for SAT method</span>
-<span class="na">WeightsFiller.VarianceNorm</span><span class="o">=</span><span class="s">FanOut ; Specific filler for SAT method</span>
-<span class="na">WeightsFiller.Scaling</span><span class="o">=</span><span class="s">1.0 ; Specific filler for SAT method</span>
-<span class="na">ConfigSection</span><span class="o">=</span><span class="s">conv.config ; Config for conv parameters</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[onnx:Conv_def]</span><span class="w"></span>
+<span class="na">QWeight</span><span class="o">=</span><span class="s">SAT</span><span class="w"></span>
+<span class="na">QWeight.ApplyScaling</span><span class="o">=</span><span class="s">0  ; No scaling needed because each conv is followed by batch-normalization layers</span><span class="w"></span>
+<span class="na">QWeight.ApplyQuantization</span><span class="o">=</span><span class="s">0 ; Only clamp mode for the 1st step</span><span class="w"></span>
+<span class="na">WeightsFiller</span><span class="o">=</span><span class="s">XavierFiller ; Specific filler for SAT method</span><span class="w"></span>
+<span class="na">WeightsFiller.VarianceNorm</span><span class="o">=</span><span class="s">FanOut ; Specific filler for SAT method</span><span class="w"></span>
+<span class="na">WeightsFiller.Scaling</span><span class="o">=</span><span class="s">1.0 ; Specific filler for SAT method</span><span class="w"></span>
+<span class="na">ConfigSection</span><span class="o">=</span><span class="s">conv.config ; Config for conv parameters</span><span class="w"></span>
 
-<span class="k">[conv.config]</span>
-<span class="na">NoBias</span><span class="o">=</span><span class="s">1 ; No bias needed because each conv is followed by batch-normalization layers</span>
-<span class="na">Solvers.LearningRatePolicy</span><span class="o">=</span><span class="s">CosineDecay ; Can be different Policy following your problem, recommended with SAT method</span>
-<span class="na">Solvers.LearningRate</span><span class="o">=</span><span class="s">0.05 ; Typical value for batchsize=256 with SAT method</span>
-<span class="na">Solvers.Momentum</span><span class="o">=</span><span class="s">0.9 ; Typical value for batchsize=256 with SAT method</span>
-<span class="na">Solvers.Decay</span><span class="o">=</span><span class="s">0.00004 ; Typical value for batchsize=256 with SAT method</span>
-<span class="na">Solvers.MaxIterations</span><span class="o">=</span><span class="s">192175050; For 150-epoch on ImageNet 1 epoch = 1281167 samples, 150 epoch = 1281167*150 samples</span>
-<span class="na">Solvers.IterationSize</span><span class="o">=</span><span class="s">2 ;Our physical batch size is set to 128, iteration size is set to 2 because we want a batchsize of 256</span>
+<span class="k">[conv.config]</span><span class="w"></span>
+<span class="na">NoBias</span><span class="o">=</span><span class="s">1 ; No bias needed because each conv is followed by batch-normalization layers</span><span class="w"></span>
+<span class="na">Solvers.LearningRatePolicy</span><span class="o">=</span><span class="s">CosineDecay ; Can be different Policy following your problem, recommended with SAT method</span><span class="w"></span>
+<span class="na">Solvers.LearningRate</span><span class="o">=</span><span class="s">0.05 ; Typical value for batchsize=256 with SAT method</span><span class="w"></span>
+<span class="na">Solvers.Momentum</span><span class="o">=</span><span class="s">0.9 ; Typical value for batchsize=256 with SAT method</span><span class="w"></span>
+<span class="na">Solvers.Decay</span><span class="o">=</span><span class="s">0.00004 ; Typical value for batchsize=256 with SAT method</span><span class="w"></span>
+<span class="na">Solvers.MaxIterations</span><span class="o">=</span><span class="s">192175050; For 150-epoch on ImageNet 1 epoch = 1281167 samples, 150 epoch = 1281167*150 samples</span><span class="w"></span>
+<span class="na">Solvers.IterationSize</span><span class="o">=</span><span class="s">2 ;Our physical batch size is set to 128, iteration size is set to 2 because we want a batchsize of 256</span><span class="w"></span>
 </pre></div>
 </div>
 <p>A base block common to all Fully-Connected layers can be defined in the <em>.ini</em> file. This specific base-block uses <code class="docutils literal notranslate"><span class="pre">onnx:Fc_def</span></code> that will
 overwrite the native definition of all fully-connected layers defined in the ONNX file.
 This base block is used to set quantization parameters, like weights bits range, the scaling mode and the quantization mode, and also solver configuration.</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[onnx:Fc_def]</span>
-<span class="na">QWeight</span><span class="o">=</span><span class="s">SAT</span>
-<span class="na">QWeight.ApplyScaling</span><span class="o">=</span><span class="s">1  ; Scaling needed for Full-Connected</span>
-<span class="na">QWeight.ApplyQuantization</span><span class="o">=</span><span class="s">0 ; Only clamp mode for the 1st step</span>
-<span class="na">WeightsFiller</span><span class="o">=</span><span class="s">XavierFiller ; Specific filler for SAT method</span>
-<span class="na">WeightsFiller.VarianceNorm</span><span class="o">=</span><span class="s">FanOut ; Specific filler for SAT method</span>
-<span class="na">WeightsFiller.Scaling</span><span class="o">=</span><span class="s">1.0 ; Specific filler for SAT method</span>
-<span class="na">ConfigSection</span><span class="o">=</span><span class="s">fc.config ; Config for conv parameters</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[onnx:Fc_def]</span><span class="w"></span>
+<span class="na">QWeight</span><span class="o">=</span><span class="s">SAT</span><span class="w"></span>
+<span class="na">QWeight.ApplyScaling</span><span class="o">=</span><span class="s">1  ; Scaling needed for Full-Connected</span><span class="w"></span>
+<span class="na">QWeight.ApplyQuantization</span><span class="o">=</span><span class="s">0 ; Only clamp mode for the 1st step</span><span class="w"></span>
+<span class="na">WeightsFiller</span><span class="o">=</span><span class="s">XavierFiller ; Specific filler for SAT method</span><span class="w"></span>
+<span class="na">WeightsFiller.VarianceNorm</span><span class="o">=</span><span class="s">FanOut ; Specific filler for SAT method</span><span class="w"></span>
+<span class="na">WeightsFiller.Scaling</span><span class="o">=</span><span class="s">1.0 ; Specific filler for SAT method</span><span class="w"></span>
+<span class="na">ConfigSection</span><span class="o">=</span><span class="s">fc.config ; Config for conv parameters</span><span class="w"></span>
 
-<span class="k">[fc.config]</span>
-<span class="na">NoBias</span><span class="o">=</span><span class="s">0 ; Bias needed for fully-connected</span>
-<span class="na">Solvers.LearningRatePolicy</span><span class="o">=</span><span class="s">CosineDecay ; Can be different Policy following your problem, recommended with SAT method</span>
-<span class="na">Solvers.LearningRate</span><span class="o">=</span><span class="s">0.05 ; Typical value for batchsize=256 with SAT method</span>
-<span class="na">Solvers.Momentum</span><span class="o">=</span><span class="s">0.9 ; Typical value for batchsize=256 with SAT method</span>
-<span class="na">Solvers.Decay</span><span class="o">=</span><span class="s">0.00004 ; Typical value for batchsize=256 with SAT method</span>
-<span class="na">Solvers.MaxIterations</span><span class="o">=</span><span class="s">192175050; For 150-epoch on ImageNet 1 epoch = 1281167 samples, 150 epoch = 1281167*150 samples</span>
-<span class="na">Solvers.IterationSize</span><span class="o">=</span><span class="s">2 ;Our physical batch size is set to 128, iteration size is set to 2 because we want a batch size of 256</span>
+<span class="k">[fc.config]</span><span class="w"></span>
+<span class="na">NoBias</span><span class="o">=</span><span class="s">0 ; Bias needed for fully-connected</span><span class="w"></span>
+<span class="na">Solvers.LearningRatePolicy</span><span class="o">=</span><span class="s">CosineDecay ; Can be different Policy following your problem, recommended with SAT method</span><span class="w"></span>
+<span class="na">Solvers.LearningRate</span><span class="o">=</span><span class="s">0.05 ; Typical value for batchsize=256 with SAT method</span><span class="w"></span>
+<span class="na">Solvers.Momentum</span><span class="o">=</span><span class="s">0.9 ; Typical value for batchsize=256 with SAT method</span><span class="w"></span>
+<span class="na">Solvers.Decay</span><span class="o">=</span><span class="s">0.00004 ; Typical value for batchsize=256 with SAT method</span><span class="w"></span>
+<span class="na">Solvers.MaxIterations</span><span class="o">=</span><span class="s">192175050; For 150-epoch on ImageNet 1 epoch = 1281167 samples, 150 epoch = 1281167*150 samples</span><span class="w"></span>
+<span class="na">Solvers.IterationSize</span><span class="o">=</span><span class="s">2 ;Our physical batch size is set to 128, iteration size is set to 2 because we want a batch size of 256</span><span class="w"></span>
 </pre></div>
 </div>
 <p>A base block common to all Batch-Normalization layers can be defined in the <em>.ini</em> file. This specific base-block uses <code class="docutils literal notranslate"><span class="pre">onnx:Batchnorm_def</span></code> that will
 overwrites the native definition of all the batch-normalization defined in the ONNX file.
 We simply defined here hyper-parameters of batch-normalization layers.</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[onnx:BatchNorm_def]</span>
-<span class="na">ConfigSection</span><span class="o">=</span><span class="s">bn_train.config</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[onnx:BatchNorm_def]</span><span class="w"></span>
+<span class="na">ConfigSection</span><span class="o">=</span><span class="s">bn_train.config</span><span class="w"></span>
 
-<span class="k">[bn_train.config]</span>
-<span class="na">Solvers.LearningRatePolicy</span><span class="o">=</span><span class="s">CosineDecay ; Can be different Policy following your problem, recommended with SAT method</span>
-<span class="na">Solvers.LearningRate</span><span class="o">=</span><span class="s">0.05 ; Typical value for batchsize=256 with SAT method</span>
-<span class="na">Solvers.Momentum</span><span class="o">=</span><span class="s">0.9 ; Typical value for batchsize=256 with SAT method</span>
-<span class="na">Solvers.Decay</span><span class="o">=</span><span class="s">0.00004 ; Typical value for batchsize=256 with SAT method</span>
-<span class="na">Solvers.MaxIterations</span><span class="o">=</span><span class="s">192175050; For 150-epoch on ImageNet 1 epoch = 1281167 samples, 150 epoch = 1281167*150 samples</span>
-<span class="na">Solvers.IterationSize</span><span class="o">=</span><span class="s">2 ;Our physical batchsize is set to 128, iterationsize is set to 2 because we want a batchsize of 256</span>
+<span class="k">[bn_train.config]</span><span class="w"></span>
+<span class="na">Solvers.LearningRatePolicy</span><span class="o">=</span><span class="s">CosineDecay ; Can be different Policy following your problem, recommended with SAT method</span><span class="w"></span>
+<span class="na">Solvers.LearningRate</span><span class="o">=</span><span class="s">0.05 ; Typical value for batchsize=256 with SAT method</span><span class="w"></span>
+<span class="na">Solvers.Momentum</span><span class="o">=</span><span class="s">0.9 ; Typical value for batchsize=256 with SAT method</span><span class="w"></span>
+<span class="na">Solvers.Decay</span><span class="o">=</span><span class="s">0.00004 ; Typical value for batchsize=256 with SAT method</span><span class="w"></span>
+<span class="na">Solvers.MaxIterations</span><span class="o">=</span><span class="s">192175050; For 150-epoch on ImageNet 1 epoch = 1281167 samples, 150 epoch = 1281167*150 samples</span><span class="w"></span>
+<span class="na">Solvers.IterationSize</span><span class="o">=</span><span class="s">2 ;Our physical batchsize is set to 128, iterationsize is set to 2 because we want a batchsize of 256</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Then we described the <code class="docutils literal notranslate"><span class="pre">resnet-18-v1</span></code> topology directly from the ONNX file that you previously installed in your simulation folder :</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[onnx]</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">sp</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">ONNX</span>
-<span class="na">File</span><span class="o">=</span><span class="s">resnet18v1.onnx</span>
-<span class="na">ONNX_init</span><span class="o">=</span><span class="s">0 ; For SAT method we need to initialize from clamped weights or dedicated filler</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[onnx]</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">sp</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">ONNX</span><span class="w"></span>
+<span class="na">File</span><span class="o">=</span><span class="s">resnet18v1.onnx</span><span class="w"></span>
+<span class="na">ONNX_init</span><span class="o">=</span><span class="s">0 ; For SAT method we need to initialize from clamped weights or dedicated filler</span><span class="w"></span>
 
-<span class="k">[soft1]</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">resnetv15_dense0_fwd</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Softmax</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">1000</span>
-<span class="na">WithLoss</span><span class="o">=</span><span class="s">1</span>
+<span class="k">[soft1]</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">resnetv15_dense0_fwd</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Softmax</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">1000</span><span class="w"></span>
+<span class="na">WithLoss</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
 
-<span class="k">[soft1.Target]</span>
+<span class="k">[soft1.Target]</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Now that you set your <code class="docutils literal notranslate"><span class="pre">resnet18-v1.ini</span></code> file in your simulation folder you juste have to run the learning phase to clamp the weights
@@ -803,17 +803,17 @@ in your <em>weights_clamped</em> folder.
 Now that your <code class="docutils literal notranslate"><span class="pre">resnet-18-v1</span></code> model provides clamped weights you can play with it and try different quantization mode.</p>
 <p>In addition, if you want to quantized also the <code class="docutils literal notranslate"><span class="pre">resnet-18-v1</span></code> activations you need to create a specific base-block in your
 <code class="docutils literal notranslate"><span class="pre">resnet-18-v1.ini</span></code> file in that way :</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[ReluQ_def]</span>
-<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear ; No more need Relu because SAT quantizer integrates it&#39;s own non-linear activation</span>
-<span class="na">QAct</span><span class="o">=</span><span class="s">SAT ; SAT quantization method</span>
-<span class="na">QAct.Range</span><span class="o">=</span><span class="s">15 ; Range=15 for 4-bits quantization model</span>
-<span class="na">QActSolver</span><span class="o">=</span><span class="s">SGD ; Specify SGD solver for learned alpha parameter</span>
-<span class="na">QActSolver.LearningRatePolicy</span><span class="o">=</span><span class="s">CosineDecay ; Can be different Policy following your problem, recommended with SAT method</span>
-<span class="na">QActSolver.LearningRate</span><span class="o">=</span><span class="s">0.05 ; Typical value for batchsize=256 with SAT method</span>
-<span class="na">QActSolver.Momentum</span><span class="o">=</span><span class="s">0.9 ; Typical value for batchsize=256 with SAT method</span>
-<span class="na">QActSolver.Decay</span><span class="o">=</span><span class="s">0.00004 ; Typical value for batchsize=256 with SAT method</span>
-<span class="na">QActSolver.MaxIterations</span><span class="o">=</span><span class="s">192175050; For 150-epoch on ImageNet 1 epoch = 1281167 samples, 150 epoch = 1281167*150 samples</span>
-<span class="na">QActSolver.IterationSize</span><span class="o">=</span><span class="s">2 ;Our physical batch size is set to 128, iteration size is set to 2 because we want a batchsize of 256</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[ReluQ_def]</span><span class="w"></span>
+<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear ; No more need Relu because SAT quantizer integrates it&#39;s own non-linear activation</span><span class="w"></span>
+<span class="na">QAct</span><span class="o">=</span><span class="s">SAT ; SAT quantization method</span><span class="w"></span>
+<span class="na">QAct.Range</span><span class="o">=</span><span class="s">15 ; Range=15 for 4-bits quantization model</span><span class="w"></span>
+<span class="na">QActSolver</span><span class="o">=</span><span class="s">SGD ; Specify SGD solver for learned alpha parameter</span><span class="w"></span>
+<span class="na">QActSolver.LearningRatePolicy</span><span class="o">=</span><span class="s">CosineDecay ; Can be different Policy following your problem, recommended with SAT method</span><span class="w"></span>
+<span class="na">QActSolver.LearningRate</span><span class="o">=</span><span class="s">0.05 ; Typical value for batchsize=256 with SAT method</span><span class="w"></span>
+<span class="na">QActSolver.Momentum</span><span class="o">=</span><span class="s">0.9 ; Typical value for batchsize=256 with SAT method</span><span class="w"></span>
+<span class="na">QActSolver.Decay</span><span class="o">=</span><span class="s">0.00004 ; Typical value for batchsize=256 with SAT method</span><span class="w"></span>
+<span class="na">QActSolver.MaxIterations</span><span class="o">=</span><span class="s">192175050; For 150-epoch on ImageNet 1 epoch = 1281167 samples, 150 epoch = 1281167*150 samples</span><span class="w"></span>
+<span class="na">QActSolver.IterationSize</span><span class="o">=</span><span class="s">2 ;Our physical batch size is set to 128, iteration size is set to 2 because we want a batchsize of 256</span><span class="w"></span>
 </pre></div>
 </div>
 <p>This base-block will be used to overwrites all the <code class="docutils literal notranslate"><span class="pre">rectifier</span></code> activation function of the ONNX model.
@@ -822,41 +822,41 @@ To identify the name of the different activation function you can use the netron
 <img alt="Relu Name." src="../_images/qat_netron_r.png" />
 </div>
 <p>We then overrides all the activation function of the model by our previously described activation quantizer:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">[resnetv15_relu0_fwd]ReluQ_def</span>
-<span class="na">[resnetv15_stage1_relu0_fwd]ReluQ_def</span>
-<span class="na">[resnetv15_stage1_activation0]ReluQ_def</span>
-<span class="na">[resnetv15_stage1_relu1_fwd]ReluQ_def</span>
-<span class="na">[resnetv15_stage1_activation1]ReluQ_def</span>
-<span class="na">[resnetv15_stage2_relu0_fwd]ReluQ_def</span>
-<span class="na">[resnetv15_stage2_activation0]ReluQ_def</span>
-<span class="na">[resnetv15_stage2_relu1_fwd]ReluQ_def</span>
-<span class="na">[resnetv15_stage2_activation1]ReluQ_def</span>
-<span class="na">[resnetv15_stage3_relu0_fwd]ReluQ_def</span>
-<span class="na">[resnetv15_stage3_activation0]ReluQ_def</span>
-<span class="na">[resnetv15_stage3_relu1_fwd]ReluQ_def</span>
-<span class="na">[resnetv15_stage3_activation1]ReluQ_def</span>
-<span class="na">[resnetv15_stage4_relu0_fwd]ReluQ_def</span>
-<span class="na">[resnetv15_stage4_activation0]ReluQ_def</span>
-<span class="na">[resnetv15_stage4_relu1_fwd]ReluQ_def</span>
-<span class="na">[resnetv15_stage4_activation1]ReluQ_def</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">[resnetv15_relu0_fwd]ReluQ_def</span><span class="w"></span>
+<span class="na">[resnetv15_stage1_relu0_fwd]ReluQ_def</span><span class="w"></span>
+<span class="na">[resnetv15_stage1_activation0]ReluQ_def</span><span class="w"></span>
+<span class="na">[resnetv15_stage1_relu1_fwd]ReluQ_def</span><span class="w"></span>
+<span class="na">[resnetv15_stage1_activation1]ReluQ_def</span><span class="w"></span>
+<span class="na">[resnetv15_stage2_relu0_fwd]ReluQ_def</span><span class="w"></span>
+<span class="na">[resnetv15_stage2_activation0]ReluQ_def</span><span class="w"></span>
+<span class="na">[resnetv15_stage2_relu1_fwd]ReluQ_def</span><span class="w"></span>
+<span class="na">[resnetv15_stage2_activation1]ReluQ_def</span><span class="w"></span>
+<span class="na">[resnetv15_stage3_relu0_fwd]ReluQ_def</span><span class="w"></span>
+<span class="na">[resnetv15_stage3_activation0]ReluQ_def</span><span class="w"></span>
+<span class="na">[resnetv15_stage3_relu1_fwd]ReluQ_def</span><span class="w"></span>
+<span class="na">[resnetv15_stage3_activation1]ReluQ_def</span><span class="w"></span>
+<span class="na">[resnetv15_stage4_relu0_fwd]ReluQ_def</span><span class="w"></span>
+<span class="na">[resnetv15_stage4_activation0]ReluQ_def</span><span class="w"></span>
+<span class="na">[resnetv15_stage4_relu1_fwd]ReluQ_def</span><span class="w"></span>
+<span class="na">[resnetv15_stage4_activation1]ReluQ_def</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Now that activations quantization mode is set we focuses on the weights parameters quantization.
 For example to quantize weights also in a 4 bits range, you should set the parameters convolution base-block
 in that way:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[onnx:Conv_def]</span>
-<span class="na">...</span>
-<span class="na">QWeight.ApplyQuantization</span><span class="o">=</span><span class="s">1 ; Set to 1 for quantization mode</span>
-<span class="na">QWeight.Range</span><span class="o">=</span><span class="s">15 ;  Conv is now quantized in 4-bits range (2^4 - 1)</span>
-<span class="na">...</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[onnx:Conv_def]</span><span class="w"></span>
+<span class="na">...</span><span class="w"></span>
+<span class="na">QWeight.ApplyQuantization</span><span class="o">=</span><span class="s">1 ; Set to 1 for quantization mode</span><span class="w"></span>
+<span class="na">QWeight.Range</span><span class="o">=</span><span class="s">15 ;  Conv is now quantized in 4-bits range (2^4 - 1)</span><span class="w"></span>
+<span class="na">...</span><span class="w"></span>
 </pre></div>
 </div>
 <p>In a same manner, you can modify the fully-connected base-block in that way :</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[onnx:Fc_def]</span>
-<span class="na">...</span>
-<span class="na">QWeight.ApplyQuantization</span><span class="o">=</span><span class="s">1 ; Set to 1 for quantization mode</span>
-<span class="na">QWeight.Range</span><span class="o">=</span><span class="s">15 ;  Fc is now quantized in 4-bits range (2^4 - 1)</span>
-<span class="na">...</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[onnx:Fc_def]</span><span class="w"></span>
+<span class="na">...</span><span class="w"></span>
+<span class="na">QWeight.ApplyQuantization</span><span class="o">=</span><span class="s">1 ; Set to 1 for quantization mode</span><span class="w"></span>
+<span class="na">QWeight.Range</span><span class="o">=</span><span class="s">15 ;  Fc is now quantized in 4-bits range (2^4 - 1)</span><span class="w"></span>
+<span class="na">...</span><span class="w"></span>
 </pre></div>
 </div>
 <p>As a common practice in quantization aware training the first and last layers are quantized in 8-bits.
@@ -866,13 +866,13 @@ In ResNet-18 the first layer is a convolution layer, we have to specify that to 
 <img alt="First Conv Cell Name." src="../_images/qat_netron_conv_name.png" />
 </div>
 <p>We then overrides the range of the first convolution layer of the <code class="docutils literal notranslate"><span class="pre">resnet18v1.onnx</span></code> model:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">[resnetv15_conv0_fwd]onnx:Conv_def</span>
-<span class="na">QWeight.Range</span><span class="o">=</span><span class="s">255 ;resnetv15_conv0_fwd is now quantized in 8-bits range (2^8 - 1)</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">[resnetv15_conv0_fwd]onnx:Conv_def</span><span class="w"></span>
+<span class="na">QWeight.Range</span><span class="o">=</span><span class="s">255 ;resnetv15_conv0_fwd is now quantized in 8-bits range (2^8 - 1)</span><span class="w"></span>
 </pre></div>
 </div>
 <p>In a same way we overrides the range of the last fully-connected layer in 8-bits :</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">[resnetv15_dense0_fwd]onnx:Fc_def</span>
-<span class="na">QWeight.Range</span><span class="o">=</span><span class="s">255 ;resnetv15_dense0_fwd is now quantized in 8-bits range (2^8 - 1)</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">[resnetv15_dense0_fwd]onnx:Fc_def</span><span class="w"></span>
+<span class="na">QWeight.Range</span><span class="o">=</span><span class="s">255 ;resnetv15_dense0_fwd is now quantized in 8-bits range (2^8 - 1)</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Now that your modified <code class="docutils literal notranslate"><span class="pre">resnet-18-v1.ini</span></code> file is ready just have to run a learning phase with the same hyperparameters by
@@ -1125,148 +1125,148 @@ to learn <code class="docutils literal notranslate"><span class="pre">LeNet</spa
 <p>We recommend you to create an empty <code class="docutils literal notranslate"><span class="pre">LeNet.ini</span></code> file in your simulation folder and to copy/paste all following <code class="docutils literal notranslate"><span class="pre">ini</span></code> block
 inside.</p>
 <p>First of all we start to described <code class="docutils literal notranslate"><span class="pre">MNIST</span></code> driver dataset and pre-processing use for data augmentation at training and test phase:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; Frame_CUDA for GPU and Frame for CPU</span>
-<span class="na">DefaultModel</span><span class="o">=</span><span class="s">Frame_CUDA</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; Frame_CUDA for GPU and Frame for CPU</span><span class="w"></span>
+<span class="na">DefaultModel</span><span class="o">=</span><span class="s">Frame_CUDA</span><span class="w"></span>
 
-<span class="c1">; MNIST Driver Database Instantiation</span>
-<span class="k">[database]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">MNIST_IDX_Database</span>
-<span class="na">RandomPartitioning</span><span class="o">=</span><span class="s">1</span>
+<span class="c1">; MNIST Driver Database Instantiation</span><span class="w"></span>
+<span class="k">[database]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">MNIST_IDX_Database</span><span class="w"></span>
+<span class="na">RandomPartitioning</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
 
-<span class="c1">; Environment Description , batch=256</span>
-<span class="k">[env]</span>
-<span class="na">SizeX</span><span class="o">=</span><span class="s">32</span>
-<span class="na">SizeY</span><span class="o">=</span><span class="s">32</span>
-<span class="na">BatchSize</span><span class="o">=</span><span class="s">256</span>
+<span class="c1">; Environment Description , batch=256</span><span class="w"></span>
+<span class="k">[env]</span><span class="w"></span>
+<span class="na">SizeX</span><span class="o">=</span><span class="s">32</span><span class="w"></span>
+<span class="na">SizeY</span><span class="o">=</span><span class="s">32</span><span class="w"></span>
+<span class="na">BatchSize</span><span class="o">=</span><span class="s">256</span><span class="w"></span>
 
-<span class="k">[env.Transformation_0]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">RescaleTransformation</span>
-<span class="na">Width</span><span class="o">=</span><span class="s">32</span>
-<span class="na">Height</span><span class="o">=</span><span class="s">32</span>
+<span class="k">[env.Transformation_0]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">RescaleTransformation</span><span class="w"></span>
+<span class="na">Width</span><span class="o">=</span><span class="s">32</span><span class="w"></span>
+<span class="na">Height</span><span class="o">=</span><span class="s">32</span><span class="w"></span>
 </pre></div>
 </div>
 <p>In our example we decide to quantize all convolutions and fully-connected layers.
 A base block common to all convolution layers can be defined in the <em>.ini</em> file. This base block is used to set quantization parameters, like weights bits range, the scaling mode and the quantization mode, and also solver configuration.</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Conv_def]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Conv</span>
-<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear</span>
-<span class="na">QWeight</span><span class="o">=</span><span class="s">SAT</span>
-<span class="na">QWeight.ApplyScaling</span><span class="o">=</span><span class="s">0 ; No scaling needed because each conv is followed by batch-normalization layers</span>
-<span class="na">QWeight.ApplyQuantization</span><span class="o">=</span><span class="s">0 ; Only clamp mode for the 1st step</span>
-<span class="na">ConfigSection</span><span class="o">=</span><span class="s">common.config</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Conv_def]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Conv</span><span class="w"></span>
+<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear</span><span class="w"></span>
+<span class="na">QWeight</span><span class="o">=</span><span class="s">SAT</span><span class="w"></span>
+<span class="na">QWeight.ApplyScaling</span><span class="o">=</span><span class="s">0 ; No scaling needed because each conv is followed by batch-normalization layers</span><span class="w"></span>
+<span class="na">QWeight.ApplyQuantization</span><span class="o">=</span><span class="s">0 ; Only clamp mode for the 1st step</span><span class="w"></span>
+<span class="na">ConfigSection</span><span class="o">=</span><span class="s">common.config</span><span class="w"></span>
 
-<span class="k">[common.config]</span>
-<span class="na">NoBias</span><span class="o">=</span><span class="s">1</span>
-<span class="na">Solvers.LearningRate</span><span class="o">=</span><span class="s">0.05</span>
-<span class="na">Solvers.LearningRatePolicy</span><span class="o">=</span><span class="s">None</span>
-<span class="na">Solvers.Momentum</span><span class="o">=</span><span class="s">0.0</span>
-<span class="na">Solvers.Decay</span><span class="o">=</span><span class="s">0.0</span>
+<span class="k">[common.config]</span><span class="w"></span>
+<span class="na">NoBias</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
+<span class="na">Solvers.LearningRate</span><span class="o">=</span><span class="s">0.05</span><span class="w"></span>
+<span class="na">Solvers.LearningRatePolicy</span><span class="o">=</span><span class="s">None</span><span class="w"></span>
+<span class="na">Solvers.Momentum</span><span class="o">=</span><span class="s">0.0</span><span class="w"></span>
+<span class="na">Solvers.Decay</span><span class="o">=</span><span class="s">0.0</span><span class="w"></span>
 </pre></div>
 </div>
 <p>A base block common to all Full-Connected layers can be defined in the <em>.ini</em> file.
 This base block is used to set quantization parameters, like weights bits range, the scaling mode and the quantization mode, and also solver configuration.</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Fc_def]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Fc</span>
-<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear</span>
-<span class="na">QWeight</span><span class="o">=</span><span class="s">SAT</span>
-<span class="na">QWeight.ApplyScaling</span><span class="o">=</span><span class="s">1 ; Scaling needed because for Full-Conncted</span>
-<span class="na">QWeight.ApplyQuantization</span><span class="o">=</span><span class="s">0 ; Only clamp mode for the 1st step</span>
-<span class="na">ConfigSection</span><span class="o">=</span><span class="s">common.config</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Fc_def]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Fc</span><span class="w"></span>
+<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear</span><span class="w"></span>
+<span class="na">QWeight</span><span class="o">=</span><span class="s">SAT</span><span class="w"></span>
+<span class="na">QWeight.ApplyScaling</span><span class="o">=</span><span class="s">1 ; Scaling needed because for Full-Conncted</span><span class="w"></span>
+<span class="na">QWeight.ApplyQuantization</span><span class="o">=</span><span class="s">0 ; Only clamp mode for the 1st step</span><span class="w"></span>
+<span class="na">ConfigSection</span><span class="o">=</span><span class="s">common.config</span><span class="w"></span>
 </pre></div>
 </div>
 <p>A base block common to all Batch-Normalization layers can be defined in the <em>.ini</em> file.
 This base block is used to set quantization activations, like activations bits range, the quantization mode, and also solver configuration.
 In this first step batch-normalization activation are not quantized yet. We simply defined a typical batch-normalization layer with <code class="docutils literal notranslate"><span class="pre">Rectifier</span></code> as
 non-linear activation function.</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Bn_def]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">BatchNorm</span>
-<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Rectifier</span>
-<span class="na">ConfigSection</span><span class="o">=</span><span class="s">bn.config</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Bn_def]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">BatchNorm</span><span class="w"></span>
+<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Rectifier</span><span class="w"></span>
+<span class="na">ConfigSection</span><span class="o">=</span><span class="s">bn.config</span><span class="w"></span>
 
-<span class="k">[bn.config]</span>
-<span class="na">Solvers.LearningRate</span><span class="o">=</span><span class="s">0.05</span>
-<span class="na">Solvers.LearningRatePolicy</span><span class="o">=</span><span class="s">None</span>
-<span class="na">Solvers.Momentum</span><span class="o">=</span><span class="s">0.0</span>
-<span class="na">Solvers.Decay</span><span class="o">=</span><span class="s">0.0</span>
+<span class="k">[bn.config]</span><span class="w"></span>
+<span class="na">Solvers.LearningRate</span><span class="o">=</span><span class="s">0.05</span><span class="w"></span>
+<span class="na">Solvers.LearningRatePolicy</span><span class="o">=</span><span class="s">None</span><span class="w"></span>
+<span class="na">Solvers.Momentum</span><span class="o">=</span><span class="s">0.0</span><span class="w"></span>
+<span class="na">Solvers.Decay</span><span class="o">=</span><span class="s">0.0</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Finally we described the full backbone of <code class="docutils literal notranslate"><span class="pre">LeNet</span></code> topology:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">[conv1] Conv_def</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">env</span>
-<span class="na">KernelWidth</span><span class="o">=</span><span class="s">5</span>
-<span class="na">KernelHeight</span><span class="o">=</span><span class="s">5</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">6</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">[conv1] Conv_def</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">env</span><span class="w"></span>
+<span class="na">KernelWidth</span><span class="o">=</span><span class="s">5</span><span class="w"></span>
+<span class="na">KernelHeight</span><span class="o">=</span><span class="s">5</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">6</span><span class="w"></span>
 
-<span class="na">[bn1] Bn_def</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">conv1</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">[conv1]NbOutputs</span>
+<span class="na">[bn1] Bn_def</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">conv1</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">[conv1]NbOutputs</span><span class="w"></span>
 
-<span class="c1">; Non-overlapping max pooling P2</span>
-<span class="k">[pool1]</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">bn1</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Pool</span>
-<span class="na">PoolWidth</span><span class="o">=</span><span class="s">2</span>
-<span class="na">PoolHeight</span><span class="o">=</span><span class="s">2</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">6</span>
-<span class="na">Stride</span><span class="o">=</span><span class="s">2</span>
-<span class="na">Pooling</span><span class="o">=</span><span class="s">Max</span>
-<span class="na">Mapping.Size</span><span class="o">=</span><span class="s">1</span>
+<span class="c1">; Non-overlapping max pooling P2</span><span class="w"></span>
+<span class="k">[pool1]</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">bn1</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Pool</span><span class="w"></span>
+<span class="na">PoolWidth</span><span class="o">=</span><span class="s">2</span><span class="w"></span>
+<span class="na">PoolHeight</span><span class="o">=</span><span class="s">2</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">6</span><span class="w"></span>
+<span class="na">Stride</span><span class="o">=</span><span class="s">2</span><span class="w"></span>
+<span class="na">Pooling</span><span class="o">=</span><span class="s">Max</span><span class="w"></span>
+<span class="na">Mapping.Size</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
 
-<span class="na">[conv2] Conv_def</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">pool1</span>
-<span class="na">KernelWidth</span><span class="o">=</span><span class="s">5</span>
-<span class="na">KernelHeight</span><span class="o">=</span><span class="s">5</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">16</span>
-<span class="na">[bn2] Bn_def</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">conv2</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">[conv2]NbOutputs</span>
+<span class="na">[conv2] Conv_def</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">pool1</span><span class="w"></span>
+<span class="na">KernelWidth</span><span class="o">=</span><span class="s">5</span><span class="w"></span>
+<span class="na">KernelHeight</span><span class="o">=</span><span class="s">5</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">16</span><span class="w"></span>
+<span class="na">[bn2] Bn_def</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">conv2</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">[conv2]NbOutputs</span><span class="w"></span>
 
-<span class="k">[pool2]</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">bn2</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Pool</span>
-<span class="na">PoolWidth</span><span class="o">=</span><span class="s">2</span>
-<span class="na">PoolHeight</span><span class="o">=</span><span class="s">2</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">16</span>
-<span class="na">Stride</span><span class="o">=</span><span class="s">2</span>
-<span class="na">Pooling</span><span class="o">=</span><span class="s">Max</span>
-<span class="na">Mapping.Size</span><span class="o">=</span><span class="s">1</span>
+<span class="k">[pool2]</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">bn2</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Pool</span><span class="w"></span>
+<span class="na">PoolWidth</span><span class="o">=</span><span class="s">2</span><span class="w"></span>
+<span class="na">PoolHeight</span><span class="o">=</span><span class="s">2</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">16</span><span class="w"></span>
+<span class="na">Stride</span><span class="o">=</span><span class="s">2</span><span class="w"></span>
+<span class="na">Pooling</span><span class="o">=</span><span class="s">Max</span><span class="w"></span>
+<span class="na">Mapping.Size</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
 
-<span class="na">[conv3] Conv_def</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">pool2</span>
-<span class="na">KernelWidth</span><span class="o">=</span><span class="s">5</span>
-<span class="na">KernelHeight</span><span class="o">=</span><span class="s">5</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">120</span>
+<span class="na">[conv3] Conv_def</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">pool2</span><span class="w"></span>
+<span class="na">KernelWidth</span><span class="o">=</span><span class="s">5</span><span class="w"></span>
+<span class="na">KernelHeight</span><span class="o">=</span><span class="s">5</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">120</span><span class="w"></span>
 
-<span class="na">[bn3]Bn_def</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">conv3</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">[conv3]NbOutputs</span>
+<span class="na">[bn3]Bn_def</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">conv3</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">[conv3]NbOutputs</span><span class="w"></span>
 
-<span class="k">[conv3.drop]</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">bn3</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Dropout</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">[conv3]NbOutputs</span>
+<span class="k">[conv3.drop]</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">bn3</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Dropout</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">[conv3]NbOutputs</span><span class="w"></span>
 
-<span class="na">[fc1] Fc_def</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">conv3.drop</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">84</span>
+<span class="na">[fc1] Fc_def</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">conv3.drop</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">84</span><span class="w"></span>
 
-<span class="k">[fc1.drop]</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">fc1</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Dropout</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">[fc1]NbOutputs</span>
+<span class="k">[fc1.drop]</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">fc1</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Dropout</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">[fc1]NbOutputs</span><span class="w"></span>
 
-<span class="na">[fc2] Fc_def</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">fc1.drop</span>
-<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">10</span>
+<span class="na">[fc2] Fc_def</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">fc1.drop</span><span class="w"></span>
+<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">10</span><span class="w"></span>
 
-<span class="k">[softmax]</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">fc2</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Softmax</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">10</span>
-<span class="na">WithLoss</span><span class="o">=</span><span class="s">1</span>
+<span class="k">[softmax]</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">fc2</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Softmax</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">10</span><span class="w"></span>
+<span class="na">WithLoss</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
 
-<span class="k">[softmax.Target]</span>
+<span class="k">[softmax.Target]</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Now that you have your ready <code class="docutils literal notranslate"><span class="pre">LeNet.ini</span></code> file in your simulation folder you juste have to run the learning phase to clamp the weights
@@ -1291,59 +1291,59 @@ in your <em>weights_clamped</em> folder, for example check your <em>conv3_weight
 <p>Now that your <code class="docutils literal notranslate"><span class="pre">LeNet</span></code> model provides clamped weights you can play with it and try different quantization mode.
 Moreover, if you want to quantized also the <code class="docutils literal notranslate"><span class="pre">LeNet</span></code> activations you have to modify the batch-normalization base-block from your
 <code class="docutils literal notranslate"><span class="pre">LeNet.ini</span></code> file in that way :</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Bn_def]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">BatchNorm</span>
-<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear ; Replace by linear: SAT quantizer directly apply non-linear activation</span>
-<span class="na">QAct</span><span class="o">=</span><span class="s">SAT</span>
-<span class="na">QAct.Alpha</span><span class="o">=</span><span class="s">6.0</span>
-<span class="na">QAct.Range</span><span class="o">=</span><span class="s">15 ; -&gt;15 for 4-bits range (2^4 - 1)</span>
-<span class="na">QActSolver</span><span class="o">=</span><span class="s">SGD</span>
-<span class="na">QActSolver.LearningRate</span><span class="o">=</span><span class="s">0.05</span>
-<span class="na">QActSolver.LearningRatePolicy</span><span class="o">=</span><span class="s">None</span>
-<span class="na">QActSolver.Momentum</span><span class="o">=</span><span class="s">0.0</span>
-<span class="na">QActSolver.Decay</span><span class="o">=</span><span class="s">0.0</span>
-<span class="na">ConfigSection</span><span class="o">=</span><span class="s">bn.config</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Bn_def]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">BatchNorm</span><span class="w"></span>
+<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear ; Replace by linear: SAT quantizer directly apply non-linear activation</span><span class="w"></span>
+<span class="na">QAct</span><span class="o">=</span><span class="s">SAT</span><span class="w"></span>
+<span class="na">QAct.Alpha</span><span class="o">=</span><span class="s">6.0</span><span class="w"></span>
+<span class="na">QAct.Range</span><span class="o">=</span><span class="s">15 ; -&gt;15 for 4-bits range (2^4 - 1)</span><span class="w"></span>
+<span class="na">QActSolver</span><span class="o">=</span><span class="s">SGD</span><span class="w"></span>
+<span class="na">QActSolver.LearningRate</span><span class="o">=</span><span class="s">0.05</span><span class="w"></span>
+<span class="na">QActSolver.LearningRatePolicy</span><span class="o">=</span><span class="s">None</span><span class="w"></span>
+<span class="na">QActSolver.Momentum</span><span class="o">=</span><span class="s">0.0</span><span class="w"></span>
+<span class="na">QActSolver.Decay</span><span class="o">=</span><span class="s">0.0</span><span class="w"></span>
+<span class="na">ConfigSection</span><span class="o">=</span><span class="s">bn.config</span><span class="w"></span>
 </pre></div>
 </div>
 <p>For example to quantize weights also in a 4 bits range, these parameters from the convolution base-block
 must be modified in that way:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Conv_def]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Conv</span>
-<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear</span>
-<span class="na">QWeight</span><span class="o">=</span><span class="s">SAT</span>
-<span class="na">QWeight.ApplyScaling</span><span class="o">=</span><span class="s">0</span>
-<span class="na">QWeight.ApplyQuantization</span><span class="o">=</span><span class="s">1 ; ApplyQuantization is now set to 1</span>
-<span class="na">QWeight.Range</span><span class="o">=</span><span class="s">15 ; Conv is now quantized in 4-bits range (2^4 - 1)</span>
-<span class="na">ConfigSection</span><span class="o">=</span><span class="s">common.config</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Conv_def]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Conv</span><span class="w"></span>
+<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear</span><span class="w"></span>
+<span class="na">QWeight</span><span class="o">=</span><span class="s">SAT</span><span class="w"></span>
+<span class="na">QWeight.ApplyScaling</span><span class="o">=</span><span class="s">0</span><span class="w"></span>
+<span class="na">QWeight.ApplyQuantization</span><span class="o">=</span><span class="s">1 ; ApplyQuantization is now set to 1</span><span class="w"></span>
+<span class="na">QWeight.Range</span><span class="o">=</span><span class="s">15 ; Conv is now quantized in 4-bits range (2^4 - 1)</span><span class="w"></span>
+<span class="na">ConfigSection</span><span class="o">=</span><span class="s">common.config</span><span class="w"></span>
 </pre></div>
 </div>
 <p>In the same way, you have to modify the fully-connected base-block:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Fc_def]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Fc</span>
-<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear</span>
-<span class="na">QWeight</span><span class="o">=</span><span class="s">SAT</span>
-<span class="na">QWeight.ApplyScaling</span><span class="o">=</span><span class="s">1</span>
-<span class="na">QWeight.ApplyQuantization</span><span class="o">=</span><span class="s">1 ; ApplyQuantization is now set to 1</span>
-<span class="na">QWeight.Range</span><span class="o">=</span><span class="s">15 ; FC is now quantized in 4-bits range (2^4 - 1)</span>
-<span class="na">ConfigSection</span><span class="o">=</span><span class="s">common.config</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Fc_def]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Fc</span><span class="w"></span>
+<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear</span><span class="w"></span>
+<span class="na">QWeight</span><span class="o">=</span><span class="s">SAT</span><span class="w"></span>
+<span class="na">QWeight.ApplyScaling</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
+<span class="na">QWeight.ApplyQuantization</span><span class="o">=</span><span class="s">1 ; ApplyQuantization is now set to 1</span><span class="w"></span>
+<span class="na">QWeight.Range</span><span class="o">=</span><span class="s">15 ; FC is now quantized in 4-bits range (2^4 - 1)</span><span class="w"></span>
+<span class="na">ConfigSection</span><span class="o">=</span><span class="s">common.config</span><span class="w"></span>
 </pre></div>
 </div>
 <p>As a common practice, the first and last layer are kept with 8-bits range weights parameters.
 To do that, the first <em>conv1</em> layer of the <code class="docutils literal notranslate"><span class="pre">LeNet</span></code> backbone must be modified in that way:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">[conv1] Conv_def</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">env</span>
-<span class="na">KernelWidth</span><span class="o">=</span><span class="s">5</span>
-<span class="na">KernelHeight</span><span class="o">=</span><span class="s">5</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">6</span>
-<span class="na">QWeight.Range</span><span class="o">=</span><span class="s">255 ; conv1 is now quantized in 8-bits range (2^8 - 1)</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">[conv1] Conv_def</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">env</span><span class="w"></span>
+<span class="na">KernelWidth</span><span class="o">=</span><span class="s">5</span><span class="w"></span>
+<span class="na">KernelHeight</span><span class="o">=</span><span class="s">5</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">6</span><span class="w"></span>
+<span class="na">QWeight.Range</span><span class="o">=</span><span class="s">255 ; conv1 is now quantized in 8-bits range (2^8 - 1)</span><span class="w"></span>
 </pre></div>
 </div>
 <p>And the last layer <em>fc2</em> of the <code class="docutils literal notranslate"><span class="pre">LeNet</span></code> must be modified in that way:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">[fc2] Fc_def</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">fc1.drop</span>
-<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">10</span>
-<span class="na">QWeight.Range</span><span class="o">=</span><span class="s">255 ; FC is now quantized in 8-bits range (2^8 - 1)</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">[fc2] Fc_def</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">fc1.drop</span><span class="w"></span>
+<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">10</span><span class="w"></span>
+<span class="na">QWeight.Range</span><span class="o">=</span><span class="s">255 ; FC is now quantized in 8-bits range (2^8 - 1)</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Now that your modified <code class="docutils literal notranslate"><span class="pre">LeNet.ini</span></code> file is ready just have to run a learning phase with the same hyperparameters by

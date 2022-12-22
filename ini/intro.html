@@ -244,7 +244,7 @@ sections, properties and values.</p>
 <p>The basic element contained in an INI file is the property. Every
 property has a name and a value, delimited by an equals sign (=). The
 name appears to the left of the equals sign.</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">name</span><span class="o">=</span><span class="s">value</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">name</span><span class="o">=</span><span class="s">value</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -256,9 +256,9 @@ properties after the section declaration are associated with that
 section. There is no explicit “end of section” delimiter; sections end
 at the next section declaration, or the end of the file. Sections may
 not be nested.</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[section]</span>
-<span class="na">a</span><span class="o">=</span><span class="s">a</span>
-<span class="na">b</span><span class="o">=</span><span class="s">b</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[section]</span><span class="w"></span>
+<span class="na">a</span><span class="o">=</span><span class="s">a</span><span class="w"></span>
+<span class="na">b</span><span class="o">=</span><span class="s">b</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -270,9 +270,9 @@ not be nested.</p>
 <h3>Comments<a class="headerlink" href="#comments" title="Permalink to this heading">¶</a></h3>
 <p>Semicolons (<code class="docutils literal notranslate"><span class="pre">;</span></code>) or number sign (<code class="docutils literal notranslate"><span class="pre">#</span></code>) at the beginning or in the
 middle of the line indicate a comment. Comments are ignored.</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; comment text</span>
-<span class="na">a</span><span class="o">=</span><span class="s">a # comment text</span>
-<span class="na">a</span><span class="o">=</span><span class="s">&quot;a ; not a comment&quot; ; comment text</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; comment text</span><span class="w"></span>
+<span class="na">a</span><span class="o">=</span><span class="s">a # comment text</span><span class="w"></span>
+<span class="na">a</span><span class="o">=</span><span class="s">&quot;a ; not a comment&quot; ; comment text</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -296,52 +296,52 @@ line break to be ignored.</p>
 <h2>Template inclusion syntax<a class="headerlink" href="#template-inclusion-syntax" title="Permalink to this heading">¶</a></h2>
 <p>Is is possible to recursively include templated INI files. For example,
 the main INI file can include a templated file like the following:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[inception@inception_model.ini.tpl]</span>
-<span class="na">INPUT</span><span class="o">=</span><span class="s">layer_x</span>
-<span class="na">SIZE</span><span class="o">=</span><span class="s">32</span>
-<span class="na">ARRAY</span><span class="o">=</span><span class="s">2 ; Must be the number of elements in the array</span>
-<span class="na">ARRAY[0].P1</span><span class="o">=</span><span class="s">Conv</span>
-<span class="na">ARRAY[0].P2</span><span class="o">=</span><span class="s">32</span>
-<span class="na">ARRAY[1].P1</span><span class="o">=</span><span class="s">Pool</span>
-<span class="na">ARRAY[1].P2</span><span class="o">=</span><span class="s">64</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[inception@inception_model.ini.tpl]</span><span class="w"></span>
+<span class="na">INPUT</span><span class="o">=</span><span class="s">layer_x</span><span class="w"></span>
+<span class="na">SIZE</span><span class="o">=</span><span class="s">32</span><span class="w"></span>
+<span class="na">ARRAY</span><span class="o">=</span><span class="s">2 ; Must be the number of elements in the array</span><span class="w"></span>
+<span class="na">ARRAY[0].P1</span><span class="o">=</span><span class="s">Conv</span><span class="w"></span>
+<span class="na">ARRAY[0].P2</span><span class="o">=</span><span class="s">32</span><span class="w"></span>
+<span class="na">ARRAY[1].P1</span><span class="o">=</span><span class="s">Pool</span><span class="w"></span>
+<span class="na">ARRAY[1].P2</span><span class="o">=</span><span class="s">64</span><span class="w"></span>
 </pre></div>
 </div>
 <p>If the <code class="docutils literal notranslate"><span class="pre">inception_model.ini.tpl</span></code> template file content is:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[{{SECTION_NAME}}_layer1]</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">{{INPUT}}</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Conv</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">{{SIZE}}</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[{{SECTION_NAME}}_layer1]</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">{{INPUT}}</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Conv</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">{{SIZE}}</span><span class="w"></span>
 
-<span class="k">[{{SECTION_NAME}}_layer2]</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">{{SECTION_NAME}}_layer1</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Fc</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">{{SIZE}}</span>
+<span class="k">[{{SECTION_NAME}}_layer2]</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">{{SECTION_NAME}}_layer1</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Fc</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">{{SIZE}}</span><span class="w"></span>
 
-<span class="na">{% block ARRAY %}</span>
-<span class="k">[{{SECTION_NAME}}_array{{#}}]</span>
-<span class="na">Prop1</span><span class="o">=</span><span class="s">Config{{.P1}}</span>
-<span class="na">Prop2</span><span class="o">=</span><span class="s">{{.P2}}</span>
-<span class="na">{% endblock %}</span>
+<span class="na">{% block ARRAY %}</span><span class="w"></span>
+<span class="k">[{{SECTION_NAME}}_array{{#}}]</span><span class="w"></span>
+<span class="na">Prop1</span><span class="o">=</span><span class="s">Config{{.P1}}</span><span class="w"></span>
+<span class="na">Prop2</span><span class="o">=</span><span class="s">{{.P2}}</span><span class="w"></span>
+<span class="na">{% endblock %}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The resulting equivalent content for the main INI file will be:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[inception_layer1]</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">layer_x</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Conv</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">32</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[inception_layer1]</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">layer_x</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Conv</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">32</span><span class="w"></span>
 
-<span class="k">[inception_layer2]</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">inception_layer1</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Fc</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">32</span>
+<span class="k">[inception_layer2]</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">inception_layer1</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Fc</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">32</span><span class="w"></span>
 
-<span class="k">[inception_array0]</span>
-<span class="na">Prop1</span><span class="o">=</span><span class="s">ConfigConv</span>
-<span class="na">Prop2</span><span class="o">=</span><span class="s">32</span>
+<span class="k">[inception_array0]</span><span class="w"></span>
+<span class="na">Prop1</span><span class="o">=</span><span class="s">ConfigConv</span><span class="w"></span>
+<span class="na">Prop2</span><span class="o">=</span><span class="s">32</span><span class="w"></span>
 
-<span class="k">[inception_array1]</span>
-<span class="na">Prop1</span><span class="o">=</span><span class="s">ConfigPool</span>
-<span class="na">Prop2</span><span class="o">=</span><span class="s">64</span>
+<span class="k">[inception_array1]</span><span class="w"></span>
+<span class="na">Prop1</span><span class="o">=</span><span class="s">ConfigPool</span><span class="w"></span>
+<span class="na">Prop2</span><span class="o">=</span><span class="s">64</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">SECTION_NAME</span></code> template parameter is automatically generated from

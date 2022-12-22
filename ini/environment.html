@@ -277,10 +277,10 @@ two sections are present in the INI file, they are implicitly connected: the
 present. The <code class="docutils literal notranslate"><span class="pre">StimuliProvider</span></code> section specifies the input dimensions of the
 network (width, height), as well as the batch size.</p>
 <p>Example:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[sp]</span>
-<span class="na">SizeX</span><span class="o">=</span><span class="s">24</span>
-<span class="na">SizeY</span><span class="o">=</span><span class="s">24</span>
-<span class="na">BatchSize</span><span class="o">=</span><span class="s">12 ; [default: 1]</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[sp]</span><span class="w"></span>
+<span class="na">SizeX</span><span class="o">=</span><span class="s">24</span><span class="w"></span>
+<span class="na">SizeY</span><span class="o">=</span><span class="s">24</span><span class="w"></span>
+<span class="na">BatchSize</span><span class="o">=</span><span class="s">12 ; [default: 1]</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Data augmentation and conditioning <code class="docutils literal notranslate"><span class="pre">Transformation</span></code> blocks and data analysis
@@ -369,15 +369,15 @@ range must be interpreted as signed, even if the values are unsigned, which is
 usually the case for standard image formats (BMP, JPEG, PNG…). In case of
 8-bit images, values from 0 to 255 are therefore mapped to the range -128 to
 127 when this parameter is enabled.</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[sp]</span>
-<span class="na">SizeX</span><span class="o">=</span><span class="s">[database.slicing]Width</span>
-<span class="na">SizeY</span><span class="o">=</span><span class="s">[database.slicing]Height</span>
-<span class="na">BatchSize</span><span class="o">=</span><span class="s">${BATCH_SIZE}</span>
-<span class="na">CompositeStimuli</span><span class="o">=</span><span class="s">1</span>
-<span class="na">ConfigSection</span><span class="o">=</span><span class="s">sp.config</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[sp]</span><span class="w"></span>
+<span class="na">SizeX</span><span class="o">=</span><span class="s">[database.slicing]Width</span><span class="w"></span>
+<span class="na">SizeY</span><span class="o">=</span><span class="s">[database.slicing]Height</span><span class="w"></span>
+<span class="na">BatchSize</span><span class="o">=</span><span class="s">${BATCH_SIZE}</span><span class="w"></span>
+<span class="na">CompositeStimuli</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
+<span class="na">ConfigSection</span><span class="o">=</span><span class="s">sp.config</span><span class="w"></span>
 
-<span class="k">[sp.config]</span>
-<span class="na">DataSignedMapping</span><span class="o">=</span><span class="s">1</span>
+<span class="k">[sp.config]</span><span class="w"></span>
+<span class="na">DataSignedMapping</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -396,12 +396,12 @@ is performed.</p>
 <p>The input value range can also be changed explicitly using for example a
 <code class="docutils literal notranslate"><span class="pre">RangeAffineTransformation</span></code>, like below, in which case no implicit conversion
 is performed afterwards (and the <code class="docutils literal notranslate"><span class="pre">DataSignedMapping</span></code> parameter has no effect):</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[sp.Transformation-rangeAffine]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">RangeAffineTransformation</span>
-<span class="na">FirstOperator</span><span class="o">=</span><span class="s">Minus</span>
-<span class="na">FirstValue</span><span class="o">=</span><span class="s">128.0</span>
-<span class="na">SecondOperator</span><span class="o">=</span><span class="s">Divides</span>
-<span class="na">SecondValue</span><span class="o">=</span><span class="s">128.0</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[sp.Transformation-rangeAffine]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">RangeAffineTransformation</span><span class="w"></span>
+<span class="na">FirstOperator</span><span class="o">=</span><span class="s">Minus</span><span class="w"></span>
+<span class="na">FirstValue</span><span class="o">=</span><span class="s">128.0</span><span class="w"></span>
+<span class="na">SecondOperator</span><span class="o">=</span><span class="s">Divides</span><span class="w"></span>
+<span class="na">SecondValue</span><span class="o">=</span><span class="s">128.0</span><span class="w"></span>
 </pre></div>
 </div>
 <p>When running a simulation in N2D2, the graph of the transformations with all
@@ -427,14 +427,14 @@ fixed dimensions must be extracted.</p>
 <li><p>For training, random slices can be extracted from bigger images for each batch, thus allowing to cover the full images over the training time with the maximum variability. This also act as basic data augmentation. Random slices extraction is achieved using a <code class="docutils literal notranslate"><span class="pre">SliceExtractionTransformation</span></code>, applied only to the training set with the parameter <code class="docutils literal notranslate"><span class="pre">ApplyTo=LearnOnly</span></code>.</p></li>
 </ul>
 <blockquote>
-<div><div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[sp.OnTheFlyTransformation-1]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">SliceExtractionTransformation</span>
-<span class="na">Width</span><span class="o">=</span><span class="s">${WIDTH}</span>
-<span class="na">Height</span><span class="o">=</span><span class="s">${HEIGHT}</span>
-<span class="na">RandomOffsetX</span><span class="o">=</span><span class="s">1</span>
-<span class="na">RandomOffsetY</span><span class="o">=</span><span class="s">1</span>
-<span class="na">AllowPadding</span><span class="o">=</span><span class="s">1</span>
-<span class="na">ApplyTo</span><span class="o">=</span><span class="s">LearnOnly</span>
+<div><div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[sp.OnTheFlyTransformation-1]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">SliceExtractionTransformation</span><span class="w"></span>
+<span class="na">Width</span><span class="o">=</span><span class="s">${WIDTH}</span><span class="w"></span>
+<span class="na">Height</span><span class="o">=</span><span class="s">${HEIGHT}</span><span class="w"></span>
+<span class="na">RandomOffsetX</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
+<span class="na">RandomOffsetY</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
+<span class="na">AllowPadding</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
+<span class="na">ApplyTo</span><span class="o">=</span><span class="s">LearnOnly</span><span class="w"></span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -442,13 +442,13 @@ fixed dimensions must be extracted.</p>
 <li><p>For inference, one wants to cover the full images once and only once. This cannot be achieved with a N2D2 <code class="docutils literal notranslate"><span class="pre">Transformation</span></code>, but has to be handled by the <code class="docutils literal notranslate"><span class="pre">Database</span></code> driver. In order to do so, any <code class="docutils literal notranslate"><span class="pre">Database</span></code> driver can have an additional “slicing” section in the N2D2 INI file, which will automatically extract regularly strided fixed size slices from the dataset. The example above can be used to extract slides for the validation and testing datasets, with the parameter <code class="docutils literal notranslate"><span class="pre">ApplyTo=NoLearn</span></code>.</p></li>
 </ul>
 <blockquote>
-<div><div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[database.slicing]</span>
-<span class="na">Width</span><span class="o">=</span><span class="s">${WIDTH}</span>
-<span class="na">Height</span><span class="o">=</span><span class="s">${HEIGHT}</span>
-<span class="na">StrideX</span><span class="o">=</span><span class="s">[database.slicing]Width</span>
-<span class="na">StrideY</span><span class="o">=</span><span class="s">[database.slicing]Height</span>
-<span class="na">Overlapping</span><span class="o">=</span><span class="s">1</span>
-<span class="na">ApplyTo</span><span class="o">=</span><span class="s">NoLearn</span>
+<div><div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[database.slicing]</span><span class="w"></span>
+<span class="na">Width</span><span class="o">=</span><span class="s">${WIDTH}</span><span class="w"></span>
+<span class="na">Height</span><span class="o">=</span><span class="s">${HEIGHT}</span><span class="w"></span>
+<span class="na">StrideX</span><span class="o">=</span><span class="s">[database.slicing]Width</span><span class="w"></span>
+<span class="na">StrideY</span><span class="o">=</span><span class="s">[database.slicing]Height</span><span class="w"></span>
+<span class="na">Overlapping</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
+<span class="na">ApplyTo</span><span class="o">=</span><span class="s">NoLearn</span><span class="w"></span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -478,113 +478,113 @@ which is introduced here and illustrated in the figure below.</p>
 <p>An example of a blending pipeline in the INI file is given here. The first part
 is the <code class="docutils literal notranslate"><span class="pre">BlendingTransformation</span></code>, which is inserted in the main image processing
 pipeline.</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">...</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">...</span><span class="w"></span>
 
-<span class="c1">; Here we add a blending transformation, which will perform objects blending</span>
-<span class="c1">; to images with the specified labels in the dataset, selected by the</span>
-<span class="c1">; ApplyToLabels parameter.</span>
-<span class="k">[sp.OnTheFlyTransformation-blend]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">BlendingTransformation</span>
-<span class="na">ApplyTo</span><span class="o">=</span><span class="s">LearnOnly</span>
-<span class="na">Database</span><span class="o">=</span><span class="s">database_objects ; database driver to use for the objects to blend</span>
-<span class="na">StimuliProvider</span><span class="o">=</span><span class="s">sp_objects  ; stimuli provider specifying the transformations</span>
-<span class="s">                            ; to apply on the object data before blending</span>
-<span class="c1">; Specifies the name of the image label(s) on which a blending can be performed.</span>
-<span class="c1">; Here, any image in a &quot;backgrounds&quot; sub-directory in the dataset will be used</span>
-<span class="c1">; for the blending</span>
-<span class="c1">; POSSIBLE FUTURE EXTENSION: possibility to associate some backgrounds to some</span>
-<span class="c1">; object types only. Adding a background in a &quot;backgrounds&quot; sub-directory in the</span>
-<span class="c1">; object directory may allow this.</span>
-<span class="c1">; POSSIBLE FUTURE EXTENSION: specify ROIs for blending some object types.</span>
-<span class="na">ApplyToLabels</span><span class="o">=</span><span class="s">*backgrounds*</span>
-<span class="c1">; Indicate whether multiple object types can be mixed on the same background</span>
-<span class="na">TypeMixing</span><span class="o">=</span><span class="s">0</span>
-<span class="c1">; Density of the object in the background, from 0.0 to 1.0</span>
-<span class="na">DensityRange</span><span class="o">=</span><span class="s">0.0 0.2</span>
-<span class="c1">; Horizontal margin between objects (in pixels)</span>
-<span class="na">MarginH</span><span class="o">=</span><span class="s">0</span>
-<span class="c1">; Vertical margin between objects (in pixels)</span>
-<span class="na">MarginV</span><span class="o">=</span><span class="s">0</span>
-<span class="c1">; Blending method</span>
-<span class="c1">; POSSIBLE FUTURE EXTENSION: add other blending methods...</span>
-<span class="na">BlendingMethod</span><span class="o">=</span><span class="s">SmoothEdge</span>
-<span class="na">BlendingSmoothSize</span><span class="o">=</span><span class="s">5</span>
-<span class="c1">; For DEBUG purpose, specifying a non-empty SavePath will save all the generated</span>
-<span class="c1">; blending with their associated JSON annotation in the SavePath directory.</span>
-<span class="na">SavePath</span><span class="o">=</span><span class="s">blending</span>
+<span class="c1">; Here we add a blending transformation, which will perform objects blending</span><span class="w"></span>
+<span class="c1">; to images with the specified labels in the dataset, selected by the</span><span class="w"></span>
+<span class="c1">; ApplyToLabels parameter.</span><span class="w"></span>
+<span class="k">[sp.OnTheFlyTransformation-blend]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">BlendingTransformation</span><span class="w"></span>
+<span class="na">ApplyTo</span><span class="o">=</span><span class="s">LearnOnly</span><span class="w"></span>
+<span class="na">Database</span><span class="o">=</span><span class="s">database_objects ; database driver to use for the objects to blend</span><span class="w"></span>
+<span class="na">StimuliProvider</span><span class="o">=</span><span class="s">sp_objects  ; stimuli provider specifying the transformations</span><span class="w"></span>
+<span class="w">                            </span><span class="c1">; to apply on the object data before blending</span><span class="w"></span>
+<span class="c1">; Specifies the name of the image label(s) on which a blending can be performed.</span><span class="w"></span>
+<span class="c1">; Here, any image in a &quot;backgrounds&quot; sub-directory in the dataset will be used</span><span class="w"></span>
+<span class="c1">; for the blending</span><span class="w"></span>
+<span class="c1">; POSSIBLE FUTURE EXTENSION: possibility to associate some backgrounds to some</span><span class="w"></span>
+<span class="c1">; object types only. Adding a background in a &quot;backgrounds&quot; sub-directory in the</span><span class="w"></span>
+<span class="c1">; object directory may allow this.</span><span class="w"></span>
+<span class="c1">; POSSIBLE FUTURE EXTENSION: specify ROIs for blending some object types.</span><span class="w"></span>
+<span class="na">ApplyToLabels</span><span class="o">=</span><span class="s">*backgrounds*</span><span class="w"></span>
+<span class="c1">; Indicate whether multiple object types can be mixed on the same background</span><span class="w"></span>
+<span class="na">TypeMixing</span><span class="o">=</span><span class="s">0</span><span class="w"></span>
+<span class="c1">; Density of the object in the background, from 0.0 to 1.0</span><span class="w"></span>
+<span class="na">DensityRange</span><span class="o">=</span><span class="s">0.0 0.2</span><span class="w"></span>
+<span class="c1">; Horizontal margin between objects (in pixels)</span><span class="w"></span>
+<span class="na">MarginH</span><span class="o">=</span><span class="s">0</span><span class="w"></span>
+<span class="c1">; Vertical margin between objects (in pixels)</span><span class="w"></span>
+<span class="na">MarginV</span><span class="o">=</span><span class="s">0</span><span class="w"></span>
+<span class="c1">; Blending method</span><span class="w"></span>
+<span class="c1">; POSSIBLE FUTURE EXTENSION: add other blending methods...</span><span class="w"></span>
+<span class="na">BlendingMethod</span><span class="o">=</span><span class="s">SmoothEdge</span><span class="w"></span>
+<span class="na">BlendingSmoothSize</span><span class="o">=</span><span class="s">5</span><span class="w"></span>
+<span class="c1">; For DEBUG purpose, specifying a non-empty SavePath will save all the generated</span><span class="w"></span>
+<span class="c1">; blending with their associated JSON annotation in the SavePath directory.</span><span class="w"></span>
+<span class="na">SavePath</span><span class="o">=</span><span class="s">blending</span><span class="w"></span>
 
-<span class="na">...</span>
+<span class="na">...</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The second part is the object pre-processing and extraction pipeline, that is
 attached to the <code class="docutils literal notranslate"><span class="pre">BlendingTransformation</span></code>.</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; --- BEGIN --- DATA TO BLEND PRE-PROCESSING ---</span>
-<span class="c1">; Database driver for the objects. Can be a sub-set of the main pipe image</span>
-<span class="c1">; dataset, or even the full main dataset itself</span>
-<span class="k">[database_objects]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">DIR_Database</span>
-<span class="na">DataPath</span><span class="o">=</span><span class="s">${DATA_PATH}</span>
-<span class="na">Depth</span><span class="o">=</span><span class="s">-1</span>
-<span class="na">LabelDepth</span><span class="o">=</span><span class="s">1</span>
-<span class="na">Learn</span><span class="o">=</span><span class="s">1.0</span>
-<span class="na">EquivLabelPartitioning</span><span class="o">=</span><span class="s">0</span>
-<span class="c1">; Since we use the same dataset, ignore the background images that contain</span>
-<span class="c1">; no object to blend.</span>
-<span class="na">IgnoreMasks</span><span class="o">=</span><span class="s">*backgrounds*</span>
-<span class="na">DefaultLabel</span><span class="o">=</span><span class="s">background ; Label for pixels outside any ROI (default is no label, pixels are ignored)</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; --- BEGIN --- DATA TO BLEND PRE-PROCESSING ---</span><span class="w"></span>
+<span class="c1">; Database driver for the objects. Can be a sub-set of the main pipe image</span><span class="w"></span>
+<span class="c1">; dataset, or even the full main dataset itself</span><span class="w"></span>
+<span class="k">[database_objects]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">DIR_Database</span><span class="w"></span>
+<span class="na">DataPath</span><span class="o">=</span><span class="s">${DATA_PATH}</span><span class="w"></span>
+<span class="na">Depth</span><span class="o">=</span><span class="s">-1</span><span class="w"></span>
+<span class="na">LabelDepth</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
+<span class="na">Learn</span><span class="o">=</span><span class="s">1.0</span><span class="w"></span>
+<span class="na">EquivLabelPartitioning</span><span class="o">=</span><span class="s">0</span><span class="w"></span>
+<span class="c1">; Since we use the same dataset, ignore the background images that contain</span><span class="w"></span>
+<span class="c1">; no object to blend.</span><span class="w"></span>
+<span class="na">IgnoreMasks</span><span class="o">=</span><span class="s">*backgrounds*</span><span class="w"></span>
+<span class="na">DefaultLabel</span><span class="o">=</span><span class="s">background ; Label for pixels outside any ROI (default is no label, pixels are ignored)</span><span class="w"></span>
 
-<span class="c1">; Simuli provider for objects =&gt; no need to change this part.</span>
-<span class="k">[sp_objects]</span>
-<span class="c1">; Sizes to 0 means any size, require that BatchSize=0</span>
-<span class="na">SizeX</span><span class="o">=</span><span class="s">0</span>
-<span class="na">SizeY</span><span class="o">=</span><span class="s">0</span>
-<span class="na">BatchSize</span><span class="o">=</span><span class="s">0</span>
+<span class="c1">; Simuli provider for objects =&gt; no need to change this part.</span><span class="w"></span>
+<span class="k">[sp_objects]</span><span class="w"></span>
+<span class="c1">; Sizes to 0 means any size, require that BatchSize=0</span><span class="w"></span>
+<span class="na">SizeX</span><span class="o">=</span><span class="s">0</span><span class="w"></span>
+<span class="na">SizeY</span><span class="o">=</span><span class="s">0</span><span class="w"></span>
+<span class="na">BatchSize</span><span class="o">=</span><span class="s">0</span><span class="w"></span>
 
-<span class="c1">; Apply random rotation &amp; scaling to objects</span>
-<span class="c1">; POSSIBLE FUTURE EXTENSION: apply different transformations depending on the</span>
-<span class="c1">; type of object</span>
-<span class="k">[sp_objects.OnTheFlyTransformation-0]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">SliceExtractionTransformation</span>
-<span class="c1">; Sizes to 0 means any size, size will not be changed by the transformation</span>
-<span class="na">Width</span><span class="o">=</span><span class="s">0</span>
-<span class="na">Height</span><span class="o">=</span><span class="s">0</span>
-<span class="na">RandomRotation</span><span class="o">=</span><span class="s">1</span>
-<span class="na">RandomScaling</span><span class="o">=</span><span class="s">1</span>
-<span class="na">RandomScalingRange</span><span class="o">=</span><span class="s">0.5 2.0</span>
+<span class="c1">; Apply random rotation &amp; scaling to objects</span><span class="w"></span>
+<span class="c1">; POSSIBLE FUTURE EXTENSION: apply different transformations depending on the</span><span class="w"></span>
+<span class="c1">; type of object</span><span class="w"></span>
+<span class="k">[sp_objects.OnTheFlyTransformation-0]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">SliceExtractionTransformation</span><span class="w"></span>
+<span class="c1">; Sizes to 0 means any size, size will not be changed by the transformation</span><span class="w"></span>
+<span class="na">Width</span><span class="o">=</span><span class="s">0</span><span class="w"></span>
+<span class="na">Height</span><span class="o">=</span><span class="s">0</span><span class="w"></span>
+<span class="na">RandomRotation</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
+<span class="na">RandomScaling</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
+<span class="na">RandomScalingRange</span><span class="o">=</span><span class="s">0.5 2.0</span><span class="w"></span>
 
-<span class="c1">; ... add here other transformations to apply to objects before extraction and</span>
-<span class="c1">; blending</span>
+<span class="c1">; ... add here other transformations to apply to objects before extraction and</span><span class="w"></span>
+<span class="c1">; blending</span><span class="w"></span>
 
-<span class="c1">; Extend the object labels to have a smooth transition with background</span>
-<span class="k">[sp_objects.OnTheFlyTransformation-1]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">MorphologyTransformation</span>
-<span class="na">Operation</span><span class="o">=</span><span class="s">Dilate</span>
-<span class="na">Size</span><span class="o">=</span><span class="s">3</span>
-<span class="na">ApplyToLabels</span><span class="o">=</span><span class="s">1</span>
-<span class="na">NbIterations</span><span class="o">=</span><span class="s">2</span>
+<span class="c1">; Extend the object labels to have a smooth transition with background</span><span class="w"></span>
+<span class="k">[sp_objects.OnTheFlyTransformation-1]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">MorphologyTransformation</span><span class="w"></span>
+<span class="na">Operation</span><span class="o">=</span><span class="s">Dilate</span><span class="w"></span>
+<span class="na">Size</span><span class="o">=</span><span class="s">3</span><span class="w"></span>
+<span class="na">ApplyToLabels</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
+<span class="na">NbIterations</span><span class="o">=</span><span class="s">2</span><span class="w"></span>
 
-<span class="c1">; This has to be the last transformation in the pre-processing of the images</span>
-<span class="c1">; that will be blended.</span>
-<span class="c1">; After data augmentation, a random object is extracted from the image,</span>
-<span class="c1">; using ROIs or connected-component labeling.</span>
-<span class="k">[sp_objects.OnTheFlyTransformation-2]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">ROIExtractionTransformation</span>
-<span class="c1">; Extract any label ID</span>
-<span class="na">Label</span><span class="o">=</span><span class="s">-1</span>
-<span class="c1">; Perform connected-component labeling to the label to obtain objects ROIs.</span>
-<span class="na">LabelSegmentation</span><span class="o">=</span><span class="s">1</span>
-<span class="na">Margin</span><span class="o">=</span><span class="s">0</span>
-<span class="na">KeepComposite</span><span class="o">=</span><span class="s">1</span>
-<span class="c1">; Possibility to filter the ROIs to keep before random selection of a single</span>
-<span class="c1">; one:</span>
-<span class="na">MinSize</span><span class="o">=</span><span class="s">0</span>
-<span class="na">FilterMinHeight</span><span class="o">=</span><span class="s">0</span>
-<span class="na">FilterMinWidth</span><span class="o">=</span><span class="s">0</span>
-<span class="na">FilterMinAspectRatio</span><span class="o">=</span><span class="s">0.0</span>
-<span class="na">FilterMaxAspectRatio</span><span class="o">=</span><span class="s">0.0</span>
-<span class="na">MergeMaxHDist</span><span class="o">=</span><span class="s">10</span>
-<span class="na">MergeMaxVDist</span><span class="o">=</span><span class="s">10</span>
-<span class="c1">; --- END --- DATA TO BLEND PRE-PROCESSING ---</span>
+<span class="c1">; This has to be the last transformation in the pre-processing of the images</span><span class="w"></span>
+<span class="c1">; that will be blended.</span><span class="w"></span>
+<span class="c1">; After data augmentation, a random object is extracted from the image,</span><span class="w"></span>
+<span class="c1">; using ROIs or connected-component labeling.</span><span class="w"></span>
+<span class="k">[sp_objects.OnTheFlyTransformation-2]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">ROIExtractionTransformation</span><span class="w"></span>
+<span class="c1">; Extract any label ID</span><span class="w"></span>
+<span class="na">Label</span><span class="o">=</span><span class="s">-1</span><span class="w"></span>
+<span class="c1">; Perform connected-component labeling to the label to obtain objects ROIs.</span><span class="w"></span>
+<span class="na">LabelSegmentation</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
+<span class="na">Margin</span><span class="o">=</span><span class="s">0</span><span class="w"></span>
+<span class="na">KeepComposite</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
+<span class="c1">; Possibility to filter the ROIs to keep before random selection of a single</span><span class="w"></span>
+<span class="c1">; one:</span><span class="w"></span>
+<span class="na">MinSize</span><span class="o">=</span><span class="s">0</span><span class="w"></span>
+<span class="na">FilterMinHeight</span><span class="o">=</span><span class="s">0</span><span class="w"></span>
+<span class="na">FilterMinWidth</span><span class="o">=</span><span class="s">0</span><span class="w"></span>
+<span class="na">FilterMinAspectRatio</span><span class="o">=</span><span class="s">0.0</span><span class="w"></span>
+<span class="na">FilterMaxAspectRatio</span><span class="o">=</span><span class="s">0.0</span><span class="w"></span>
+<span class="na">MergeMaxHDist</span><span class="o">=</span><span class="s">10</span><span class="w"></span>
+<span class="na">MergeMaxVDist</span><span class="o">=</span><span class="s">10</span><span class="w"></span>
+<span class="c1">; --- END --- DATA TO BLEND PRE-PROCESSING ---</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -606,10 +606,10 @@ channels of the input images;</p></li>
 applied to all the channels of the input images.</p></li>
 </ul>
 <p>Example:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[env.Transformation]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">PadCropTransformation</span>
-<span class="na">Width</span><span class="o">=</span><span class="s">24</span>
-<span class="na">Height</span><span class="o">=</span><span class="s">24</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[env.Transformation]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">PadCropTransformation</span><span class="w"></span>
+<span class="na">Width</span><span class="o">=</span><span class="s">24</span><span class="w"></span>
+<span class="na">Height</span><span class="o">=</span><span class="s">24</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Several transformations can applied successively. In this case, to be
@@ -656,26 +656,26 @@ the INI file regardless of their suffix.</strong></p>
 </tbody>
 </table>
 <p>Example:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[env.Transformation-1]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">ChannelExtractionTransformation</span>
-<span class="na">CSChannel</span><span class="o">=</span><span class="s">Gray</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[env.Transformation-1]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">ChannelExtractionTransformation</span><span class="w"></span>
+<span class="na">CSChannel</span><span class="o">=</span><span class="s">Gray</span><span class="w"></span>
 
-<span class="k">[env.Transformation-2]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">RescaleTransformation</span>
-<span class="na">Width</span><span class="o">=</span><span class="s">29</span>
-<span class="na">Height</span><span class="o">=</span><span class="s">29</span>
+<span class="k">[env.Transformation-2]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">RescaleTransformation</span><span class="w"></span>
+<span class="na">Width</span><span class="o">=</span><span class="s">29</span><span class="w"></span>
+<span class="na">Height</span><span class="o">=</span><span class="s">29</span><span class="w"></span>
 
-<span class="k">[env.Transformation-3]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">EqualizeTransformation</span>
+<span class="k">[env.Transformation-3]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">EqualizeTransformation</span><span class="w"></span>
 
-<span class="k">[env.OnTheFlyTransformation]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">DistortionTransformation</span>
-<span class="na">ApplyTo</span><span class="o">=</span><span class="s">LearnOnly ; Apply this transformation for the Learning set only</span>
-<span class="na">ElasticGaussianSize</span><span class="o">=</span><span class="s">21</span>
-<span class="na">ElasticSigma</span><span class="o">=</span><span class="s">6.0</span>
-<span class="na">ElasticScaling</span><span class="o">=</span><span class="s">20.0</span>
-<span class="na">Scaling</span><span class="o">=</span><span class="s">15.0</span>
-<span class="na">Rotation</span><span class="o">=</span><span class="s">15.0</span>
+<span class="k">[env.OnTheFlyTransformation]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">DistortionTransformation</span><span class="w"></span>
+<span class="na">ApplyTo</span><span class="o">=</span><span class="s">LearnOnly ; Apply this transformation for the Learning set only</span><span class="w"></span>
+<span class="na">ElasticGaussianSize</span><span class="o">=</span><span class="s">21</span><span class="w"></span>
+<span class="na">ElasticSigma</span><span class="o">=</span><span class="s">6.0</span><span class="w"></span>
+<span class="na">ElasticScaling</span><span class="o">=</span><span class="s">20.0</span><span class="w"></span>
+<span class="na">Scaling</span><span class="o">=</span><span class="s">15.0</span><span class="w"></span>
+<span class="na">Rotation</span><span class="o">=</span><span class="s">15.0</span><span class="w"></span>
 </pre></div>
 </div>
 <p>List of available transformations:</p>

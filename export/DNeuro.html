@@ -261,28 +261,28 @@ and chaining is done automatically with N2D2.</p>
 pipeline/FIFO.</p>
 <p>An example of the top-level DNeuro RTL entity is described below, for
 one input channel and 3 output channels:</p>
-<div class="highlight-vhdl notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Input size: 1*640*480</span>
-<span class="c1">-- Output size: 3*80*60</span>
-<span class="k">entity</span> <span class="nc">network</span> <span class="k">is</span>
-<span class="k">generic</span> <span class="p">(</span>
-    <span class="k">constant</span> <span class="n">G_BATCH_SIZE</span><span class="o">:</span> <span class="kt">positive</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">constant</span> <span class="n">G_FIFO_DEPTH</span><span class="o">:</span> <span class="kt">positive</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">constant</span> <span class="n">G_DATA_LENGTH</span><span class="o">:</span> <span class="kt">positive</span> <span class="o">:=</span> <span class="mi">8</span><span class="p">;</span>
-    <span class="k">constant</span> <span class="n">G_ACC_S_LENGTH</span><span class="o">:</span> <span class="kt">positive</span> <span class="o">:=</span> <span class="mi">18</span><span class="p">;</span>
-    <span class="k">constant</span> <span class="n">G_NB_OUTPUTS_INST_N_1_ENV</span><span class="o">:</span> <span class="kt">positive</span>  <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">constant</span> <span class="n">G_NB_OUTPUTS_MERG_N_1_ENV</span><span class="o">:</span> <span class="kt">positive</span>  <span class="o">:=</span> <span class="mi">1</span>
-<span class="p">);</span>
-<span class="k">port</span> <span class="p">(</span>
-    <span class="n">clk</span>             <span class="o">:</span> <span class="k">in</span> <span class="kt">std_logic</span><span class="p">;</span>
-    <span class="n">rstn</span>            <span class="o">:</span> <span class="k">in</span> <span class="kt">std_logic</span><span class="p">;</span>
-    <span class="n">i_data</span>          <span class="o">:</span> <span class="k">in</span> <span class="kt">std_logic_vector</span> <span class="p">((</span><span class="n">G_DATA_LENGTH</span><span class="o">*</span><span class="n">G_BATCH_SIZE</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="n">i_valid_data</span>    <span class="o">:</span> <span class="k">in</span> <span class="kt">std_logic</span><span class="p">;</span>
-    <span class="n">o_en</span>            <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic</span><span class="p">;</span>
-    <span class="n">o_data</span>          <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic_vector</span> <span class="p">((</span><span class="mi">3</span><span class="o">*</span><span class="n">G_DATA_LENGTH</span><span class="o">*</span><span class="n">G_BATCH_SIZE</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="n">o_valid_data</span>    <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic</span><span class="p">;</span>
-    <span class="n">i_en</span>            <span class="o">:</span> <span class="k">in</span> <span class="kt">std_logic</span>
-<span class="p">);</span>
-<span class="k">end</span> <span class="nc">network</span><span class="p">;</span>
+<div class="highlight-vhdl notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Input size: 1*640*480</span><span class="w"></span>
+<span class="c1">-- Output size: 3*80*60</span><span class="w"></span>
+<span class="k">entity</span><span class="w"> </span><span class="nc">network</span><span class="w"> </span><span class="k">is</span><span class="w"></span>
+<span class="k">generic</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="k">constant</span><span class="w"> </span><span class="n">G_BATCH_SIZE</span><span class="o">:</span><span class="w"> </span><span class="kt">positive</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">constant</span><span class="w"> </span><span class="n">G_FIFO_DEPTH</span><span class="o">:</span><span class="w"> </span><span class="kt">positive</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">constant</span><span class="w"> </span><span class="n">G_DATA_LENGTH</span><span class="o">:</span><span class="w"> </span><span class="kt">positive</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">constant</span><span class="w"> </span><span class="n">G_ACC_S_LENGTH</span><span class="o">:</span><span class="w"> </span><span class="kt">positive</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">18</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">constant</span><span class="w"> </span><span class="n">G_NB_OUTPUTS_INST_N_1_ENV</span><span class="o">:</span><span class="w"> </span><span class="kt">positive</span><span class="w">  </span><span class="o">:=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">constant</span><span class="w"> </span><span class="n">G_NB_OUTPUTS_MERG_N_1_ENV</span><span class="o">:</span><span class="w"> </span><span class="kt">positive</span><span class="w">  </span><span class="o">:=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+<span class="k">port</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">clk</span><span class="w">             </span><span class="o">:</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">std_logic</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">rstn</span><span class="w">            </span><span class="o">:</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">std_logic</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">i_data</span><span class="w">          </span><span class="o">:</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">std_logic_vector</span><span class="w"> </span><span class="p">((</span><span class="n">G_DATA_LENGTH</span><span class="o">*</span><span class="n">G_BATCH_SIZE</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="k">downto</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">i_valid_data</span><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">std_logic</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">o_en</span><span class="w">            </span><span class="o">:</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">std_logic</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">o_data</span><span class="w">          </span><span class="o">:</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">std_logic_vector</span><span class="w"> </span><span class="p">((</span><span class="mi">3</span><span class="o">*</span><span class="n">G_DATA_LENGTH</span><span class="o">*</span><span class="n">G_BATCH_SIZE</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="k">downto</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">o_valid_data</span><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">std_logic</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">i_en</span><span class="w">            </span><span class="o">:</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">std_logic</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+<span class="k">end</span><span class="w"> </span><span class="nc">network</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1832,7 +1832,7 @@ in N2D2, create a TensorRT export with the following commands:</p>
 </pre></div>
 </div>
 <p>Open the application preview in a navigator:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">8888</span><span class="o">/</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8888</span><span class="o">/</span>
 </pre></div>
 </div>
 <div class="figure align-default" id="id2">
@@ -1981,26 +1981,26 @@ of <code class="docutils literal notranslate"><span class="pre">[fc3.face.Target
 size as the input.</p></li>
 </ul>
 <p>The end of the <em>IMDBWIKI.ini</em> file should look like:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[fc3.face]</span>
-<span class="na">...</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[fc3.face]</span><span class="w"></span>
+<span class="na">...</span><span class="w"></span>
 
-<span class="k">[resize]</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">fc3.face</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Resize</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">[fc3.face]NbOutputs</span>
-<span class="na">Mode</span><span class="o">=</span><span class="s">NearestNeighbor</span>
-<span class="na">OutputWidth</span><span class="o">=</span><span class="s">[sp]SizeX</span>
-<span class="na">OutputHeight</span><span class="o">=</span><span class="s">[sp]SizeY</span>
-<span class="na">ConfigSection</span><span class="o">=</span><span class="s">resize.config</span>
-<span class="k">[resize.config]</span>
-<span class="na">AlignCorners</span><span class="o">=</span><span class="s">1</span>
+<span class="k">[resize]</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">fc3.face</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Resize</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">[fc3.face]NbOutputs</span><span class="w"></span>
+<span class="na">Mode</span><span class="o">=</span><span class="s">NearestNeighbor</span><span class="w"></span>
+<span class="na">OutputWidth</span><span class="o">=</span><span class="s">[sp]SizeX</span><span class="w"></span>
+<span class="na">OutputHeight</span><span class="o">=</span><span class="s">[sp]SizeY</span><span class="w"></span>
+<span class="na">ConfigSection</span><span class="o">=</span><span class="s">resize.config</span><span class="w"></span>
+<span class="k">[resize.config]</span><span class="w"></span>
+<span class="na">AlignCorners</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
 
-<span class="k">[resize.Target]</span>
-<span class="na">LabelsMapping</span><span class="o">=</span><span class="s">IMDBWIKI_target_face.dat</span>
-<span class="na">NoDisplayLabel</span><span class="o">=</span><span class="s">0</span>
+<span class="k">[resize.Target]</span><span class="w"></span>
+<span class="na">LabelsMapping</span><span class="o">=</span><span class="s">IMDBWIKI_target_face.dat</span><span class="w"></span>
+<span class="na">NoDisplayLabel</span><span class="o">=</span><span class="s">0</span><span class="w"></span>
 
-<span class="k">[common.config]</span>
-<span class="na">...</span>
+<span class="k">[common.config]</span><span class="w"></span>
+<span class="na">...</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The DNeuro project can now be generated (it is possible to re-use the

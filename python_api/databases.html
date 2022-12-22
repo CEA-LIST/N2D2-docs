@@ -181,6 +181,10 @@
 <li class="toctree-l4"><a class="reference internal" href="#n2d2.transform.Rescale"><code class="docutils literal notranslate"><span class="pre">Rescale</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#reshape">Reshape</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.transform.Reshape"><code class="docutils literal notranslate"><span class="pre">Reshape</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#colorspace">ColorSpace</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#n2d2.transform.ColorSpace"><code class="docutils literal notranslate"><span class="pre">ColorSpace</span></code></a></li>
 </ul>
@@ -1436,6 +1440,46 @@ This transformation is generally used on-the-fly
 <dl class="py method">
 <dt class="sig sig-object py" id="n2d2.transform.Rescale.get_parameter">
 <span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Rescale.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="reshape">
+<h3>Reshape<a class="headerlink" href="#reshape" title="Permalink to this heading">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="n2d2.transform.Reshape">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">n2d2.transform.</span></span><span class="sig-name descname"><span class="pre">Reshape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nb_rows</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Reshape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reshape the data to a specified size.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="n2d2.transform.Reshape.N2D2">
+<span class="sig-name descname"><span class="pre">N2D2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Reshape.N2D2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the N2D2 object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="n2d2.transform.Reshape.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nb_rows</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Reshape.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nb_rows</strong> (<em>int</em>) – New number of rows</p></li>
+<li><p><strong>nb_cols</strong> (<em>int</em><em>, </em><em>optional</em>) – New number of cols (0 = no check), default=0</p></li>
+<li><p><strong>nb_channels</strong> (<em>int</em><em>, </em><em>optional</em>) – New number of channels (0 = no change), default=0</p></li>
+<li><p><strong>apply_to</strong> (<em>str</em><em>, </em><em>optional</em>) – To which partition the transform is applied. One of: <code class="docutils literal notranslate"><span class="pre">LearnOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">ValidationOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">TestOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">NoLearn</span></code>, <code class="docutils literal notranslate"><span class="pre">NoValidation</span></code>, <code class="docutils literal notranslate"><span class="pre">NoTest</span></code>, <code class="docutils literal notranslate"><span class="pre">All</span></code>, default=”All”</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="n2d2.transform.Reshape.get_parameter">
+<span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.transform.Reshape.get_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>

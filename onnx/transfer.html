@@ -233,12 +233,12 @@ provided in N2D2. The resulting model file name is therefore assumed to be
 <p>The first step to perform transfer learning is to remove the existing classifier
 from the ONNX model. To do so, one can simply use the <code class="docutils literal notranslate"><span class="pre">Ignore</span></code> parameter in
 the ONNX INI section.</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[onnx]</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">sp</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">ONNX</span>
-<span class="na">File</span><span class="o">=</span><span class="s">mobilenet_v1_1.0_224.onnx</span>
-<span class="c1">; Remove the last layer and the softmax for transfer learning</span>
-<span class="na">Ignore</span><span class="o">=</span><span class="s">Conv__252:0 MobilenetV1/Predictions/Softmax:0</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[onnx]</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">sp</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">ONNX</span><span class="w"></span>
+<span class="na">File</span><span class="o">=</span><span class="s">mobilenet_v1_1.0_224.onnx</span><span class="w"></span>
+<span class="c1">; Remove the last layer and the softmax for transfer learning</span><span class="w"></span>
+<span class="na">Ignore</span><span class="o">=</span><span class="s">Conv__252:0 MobilenetV1/Predictions/Softmax:0</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -252,32 +252,32 @@ to a layer embedded in an ONNX model, must take the ONNX section name
 are then added in the comma-separated list, which can mix ONNX and N2D2 layers.
 In the example below, the average pooling layer from the ONNX model is connected
 to the <code class="docutils literal notranslate"><span class="pre">Fc</span></code> cell:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; Here, we add our new layers for transfer learning</span>
-<span class="k">[fc]</span>
-<span class="c1">; first input MUST BE &quot;onnx&quot;</span>
-<span class="c1">; for proper dependency handling</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">onnx,MobilenetV1/Logits/AvgPool_1a/AvgPool:0</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Fc</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">100</span>
-<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear</span>
-<span class="na">WeightsFiller</span><span class="o">=</span><span class="s">XavierFiller</span>
-<span class="na">ConfigSection</span><span class="o">=</span><span class="s">common.config</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; Here, we add our new layers for transfer learning</span><span class="w"></span>
+<span class="k">[fc]</span><span class="w"></span>
+<span class="c1">; first input MUST BE &quot;onnx&quot;</span><span class="w"></span>
+<span class="c1">; for proper dependency handling</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">onnx,MobilenetV1/Logits/AvgPool_1a/AvgPool:0</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Fc</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">100</span><span class="w"></span>
+<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Linear</span><span class="w"></span>
+<span class="na">WeightsFiller</span><span class="o">=</span><span class="s">XavierFiller</span><span class="w"></span>
+<span class="na">ConfigSection</span><span class="o">=</span><span class="s">common.config</span><span class="w"></span>
 
-<span class="k">[softmax]</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">fc</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Softmax</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">[fc]NbOutputs</span>
-<span class="na">WithLoss</span><span class="o">=</span><span class="s">1</span>
-<span class="k">[softmax.Target]</span>
+<span class="k">[softmax]</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">fc</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Softmax</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">[fc]NbOutputs</span><span class="w"></span>
+<span class="na">WithLoss</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
+<span class="k">[softmax.Target]</span><span class="w"></span>
 
-<span class="c1">; Common config for static model</span>
-<span class="k">[common.config]</span>
-<span class="na">WeightsSolver.LearningRate</span><span class="o">=</span><span class="s">0.01</span>
-<span class="na">WeightsSolver.Momentum</span><span class="o">=</span><span class="s">0.9</span>
-<span class="na">WeightsSolver.Decay</span><span class="o">=</span><span class="s">0.0005</span>
-<span class="na">Solvers.LearningRatePolicy</span><span class="o">=</span><span class="s">StepDecay</span>
-<span class="na">Solvers.LearningRateStepSize</span><span class="o">=</span><span class="s">[sp]_EpochSize</span>
-<span class="na">Solvers.LearningRateDecay</span><span class="o">=</span><span class="s">0.993</span>
+<span class="c1">; Common config for static model</span><span class="w"></span>
+<span class="k">[common.config]</span><span class="w"></span>
+<span class="na">WeightsSolver.LearningRate</span><span class="o">=</span><span class="s">0.01</span><span class="w"></span>
+<span class="na">WeightsSolver.Momentum</span><span class="o">=</span><span class="s">0.9</span><span class="w"></span>
+<span class="na">WeightsSolver.Decay</span><span class="o">=</span><span class="s">0.0005</span><span class="w"></span>
+<span class="na">Solvers.LearningRatePolicy</span><span class="o">=</span><span class="s">StepDecay</span><span class="w"></span>
+<span class="na">Solvers.LearningRateStepSize</span><span class="o">=</span><span class="s">[sp]_EpochSize</span><span class="w"></span>
+<span class="na">Solvers.LearningRateDecay</span><span class="o">=</span><span class="s">0.993</span><span class="w"></span>
 </pre></div>
 </div>
 <p>As this new classifier must be trained, all the training parameter must be
@@ -292,20 +292,20 @@ ONNX model. For example, to add default parameters to all convolution layers
 in the ONNX model loaded in a section of type ONNX named <code class="docutils literal notranslate"><span class="pre">onnx</span></code>,
 just add a section named <code class="docutils literal notranslate"><span class="pre">[onnx:Conv_def]</span></code> in the INI file. The name of the
 default section follows the convention <code class="docutils literal notranslate"><span class="pre">[ONNXSection:N2D2CellType_def]</span></code>.</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; Default section for ONNX Conv from section &quot;onnx&quot;</span>
-<span class="c1">; &quot;ConfigSection&quot;, solvers and fillers can be specified here...</span>
-<span class="k">[onnx:Conv_def]</span>
-<span class="na">ConfigSection</span><span class="o">=</span><span class="s">common.config</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; Default section for ONNX Conv from section &quot;onnx&quot;</span><span class="w"></span>
+<span class="c1">; &quot;ConfigSection&quot;, solvers and fillers can be specified here...</span><span class="w"></span>
+<span class="k">[onnx:Conv_def]</span><span class="w"></span>
+<span class="na">ConfigSection</span><span class="o">=</span><span class="s">common.config</span><span class="w"></span>
 
-<span class="c1">; Default section for ONNX Fc from section &quot;onnx&quot;</span>
-<span class="k">[onnx:Fc_def]</span>
-<span class="na">ConfigSection</span><span class="o">=</span><span class="s">common.config</span>
+<span class="c1">; Default section for ONNX Fc from section &quot;onnx&quot;</span><span class="w"></span>
+<span class="k">[onnx:Fc_def]</span><span class="w"></span>
+<span class="na">ConfigSection</span><span class="o">=</span><span class="s">common.config</span><span class="w"></span>
 
-<span class="c1">; For BatchNorm, make sure the stats won&#39;t change if there is no fine-tuning</span>
-<span class="k">[onnx:BatchNorm_def]</span>
-<span class="na">ConfigSection</span><span class="o">=</span><span class="s">bn_notrain.config</span>
-<span class="k">[bn_notrain.config]</span>
-<span class="na">MovingAverageMomentum</span><span class="o">=</span><span class="s">0.0</span>
+<span class="c1">; For BatchNorm, make sure the stats won&#39;t change if there is no fine-tuning</span><span class="w"></span>
+<span class="k">[onnx:BatchNorm_def]</span><span class="w"></span>
+<span class="na">ConfigSection</span><span class="o">=</span><span class="s">bn_notrain.config</span><span class="w"></span>
+<span class="k">[bn_notrain.config]</span><span class="w"></span>
+<span class="na">MovingAverageMomentum</span><span class="o">=</span><span class="s">0.0</span><span class="w"></span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -321,10 +321,10 @@ with the ONNX layer named.</p>
 ones. To stop the fine-tuning at a specific layer, one can simply prevent the
 gradient from back-propagating further. This can be achieved with the
 <code class="docutils literal notranslate"><span class="pre">BackPropagate=0</span></code> configuration parameter.</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Conv__250]</span>
-<span class="na">ConfigSection</span><span class="o">=</span><span class="s">common.config,notrain.config</span>
-<span class="k">[notrain.config]</span>
-<span class="na">BackPropagate</span><span class="o">=</span><span class="s">0</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Conv__250]</span><span class="w"></span>
+<span class="na">ConfigSection</span><span class="o">=</span><span class="s">common.config,notrain.config</span><span class="w"></span>
+<span class="k">[notrain.config]</span><span class="w"></span>
+<span class="na">BackPropagate</span><span class="o">=</span><span class="s">0</span><span class="w"></span>
 </pre></div>
 </div>
 <p>For the full configuration related to this example and more information, have a

@@ -227,10 +227,10 @@ labels must be mapped to the output neurons.</p>
 <p>To specify that the back-propagated error must be computed at the output
 of a given layer (generally the last layer, or output layer), one must
 add a target section named <em>LayerName</em><code class="docutils literal notranslate"><span class="pre">.Target</span></code>:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">...</span>
-<span class="k">[LayerName.Target]</span>
-<span class="na">TargetValue</span><span class="o">=</span><span class="s">1.0 ; default: 1.0</span>
-<span class="na">DefaultValue</span><span class="o">=</span><span class="s">0.0 ; default: -1.0</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">...</span><span class="w"></span>
+<span class="k">[LayerName.Target]</span><span class="w"></span>
+<span class="na">TargetValue</span><span class="o">=</span><span class="s">1.0 ; default: 1.0</span><span class="w"></span>
+<span class="na">DefaultValue</span><span class="o">=</span><span class="s">0.0 ; default: -1.0</span><span class="w"></span>
 </pre></div>
 </div>
 <div class="section" id="from-labels-to-targets">
@@ -248,20 +248,20 @@ same output neuron for example.</p>
 <p>To specify a target in the INI file, one must simply add a <em>LayerName</em><code class="docutils literal notranslate"><span class="pre">.Target</span></code> section,
 where <em>LayerName</em> is the name of the layer section to which the target must be
 associated, as illustrated below:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; Output layer</span>
-<span class="k">[seg_output]</span>
-<span class="na">Input</span><span class="o">=</span><span class="s">...</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Conv</span>
-<span class="na">KernelWidth</span><span class="o">=</span><span class="s">1</span>
-<span class="na">KernelHeight</span><span class="o">=</span><span class="s">1</span>
-<span class="na">NbOutputs</span><span class="o">=</span><span class="s">1</span>
-<span class="na">Stride</span><span class="o">=</span><span class="s">1</span>
-<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">LogisticWithLoss</span>
-<span class="na">WeightsFiller</span><span class="o">=</span><span class="s">XavierFiller</span>
-<span class="na">ConfigSection</span><span class="o">=</span><span class="s">common.config</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">; Output layer</span><span class="w"></span>
+<span class="k">[seg_output]</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">...</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Conv</span><span class="w"></span>
+<span class="na">KernelWidth</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
+<span class="na">KernelHeight</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
+<span class="na">Stride</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
+<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">LogisticWithLoss</span><span class="w"></span>
+<span class="na">WeightsFiller</span><span class="o">=</span><span class="s">XavierFiller</span><span class="w"></span>
+<span class="na">ConfigSection</span><span class="o">=</span><span class="s">common.config</span><span class="w"></span>
 
-<span class="k">[seg_output.Target]</span>
-<span class="na">LabelsMapping</span><span class="o">=</span><span class="s">mapping.dat</span>
+<span class="k">[seg_output.Target]</span><span class="w"></span>
+<span class="na">LabelsMapping</span><span class="o">=</span><span class="s">mapping.dat</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">LabelsMapping</span></code> parameter, when present, is the path to the file
@@ -283,14 +283,14 @@ and the second column to the index of the associated output neuron.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">background</span></code> name is not a reserved label name, it is simply the name
 that is used as <code class="docutils literal notranslate"><span class="pre">DefaultLabel</span></code> in the <code class="docutils literal notranslate"><span class="pre">Database</span></code> driver.</p>
 <p>Here is an example of label mapping file for the single output layer <em>seg_output</em>:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># background (no defect)</span>
-<span class="na">background 0</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># background (no defect)</span><span class="w"></span>
+<span class="na">background 0</span><span class="w"></span>
 
-<span class="c1"># padding</span>
-<span class="na">* -1</span>
+<span class="c1"># padding</span><span class="w"></span>
+<span class="na">* -1</span><span class="w"></span>
 
-<span class="c1"># defect</span>
-<span class="na">default 1</span>
+<span class="c1"># defect</span><span class="w"></span>
+<span class="na">default 1</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Wildcards can be used as well in the name of the label:</p>
