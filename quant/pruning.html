@@ -1,0 +1,476 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Pruning &mdash; N2D2  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Export: C++" href="../export/CPP.html" />
+    <link rel="prev" title="Quantization-Aware Training" href="qat.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> N2D2
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/intro.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/about.html">About N2D2-IP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/simus.html">Performing simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/perfs_tools.html">Performance evaluation tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/tuto.html">Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ONNX Import</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../onnx/convert.html">Obtain ONNX models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../onnx/import.html">Import ONNX models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../onnx/transfer.html">Train from ONNX models</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quantization and Export</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="post.html">Post-training quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qat.html">Quantization-Aware Training</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pruning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-with-python">Example with Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#n2d2.quantizer.PruneCell"><code class="docutils literal notranslate"><span class="pre">PruneCell</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.quantizer.PruneCell.N2D2"><code class="docutils literal notranslate"><span class="pre">PruneCell.N2D2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.quantizer.PruneCell.__init__"><code class="docutils literal notranslate"><span class="pre">PruneCell.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.quantizer.PruneCell.add_biases"><code class="docutils literal notranslate"><span class="pre">PruneCell.add_biases()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.quantizer.PruneCell.add_weights"><code class="docutils literal notranslate"><span class="pre">PruneCell.add_weights()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.quantizer.PruneCell.get_current_threshold"><code class="docutils literal notranslate"><span class="pre">PruneCell.get_current_threshold()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.quantizer.PruneCell.get_parameter"><code class="docutils literal notranslate"><span class="pre">PruneCell.get_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.quantizer.PruneCell.get_pruned_masks"><code class="docutils literal notranslate"><span class="pre">PruneCell.get_pruned_masks()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n2d2.quantizer.PruneCell.get_quantized_weights"><code class="docutils literal notranslate"><span class="pre">PruneCell.get_quantized_weights()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pruning-mode">Pruning mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pruning-filler">Pruning filler</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#example-with-ini-file">Example with INI file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../export/CPP.html">Export: C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../export/CPP_STM32.html">Export: C++/STM32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../export/TensorRT.html">Export: TensorRT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../export/DNeuro.html">Export: DNeuro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../export/ONNX.html">Export: ONNX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../export/legacy.html">Export: other / legacy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">INI File Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ini/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ini/databases.html">Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ini/data_analysis.html">Stimuli data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ini/environment.html">Stimuli provider (Environment)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ini/layers.html">Network Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ini/target.html">Targets (outputs &amp; losses)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../adversarial.html">Adversarial module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/databases.html">Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/cells.html">Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/tensor.html">Tensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/interoperability.html">Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/export.html">Export</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/example.html">Example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">C++/Python core</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core/core.html">Core N2D2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core/example.html">Example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">C++ API / Developer</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev_intro.html">Introduction</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">N2D2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Pruning</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/quant/pruning.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pruning">
+<h1>Pruning<a class="headerlink" href="#pruning" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h2>
+<p>N2D2 provides a pruning module to perform pruning operations on your model in order to reduce its memory footprint.
+The module works like the QAT module i.e. it is possible to carry out trainings with pruned weights in order to improve the performance of the network.
+Only weights can be pruned so far.</p>
+</div>
+<div class="section" id="example-with-python">
+<h2>Example with Python<a class="headerlink" href="#example-with-python" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="n2d2.quantizer.PruneCell">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">n2d2.quantizer.</span></span><span class="sig-name descname"><span class="pre">PruneCell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.quantizer.PruneCell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finetune Pruning</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="n2d2.quantizer.PruneCell.N2D2">
+<span class="sig-name descname"><span class="pre">N2D2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.quantizer.PruneCell.N2D2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the N2D2 object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="n2d2.quantizer.PruneCell.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.quantizer.PruneCell.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – Range of Quantization, can be <code class="docutils literal notranslate"><span class="pre">1</span></code> for binary, <code class="docutils literal notranslate"><span class="pre">255</span></code> for 8-bits etc.., default=255</p></li>
+<li><p><strong>prune_mode</strong> (<em>string</em><em>, </em><em>optional</em>) – Type of pruning mode, can be <code class="docutils literal notranslate"><span class="pre">Identity</span></code>, <code class="docutils literal notranslate"><span class="pre">Static</span></code> or <code class="docutils literal notranslate"><span class="pre">Gradual</span></code>, default=``Identity``</p></li>
+<li><p><strong>prune_filler</strong> (<em>string</em><em>, </em><em>optional</em>) – Type of pruning filler, can be <code class="docutils literal notranslate"><span class="pre">Random</span></code> or <code class="docutils literal notranslate"><span class="pre">IterNonStruct</span></code>, default=``Random``</p></li>
+<li><p><strong>delta</strong> (<em>float</em><em>, </em><em>optional</em>) – For IterNonStruct filler, factor to iteractively prune the data</p></li>
+<li><p><strong>start</strong> (<em>float</em><em>, </em><em>optional</em>) – For Gradual mode, start value for threshold</p></li>
+<li><p><strong>stepsize</strong> (<em>int</em><em>, </em><em>optional</em>) – For Gradual mode, size of the steps before update the masks</p></li>
+<li><p><strong>gamma</strong> (<em>float</em><em>, </em><em>optional</em>) – For Gradual mode, adding threshold value when updating masks</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="n2d2.quantizer.PruneCell.add_biases">
+<span class="sig-name descname"><span class="pre">add_biases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">biases</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../python_api/tensor.html#n2d2.Tensor" title="n2d2.tensor.Tensor"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">diff_biases</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../python_api/tensor.html#n2d2.Tensor" title="n2d2.tensor.Tensor"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.quantizer.PruneCell.add_biases" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>biases</strong> – Biases</p></li>
+<li><p><strong>biases</strong> – <a class="reference internal" href="../python_api/tensor.html#n2d2.Tensor" title="n2d2.Tensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></a></p></li>
+<li><p><strong>diff_biases</strong> – Diff Biases</p></li>
+<li><p><strong>diff_biases</strong> – <a class="reference internal" href="../python_api/tensor.html#n2d2.Tensor" title="n2d2.Tensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="n2d2.quantizer.PruneCell.add_weights">
+<span class="sig-name descname"><span class="pre">add_weights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../python_api/tensor.html#n2d2.Tensor" title="n2d2.tensor.Tensor"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">diff_weights</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../python_api/tensor.html#n2d2.Tensor" title="n2d2.tensor.Tensor"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.quantizer.PruneCell.add_weights" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>weights</strong> – Weights</p></li>
+<li><p><strong>weights</strong> – <a class="reference internal" href="../python_api/tensor.html#n2d2.Tensor" title="n2d2.Tensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></a></p></li>
+<li><p><strong>diff_weights</strong> – Diff Weights</p></li>
+<li><p><strong>diff_weights</strong> – <a class="reference internal" href="../python_api/tensor.html#n2d2.Tensor" title="n2d2.Tensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="n2d2.quantizer.PruneCell.get_current_threshold">
+<span class="sig-name descname"><span class="pre">get_current_threshold</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.quantizer.PruneCell.get_current_threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the current threshold of the cell.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="n2d2.quantizer.PruneCell.get_parameter">
+<span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.quantizer.PruneCell.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="n2d2.quantizer.PruneCell.get_pruned_masks">
+<span class="sig-name descname"><span class="pre">get_pruned_masks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.quantizer.PruneCell.get_pruned_masks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Access the masks of the pruner.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="n2d2.quantizer.PruneCell.get_quantized_weights">
+<span class="sig-name descname"><span class="pre">get_quantized_weights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.quantizer.PruneCell.get_quantized_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Access the quantized weights of the cell the quantizer is attached to.</p>
+</dd></dl>
+
+</dd></dl>
+
+<p>Example of code to use the <em>PruneCell</em> in your scripts:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">model</span><span class="p">:</span>
+<span class="c1">### Add Pruning ###</span>
+<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">Conv</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">Fc</span><span class="p">):</span>
+    <span class="n">cell</span><span class="o">.</span><span class="n">quantizer</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">quantizer</span><span class="o">.</span><span class="n">PruneCell</span><span class="p">(</span><span class="n">prune_mode</span><span class="o">=</span><span class="s2">&quot;Static&quot;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">prune_filler</span><span class="o">=</span><span class="s2">&quot;IterNonStruct&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Some explanations with the differents options of the <em>PruneCell</em>:</p>
+<div class="section" id="pruning-mode">
+<h3>Pruning mode<a class="headerlink" href="#pruning-mode" title="Permalink to this heading">¶</a></h3>
+<p>3 modes are possible:</p>
+<ul class="simple">
+<li><p>Identity: no pruning is applied to the cell</p></li>
+<li><p>Static: all weights of the cell are pruned to the requested <code class="docutils literal notranslate"><span class="pre">threshold</span></code> at initialization</p></li>
+<li><p>Gradual: the weights are pruned to the <code class="docutils literal notranslate"><span class="pre">start</span></code> threshold at initialization and at each update of the current threshold, it is increased by <code class="docutils literal notranslate"><span class="pre">gamma</span></code> until it reaches <code class="docutils literal notranslate"><span class="pre">threshold</span></code>. By default, the update is performed at the end of each epoch (possible to change it with <code class="docutils literal notranslate"><span class="pre">stepsize</span></code>)</p></li>
+</ul>
+<p><strong>Warning</strong>: if you use <code class="docutils literal notranslate"><span class="pre">stepsize</span></code>, please indicate the number of steps and not the number of epochs.
+For example, to update each two epochs, write:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2</span><span class="o">.</span><span class="n">quantizer</span><span class="o">.</span><span class="n">PruneCell</span><span class="p">(</span><span class="n">prune_mode</span><span class="o">=</span><span class="s2">&quot;Gradual&quot;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">stepsize</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">DATASET_SIZE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Where <em>DATASET_SIZE</em> is the size of the dataset you are using.</p>
+</div>
+<div class="section" id="pruning-filler">
+<h3>Pruning filler<a class="headerlink" href="#pruning-filler" title="Permalink to this heading">¶</a></h3>
+<p>2 fillers are available to fill the masks:</p>
+<ul class="simple">
+<li><p>Random: The masks are filled randomly</p></li>
+<li><p>IterNonStruct: all weights below than the <code class="docutils literal notranslate"><span class="pre">delta</span></code> factor are pruned. If this is not enough to reach <code class="docutils literal notranslate"><span class="pre">threshold</span></code>, all the weights below 2 “delta” are pruned and so on…</p></li>
+</ul>
+<p><strong>Important</strong>: With <em>PruneCell</em>, <code class="docutils literal notranslate"><span class="pre">quant_mode</span></code> and <code class="docutils literal notranslate"><span class="pre">range</span></code> are not used.</p>
+</div>
+</div>
+<div class="section" id="example-with-ini-file">
+<h2>Example with INI file<a class="headerlink" href="#example-with-ini-file" title="Permalink to this heading">¶</a></h2>
+<p>The common set of parameters for any kind of Prune Quantizer.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option [default value]</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">QWeight</span></code></p></td>
+<td><p>Quantization / Pruning method, choose <code class="docutils literal notranslate"><span class="pre">Prune</span></code> to activate the Pruning mode.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">QWeight.PruningMode</span></code> [<code class="docutils literal notranslate"><span class="pre">Identity</span></code>]</p></td>
+<td><p>Pruning mode, can be <code class="docutils literal notranslate"><span class="pre">Identity</span></code>, <code class="docutils literal notranslate"><span class="pre">Static</span></code> or <code class="docutils literal notranslate"><span class="pre">Gradual</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">QWeight.PruningFiller</span></code> [<code class="docutils literal notranslate"><span class="pre">Random</span></code>]</p></td>
+<td><p>Pruning filler for the weights, can be <code class="docutils literal notranslate"><span class="pre">Random</span></code>, <code class="docutils literal notranslate"><span class="pre">IterNonStruct</span></code> or <code class="docutils literal notranslate"><span class="pre">None</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">QWeight.Threshold</span></code> [<code class="docutils literal notranslate"><span class="pre">0.2</span></code>]</p></td>
+<td><p>Weight threshold to be pruned, 0.2 means 20% for example</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">QWeight.Delta</span></code> [<code class="docutils literal notranslate"><span class="pre">0.001</span></code>]</p></td>
+<td><p>Factor for iterative pruning, use it with <code class="docutils literal notranslate"><span class="pre">IterNonStruct</span></code> pruning filler</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">QWeight.StartThreshold</span></code> [<code class="docutils literal notranslate"><span class="pre">0.1</span></code>]</p></td>
+<td><p>Starting threshold, use it with <code class="docutils literal notranslate"><span class="pre">Gradual</span></code> pruning mode</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">QWeight.StepSizeThreshold</span></code> [<code class="docutils literal notranslate"><span class="pre">0</span></code>]</p></td>
+<td><p>Step size for the threshold update, use it with <code class="docutils literal notranslate"><span class="pre">Gradual</span></code> pruning mode</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">QWeight.GammaThreshold</span></code> [<code class="docutils literal notranslate"><span class="pre">0.05</span></code>]</p></td>
+<td><p>Value to add to current threshold during its update, use it with <code class="docutils literal notranslate"><span class="pre">Gradual</span></code> pruning mode</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example of code to use the <em>Prune Quantizer</em> in your scripts:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[conv1]</span><span class="w"></span>
+<span class="na">Input</span><span class="o">=</span><span class="s">sp</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Conv</span><span class="w"></span>
+<span class="na">KernelDims</span><span class="o">=</span><span class="s">5 5</span><span class="w"></span>
+<span class="na">NbOutputs</span><span class="o">=</span><span class="s">6</span><span class="w"></span>
+<span class="na">ActivationFunction</span><span class="o">=</span><span class="s">Rectifier</span><span class="w"></span>
+<span class="na">WeightsFiller</span><span class="o">=</span><span class="s">HeFiller</span><span class="w"></span>
+<span class="na">ConfigSection</span><span class="o">=</span><span class="s">common.config</span><span class="w"></span>
+<span class="na">QWeight</span><span class="o">=</span><span class="s">Prune</span><span class="w"></span>
+<span class="na">QWeight.PruningMode</span><span class="o">=</span><span class="s">Static</span><span class="w"></span>
+<span class="na">QWeight.PruningFiller</span><span class="o">=</span><span class="s">IterNonStruct</span><span class="w"></span>
+<span class="na">QWeight.Threshold</span><span class="o">=</span><span class="s">0.3</span><span class="w"></span>
+<span class="na">QWeight.StartThreshold</span><span class="o">=</span><span class="s">0.1</span><span class="w"></span>
+<span class="na">QWeight.GammaThreshold</span><span class="o">=</span><span class="s">0.1</span><span class="w"></span>
+</pre></div>
+</div>
+<p>All explanations in relation to the parameters of Prune Quantizer are provided in the python section of this page.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../export/CPP.html" class="btn btn-neutral float-right" title="Export: C++" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="qat.html" class="btn btn-neutral float-left" title="Quantization-Aware Training" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, CEA LIST
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
