@@ -323,14 +323,14 @@ Only weights can be pruned so far.</p>
 
 </dd></dl>
 
-<p>Example of code to use the <em>PruneCell</em> in your scripts:</p>
+<p>Example of code to use the <a class="reference internal" href="#n2d2.quantizer.PruneCell" title="n2d2.quantizer.PruneCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.quantizer.PruneCell</span></code></a> in your scripts:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">model</span><span class="p">:</span>
-<span class="c1">### Add Pruning ###</span>
-<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">Conv</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">Fc</span><span class="p">):</span>
-    <span class="n">cell</span><span class="o">.</span><span class="n">quantizer</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">quantizer</span><span class="o">.</span><span class="n">PruneCell</span><span class="p">(</span><span class="n">prune_mode</span><span class="o">=</span><span class="s2">&quot;Static&quot;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">prune_filler</span><span class="o">=</span><span class="s2">&quot;IterNonStruct&quot;</span><span class="p">)</span>
+    <span class="c1">### Add Pruning ###</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">Conv</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">Fc</span><span class="p">):</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">quantizer</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">quantizer</span><span class="o">.</span><span class="n">PruneCell</span><span class="p">(</span><span class="n">prune_mode</span><span class="o">=</span><span class="s2">&quot;Static&quot;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">prune_filler</span><span class="o">=</span><span class="s2">&quot;IterNonStruct&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Some explanations with the differents options of the <em>PruneCell</em>:</p>
+<p>Some explanations with the differents options of the <a class="reference internal" href="#n2d2.quantizer.PruneCell" title="n2d2.quantizer.PruneCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.quantizer.PruneCell</span></code></a> :</p>
 <div class="section" id="pruning-mode">
 <h3>Pruning mode<a class="headerlink" href="#pruning-mode" title="Permalink to this heading">¶</a></h3>
 <p>3 modes are possible:</p>
@@ -344,7 +344,7 @@ For example, to update each two epochs, write:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n2d2</span><span class="o">.</span><span class="n">quantizer</span><span class="o">.</span><span class="n">PruneCell</span><span class="p">(</span><span class="n">prune_mode</span><span class="o">=</span><span class="s2">&quot;Gradual&quot;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">stepsize</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">DATASET_SIZE</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Where <em>DATASET_SIZE</em> is the size of the dataset you are using.</p>
+<p>Where <code class="docutils literal notranslate"><span class="pre">DATASET_SIZE</span></code> is the size of the dataset you are using.</p>
 </div>
 <div class="section" id="pruning-filler">
 <h3>Pruning filler<a class="headerlink" href="#pruning-filler" title="Permalink to this heading">¶</a></h3>
@@ -353,7 +353,7 @@ For example, to update each two epochs, write:</p>
 <li><p>Random: The masks are filled randomly</p></li>
 <li><p>IterNonStruct: all weights below than the <code class="docutils literal notranslate"><span class="pre">delta</span></code> factor are pruned. If this is not enough to reach <code class="docutils literal notranslate"><span class="pre">threshold</span></code>, all the weights below 2 “delta” are pruned and so on…</p></li>
 </ul>
-<p><strong>Important</strong>: With <em>PruneCell</em>, <code class="docutils literal notranslate"><span class="pre">quant_mode</span></code> and <code class="docutils literal notranslate"><span class="pre">range</span></code> are not used.</p>
+<p><strong>Important</strong>: With <a class="reference internal" href="#n2d2.quantizer.PruneCell" title="n2d2.quantizer.PruneCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.quantizer.PruneCell</span></code></a>, <code class="docutils literal notranslate"><span class="pre">quant_mode</span></code> and <code class="docutils literal notranslate"><span class="pre">range</span></code> are not used.</p>
 </div>
 </div>
 <div class="section" id="example-with-ini-file">
