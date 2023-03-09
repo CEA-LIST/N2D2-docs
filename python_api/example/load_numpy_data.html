@@ -1,0 +1,369 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Load Numpy Data &mdash; N2D2  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> N2D2
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/intro.html">Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/about.html">About N2D2-IP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/simus.html">Performing simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/perfs_tools.html">Performance evaluation tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/tuto.html">Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ONNX Import</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../onnx/convert.html">Obtain ONNX models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../onnx/import.html">Import ONNX models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../onnx/transfer.html">Train from ONNX models</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quantization and Export</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../quant/post.html">Post-training quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quant/qat.html">Quantization-Aware Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quant/pruning.html">Pruning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../export/CPP.html">Export: C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../export/CPP_STM32.html">Export: C++/STM32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../export/TensorRT.html">Export: TensorRT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../export/DNeuro.html">Export: DNeuro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../export/ONNX.html">Export: ONNX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../export/legacy.html">Export: other / legacy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">INI File Interface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../ini/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ini/databases.html">Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ini/data_analysis.html">Stimuli data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ini/environment.html">Stimuli provider (Environment)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ini/layers.html">Network Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ini/target.html">Targets (outputs &amp; losses)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../adversarial.html">Adversarial module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../databases.html">Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cells.html">Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tensor.html">Tensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability.html">Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../export.html">Export</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example.html">Example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">C++/Python core</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../core/core.html">Core N2D2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core/example.html">Example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">C++ API / Developer</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_intro.html">Introduction</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">N2D2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Load Numpy Data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/python_api/example/load_numpy_data.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="load-numpy-data">
+<h1>Load Numpy Data<a class="headerlink" href="#load-numpy-data" title="Permalink to this heading">¶</a></h1>
+<p>In this example, we will see how to load data from a Numpy array using <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.database.numpy</span></code>.</p>
+<p>You can find the full python script here <a class="reference download internal" download="" href="../../_downloads/63100fb8712456bd952e441227d5577b/load_numpy_data.py"><code class="xref download docutils literal notranslate"><span class="pre">load_numpy_data.py</span></code></a>.</p>
+<div class="section" id="preliminary">
+<h2>Preliminary<a class="headerlink" href="#preliminary" title="Permalink to this heading">¶</a></h2>
+<p>For this tutorial, we will create a database using the following keras data loader : <a class="reference external" href="https://keras.io/api/datasets/fashion_mnist/">https://keras.io/api/datasets/fashion_mnist/</a>.</p>
+<p>Available by importing :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras.datasets.fashion_mnist</span> <span class="kn">import</span> <span class="n">load_data</span>
+
+<span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="load-data-into-n2d2">
+<h2>Load data into N2D2<a class="headerlink" href="#load-data-into-n2d2" title="Permalink to this heading">¶</a></h2>
+<p>Now that we have our data in the form of Numpy array we can create and populate the <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.database.numpy</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">n2d2</span>
+
+<span class="c1"># Instanciate Numpy database object</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">Numpy</span><span class="p">()</span>
+<span class="c1"># Load train set</span>
+<span class="n">db</span><span class="o">.</span><span class="n">load</span><span class="p">([</span><span class="n">a</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">x_train</span><span class="p">],</span> <span class="p">[(</span><span class="nb">int</span><span class="p">)(</span><span class="n">i</span><span class="o">.</span><span class="n">item</span><span class="p">())</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">y_train</span><span class="p">])</span>
+<span class="c1"># Add the loaded data to the Learn partition</span>
+<span class="n">db</span><span class="o">.</span><span class="n">partition_stimuli</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">)</span> <span class="c1"># Learn Validation Test</span>
+
+<span class="c1"># Load test set in the validation partition</span>
+<span class="n">db</span><span class="o">.</span><span class="n">load</span><span class="p">([</span><span class="n">a</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">x_test</span><span class="p">],</span> <span class="p">[(</span><span class="nb">int</span><span class="p">)(</span><span class="n">i</span><span class="o">.</span><span class="n">item</span><span class="p">())</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">y_test</span><span class="p">],</span> <span class="n">partition</span><span class="o">=</span><span class="s2">&quot;Validation&quot;</span><span class="p">)</span>
+
+<span class="c1"># Print a summary</span>
+<span class="n">db</span><span class="o">.</span><span class="n">get_partition_summary</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Number of stimuli : 70000
+Learn         : 60000 stimuli (85.71%)
+Test          : 0 stimuli (0.0%)
+Validation    : 10000 stimuli (14.29%)
+Unpartitioned : 0 stimuli (0.0%)
+</pre></div>
+</div>
+</div>
+<div class="section" id="training-a-model-using-the-numpy-database">
+<h2>Training a model using the numpy database<a class="headerlink" href="#training-a-model-using-the-numpy-database" title="Permalink to this heading">¶</a></h2>
+<p>Before anything, we will import the following modules :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">n2d2</span>
+<span class="kn">from</span> <span class="nn">n2d2.cells.nn</span> <span class="kn">import</span> <span class="n">Fc</span><span class="p">,</span> <span class="n">Softmax</span>
+<span class="kn">from</span> <span class="nn">n2d2.cells</span> <span class="kn">import</span> <span class="n">Sequence</span>
+<span class="kn">from</span> <span class="nn">n2d2.solver</span> <span class="kn">import</span> <span class="n">SGD</span>
+<span class="kn">from</span> <span class="nn">n2d2.activation</span> <span class="kn">import</span> <span class="n">Rectifier</span><span class="p">,</span> <span class="n">Linear</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span>
+</pre></div>
+</div>
+<p>For this example we will create a very simple model :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">Sequence</span><span class="p">([</span>
+        <span class="n">Fc</span><span class="p">(</span><span class="mi">28</span><span class="o">*</span><span class="mi">28</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">Rectifier</span><span class="p">()),</span>
+        <span class="n">Fc</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">Linear</span><span class="p">()),</span>
+    <span class="p">])</span>
+<span class="n">softmax</span> <span class="o">=</span> <span class="n">Softmax</span><span class="p">(</span><span class="n">with_loss</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">set_solver</span><span class="p">(</span><span class="n">SGD</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model :&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In order to provide data to the model for the training, we will create a <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">provider</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">DataProvider</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="p">[</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">)</span>
+
+<span class="n">provider</span><span class="o">.</span><span class="n">set_partition</span><span class="p">(</span><span class="s2">&quot;Learn&quot;</span><span class="p">)</span>
+
+<span class="n">target</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">Score</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then we can write a classic training loop to learn using the <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">### Training ###&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">EPOCH</span><span class="p">):</span>
+
+    <span class="n">provider</span><span class="o">.</span><span class="n">set_partition</span><span class="p">(</span><span class="s2">&quot;Learn&quot;</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">learn</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"># Train Epoch: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; #&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">get_nb_stimuli</span><span class="p">(</span><span class="s1">&#39;Learn&#39;</span><span class="p">)</span><span class="o">/</span><span class="n">BATCH_SIZE</span><span class="p">)):</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">read_random_batch</span><span class="p">()</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">target</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">back_propagate</span><span class="p">()</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Example: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">BATCH_SIZE</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, loss: &quot;</span>
+            <span class="o">+</span> <span class="s2">&quot;</span><span class="si">{0:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">loss</span><span class="p">()),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">### Validation ###&quot;</span><span class="p">)</span>
+
+    <span class="n">target</span><span class="o">.</span><span class="n">clear_success</span><span class="p">()</span>
+
+    <span class="n">provider</span><span class="o">.</span><span class="n">set_partition</span><span class="p">(</span><span class="s1">&#39;Validation&#39;</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">get_nb_stimuli</span><span class="p">(</span><span class="s1">&#39;Validation&#39;</span><span class="p">)</span><span class="o">/</span><span class="n">BATCH_SIZE</span><span class="p">)):</span>
+        <span class="n">batch_idx</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">BATCH_SIZE</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">read_batch</span><span class="p">(</span><span class="n">batch_idx</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">target</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Validate example: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">BATCH_SIZE</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, val success: &quot;</span>
+            <span class="o">+</span> <span class="s2">&quot;</span><span class="si">{0:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">target</span><span class="o">.</span><span class="n">get_average_success</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&quot;%&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">END&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, CEA LIST
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

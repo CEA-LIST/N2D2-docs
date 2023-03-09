@@ -133,6 +133,10 @@
 <li class="toctree-l4"><a class="reference internal" href="#handling-labelization">Handling labelization</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#numpy">Numpy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#usage-example">Usage example</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#mnist">MNIST</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#n2d2.database.MNIST"><code class="docutils literal notranslate"><span class="pre">MNIST</span></code></a></li>
 </ul>
@@ -556,6 +560,164 @@ an exterior file we will name it <code class="docutils literal notranslate"><spa
 <dl class="py method">
 <dt class="sig sig-object py" id="n2d2.database.DIR.partition_stimuli">
 <span class="sig-name descname"><span class="pre">partition_stimuli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">learn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.DIR.partition_stimuli" title="Permalink to this definition">¶</a></dt>
+<dd><p>Partition the <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code> data with the given ratio (the sum of the given ratio must be equal to 1).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>learn</strong> (<em>float</em>) – Ratio for the <code class="docutils literal notranslate"><span class="pre">Learn</span></code> partition.</p></li>
+<li><p><strong>validation</strong> (<em>float</em>) – Ratio for the <code class="docutils literal notranslate"><span class="pre">Validation</span></code> partition.</p></li>
+<li><p><strong>test</strong> (<em>float</em>) – Ratio for the <code class="docutils literal notranslate"><span class="pre">Test</span></code> partition.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="numpy">
+<h3>Numpy<a class="headerlink" href="#numpy" title="Permalink to this heading">¶</a></h3>
+<p>The <a class="reference internal" href="#n2d2.database.Numpy" title="n2d2.database.Numpy"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.database.Numpy</span></code></a> allows to create a database using Numpy array.
+This can be especially usefull if you already have a dataloader written in Python.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The labels are optional, this can be usefull if you have previously trained your model and only need data to calibrate you model using the <a class="reference internal" href="../quant/post.html#n2d2.quantizer.PTQ" title="n2d2.quantizer.PTQ"><code class="xref py py-func docutils literal notranslate"><span class="pre">n2d2.quantizer.PTQ()</span></code></a> function.</p>
+</div>
+<div class="section" id="usage-example">
+<h4>Usage example<a class="headerlink" href="#usage-example" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">n2d2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">Numpy</span><span class="p">()</span>
+<span class="n">db</span><span class="o">.</span><span class="n">load</span><span class="p">([</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]),</span>
+<span class="p">],</span>
+<span class="p">[</span>
+        <span class="mi">0</span><span class="p">,</span>
+        <span class="mi">1</span><span class="p">,</span>
+        <span class="mi">0</span><span class="p">,</span>
+        <span class="mi">1</span>
+<span class="p">])</span>
+<span class="n">db</span><span class="o">.</span><span class="n">partition_stimuli</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">)</span> <span class="c1"># Learn Validation Test</span>
+
+<span class="n">provider</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">DataProvider</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">provider</span><span class="o">.</span><span class="n">set_partition</span><span class="p">(</span><span class="s2">&quot;Learn&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First stimuli :&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">provider</span><span class="p">))</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="n2d2.database.Numpy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">n2d2.database.</span></span><span class="sig-name descname"><span class="pre">Numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Numpy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Numpy database, creates a database from Numpy Array.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="n2d2.database.Numpy.N2D2">
+<span class="sig-name descname"><span class="pre">N2D2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Numpy.N2D2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the N2D2 object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="n2d2.database.Numpy.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Numpy.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>load_data_in_memory</strong> (<em>boolean</em><em>, </em><em>optional</em>) – if <cite>True</cite> cache data in memory, default=False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="n2d2.database.Numpy.download">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#n2d2.database.Numpy.download" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download the dataset at the defined path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path where to download the dataset, default=$(N2D2_DATA)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="n2d2.database.Numpy.get_label_name">
+<span class="sig-name descname"><span class="pre">get_label_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Numpy.get_label_name" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>label_idx</strong> (<em>int</em>) – Index of the label</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Label name</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="n2d2.database.Numpy.get_nb_stimuli">
+<span class="sig-name descname"><span class="pre">get_nb_stimuli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">partition</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Numpy.get_nb_stimuli" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number fo stimuli  available for this partition</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>partition</strong> (<em>str</em>) – The partition can be  <code class="docutils literal notranslate"><span class="pre">Learn</span></code>, <code class="docutils literal notranslate"><span class="pre">Validation</span></code>, <code class="docutils literal notranslate"><span class="pre">Test</span></code>,  <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="n2d2.database.Numpy.get_parameter">
+<span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Numpy.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – Parameter name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="n2d2.database.Numpy.get_partition_summary">
+<span class="sig-name descname"><span class="pre">get_partition_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Numpy.get_partition_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the number of stimuli for each partition.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="n2d2.database.Numpy.is_downloadable">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_downloadable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#n2d2.database.Numpy.is_downloadable" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the database is downloadable.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="n2d2.database.Numpy.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stimuli_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Numpy.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load numpy array as input and int as labels. 
+By default, the loaded stimuli are stored in the <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code> partition.
+At the moment only integers labels are supported.
+If <code class="docutils literal notranslate"><span class="pre">label_list</span></code> is not filled, all labels are set to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stimuli_list</strong> (<em>List</em><em>[</em><em>ndarray</em><em>]</em>) – List of stimulus, they must respect the format [C, H, W].</p></li>
+<li><p><strong>labels_list</strong> (<em>List</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – List of label, if <code class="docutils literal notranslate"><span class="pre">None</span></code>, every label are set to 0, default=None</p></li>
+<li><p><strong>partition</strong> (<em>str</em><em>, </em><em>optional</em>) – The partition can be  <code class="docutils literal notranslate"><span class="pre">Learn</span></code>, <code class="docutils literal notranslate"><span class="pre">Validation</span></code>, <code class="docutils literal notranslate"><span class="pre">Test</span></code>,  <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code>, by default data are stored in the``Unpartitioned`` partition (see <code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.database.numpy.partition_stimuli()</span></code>) , default=None</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="n2d2.database.Numpy.partition_stimuli">
+<span class="sig-name descname"><span class="pre">partition_stimuli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">learn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.database.Numpy.partition_stimuli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Partition the <code class="docutils literal notranslate"><span class="pre">Unpartitioned</span></code> data with the given ratio (the sum of the given ratio must be equal to 1).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1796,7 +1958,7 @@ To add a transformation to the provider, you should use the method <code class="
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>database</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.database.Database</span></code>) – Database used to read data from</p></li>
-<li><p><strong>size</strong> (<em>list</em>) – Size of the data</p></li>
+<li><p><strong>size</strong> (<em>list</em>) – Size of the data, in the format [W, H, C].</p></li>
 <li><p><strong>batch_size</strong> (<em>int</em><em>, </em><em>optional</em>) – Batch size, default=1</p></li>
 <li><p><strong>composite_stimuli</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, use pixel-wise stimuli labels, default=False</p></li>
 <li><p><strong>random_read</strong> (<em>boolean</em><em>, </em><em>optional</em>) – if <code class="docutils literal notranslate"><span class="pre">False</span></code> we use get_batch when iterating other the provider, else we use get <code class="docutils literal notranslate"><span class="pre">get_random_batch</span></code>, default = False</p></li>
