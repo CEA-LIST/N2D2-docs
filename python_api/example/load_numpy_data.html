@@ -285,7 +285,7 @@ Unpartitioned : 0 stimuli (0.0%)
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>In order to provide data to the model for the training, we will create a <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a>.</p>
+<p>In order to provide data to the model for the training, we will create a <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">provider</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">DataProvider</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="p">[</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">)</span>
 
 <span class="n">provider</span><span class="o">.</span><span class="n">set_partition</span><span class="p">(</span><span class="s2">&quot;Learn&quot;</span><span class="p">)</span>
@@ -293,7 +293,7 @@ Unpartitioned : 0 stimuli (0.0%)
 <span class="n">target</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">Score</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Then we can write a classic training loop to learn using the <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a> :</p>
+<p>Then we can write a classic training loop to learn using the <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code> :</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">### Training ###&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">EPOCH</span><span class="p">):</span>
 

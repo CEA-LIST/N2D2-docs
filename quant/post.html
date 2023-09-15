@@ -118,10 +118,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#usage-in-n2d2">Usage in N2D2</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#act-rescaling-mode"><code class="docutils literal notranslate"><span class="pre">-act-rescaling-mode</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#command-line-example">Command line example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#with-the-python-api">With the python API</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#n2d2.quantizer.PTQ"><code class="docutils literal notranslate"><span class="pre">PTQ()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#with-the-python-api">With the python API</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#examples-and-results">Examples and results</a></li>
@@ -368,25 +365,6 @@ model:</p>
 </div>
 <div class="section" id="with-the-python-api">
 <h3>With the python API<a class="headerlink" href="#with-the-python-api" title="Permalink to this heading">¶</a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="n2d2.quantizer.PTQ">
-<span class="sig-prename descclassname"><span class="pre">n2d2.quantizer.</span></span><span class="sig-name descname"><span class="pre">PTQ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deepnet_cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_sitmuli</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provider</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Provider</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_unsigned</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cross_layer_equalization</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wt_clipping_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'NONE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">act_clipping_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'MSE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">act_scaling_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'FLOAT_MULT'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">act_rescale_per_output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#n2d2.quantizer.PTQ" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>nb_bits</strong> (<em>int</em>) – Number of bits per weight for exports (can be for example <cite>-16</cite> for float 16 bits or <cite>8</cite> int 8 bits)</p></li>
-<li><p><strong>nb_sitmuli</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of stimuli used for the calibration (<code class="docutils literal notranslate"><span class="pre">0</span></code> = no calibration, <code class="docutils literal notranslate"><span class="pre">-1</span></code> = use the full test dataset), default=-1</p></li>
-<li><p><strong>provider</strong> (<a class="reference internal" href="../python_api/databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a>, optional) – Data provider to use for calibration, default=None</p></li>
-<li><p><strong>no_unsigned</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, disable the use of unsigned data type in integer calibration, default=False</p></li>
-<li><p><strong>cross_layer_equalization</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, disable the use of cross layer equalization in integer calibration, default=False</p></li>
-<li><p><strong>wt_clipping_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – Weights clipping mode on calibration, can be <code class="docutils literal notranslate"><span class="pre">NONE</span></code>, <code class="docutils literal notranslate"><span class="pre">MSE</span></code> or <code class="docutils literal notranslate"><span class="pre">KL_DIVERGENCE</span></code>, default=”NONE”</p></li>
-<li><p><strong>act_clipping_mode</strong> (<em>str</em><em>, </em><em>optional</em>) – activation clipping mode on calibration, can be <code class="docutils literal notranslate"><span class="pre">NONE</span></code>, <code class="docutils literal notranslate"><span class="pre">MSE</span></code> or <code class="docutils literal notranslate"><span class="pre">KL_DIVERGENCE</span></code> or <code class="docutils literal notranslate"><span class="pre">Quantile</span></code>, default=”MSE”</p></li>
-<li><p><strong>act_rescale_per_output</strong> (<em>bool</em><em>, </em><em>optional</em>) – rescale activation per output on export, default=False</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 </div>
 </div>
 <div class="section" id="examples-and-results">

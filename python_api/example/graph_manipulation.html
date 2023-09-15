@@ -293,7 +293,7 @@
 </pre></div>
 </div>
 <p>Now we can see the inputs object of each cells !</p>
-<p>You can also plot the graph associated to a tensor with the method <a class="reference internal" href="../tensor.html#n2d2.Tensor.draw_associated_graph" title="n2d2.Tensor.draw_associated_graph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.Tensor.draw_associated_graph()</span></code></a> :</p>
+<p>You can also plot the graph associated to a tensor with the method <code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.Tensor.draw_associated_graph()</span></code> :</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">draw_associated_graph</span><span class="p">(</span><span class="s2">&quot;example_graph&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -396,7 +396,7 @@
 ], device=cpu, datatype=f, cell=&#39;last_fully&#39;)
 </pre></div>
 </div>
-<p>Concatenating <a class="reference internal" href="../cells.html#n2d2.cells.Sequence" title="n2d2.cells.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Sequence</span></code></a> can be useful if we want for example to only save the parameters of a part of the network.</p>
+<p>Concatenating <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.cells.Sequence</span></code> can be useful if we want for example to only save the parameters of a part of the network.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">network</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">export_free_parameters</span><span class="p">(</span><span class="s2">&quot;ConvNet_parameters&quot;</span><span class="p">)</span>
 </pre></div>
 </div>

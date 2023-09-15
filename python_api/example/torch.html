@@ -295,7 +295,7 @@ And run the network with N2D2 instead of Torch.</p>
         <span class="k">return</span> <span class="n">x</span>
 </pre></div>
 </div>
-<p>Here we begin to add our code, we intialize the Torch Network and we pass it to the <a class="reference internal" href="../interoperability.html#pytorch_to_n2d2.wrap" title="pytorch_to_n2d2.wrap"><code class="xref py py-func docutils literal notranslate"><span class="pre">pytorch_to_n2d2.wrap()</span></code></a> method.
+<p>Here we begin to add our code, we intialize the Torch Network and we pass it to the <code class="xref py py-func docutils literal notranslate"><span class="pre">pytorch_to_n2d2.wrap()</span></code> method.
 This will give us a <code class="docutils literal notranslate"><span class="pre">torch.nn.Module</span></code> which run N2D2 and that we will use instead of the Torch Network.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torch_net</span> <span class="o">=</span> <span class="n">Net</span><span class="p">()</span>
 <span class="c1"># specify that we want to use CUDA.</span>

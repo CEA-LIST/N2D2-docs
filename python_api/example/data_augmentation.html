@@ -224,12 +224,12 @@
             
   <div class="section" id="data-augmentation">
 <h1>Data augmentation<a class="headerlink" href="#data-augmentation" title="Permalink to this heading">¶</a></h1>
-<p>In this example, we will see how to use <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a> and <a class="reference internal" href="../databases.html#n2d2.transform.Transformation" title="n2d2.transform.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.transform.Transformation</span></code></a> to load data and do some data augmentation.</p>
+<p>In this example, we will see how to use <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.transform.Transformation</span></code> to load data and do some data augmentation.</p>
 <p>You can find the full python script here <a class="reference download internal" download="" href="../../_downloads/3740b31858f42d0a2f23790c8a526182/data_augmentation.py"><code class="xref download docutils literal notranslate"><span class="pre">data_augmentation.py</span></code></a>.</p>
 <div class="section" id="preliminary">
 <h2>Preliminary<a class="headerlink" href="#preliminary" title="Permalink to this heading">¶</a></h2>
 <p>For this tutorial, we will use n2d2 for data augmentation, and numpy and matplotlib for the visualization.</p>
-<p>We will create a method plot_tensor to save the generated images from an <a class="reference internal" href="../tensor.html#n2d2.Tensor" title="n2d2.Tensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></a></p>
+<p>We will create a method plot_tensor to save the generated images from an <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.Tensor</span></code></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">n2d2</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
@@ -241,7 +241,7 @@
 </div>
 <div class="section" id="loading-data">
 <h2>Loading data<a class="headerlink" href="#loading-data" title="Permalink to this heading">¶</a></h2>
-<p>We will begin by creating a <a class="reference internal" href="../databases.html#n2d2.database.MNIST" title="n2d2.database.MNIST"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.database.MNIST</span></code></a> driver to load the MNIST dataset.
+<p>We will begin by creating a <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.database.MNIST</span></code> driver to load the MNIST dataset.
 We will then create a provider to get the images, we use a batch size of 1 to get only one image.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">database</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="n">data_path</span><span class="o">=</span><span class="s2">&quot;/local/DATABASE/mnist&quot;</span><span class="p">,</span> <span class="n">validation</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 <span class="n">provider</span> <span class="o">=</span> <span class="n">n2d2</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">DataProvider</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="p">[</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -259,12 +259,12 @@ Validation    : 6000 stimuli (8.57%)
 Unpartitioned : 0 stimuli (0.0%)
 </pre></div>
 </div>
-<p>To select which partition you want to read from you need to use the method <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider.set_partition" title="n2d2.provider.DataProvider.set_partition"><code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.set_partition()</span></code></a></p>
-<p>To read data from a <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a> you can use multiple methods.</p>
-<p>You can use the methods <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider.read_batch" title="n2d2.provider.DataProvider.read_batch"><code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.read_batch()</span></code></a> or <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider.read_random_batch" title="n2d2.provider.DataProvider.read_random_batch"><code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.read_random_batch()</span></code></a>.</p>
+<p>To select which partition you want to read from you need to use the method <code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.set_partition()</span></code></p>
+<p>To read data from a <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code> you can use multiple methods.</p>
+<p>You can use the methods <code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.read_batch()</span></code> or <code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.read_random_batch()</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Since <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider" title="n2d2.provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code></a> is an <cite>iterable</cite>, so you can use the <code class="docutils literal notranslate"><span class="pre">next()</span></code> function or a for loop !</p>
+<p>Since <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider</span></code> is an <cite>iterable</cite>, so you can use the <code class="docutils literal notranslate"><span class="pre">next()</span></code> function or a for loop !</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># for loop example</span>
 <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">provider</span><span class="p">:</span>
     <span class="k">pass</span>
@@ -273,7 +273,7 @@ Unpartitioned : 0 stimuli (0.0%)
 </pre></div>
 </div>
 </div>
-<p>For this tutorial we will use <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider.read_batch" title="n2d2.provider.DataProvider.read_batch"><code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.read_batch()</span></code></a> !</p>
+<p>For this tutorial we will use <code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.read_batch()</span></code> !</p>
 <p>With this code we will get the first image and plot it :</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">read_batch</span><span class="p">(</span><span class="n">idx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">*</span> <span class="mi">255</span>
 <span class="n">plot_tensor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="s2">&quot;first_stimuli.png&quot;</span><span class="p">)</span>
@@ -285,13 +285,13 @@ Unpartitioned : 0 stimuli (0.0%)
 </div>
 <div class="section" id="id1">
 <h2>Data augmentation<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
-<p>To do data augmentation with N2D2 we use <a class="reference internal" href="../databases.html#n2d2.transform.Transformation" title="n2d2.transform.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.transform.Transformation</span></code></a>.
-You can add transformation to provider with the method <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider.add_on_the_fly_transformation" title="n2d2.provider.DataProvider.add_on_the_fly_transformation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.add_on_the_fly_transformation()</span></code></a> and <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider.add_transformation" title="n2d2.provider.DataProvider.add_transformation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.add_transformation()</span></code></a>.</p>
+<p>To do data augmentation with N2D2 we use <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.transform.Transformation</span></code>.
+You can add transformation to provider with the method <code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.add_on_the_fly_transformation()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.add_transformation()</span></code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Since we already loaded the first image the method <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider.add_transformation" title="n2d2.provider.DataProvider.add_transformation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.add_transformation()</span></code></a> would not apply the transformation to the image.</p>
+<p>Since we already loaded the first image the method <code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.add_transformation()</span></code> would not apply the transformation to the image.</p>
 </div>
-<p>By using the transformation <a class="reference internal" href="../databases.html#n2d2.transform.Flip" title="n2d2.transform.Flip"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.transform.Flip</span></code></a> we will flip vertically our image.</p>
+<p>By using the transformation <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.transform.Flip</span></code> we will flip vertically our image.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">provider</span><span class="o">.</span><span class="n">add_on_the_fly_transformation</span><span class="p">(</span><span class="n">n2d2</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">Flip</span><span class="p">(</span><span class="n">vertical_flip</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 
 <span class="n">image</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">read_batch</span><span class="p">(</span><span class="n">idx</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">*</span> <span class="mi">255</span>
@@ -301,7 +301,7 @@ You can add transformation to provider with the method <a class="reference inter
 <div class="figure align-default">
 <img alt="First stimuli of the MNIST dataset but flipped." src="../../_images/first_stimuli_fliped.png" />
 </div>
-<p>We will negate the first transformation with another <a class="reference internal" href="../databases.html#n2d2.transform.Flip" title="n2d2.transform.Flip"><code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.transform.Flip</span></code></a> which we will add with the method <a class="reference internal" href="../databases.html#n2d2.provider.DataProvider.add_transformation" title="n2d2.provider.DataProvider.add_transformation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.add_transformation()</span></code></a>.</p>
+<p>We will negate the first transformation with another <code class="xref py py-class docutils literal notranslate"><span class="pre">n2d2.transform.Flip</span></code> which we will add with the method <code class="xref py py-meth docutils literal notranslate"><span class="pre">n2d2.provider.DataProvider.add_transformation()</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># negating the first transformation with another one</span>
 <span class="n">provider</span><span class="o">.</span><span class="n">add_transformation</span><span class="p">(</span><span class="n">n2d2</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">Flip</span><span class="p">(</span><span class="n">vertical_flip</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 <span class="n">image</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">read_batch</span><span class="p">(</span><span class="n">idx</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">*</span> <span class="mi">255</span>
